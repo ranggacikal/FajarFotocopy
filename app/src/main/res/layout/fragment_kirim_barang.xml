@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".gudang.InformasiGudangFragment">
+    tools:context=".gudang.KirimBarangFragment">
 
     <RelativeLayout
-        android:id="@+id/headerinformasi"
+        android:id="@+id/headerkirimbarang"
         android:layout_width="match_parent"
         android:layout_height="121dp"
         android:background="@drawable/background_header_green">
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
             android:layout_marginStart="75dp"
-            android:text="Informasi"
+            android:text="Kirim Barang"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:fontFamily="@font/sairabold"/>
@@ -28,12 +28,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/headerinformasi"
+        android:layout_below="@+id/headerkirimbarang"
         android:layout_marginTop="51dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_tambah_informasi"
+            android:id="@+id/card_kirim_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
@@ -55,7 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tambah Informasi"
+                    android:text="Kirim Barang"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
                     android:textSize="22sp"
@@ -67,7 +67,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_data_informasi"
+            android:id="@+id/card_report_pengiriman"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
@@ -90,7 +90,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Informasi"
+                    android:text="Report Pengiriman"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
                     android:textSize="22sp"
