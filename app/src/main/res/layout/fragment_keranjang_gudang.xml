@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".gudang.InformasiGudangFragment">
+    tools:context=".gudang.KeranjangGudangFragment">
 
     <RelativeLayout
-        android:id="@+id/headerinformasi"
+        android:id="@+id/headerkeranjang"
         android:layout_width="match_parent"
         android:layout_height="121dp"
         android:background="@drawable/background_header_green">
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
             android:layout_marginStart="75dp"
-            android:text="Informasi"
+            android:text="Keranjang"
             android:textSize="24sp"
             android:textColor="@color/white"
             android:fontFamily="@font/sairabold"/>
@@ -28,12 +28,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/headerinformasi"
+        android:layout_below="@+id/headerkeranjang"
         android:layout_marginTop="51dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_tambah_informasi"
+            android:id="@+id/card_keranjang_kirim_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
@@ -49,13 +49,13 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_plus"
+                    android:src="@drawable/ic_kirim_transfer"
                     android:layout_marginStart="28dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Tambah Informasi"
+                    android:text="Keranjang Kirim Barang"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
                     android:textSize="22sp"
@@ -67,7 +67,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/card_data_informasi"
+            android:id="@+id/card_keranjang_transfer_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
@@ -84,13 +84,13 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_history"
+                    android:src="@drawable/ic_transfer"
                     android:layout_marginStart="28dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data Informasi"
+                    android:text="Keranjang Transfer Barang"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
                     android:textSize="22sp"
