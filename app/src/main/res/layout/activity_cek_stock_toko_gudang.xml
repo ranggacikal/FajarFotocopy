@@ -35,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Toko"
+                    android:text="Cek Stock Toko"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
@@ -49,35 +49,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="27dp"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center">
-
-            <ImageView
+            <androidx.appcompat.widget.SearchView
                 android:layout_width="333dp"
                 android:layout_height="54dp"
-                android:src="@drawable/bg_rectangle"/>
+                android:background="@drawable/bg_rectangle"
+                android:padding="15dp" />
 
-            </LinearLayout>
 
-
-            <ImageView
+            <Spinner
                 android:layout_width="333dp"
                 android:layout_height="54dp"
-                android:layout_marginTop="14dp"
-                android:src="@drawable/bg_rectangle"/>
+                android:background="@drawable/bg_rectangle"
+                android:layout_marginTop="21dp"/>
+
 
         </LinearLayout>
 
 
     </LinearLayout>
-
-
-
 
 
 </RelativeLayout>
