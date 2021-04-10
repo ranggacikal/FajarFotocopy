@@ -8,33 +8,127 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="121dp"
-        android:orientation="vertical"
-        android:background="@drawable/background_green_3">
-        
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:layout_marginStart="38dp">
-            
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_back_atas"/>
-        
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="24sp"
-                android:fontFamily="@font/sairamedium"
-                android:textColor="@color/white"
-                android:text="Kelola Toko"/>
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:background="@drawable/background_header_green"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="">
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="38dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back_atas" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Toko"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear_cek_stock_gudang"
+                android:layout_width="330dp"
+                android:layout_height="109dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/background_green_card">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="28dp"
+                    android:src="@drawable/ic_stock"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cek Stock"
+                    android:fontFamily="@font/sairamedium"
+                    android:textSize="22sp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="42dp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_tambah_toko_gudang"
+                android:layout_width="330dp"
+                android:layout_height="109dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/background_green_card">
+
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="28dp"
+                    android:src="@drawable/ic_plus_merah"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tambah Toko"
+                    android:fontFamily="@font/sairamedium"
+                    android:textSize="22sp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="42dp"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linear_data_toko_gudang"
+                android:layout_width="330dp"
+                android:layout_height="109dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="21dp"
+                android:background="@drawable/background_green_card">
+
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="28dp"
+                    android:src="@drawable/ic_history"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Data Toko"
+                    android:fontFamily="@font/sairamedium"
+                    android:textSize="22sp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="42dp"
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -43,6 +137,8 @@
 
 
 
+
     </LinearLayout>
 
-</RelativeLayout>
+
+    </RelativeLayout>
