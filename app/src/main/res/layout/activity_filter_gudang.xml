@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gudang.FilterGudangActivity">
+
+
+
+    <LinearLayout
+        android:id="@+id/linear_back_filter_gudang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="38dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_atas_black" />
+
+        <TextView
+            android:id="@+id/txt_cek_stock_pertoko_gudang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairamedium"
+            android:text="Filter"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/txt_filer_gudang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_back_filter_gudang"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="33dp"
+        android:fontFamily="@font/sairamedium"
+        android:text="Urutkan Berdasarkan"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/linear_gabungan_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_filer_gudang"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_stock_rendah_filter_gudang"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_merah"
+            android:fontFamily="@font/sairamedium"
+            android:text="Stock Terendah"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_stock_tinggi_filter_gudang"
+            android:layout_width="130dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/btn_biru_muda"
+            android:fontFamily="@font/sairamedium"
+            android:text="Stock Tertinggi"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_jenis_kategori_filter_gudang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_gabungan_button"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sairamedium"
+        android:text="Jenis Kategori"
+        android:textSize="15sp" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_grup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@+id/txt_jenis_kategori_filter_gudang"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_button_atk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ATK" />
+
+        <RadioButton
+            android:id="@+id/radio_button_minuman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minuman"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_simpan_filter_gudang"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        android:text="Simpan"
+        android:textSize="15dp"
+        android:fontFamily="@font/sairamedium"
+        android:textColor="@color/white"
+        android:background="@drawable/btn_merah"
+        android:layout_below="@+id/radio_grup_button" />
+
+</RelativeLayout>
