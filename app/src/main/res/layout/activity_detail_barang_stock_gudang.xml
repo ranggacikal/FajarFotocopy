@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gudang.DetailBarangStockGudangActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linear_back_detail_barang_stock_gudang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="38dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_atas_black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sairamedium"
+                android:text="Detail Barang"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_nama_toko_detail_barang_gudang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Nama Toko"
+            android:textColor="#8A8A8A"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Nama Barang" />
+
+        <EditText
+            android:id="@+id/edt_nama_barang_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Jenis Barang" />
+
+        <EditText
+            android:id="@+id/edt_jenis_barang_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Kode Barang" />
+
+        <EditText
+            android:id="@+id/edt_kode_barang_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Stock Barang Pcs" />
+
+        <EditText
+            android:id="@+id/edt_stock_barang_pcs_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Stock Barang Pack" />
+
+        <EditText
+            android:id="@+id/edt_stock_barang_pack_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Modal Gudang" />
+
+        <EditText
+            android:id="@+id/edt_harga_modal_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Modal Toko" />
+
+        <EditText
+            android:id="@+id/edt_harga_modal_toko_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Jual Toko" />
+
+        <EditText
+            android:id="@+id/edt_harga_jual_toko_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Asal Barang" />
+
+        <EditText
+            android:id="@+id/edt_asal_barang_gudang"
+            android:layout_width="348dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="10dp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Foto" />
+
+        <ImageView
+            android:id="@+id/image_detail_barang_gudang"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_profile"/>
+
+        <Button
+            android:id="@+id/btn_edit_barang_gudang"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_btn_blue"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Edit"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sairamedium"/>
+
+        <Button
+            android:id="@+id/btn_hapus_barang_gudang"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/btn_merah"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:text="Hapus"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sairamedium"/>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

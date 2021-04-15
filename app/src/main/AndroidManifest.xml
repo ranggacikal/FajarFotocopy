@@ -11,11 +11,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy">
-        <activity android:name=".gudang.FilterGudangActivity"></activity>
+        <activity android:name=".gudang.DataPertokoGudangActivity"></activity>
+        <activity android:name=".gudang.DataTokoGudangActivity" />
+        <activity android:name=".gudang.TambahTokoGudangActivity" />
+        <activity android:name=".gudang.DetailBarangStockGudangActivity" />
+        <activity android:name=".gudang.FilterGudangActivity" />
         <activity android:name=".gudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.TokoGudangActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".gudang.LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

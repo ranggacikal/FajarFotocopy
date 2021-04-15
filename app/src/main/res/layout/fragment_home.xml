@@ -76,7 +76,7 @@
             android:src="@drawable/ic_notif"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="15dp"/>
+            android:layout_marginEnd="25dp"/>
 
     </RelativeLayout>
 
@@ -91,8 +91,9 @@
             android:id="@+id/btn_keluar_gudang"
             android:layout_width="85dp"
             android:layout_height="33dp"
-            android:background="@drawable/bg_edt_white"
+            android:background="@drawable/btn_merah"
             android:text="Keluar"
+            android:textColor="@color/white"
             android:fontFamily="@font/sairabold"
             android:layout_marginTop="31dp"
             android:layout_marginEnd="34dp"
@@ -124,7 +125,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Outlet"
+                    android:text="Toko"
                     android:textSize="22sp"
                     android:layout_toRightOf="@+id/imageoutlet"
                     android:layout_centerVertical="true"

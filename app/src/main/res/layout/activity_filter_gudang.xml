@@ -111,7 +111,7 @@
 
     <Button
         android:id="@+id/btn_simpan_filter_gudang"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginStart="80dp"

@@ -36,6 +36,7 @@
             android:id="@+id/card_keranjang_kirim_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/blue2"
             android:layout_marginStart="41dp"
             android:layout_marginEnd="41dp">
@@ -58,7 +59,7 @@
                     android:text="Keranjang Kirim Barang"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
-                    android:textSize="22sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center"
                     android:layout_marginStart="20dp"/>
 
@@ -70,6 +71,7 @@
             android:id="@+id/card_keranjang_transfer_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
+            app:cardCornerRadius="10dp"
             app:cardBackgroundColor="@color/blue2"
             android:layout_marginStart="41dp"
             android:layout_marginTop="35dp"
@@ -93,7 +95,7 @@
                     android:text="Keranjang Transfer Barang"
                     android:textColor="@color/white"
                     android:fontFamily="@font/sairabold"
-                    android:textSize="22sp"
+                    android:textSize="16sp"
                     android:layout_gravity="center"
                     android:layout_marginStart="20dp"/>
 

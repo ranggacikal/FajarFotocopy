@@ -26,6 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
+                android:orientation="horizontal"
                 android:layout_marginTop="38dp">
 
                 <ImageView
@@ -34,11 +35,20 @@
                     android:src="@drawable/ic_back_atas" />
 
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Cek Stock"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
                     android:id="@+id/txt_cek_stock_pertoko_gudang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Cek Stock Toko"
+                    android:layout_marginStart="10dp"
+                    android:text="Nama Toko"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 

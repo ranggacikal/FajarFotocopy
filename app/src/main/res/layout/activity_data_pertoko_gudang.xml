@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".gudang.DataPertokoGudangActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:background="@drawable/background_header_green">
+
+            <LinearLayout
+                android:id="@+id/linear_back_tambah_toko_gudang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="38dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back_atas" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Data"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Nama Toko"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Nama Toko" />
+
+        <EditText
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Kepala Toko" />
+
+        <EditText
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Nama Outlet" />
+
+        <EditText
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Nama Outlet" />
+
+        <EditText
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Nama Outlet" />
+
+        <EditText
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+
+
+    </LinearLayout>
+
+</ScrollView>
