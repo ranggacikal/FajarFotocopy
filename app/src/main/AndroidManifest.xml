@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy">
-        <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity"></activity>
+        <activity android:name=".kepalatoko.LoginKetoActivity"></activity>
+        <activity android:name=".kasir.LoginKasirActivity" />
+        <activity android:name=".LoginSebagaiActivity" />
+        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.PembayaranSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.KeranjangSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.SupplierGudangActivity" />
@@ -33,7 +37,7 @@
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
         <activity android:name=".gudang.LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".gudang.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

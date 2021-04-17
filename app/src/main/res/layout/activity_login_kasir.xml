@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
     android:fillViewport="true"
-    android:background="@color/white"
-    tools:context=".gudang.LoginActivity">
+    tools:context=".kasir.LoginKasirActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -52,7 +52,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LOGIN GUDANG"
+                android:text="LOGIN KASIR"
                 android:textColor="@color/white"
                 android:textSize="30sp"
                 android:fontFamily="@font/sairabold"
@@ -69,7 +69,7 @@
                 android:layout_marginStart="57dp"/>
 
             <EditText
-                android:id="@+id/edt_username_login_gudang"
+                android:id="@+id/edt_username_login_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_edt_white"
@@ -77,6 +77,7 @@
                 android:layout_marginStart="57dp"
                 android:hint="Username"
                 android:paddingStart="10dp"
+                android:fontFamily="@font/sairamedium"
                 android:inputType="text"
                 android:layout_marginEnd="57dp"/>
 
@@ -90,7 +91,7 @@
                 android:layout_marginStart="57dp"/>
 
             <EditText
-                android:id="@+id/edt_password_login_gudang"
+                android:id="@+id/edt_password_login_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@drawable/bg_edt_white"
@@ -98,11 +99,31 @@
                 android:layout_marginStart="57dp"
                 android:hint="Password"
                 android:paddingStart="10dp"
+                android:fontFamily="@font/sairamedium"
                 android:inputType="textPassword"
                 android:layout_marginEnd="57dp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Toko"
+                android:textSize="15sp"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginTop="13dp"
+                android:layout_marginStart="57dp"/>
+
+            <Spinner
+                android:id="@+id/spinner_login_pilih_toko_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="57dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="57dp"
+                android:background="@drawable/bg_edt_white"
+                android:paddingStart="10dp" />
+
             <Button
-                android:id="@+id/btn_login_gudang"
+                android:id="@+id/btn_login_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_marginStart="57dp"

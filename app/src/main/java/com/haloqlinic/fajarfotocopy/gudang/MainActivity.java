@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy;
+package com.haloqlinic.fajarfotocopy.gudang;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
+import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.gudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.KeranjangGudangFragment;
