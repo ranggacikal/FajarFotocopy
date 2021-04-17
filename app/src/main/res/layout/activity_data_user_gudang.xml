@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gudang.tokogudang.DataTokoGudangActivity">
+    android:background="@color/white"
+    tools:context=".gudang.usergudang.DataUserGudangActivity">
 
     <LinearLayout
+        android:id="@+id/linear_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -18,11 +20,12 @@
             android:background="@drawable/background_header_green">
 
             <LinearLayout
-                android:id="@+id/linear_back_data_toko_gudang"
+                android:id="@+id/linear_back_data_user_gudang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp">
+                android:layout_marginTop="38dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -33,30 +36,44 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Data Toko"
+                    android:text="Data User"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
 
             </LinearLayout>
 
+
         </LinearLayout>
 
+
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview_data_toko_gudang"
+            android:id="@+id/searchview_datausergudang"
             android:layout_width="333dp"
             android:layout_height="54dp"
-            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
             android:background="@drawable/bg_rectangle"
             android:padding="15dp" />
 
         <Spinner
-            android:id="@+id/spinner_data_toko_gudang"
+            android:id="@+id/spinner_data_user_pilih_toko_gudang"
             android:layout_width="333dp"
             android:layout_height="54dp"
-            android:layout_marginTop="21dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
             android:background="@drawable/bg_rectangle"
-            android:padding="10dp" />
+            android:fontFamily="@font/sairamedium"/>
+
+        <Spinner
+            android:id="@+id/spinner_data_user_pilih_level_gudang"
+            android:layout_width="333dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
 
     </LinearLayout>
 

@@ -38,6 +38,7 @@
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
             android:layout_marginStart="41dp"
+            app:cardCornerRadius="10dp"
             android:layout_marginEnd="41dp">
 
             <LinearLayout
@@ -72,6 +73,7 @@
             android:layout_height="109dp"
             app:cardBackgroundColor="@color/blue2"
             android:layout_marginStart="41dp"
+            app:cardCornerRadius="10dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="41dp">
 

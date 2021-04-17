@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".gudang.tokogudang.DataPertokoGudangActivity">
-
+    tools:context=".gudang.usergudang.DetailDataUserGudangActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +17,10 @@
             android:background="@drawable/background_header_green">
 
             <LinearLayout
-                android:id="@+id/linear_back_tambah_toko_gudang"
+                android:id="@+id/linear_back_user_gudang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
-                android:orientation="horizontal"
                 android:layout_marginTop="38dp">
 
                 <ImageView
@@ -35,22 +32,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Data Toko"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Nama Toko"
-                    android:layout_marginStart="5dp"
+                    android:text="Detail Data User"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
 
             </LinearLayout>
-
 
 
         </LinearLayout>
@@ -61,9 +48,85 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Nama Toko" />
+            android:text="Nama Lengkap" />
 
         <EditText
+            android:id="@+id/edt_detail_nama_user_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Username" />
+
+        <EditText
+            android:id="@+id/edt_detail_username_user_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textCapWords" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Password" />
+
+        <EditText
+            android:id="@+id/edt_detail_password_user_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textVisiblePassword" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Level User" />
+
+        <Spinner
+            android:id="@+id/spinner_detail_level_user_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textCapWords" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Pilih Toko" />
+
+        <Spinner
+            android:id="@+id/spinner_detail_pilih_toko_user_gudang"
             android:layout_width="364dp"
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
@@ -77,89 +140,38 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Kepala Toko" />
+            android:text="Upload Foto" />
 
-        <EditText
-            android:layout_width="364dp"
-            android:layout_height="58dp"
+        <ImageView
+            android:id="@+id/image_tambah_user_gudang"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Persentase" />
-
-        <EditText
-            android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Anggota" />
-
-        <EditText
-            android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Gaji" />
-
-        <EditText
-            android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
+            android:src="@drawable/ic_profile" />
 
         <Button
-            android:id="@+id/btn_edit_data_toko_gudang"
+            android:id="@+id/btn_detail_edit_user_gudang"
             android:layout_width="300dp"
             android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:background="@drawable/bg_btn_blue"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
             android:text="Edit"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/sairamedium"/>
+            android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btn_hapus_data_toko_gudang"
+            android:id="@+id/btn_detail_hapus_user_gudang"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/btn_merah"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:background="@drawable/btn_merah"
+            android:fontFamily="@font/sairamedium"
             android:text="Hapus"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/sairamedium"/>
-
-
+            android:textSize="20sp" />
 
     </LinearLayout>
 
