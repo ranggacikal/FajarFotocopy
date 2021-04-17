@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy">
-        <activity android:name=".gudang.usergudang.DetailDataUserGudangActivity"></activity>
+        <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity"></activity>
+        <activity android:name=".gudang.suppliergudang.PembayaranSupplierGudangActivity" />
+        <activity android:name=".gudang.suppliergudang.KeranjangSupplierGudangActivity" />
+        <activity android:name=".gudang.suppliergudang.SupplierGudangActivity" />
+        <activity android:name=".gudang.usergudang.DetailDataUserGudangActivity" />
         <activity android:name=".gudang.usergudang.DataUserGudangActivity" />
         <activity android:name=".gudang.usergudang.TambahUserGudangActivity" />
         <activity android:name=".gudang.usergudang.UserGudangActivity" />
