@@ -5,10 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".gudang.suppliergudang.SupplierGudangActivity">
+    tools:context=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity">
 
     <LinearLayout
-        android:id="@+id/linear_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -20,12 +19,11 @@
             android:background="@drawable/background_header_green">
 
             <LinearLayout
-                android:id="@+id/linear_back_supplier_gudang"
+                android:id="@+id/linear_back_hasil_pencarian_transfer_gudang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="38dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -36,67 +34,67 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Supplier"
+                    android:text="Hasil Pencarian Transfer"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
 
             </LinearLayout>
 
-
         </LinearLayout>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchview_transferbaranggudang"
+            android:layout_width="333dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/bg_rectangle"
+            android:padding="15dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
             android:orientation="horizontal">
 
 
             <Button
-                android:id="@+id/btn_jasa_supplier"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
+                android:id="@+id/btn_barcode_transfer_barang_gudang"
+                android:layout_width="200dp"
+                android:layout_height="45dp"
+                android:layout_below="@+id/linear_header"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="21dp"
                 android:background="@drawable/btn_biru_muda"
-                android:fontFamily="@font/sairamedium"
-                android:text="Jasa"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:fontFamily="@font/sairabold"
+                android:padding="5dp"
+                android:src="@drawable/ic_filter"
+                android:text="Scan Barcode"
+                android:textColor="@color/white" />
 
             <Button
-                android:id="@+id/btn_barang_supplier"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/btn_merah"
-                android:fontFamily="@font/sairamedium"
-                android:text="Barang"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
-
+                android:id="@+id/btnfiltertransferbaranggudang"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_below="@+id/linear_header"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="21dp"
+                android:layout_marginStart="40dp"
+                android:background="@drawable/button_filter"
+                android:fontFamily="@font/sairabold"
+                android:padding="5dp"
+                android:src="@drawable/ic_filter"
+                android:text="Filter" />
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview_supplier_gudang"
-            android:layout_width="333dp"
-            android:layout_height="54dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_rectangle" />
 
-        <Button
-            android:id="@+id/btn_barcode_supplier_gudang"
-            android:layout_width="333dp"
-            android:layout_height="54dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/bg_btn_blue"
-            android:fontFamily="@font/sairamedium"
-            android:text="Barcode"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
@@ -112,6 +110,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
             android:orientation="vertical">
 
 
@@ -126,12 +126,12 @@
                     android:layout_marginStart="21dp"
                     android:layout_marginTop="13dp"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Total Produk Jasa :"
+                    android:text="Total Produk :"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/supplier_total_jasa_gudang"
+                    android:id="@+id/transfer_total_gudang"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -144,48 +144,20 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Total Produk Barang :"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/supplier_total_barang_gudang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_chekout_supplier"
+            android:id="@+id/btn_chekout_transfer"
             android:layout_width="96dp"
             android:layout_height="33dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/btn_merah"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="27dp"
-            android:textSize="10sp"
             android:fontFamily="@font/sairamedium"
+            android:text="Chekoout"
             android:textColor="@color/white"
-            android:text="Chekoout"/>
+            android:textSize="10sp" />
 
     </LinearLayout>
 
