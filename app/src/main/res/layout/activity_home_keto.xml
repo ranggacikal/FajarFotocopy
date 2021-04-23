@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".kepalatoko.HomeKetoActivity">
+
+    <RelativeLayout
+        android:id="@+id/header_home_gudang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="33dp">
+
+        <ImageView
+            android:id="@+id/imgprofile"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_profile" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imgprofile"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/selamatdatang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/sairabold"
+                    android:text="Selamat Datang"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/text_nama_home_keto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toRightOf="@+id/selamatdatang"
+                    android:fontFamily="@font/sairabold"
+                    android:text="Nama User"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_tanggal_home_keto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selamatdatang"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/imgprofile"
+                android:fontFamily="@font/sairabold"
+                android:text="Hari dan tanggal"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/text_nama_toko_keto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/selamatdatang"
+                android:layout_marginStart="10dp"
+                android:layout_toRightOf="@+id/imgprofile"
+                android:fontFamily="@font/sairabold"
+                android:text="Nama Toko"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_notif"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="25dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header_home_gudang"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/background_green_2">
+
+        <Button
+            android:id="@+id/btn_keluar_keto"
+            android:layout_width="85dp"
+            android:layout_height="33dp"
+            android:background="@drawable/btn_merah"
+            android:text="Keluar"
+            android:textColor="@color/white"
+            android:fontFamily="@font/sairabold"
+            android:layout_marginTop="31dp"
+            android:layout_marginEnd="34dp"
+            android:layout_alignParentEnd="true"/>
+
+        <LinearLayout
+            android:id="@+id/linear_report_transaksi_keto"
+            android:orientation="horizontal"
+            android:layout_width="323dp"
+            android:layout_height="102dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/card_home_keto"
+            android:layout_below="@id/btn_keluar_keto"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_history"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="35dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="Report Transaksi"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_kasir_keto"
+            android:orientation="horizontal"
+            android:layout_width="323dp"
+            android:layout_height="102dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/card_home_keto"
+            android:layout_below="@id/linear_report_transaksi_keto"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_barang"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="35dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="Kasir"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_minta_barang_keto"
+            android:orientation="horizontal"
+            android:layout_width="323dp"
+            android:layout_height="102dp"
+            android:background="@drawable/card_home_keto"
+            android:layout_below="@id/linear_kasir_keto"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_kirim_transfer"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="35dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="Minta Barang"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_keranjang_keto"
+            android:orientation="horizontal"
+            android:layout_width="323dp"
+            android:layout_height="102dp"
+            android:background="@drawable/card_home_keto"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/linear_minta_barang_keto"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_keranjang_merah"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="35dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="@color/black"
+                android:text="Keranjang"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginTop="30dp"
+                android:layout_marginStart="15dp"/>
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
