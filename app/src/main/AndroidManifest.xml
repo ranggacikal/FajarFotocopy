@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy">
-        <activity android:name=".kepalatoko.keranjangketo.KeranjangKetoActivity"></activity>
+        <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity"></activity>
+        <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
+        <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity" />
+        <activity android:name=".kasir.MainKasirActivity" />
+        <activity android:name=".kepalatoko.keranjangketo.KeranjangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.CetakBuktiMintaBarangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.KeranjangMintaBarangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.TambahBarangKetoActivity" />
@@ -34,8 +38,6 @@
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.TransferBarangGudangActivity" />
-        <activity android:name=".kepalatoko.LoginKetoActivity" />
-        <activity android:name=".kasir.LoginKasirActivity" />
         <activity android:name=".LoginSebagaiActivity" />
         <activity android:name=".SplashScreenActivity" />
         <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity" />
@@ -59,7 +61,7 @@
         <activity android:name=".gudang.tokogudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
-        <activity android:name=".gudang.LoginActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

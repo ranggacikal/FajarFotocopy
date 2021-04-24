@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang;
+package com.haloqlinic.fajarfotocopy.gudang.fragmentgudang;
 
 import android.os.Bundle;
 

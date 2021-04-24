@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang;
+package com.haloqlinic.fajarfotocopy.kasir.fragmentkasir;
 
 import android.os.Bundle;
 
@@ -10,22 +10,24 @@ import android.view.ViewGroup;
 
 import com.haloqlinic.fajarfotocopy.R;
 
-public class KeranjangGudangFragment extends Fragment {
 
+public class KeranjangKasirFragment extends Fragment {
 
-    public KeranjangGudangFragment() {
+    public KeranjangKasirFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_keranjang_gudang, container, false);
+        return inflater.inflate(R.layout.fragment_keranjang_kasir, container, false);
     }
 }

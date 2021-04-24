@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".gudang.InformasiGudangFragment">
+    tools:context=".gudang.fragmentgudang.InformasiGudangFragment">
 
     <RelativeLayout
         android:id="@+id/headerinformasi"
@@ -21,7 +21,7 @@
             android:text="Informasi"
             android:textSize="24sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/sairabold"/>
+            android:fontFamily="@font/sairamedium"/>
 
 
     </RelativeLayout>

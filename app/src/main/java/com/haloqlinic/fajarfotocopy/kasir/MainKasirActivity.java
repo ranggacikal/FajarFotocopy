@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang;
+package com.haloqlinic.fajarfotocopy.kasir;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,20 +13,25 @@ import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KeranjangGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
+import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
+import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.InformasiKasirFragment;
+import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.KeranjangKasirFragment;
+import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.RiwayatTransaksiKasirFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainKasirActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
 
-    private HomeFragment homeFragment;
-    private InformasiGudangFragment informasiGudangFragment;
-    private KeranjangGudangFragment keranjangGudangFragment;
-    private KirimBarangFragment kirimBarangFragment;
+    private HomeKasirFragment homeKasirFragment;
+    private InformasiKasirFragment informasiKasirFragment;
+    private RiwayatTransaksiKasirFragment riwayatTransaksiKasirFragment;
+    private KeranjangKasirFragment keranjangKasirFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_kasir);
 
         getAllWidgets();
         bindWidgetsWithAnEvent();
@@ -55,16 +60,16 @@ public class MainActivity extends AppCompatActivity {
         switch (position)
         {
             case 0 :
-                replaceFragment(homeFragment);
+                replaceFragment(homeKasirFragment);
                 break;
             case 1 :
-                replaceFragment(informasiGudangFragment);
+                replaceFragment(informasiKasirFragment);
                 break;
             case 2 :
-                replaceFragment(kirimBarangFragment);
+                replaceFragment(riwayatTransaksiKasirFragment);
                 break;
             case 3 :
-                replaceFragment(keranjangGudangFragment);
+                replaceFragment(keranjangKasirFragment);
                 break;
         }
 
@@ -73,29 +78,27 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment fragment) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        ft.replace(R.id.frame_home_gudang, fragment);
+        ft.replace(R.id.frame_home_kasir, fragment);
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         ft.commit();
     }
 
     private void setupTabLayout() {
 
-        homeFragment = new HomeFragment();
-        informasiGudangFragment = new InformasiGudangFragment();
-        keranjangGudangFragment = new KeranjangGudangFragment();
-        kirimBarangFragment = new KirimBarangFragment();
+        homeKasirFragment = new HomeKasirFragment();
+        informasiKasirFragment = new InformasiKasirFragment();
+        riwayatTransaksiKasirFragment = new RiwayatTransaksiKasirFragment();
+        keranjangKasirFragment = new KeranjangKasirFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
         tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.ic_informasi));
-        tabLayout.addTab(tabLayout.newTab().setText("Kirim Barang").setIcon(R.drawable.ic_kirim));
+        tabLayout.addTab(tabLayout.newTab().setText("Riwayat Transaksi").setIcon(R.drawable.ic_riwayat));
         tabLayout.addTab(tabLayout.newTab().setText("Keranjang").setIcon(R.drawable.ic_keranjang));
 
     }
 
     private void getAllWidgets() {
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout_gudang);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout_kasir);
     }
-
-
 }

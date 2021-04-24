@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".kasir.transaksikasir.TransaksiKasirActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="121dp"
+            android:background="@drawable/background_header_green">
+
+            <LinearLayout
+                android:id="@+id/linear_back_transaksi_kasir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="38dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_back_atas" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Transaksi"
+                    android:textColor="@color/white"
+                    android:textSize="24sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/btn_jasa_kasir"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_biru_muda"
+                android:fontFamily="@font/sairamedium"
+                android:text="Jasa"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_barang_kasir"
+                android:layout_width="120dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/btn_merah"
+                android:fontFamily="@font/sairamedium"
+                android:text="Barang"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchview_supplier_kasir"
+            android:layout_width="333dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_rectangle" />
+
+        <Button
+            android:id="@+id/btn_barcode_supplier_kasir"
+            android:layout_width="333dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_btn_blue"
+            android:fontFamily="@font/sairamedium"
+            android:text="Barcode"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="83dp"
+        android:layout_alignParentBottom="true"
+        android:background="#000000"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="13dp"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Total Produk Jasa :"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/supplier_total_jasa_kasir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="13dp"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="21dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="Total Produk Barang :"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/supplier_total_barang_kasir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/sairamedium"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_chekout_kasir"
+            android:layout_width="96dp"
+            android:layout_height="33dp"
+            android:background="@drawable/btn_merah"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="27dp"
+            android:textSize="10sp"
+            android:fontFamily="@font/sairamedium"
+            android:textColor="@color/white"
+            android:text="Chekoout"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

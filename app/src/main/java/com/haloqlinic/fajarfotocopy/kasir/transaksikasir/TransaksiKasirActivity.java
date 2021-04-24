@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.kasir;
+package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.haloqlinic.fajarfotocopy.R;
 
-public class LoginKasirActivity extends AppCompatActivity {
+public class TransaksiKasirActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_kasir);
+        setContentView(R.layout.activity_transaksi_kasir);
     }
 }

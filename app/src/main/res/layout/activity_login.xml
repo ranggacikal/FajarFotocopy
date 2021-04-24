@@ -8,7 +8,7 @@
     android:layout_alignParentTop="true"
     android:fillViewport="true"
     android:background="@color/white"
-    tools:context=".gudang.LoginActivity">
+    tools:context=".LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
