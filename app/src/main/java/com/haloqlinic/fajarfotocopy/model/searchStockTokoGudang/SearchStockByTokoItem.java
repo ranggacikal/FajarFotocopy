@@ -7,6 +7,18 @@ public class SearchStockByTokoItem{
 	@SerializedName("harga_modal_gudang")
 	private String hargaModalGudang;
 
+	@SerializedName("harga_jual_pack")
+	private String hargaJualPack;
+
+	@SerializedName("nama_outlet")
+	private String namaOutlet;
+
+	@SerializedName("image_barang")
+	private String imageBarang;
+
+	@SerializedName("jumlah_pack")
+	private String jumlahPack;
+
 	@SerializedName("harga_modal_toko")
 	private String hargaModalToko;
 
@@ -19,9 +31,6 @@ public class SearchStockByTokoItem{
 	@SerializedName("nama_barang")
 	private String namaBarang;
 
-	@SerializedName("nama_outlet")
-	private String namaOutlet;
-
 	@SerializedName("harga_jual")
 	private String hargaJual;
 
@@ -30,9 +39,6 @@ public class SearchStockByTokoItem{
 
 	@SerializedName("harga_jual_toko")
 	private String hargaJualToko;
-
-	@SerializedName("image_barang")
-	private String imageBarang;
 
 	@SerializedName("id_barang_outlet")
 	private String idBarangOutlet;
@@ -46,6 +52,38 @@ public class SearchStockByTokoItem{
 
 	public String getHargaModalGudang(){
 		return hargaModalGudang;
+	}
+
+	public void setHargaJualPack(String hargaJualPack){
+		this.hargaJualPack = hargaJualPack;
+	}
+
+	public String getHargaJualPack(){
+		return hargaJualPack;
+	}
+
+	public void setNamaOutlet(String namaOutlet){
+		this.namaOutlet = namaOutlet;
+	}
+
+	public String getNamaOutlet(){
+		return namaOutlet;
+	}
+
+	public void setImageBarang(String imageBarang){
+		this.imageBarang = imageBarang;
+	}
+
+	public String getImageBarang(){
+		return imageBarang;
+	}
+
+	public void setJumlahPack(String jumlahPack){
+		this.jumlahPack = jumlahPack;
+	}
+
+	public String getJumlahPack(){
+		return jumlahPack;
 	}
 
 	public void setHargaModalToko(String hargaModalToko){
@@ -80,14 +118,6 @@ public class SearchStockByTokoItem{
 		return namaBarang;
 	}
 
-	public void setNamaOutlet(String namaOutlet){
-		this.namaOutlet = namaOutlet;
-	}
-
-	public String getNamaOutlet(){
-		return namaOutlet;
-	}
-
 	public void setHargaJual(String hargaJual){
 		this.hargaJual = hargaJual;
 	}
@@ -112,14 +142,6 @@ public class SearchStockByTokoItem{
 		return hargaJualToko;
 	}
 
-	public void setImageBarang(String imageBarang){
-		this.imageBarang = imageBarang;
-	}
-
-	public String getImageBarang(){
-		return imageBarang;
-	}
-
 	public void setIdBarangOutlet(String idBarangOutlet){
 		this.idBarangOutlet = idBarangOutlet;
 	}
@@ -141,15 +163,17 @@ public class SearchStockByTokoItem{
 		return 
 			"SearchStockByTokoItem{" + 
 			"harga_modal_gudang = '" + hargaModalGudang + '\'' + 
+			",harga_jual_pack = '" + hargaJualPack + '\'' + 
+			",nama_outlet = '" + namaOutlet + '\'' + 
+			",image_barang = '" + imageBarang + '\'' + 
+			",jumlah_pack = '" + jumlahPack + '\'' + 
 			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
-			",nama_outlet = '" + namaOutlet + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 
 			",stock = '" + stock + '\'' + 
 			",harga_jual_toko = '" + hargaJualToko + '\'' + 
-			",image_barang = '" + imageBarang + '\'' + 
 			",id_barang_outlet = '" + idBarangOutlet + '\'' + 
 			",diskon = '" + diskon + '\'' + 
 			"}";
