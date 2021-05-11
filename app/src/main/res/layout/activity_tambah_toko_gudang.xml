@@ -72,7 +72,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Nama Outlet" />
+            android:text="Nama Toko" />
 
         <EditText
             android:id="@+id/edt_nama_tambah_outlet"
