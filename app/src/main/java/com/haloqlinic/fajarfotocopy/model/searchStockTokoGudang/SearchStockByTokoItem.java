@@ -19,6 +19,9 @@ public class SearchStockByTokoItem{
 	@SerializedName("nama_barang")
 	private String namaBarang;
 
+	@SerializedName("nama_outlet")
+	private String namaOutlet;
+
 	@SerializedName("harga_jual")
 	private String hargaJual;
 
@@ -75,6 +78,14 @@ public class SearchStockByTokoItem{
 
 	public String getNamaBarang(){
 		return namaBarang;
+	}
+
+	public void setNamaOutlet(String namaOutlet){
+		this.namaOutlet = namaOutlet;
+	}
+
+	public String getNamaOutlet(){
+		return namaOutlet;
 	}
 
 	public void setHargaJual(String hargaJual){
@@ -134,6 +145,7 @@ public class SearchStockByTokoItem{
 			",id_barang = '" + idBarang + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
+			",nama_outlet = '" + namaOutlet + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 
 			",stock = '" + stock + '\'' + 
 			",harga_jual_toko = '" + hargaJualToko + '\'' + 

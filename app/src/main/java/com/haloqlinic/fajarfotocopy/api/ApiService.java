@@ -1,6 +1,7 @@
 package com.haloqlinic.fajarfotocopy.api;
 
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
+import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
@@ -40,5 +41,14 @@ public interface ApiService {
     @POST("searchStockByToko")
     Call<ResponseSearchStockTokoGudang> searchStokTokoGudang(@Field("id_outlet") String id_outlet,
                                                              @Field("nama_barang") String nama_barang);
+
+    @FormUrlEncoded
+    @POST("editDataBarangOutlet")
+    Call<ResponseEditBarangToko> editBarangToko(@Field("id_barang_outlet") String id_barang_outlet,
+                                                @Field("id_barang") String id_barang,
+                                                @Field("harga_jual") String harga_jual,
+                                                @Field("stock") String stock,
+                                                @Field("diskon") String diskon,
+                                                @Field("id_outlet") String id_outlet);
 
 }
