@@ -10,6 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.FajarFotocopy">
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity"></activity>
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
@@ -39,7 +40,13 @@
         <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.TransferBarangGudangActivity" />
         <activity android:name=".LoginSebagaiActivity" />
-        <activity android:name=".SplashScreenActivity" />
+        <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.PembayaranSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.KeranjangSupplierGudangActivity" />
@@ -63,11 +70,6 @@
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

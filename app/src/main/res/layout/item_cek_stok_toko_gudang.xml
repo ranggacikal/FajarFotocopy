@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:cardBackgroundColor="@color/blue"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_item_cek_stok_toko_gudang"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Produk : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_nama_cek_stok_toko_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Produk"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga modal gudang : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_harga_modal_gudang_cek_stok_toko_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp000.000"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga modal toko : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_harga_modal_toko_cek_stok_toko_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp000.000"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga jual toko : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_harga_jual_toko_cek_stok_toko_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp000.000"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_stock_cek_stok_toko_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+            
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

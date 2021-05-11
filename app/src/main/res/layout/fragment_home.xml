@@ -41,7 +41,7 @@
                 android:fontFamily="@font/sairabold"
                 android:text="Selamat Datang"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/text_nama_home_gudang"
@@ -53,7 +53,7 @@
                 android:fontFamily="@font/sairabold"
                 android:text="Nama User"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -67,7 +67,7 @@
                 android:fontFamily="@font/sairabold"
                 android:text="Hari dan tanggal"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="11sp" />
 
         </LinearLayout>
 
