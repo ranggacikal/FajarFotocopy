@@ -58,7 +58,7 @@
             android:text="Nama Barang" />
 
         <TextView
-            android:id="@+id/edt_nama_barang_gudang"
+            android:id="@+id/txt_nama_barang_gudang"
             android:text="Nama Barang"
             android:textSize="20sp"
             android:textColor="@color/black"

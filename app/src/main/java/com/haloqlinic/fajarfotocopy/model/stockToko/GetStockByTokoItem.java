@@ -13,6 +13,9 @@ public class GetStockByTokoItem{
 	@SerializedName("nama_outlet")
 	private String namaOutlet;
 
+	@SerializedName("image_barang")
+	private String imageBarang;
+
 	@SerializedName("jumlah_pack")
 	private String jumlahPack;
 
@@ -68,6 +71,14 @@ public class GetStockByTokoItem{
 
 	public String getNamaOutlet(){
 		return namaOutlet;
+	}
+
+	public void setImageBarang(String imageBarang){
+		this.imageBarang = imageBarang;
+	}
+
+	public String getImageBarang(){
+		return imageBarang;
 	}
 
 	public void setJumlahPack(String jumlahPack){
@@ -165,6 +176,7 @@ public class GetStockByTokoItem{
 			"harga_modal_gudang = '" + hargaModalGudang + '\'' + 
 			",harga_jual_pack = '" + hargaJualPack + '\'' + 
 			",nama_outlet = '" + namaOutlet + '\'' + 
+			",image_barang = '" + imageBarang + '\'' + 
 			",jumlah_pack = '" + jumlahPack + '\'' + 
 			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",diskon_pack = '" + diskonPack + '\'' + 

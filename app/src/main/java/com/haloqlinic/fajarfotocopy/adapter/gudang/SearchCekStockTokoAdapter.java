@@ -1,6 +1,7 @@
 package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.gudang.tokogudang.DetailBarangStockGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.SearchStockByTokoItem;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.List;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class SearchCekStockTokoAdapter extends RecyclerView.Adapter<SearchCekStockTokoAdapter.SearchCekStokTokoViewHolder> {
 
@@ -56,6 +61,27 @@ public class SearchCekStockTokoAdapter extends RecyclerView.Adapter<SearchCekSto
         holder.txtModalToko.setText("Rp" + NumberFormat.getInstance().format(modalToko));
         holder.txtJualToko.setText("Rp" + NumberFormat.getInstance().format(jualToko));
         holder.txtStock.setText(dataSearchStock.get(position).getStock());
+
+        PushDownAnim.setPushDownAnimTo(holder.itemView)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, DetailBarangStockGudangActivity.class);
+                        intent.putExtra("id_barang_outlet", dataSearchStock.get(position).getIdBarangOutlet());
+                        intent.putExtra("id_barang", dataSearchStock.get(position).getIdBarang());
+                        intent.putExtra("id_outlet", dataSearchStock.get(position).getIdOutlet());
+                        intent.putExtra("nama_toko", dataSearchStock.get(position).getNamaOutlet());
+                        intent.putExtra("nama_barang", dataSearchStock.get(position).getNamaBarang());
+                        intent.putExtra("jumlah_pcs", dataSearchStock.get(position).getStock());
+                        intent.putExtra("jumlah_pack", dataSearchStock.get(position).getJumlahPack());
+                        intent.putExtra("harga_jual", dataSearchStock.get(position).getHargaJual());
+                        intent.putExtra("harga_jual_pack", dataSearchStock.get(position).getHargaJualPack());
+                        intent.putExtra("diskon", dataSearchStock.get(position).getDiskon());
+                        intent.putExtra("diskon_pack", dataSearchStock.get(position).getDiskonPack());
+                        context.startActivity(intent);
+                    }
+                });
 
     }
 

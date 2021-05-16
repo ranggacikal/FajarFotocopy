@@ -45,6 +45,7 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
     SearchView searchCekStock;
 
     String id_outlet;
+    String search_barang;
 
     List<DataTokoItem> dataToko;
 
@@ -75,6 +76,7 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
+                search_barang = newText;
                 loadDataSearch(newText);
                 return true;
             }
@@ -129,7 +131,6 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
                         rvCekStockGudang.setAdapter(adapterSearch);
 
                     }else{
-                        progressBar.setVisibility(View.GONE);
                         linearCekStockGudang.setVisibility(View.GONE);
                         Toast.makeText(CekStockTokoGudangActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
@@ -242,5 +243,12 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataStock(id_outlet);
+        loadDataSearch(search_barang);
     }
 }

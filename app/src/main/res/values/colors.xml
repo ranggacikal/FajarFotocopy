@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tosca">#5DE1E6</color>
     <color name="blue">#3051FF</color>
+    <color name="red">#FF0000</color>
     <color name="blue2">#00C2FF</color>
 
 </resources>
