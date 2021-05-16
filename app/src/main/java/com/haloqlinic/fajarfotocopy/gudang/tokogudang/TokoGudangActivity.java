@@ -35,5 +35,12 @@ public class TokoGudangActivity extends AppCompatActivity {
                 startActivity(new Intent(TokoGudangActivity.this, TambahTokoGudangActivity.class));
             }
         });
+
+        linearDataOutlet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(TokoGudangActivity.this, DataTokoGudangActivity.class));
+            }
+        });
     }
 }
