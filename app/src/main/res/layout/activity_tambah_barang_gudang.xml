@@ -99,22 +99,21 @@
 
         </LinearLayout>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Pilih Toko" />
+            android:text="ID Barang" />
 
-        <Spinner
-            android:id="@+id/spinner_tambah_pilih_toko_gudang"
+        <EditText
+            android:id="@+id/edt_tambah_id_barang_gudang"
             android:layout_width="364dp"
             android:layout_height="58dp"
+            android:inputType="number"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:inputType="textCapWords"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
@@ -133,42 +132,6 @@
             android:inputType="textCapWords"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Jenis Barang" />
-
-        <EditText
-            android:id="@+id/edt_tambah_jenis_barang_gudang"
-            android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:inputType="textCapWords"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Kode Barang" />
-
-        <EditText
-            android:id="@+id/edt_tambah_kode_barang_gudang"
-            android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:inputType="textCapWords"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
@@ -221,7 +184,6 @@
 
         </LinearLayout>
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -236,10 +198,9 @@
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:inputType="number"
             android:background="@drawable/bg_rectangle"
+            android:inputType="number"
             android:fontFamily="@font/sairamedium" />
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -250,13 +211,13 @@
             android:text="Harga Modal Toko" />
 
         <EditText
-            android:id="@+id/edt_tambah_harga_modal_toko_gudang"
+            android:id="@+id/edt_tambah_harga_modal_toko"
             android:layout_width="364dp"
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
-            android:inputType="number"
             android:background="@drawable/bg_rectangle"
+            android:inputType="number"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -267,46 +228,69 @@
             android:fontFamily="@font/sairamedium"
             android:text="Harga Jual Toko" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/edt_tambah_harga_jual_toko"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Modal Gudang Pack" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pcs" />
+        <EditText
+            android:id="@+id/edt_tambah_harga_modal_gudang_pack"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium" />
 
-            <EditText
-                android:id="@+id/tambah_harga_jual_tokopcs_gudang"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:inputType="number"
-                android:background="@drawable/bg_rectangle"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Modal Toko Pack" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pack" />
+        <EditText
+            android:id="@+id/edt_tambah_harga_modal_toko_pack"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium" />
 
-            <EditText
-                android:id="@+id/tambah_harga_jual_tokopack_gudang"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginStart="10dp"
-                android:background="@drawable/bg_rectangle"
-                android:layout_marginTop="10dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Harga Jual Toko Pack" />
 
-        </LinearLayout>
+        <EditText
+            android:id="@+id/edt_tambah_harga_jual_toko_pack"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/bg_rectangle"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -326,6 +310,42 @@
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Diskon" />
+
+        <EditText
+            android:id="@+id/edt_tambah_diskon_barang_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Diskon Pack" />
+
+        <EditText
+            android:id="@+id/edt_tambah_diskonpack_barang_gudang"
+            android:layout_width="364dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:inputType="textCapWords"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -337,8 +357,8 @@
 
         <ImageView
             android:id="@+id/image_tamba_barang_gudang"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_profile" />
 
@@ -348,6 +368,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/btn_biru_muda"
             android:fontFamily="@font/sairamedium"
             android:text="Simpan"

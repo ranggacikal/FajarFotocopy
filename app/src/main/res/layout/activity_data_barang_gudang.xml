@@ -47,12 +47,22 @@
         </LinearLayout>
 
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
             android:id="@+id/searchview_databaranggudang"
             android:layout_width="333dp"
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="27dp"
+            android:background="@drawable/bg_rectangle"
+            android:padding="15dp" />
+
+        <SearchView
+            android:id="@+id/searchview_databaranggudang_scanner"
+            android:layout_width="333dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:visibility="gone"
             android:background="@drawable/bg_rectangle"
             android:padding="15dp" />
 
@@ -89,4 +99,32 @@
         android:src="@drawable/ic_filter"
         android:text="Scan Barcode"
         android:textColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_data_barang_gudamg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_barcode_data_barang_gudang"
+        android:layout_marginTop="20dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_data_barang_gudamg_scanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_below="@+id/btn_barcode_data_barang_gudang"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/text_kosong_data_barang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tidak Ada Data Untuk Hasil Pencarian Ini"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:layout_below="@+id/btn_barcode_data_barang_gudang"
+        android:fontFamily="@font/sairabold"/>
+
 </RelativeLayout>

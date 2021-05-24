@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:cardBackgroundColor="@color/blue"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_item_barang_gudang"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Produk : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_nama_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Produk"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga modal gudang (Pcs) : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_harga_modal_pcs_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp000.000"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Harga modal gudang (Pack) : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="10sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_harga_modal_pack_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Rp000.000"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="10sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock (Pcs) : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_stock_pcs_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stock (pack) : "
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+                <TextView
+                    android:id="@+id/text_item_stock_pack_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00"
+                    android:maxWidth="230dp"
+                    android:layout_marginStart="3dp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sairabold"
+                    android:textSize="11sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
