@@ -43,37 +43,36 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Pilih Toko" />
-
-        <Spinner
-            android:id="@+id/spinner_pilih_toko_kirim_gudang"
+        <SearchView
+            android:id="@+id/searchview_kirim_barang_gudang"
             android:layout_width="364dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="54dp"
             android:layout_gravity="center"
+            android:layout_marginTop="27dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium"
-            android:inputType="textCapWords" />
+            android:padding="15dp" />
 
-        <Button
-            android:id="@+id/btn_kirim_gudang"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/bg_btn_blue"
-            android:fontFamily="@font/sairamedium"
-            android:text="Cari"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_kirim_barang_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_margin="15dp"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_list_pengriman_barang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/bg_btn_blue"
+        android:text="Lihat List Pengiriman Barang"
+        android:textColor="@color/white"
+        android:fontFamily="@font/sairabold"/>
 
 </RelativeLayout>

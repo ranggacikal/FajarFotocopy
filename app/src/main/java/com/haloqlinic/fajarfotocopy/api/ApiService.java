@@ -7,12 +7,17 @@ import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
+import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
+import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
+import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
+import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
+import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -114,5 +119,30 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("searchBarangById")
     Call<ResponseCariBarangById> cariBarangById(@Field("id_barang") String id_barang);
+
+    @FormUrlEncoded
+    @POST("tambahStatusPengiriman")
+    Call<ResponseTambahStatusPengiriman> tambahStatusPengiriman(@Field("status_pengiriman") String status,
+                                                                @Field("tanggal_pengiriman") String tanggal,
+                                                                @Field("id_outlet") String id_outlet);
+
+    @GET("getIdStatusPengiriman")
+    Call<ResponseLastIdStatusPengiriamn> lastIdStatusPengiriman();
+
+    @FormUrlEncoded
+    @POST("tambahPengiriman")
+    Call<ResponseTambahPengiriman> tambahPengiriman(@Field("id_pengiriman") String id_pengiriman,
+                                                    @Field("id_barang") String id_barang,
+                                                    @Field("jumlah") String jumlah,
+                                                    @Field("id_outlet") String id_outlet,
+                                                    @Field("id_status_pengiriman") String id_status_pengiriman);
+
+    @FormUrlEncoded
+    @POST("getListPengiriman")
+    Call<ResponseListPengiriman> listPengiriman(@Field("id_status_pengiriman") String id,
+                                                @Field("tanggal_status_pengiriman") String tanggal);
+
+    @GET("listStatusPengiriman")
+    Call<ResponseDataStatusPengiriman> statusPengiriman();
 
 }

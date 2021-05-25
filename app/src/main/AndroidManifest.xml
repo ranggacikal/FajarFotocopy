@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".gudang.baranggudang.ScanTambahBarangActivity"></activity>
+        <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity"></activity>
+        <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
+        <activity android:name=".gudang.baranggudang.ScanTambahBarangActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
         <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity" />
@@ -36,7 +38,9 @@
         <activity android:name=".gudang.CetakBuktiTransferKirimGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.KeranjangKirimBarangGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.HasilPencarianKirimBarangGudangActivity" />
-        <activity android:name=".gudang.kirimbaranggudang.KirimBarangGudangActivity" />
+        <activity
+            android:name=".gudang.kirimbaranggudang.KirimBarangGudangActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".gudang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity" />
@@ -71,12 +75,12 @@
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".gudang.MainActivity"></activity>
-        
-        <activity android:name=".scan.Capture"
+        <activity android:name=".gudang.MainActivity" />
+        <activity
+            android:name=".scan.Capture"
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
-            android:theme="@style/zxing_CaptureTheme"/>
+            android:theme="@style/zxing_CaptureTheme" />
     </application>
 
 </manifest>
