@@ -15,6 +15,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.usergudang.UserGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.SimpleDateFormat;
@@ -39,7 +40,7 @@ public class HomeFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    CardView cardToko, cardBarang;
+    CardView cardToko, cardBarang, cardUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,6 +52,7 @@ public class HomeFragment extends Fragment {
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_gudang);
         cardToko = rootView.findViewById(R.id.card_outlet_gudang);
         cardBarang = rootView.findViewById(R.id.card_kelola_barang_gudang);
+        cardUser = rootView.findViewById(R.id.card_user_gudang);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
@@ -68,6 +70,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), TokoGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardUser)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), UserGudangActivity.class));
                     }
                 });
 

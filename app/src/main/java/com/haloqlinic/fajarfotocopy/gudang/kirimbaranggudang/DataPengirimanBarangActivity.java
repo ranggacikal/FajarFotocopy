@@ -61,8 +61,17 @@ public class DataPengirimanBarangActivity extends AppCompatActivity {
                     String nama_toko = response.body().getGetListPengiriman().get(0).getNamaOutlet();
                     String tanggal = response.body().getGetListPengiriman().get(0).getTanggalPengiriman();
 
-                    binding.textNamaTokoDataPengiriman.setText(nama_toko);
-                    binding.textTanggalDataPengiriman.setText(tanggal);
+                    if (tanggal == null || nama_toko == null){
+
+                        binding.textTanggalDataPengiriman.setText("null");
+                        binding.textNamaTokoDataPengiriman.setText("null");
+
+                    }else {
+
+                        binding.textNamaTokoDataPengiriman.setText(nama_toko);
+                        binding.textTanggalDataPengiriman.setText(tanggal);
+
+                    }
 
                     if (status==1){
 

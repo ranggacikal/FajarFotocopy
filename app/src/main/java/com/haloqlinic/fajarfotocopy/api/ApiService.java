@@ -5,6 +5,11 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
+import com.haloqlinic.fajarfotocopy.model.dataUser.ResponseDataUser;
+import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLevel;
+import com.haloqlinic.fajarfotocopy.model.dataUserByLevelOutlet.ResponseDataUserByOutletLevel;
+import com.haloqlinic.fajarfotocopy.model.dataUserByNama.ResponseDataUserByNama;
+import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutlet;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
@@ -12,6 +17,7 @@ import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangTok
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
+import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
@@ -144,5 +150,35 @@ public interface ApiService {
 
     @GET("listStatusPengiriman")
     Call<ResponseDataStatusPengiriman> statusPengiriman();
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<ResponseRegister> register(@Field("id_user") String id_user,
+                                    @Field("nama_lengkap") String nama_lengkap,
+                                    @Field("username") String username,
+                                    @Field("password") String password,
+                                    @Field("level") String level,
+                                    @Field("id_outlet") String id_outlet,
+                                    @Field("foto") String foto);
+
+    @GET("getDataUser")
+    Call<ResponseDataUser> dataUser();
+
+    @FormUrlEncoded
+    @POST("getDataUserByNama")
+    Call<ResponseDataUserByNama> dataUserByNama(@Field("nama_lengkap") String nama_lengkap);
+
+    @FormUrlEncoded
+    @POST("getDataUserByLevel")
+    Call<ResponseDataUserByLevel> dataUserByLevel(@Field("level") String level);
+
+    @FormUrlEncoded
+    @POST("getDataUserByOutlet")
+    Call<ResponseDataUserByOutlet> dataUserByOutlet(@Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("getDataUserByOutletAndLevel")
+    Call<ResponseDataUserByOutletLevel> dataUserByOutletLevel(@Field("id_outlet") String id_outlet,
+                                                              @Field("level") String level);
 
 }
