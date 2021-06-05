@@ -105,8 +105,8 @@
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:layout_marginTop="22dp"
-            android:layout_marginStart="41dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="7dp"
             android:layout_below="@id/btn_keluar_gudang">
@@ -144,8 +144,9 @@
             android:layout_below="@id/card_outlet_gudang"
             android:orientation="horizontal"
             android:gravity="center"
-            android:layout_marginStart="41dp"
-            android:layout_marginEnd="41dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="31dp">
 
             <LinearLayout
@@ -226,7 +227,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_user_gudang"
-                    android:layout_width="132dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="109dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="7dp">
@@ -240,12 +241,14 @@
                             android:id="@+id/imguser"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
+                            android:layout_marginStart="10dp"
                             android:src="@drawable/ic_user"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="User"
+                            android:layout_marginEnd="20dp"
                             android:textColor="@color/black"
                             android:layout_marginStart="10dp"
                             android:textSize="16sp"

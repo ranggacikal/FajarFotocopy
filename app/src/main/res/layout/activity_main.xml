@@ -7,23 +7,38 @@
     android:background="@color/white"
     tools:context=".gudang.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/frame_home_gudang"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tab_layout_gudang"/>
+        android:layout_above="@+id/tab_layout_gudang">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frame_home_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/tab_layout_gudang" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_gudang"
+        style="@style/MineCustomTabText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
         android:layout_alignParentBottom="true"
-        app:tabTextAppearance="@style/MineCustomTabText"
+        android:background="@android:color/black"
+        app:tabGravity="fill"
         app:tabIndicatorColor="@color/white"
+        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/white"
-        style="@style/MineCustomTabText"
-        android:background="@android:color/black" />
+        app:tabTextAppearance="@style/MineCustomTabText" />
 
 </RelativeLayout>

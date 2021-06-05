@@ -4,6 +4,7 @@ import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
+import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.dataUser.ResponseDataUser;
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLevel;
@@ -21,6 +22,7 @@ import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
+import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
@@ -95,7 +97,8 @@ public interface ApiService {
                                             @Field("jumlah_pack") String jumlah_pack,
                                             @Field("diskon") String diskon,
                                             @Field("diskon_pack") String diskon_pack,
-                                            @Field("image_barang") String image_barang);
+                                            @Field("image_barang") String image_barang,
+                                            @Field("id_kategori_barang") String id_kategori_barang);
 
     @FormUrlEncoded
     @POST("searchBarangByNama")
@@ -180,5 +183,12 @@ public interface ApiService {
     @POST("getDataUserByOutletAndLevel")
     Call<ResponseDataUserByOutletLevel> dataUserByOutletLevel(@Field("id_outlet") String id_outlet,
                                                               @Field("level") String level);
+
+    @FormUrlEncoded
+    @POST("tambahKategori")
+    Call<ResponseTambahKategori> tambahKategori(@Field("nama_kategori") String nama_kategori);
+
+    @GET("getKategori")
+    Call<ResponseDataKategori> dataKategori();
 
 }

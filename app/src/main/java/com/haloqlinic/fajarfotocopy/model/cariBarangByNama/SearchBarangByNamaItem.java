@@ -16,6 +16,9 @@ public class SearchBarangByNamaItem{
 	@SerializedName("jumlah_pack")
 	private String jumlahPack;
 
+	@SerializedName("id_kategori_barang")
+	private String idKategoriBarang;
+
 	@SerializedName("harga_modal_gudang_pack")
 	private String hargaModalGudangPack;
 
@@ -45,6 +48,9 @@ public class SearchBarangByNamaItem{
 
 	@SerializedName("diskon")
 	private String diskon;
+
+	@SerializedName("nama_kategori")
+	private String namaKategori;
 
 	public void setAsalBarang(String asalBarang){
 		this.asalBarang = asalBarang;
@@ -76,6 +82,14 @@ public class SearchBarangByNamaItem{
 
 	public String getJumlahPack(){
 		return jumlahPack;
+	}
+
+	public void setIdKategoriBarang(String idKategoriBarang){
+		this.idKategoriBarang = idKategoriBarang;
+	}
+
+	public String getIdKategoriBarang(){
+		return idKategoriBarang;
 	}
 
 	public void setHargaModalGudangPack(String hargaModalGudangPack){
@@ -158,6 +172,14 @@ public class SearchBarangByNamaItem{
 		return diskon;
 	}
 
+	public void setNamaKategori(String namaKategori){
+		this.namaKategori = namaKategori;
+	}
+
+	public String getNamaKategori(){
+		return namaKategori;
+	}
+
 	@Override
  	public String toString(){
 		return 
@@ -166,6 +188,7 @@ public class SearchBarangByNamaItem{
 			",harga_modal_gudang = '" + hargaModalGudang + '\'' + 
 			",image_barang = '" + imageBarang + '\'' + 
 			",jumlah_pack = '" + jumlahPack + '\'' + 
+			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
 			",harga_modal_gudang_pack = '" + hargaModalGudangPack + '\'' + 
 			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",harga_modal_toko_pack = '" + hargaModalTokoPack + '\'' + 
@@ -176,6 +199,7 @@ public class SearchBarangByNamaItem{
 			",stock = '" + stock + '\'' + 
 			",harga_jual_toko = '" + hargaJualToko + '\'' + 
 			",diskon = '" + diskon + '\'' + 
+			",nama_kategori = '" + namaKategori + '\'' + 
 			"}";
 		}
 }

@@ -109,8 +109,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_id_barang_gudang"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:inputType="number"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
@@ -194,8 +196,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_modal_gudang"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -212,8 +216,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_modal_toko"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -230,8 +236,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_jual_toko"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -248,8 +256,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_modal_gudang_pack"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -266,8 +276,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_modal_toko_pack"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -284,8 +296,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_harga_jual_toko_pack"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -302,8 +316,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_asal_barang_gudang"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:inputType="textCapWords"
@@ -320,8 +336,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_diskon_barang_gudang"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:inputType="number"
@@ -338,13 +356,31 @@
 
         <EditText
             android:id="@+id/edt_tambah_diskonpack_barang_gudang"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:inputType="textCapWords"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Kategori" />
+
+        <Spinner
+            android:id="@+id/spinner_kategori_add_barang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginStart="30dp"
+            android:background="@drawable/bg_rectangle"/>
 
 
         <TextView

@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -18,12 +20,18 @@ import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.usergudang.TambahUserGudangActivity;
+import com.haloqlinic.fajarfotocopy.model.dataKategori.DataKategoriItem;
+import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +44,10 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
     private static final int IMG_REQUEST = 777;
     private Bitmap bitmap;
+
+    List<DataKategoriItem> dataKategoriItems;
+
+    String id_kategori;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +99,70 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
                         finish();
                     }
                 });
+
+        initSpinnerKategori();
+
+        binding.spinnerKategoriAddBarang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                id_kategori = dataKategoriItems.get(position).getIdKategori();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
+
+    private void initSpinnerKategori() {
+
+        ProgressDialog progressDialog = new ProgressDialog(TambahBarangGudangActivity.this);
+        progressDialog.setMessage("Memuat Data Kategori");
+        progressDialog.show();
+
+        ConfigRetrofit.service.dataKategori().enqueue(new Callback<ResponseDataKategori>() {
+            @Override
+            public void onResponse(Call<ResponseDataKategori> call, Response<ResponseDataKategori> response) {
+                if (response.isSuccessful()) {
+
+                    progressDialog.dismiss();
+
+                    int status = response.body().getStatus();
+
+                    if (status == 1) {
+
+                        dataKategoriItems = response.body().getDataKategori();
+                        List<String> listSpinnerKategori = new ArrayList<String>();
+                        for (int i = 0; i < dataKategoriItems.size(); i++) {
+
+                            listSpinnerKategori.add(dataKategoriItems.get(i).getNamaKategori());
+
+                        }
+
+                        ArrayAdapter<String> adapterToko = new ArrayAdapter<String>(TambahBarangGudangActivity.this,
+                                R.layout.spinner_item, listSpinnerKategori);
+
+                        adapterToko.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        binding.spinnerKategoriAddBarang.setAdapter(adapterToko);
+
+                    }else{
+                        Toast.makeText(TambahBarangGudangActivity.this, "Data Kategori Kosong", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(TambahBarangGudangActivity.this, "Gagal memuat data kategori", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDataKategori> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(TambahBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -240,7 +316,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.tambahBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, diskon, diskon_pack, image_barang).enqueue(new Callback<ResponseTambahBarang>() {
+                jumlah_pack, diskon, diskon_pack, image_barang, id_kategori).enqueue(new Callback<ResponseTambahBarang>() {
             @Override
             public void onResponse(Call<ResponseTambahBarang> call, Response<ResponseTambahBarang> response) {
                 if (response.isSuccessful()){

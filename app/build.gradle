@@ -6,9 +6,11 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
     }
+
+
 
     defaultConfig {
         applicationId "com.haloqlinic.fajarfotocopy"
@@ -16,7 +18,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -79,6 +81,8 @@ dependencies {
 
     //zxing barcode scanner
     implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+
+    implementation 'com.android.support:multidex:1.0.3'
 
 
 }
