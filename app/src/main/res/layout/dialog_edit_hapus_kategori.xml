@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/blue">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="EDIT / HAPUS KATEGORI"
+                android:textColor="@color/white"
+                android:fontFamily="@font/sairabold"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/product_cart_code"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <EditText
+                android:id="@+id/edt_dialog_nama_kategori"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:hint="Nama Kategori"
+                android:inputType="textCapWords"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sairabold"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_dialog_edit_kategori"
+            android:text="Edit Kategori Barang"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/blue"
+            android:layout_marginTop="10dp"
+            android:textColor="#fff"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/text_dialog_hapus_kategori"
+            android:text="Hapus Kategori Barang"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/red"
+            android:textColor="#fff"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -51,6 +51,28 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Tambah Kategori"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/btn_tambah_kategori_barang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:text="Tambah KAtegori"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:background="@color/red"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
             android:text="Barcode" />
 
@@ -58,19 +80,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pcs" />
-
             <Button
                 android:id="@+id/btn_barcode_tambah_stockpcs_gudang"
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
                 android:text="Scan Barcode"
                 android:textSize="12sp"
                 android:textColor="@color/white"
@@ -78,24 +93,6 @@
                 android:fontFamily="@font/sairamedium"
                 android:layout_marginTop="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pack" />
-
-            <Button
-                android:id="@+id/btn_barcode_tambah_stockpack_gudang"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:text="Scan Barcode"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:background="@drawable/bg_btn_blue"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="5dp" />
 
         </LinearLayout>
 
