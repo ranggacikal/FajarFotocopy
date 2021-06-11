@@ -19,7 +19,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_profile" />
+            android:src="@drawable/ic_profile_home" />
 
         <LinearLayout
             android:layout_width="wrap_content"

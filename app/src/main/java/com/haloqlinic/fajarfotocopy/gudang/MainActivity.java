@@ -11,8 +11,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KeranjangGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
+import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
     private HomeFragment homeFragment;
     private InformasiGudangFragment informasiGudangFragment;
-    private KeranjangGudangFragment keranjangGudangFragment;
     private KirimBarangFragment kirimBarangFragment;
+    private ProfileFragment profileFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 replaceFragment(kirimBarangFragment);
                 break;
             case 3 :
-                replaceFragment(keranjangGudangFragment);
+                replaceFragment(profileFragment);
                 break;
         }
 
@@ -82,13 +83,14 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         informasiGudangFragment = new InformasiGudangFragment();
-        keranjangGudangFragment = new KeranjangGudangFragment();
+        profileFragment = new ProfileFragment();
         kirimBarangFragment = new KirimBarangFragment();
+
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
         tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.ic_informasi));
         tabLayout.addTab(tabLayout.newTab().setText("Kirim Barang").setIcon(R.drawable.ic_kirim));
-        tabLayout.addTab(tabLayout.newTab().setText("Keranjang").setIcon(R.drawable.ic_keranjang));
+        tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
     }
 

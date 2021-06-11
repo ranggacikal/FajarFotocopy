@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang;
+package com.haloqlinic.fajarfotocopy.gudang.baranggudang;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,10 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.adapter.kirimBarang.ReportPengirimanAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityDataPengirimanBarangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengirimanGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.DataStatusPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;

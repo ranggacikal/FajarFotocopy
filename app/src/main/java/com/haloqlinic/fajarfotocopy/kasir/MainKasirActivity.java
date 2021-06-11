@@ -9,10 +9,7 @@ import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
 import com.haloqlinic.fajarfotocopy.R;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KeranjangGudangFragment;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
+
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.InformasiKasirFragment;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.KeranjangKasirFragment;
