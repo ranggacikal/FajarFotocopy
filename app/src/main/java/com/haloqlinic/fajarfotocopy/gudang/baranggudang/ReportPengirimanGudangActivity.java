@@ -23,7 +23,7 @@ import retrofit2.Response;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
-public class ReportPengirimanGudangActivity extends AppCompatActivity {
+public class ReportPengKirimanGudangActivity extends AppCompatActivity {
 
     private ActivityReportPengirimanGudangBinding binding;
 

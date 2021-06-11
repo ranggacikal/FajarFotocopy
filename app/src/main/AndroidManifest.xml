@@ -15,7 +15,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity"></activity>
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
-        <activity android:name=".gudang.baranggudang.ScanTambahBarangActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
         <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity" />
