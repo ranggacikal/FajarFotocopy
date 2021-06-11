@@ -114,6 +114,15 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
             }
         });
 
+        PushDownAnim.setPushDownAnimTo(binding.btnTambahKategoriBarang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TambahBarangGudangActivity.this, TambahKategoriActivity.class));
+                    }
+                });
+
     }
 
     private void initSpinnerKategori() {
@@ -359,5 +368,9 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initSpinnerKategori();
+    }
 }

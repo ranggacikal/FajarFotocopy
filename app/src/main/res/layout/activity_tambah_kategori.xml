@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gudang.baranggudang.TambahKategoriActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:background="@drawable/background_header_green">
+
+        <LinearLayout
+            android:id="@+id/linear_back_tambah_kategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="38dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_atas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sairamedium"
+                android:text="Tambah Kategori"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sairamedium"
+        android:text="Nama Kategori" />
+
+    <EditText
+        android:id="@+id/edt_tambah_nama_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:inputType="textCapWords"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_rectangle"
+        android:fontFamily="@font/sairamedium" />
+
+
+    <Button
+        android:id="@+id/btn_tambah_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:text="Tambah Kategori"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        android:background="@drawable/bg_btn_blue"
+        android:fontFamily="@font/sairamedium"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/sairamedium"
+        android:text="Data Kategori" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_data_kategori"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"/>
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
 import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
+import com.haloqlinic.fajarfotocopy.model.dataKategoriDesc.ResponseDataKategoriDesc;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.dataUser.ResponseDataUser;
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLevel;
@@ -13,8 +14,10 @@ import com.haloqlinic.fajarfotocopy.model.dataUserByNama.ResponseDataUserByNama;
 import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutlet;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
+import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
+import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -190,5 +193,17 @@ public interface ApiService {
 
     @GET("getKategori")
     Call<ResponseDataKategori> dataKategori();
+
+    @GET("getKategoriDesc")
+    Call<ResponseDataKategoriDesc> dataKategoriDesc();
+
+    @FormUrlEncoded
+    @POST("hapusKategori")
+    Call<ResponseHapusKategori> hapusKategori(@Field("id_kategori") String id_kategori);
+
+    @FormUrlEncoded
+    @POST("editKategori")
+    Call<ResponseEditKategori> editKtegori(@Field("id_kategori") String id_kategori,
+                                           @Field("nama_kategori") String nama_kategori);
 
 }

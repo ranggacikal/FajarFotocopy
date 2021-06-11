@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haloqlinic.fajarfotocopy">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,15 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".gudang.baranggudang.ReportPenjualanActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity" />
+        <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity"></activity>
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
+        <activity android:name=".gudang.baranggudang.ScanTambahBarangActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
         <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity" />
@@ -44,13 +41,17 @@
         <activity
             android:name=".gudang.kirimbaranggudang.KirimBarangGudangActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".gudang.baranggudang.ReportPengirimanGudangActivity" />
+        <activity android:name=".gudang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.TransferBarangGudangActivity" />
         <activity android:name=".LoginSebagaiActivity" />
         <activity android:name=".SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".gudang.suppliergudang.CetakBuktiSupplierGudangActivity" />
         <activity android:name=".gudang.suppliergudang.PembayaranSupplierGudangActivity" />
@@ -81,8 +82,5 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
