@@ -15,16 +15,16 @@
 
         <ImageView
             android:id="@+id/imglogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logofotocopy"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/logobaru"
             android:layout_centerVertical="true"
             android:layout_marginStart="29dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Smart Fotocopy"
+            android:text="Fajar Group"
             android:layout_toRightOf="@+id/imglogo"
             android:layout_marginStart="10dp"
             android:textSize="30sp"

@@ -19,7 +19,7 @@
             android:layout_width="43dp"
             android:layout_height="43dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_profile_home" />
+            android:src="@drawable/ic_profile" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/sairabold"
-                android:text="Selamat Datang"
+                android:text="Hi"
                 android:textColor="@color/black"
                 android:textSize="13sp" />
 
@@ -86,7 +86,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/header_home_gudang"
         android:layout_marginTop="44dp"
-        android:background="@drawable/background_green_2">
+        android:background="@drawable/background_home">
 
         <Button
             android:id="@+id/btn_keluar_gudang"
@@ -105,10 +105,11 @@
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:layout_marginTop="22dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="45dp"
             app:cardCornerRadius="10dp"
             app:cardElevation="7dp"
+            app:cardBackgroundColor="@color/white"
             android:layout_below="@id/btn_keluar_gudang">
 
             <RelativeLayout
@@ -119,7 +120,7 @@
                     android:id="@+id/imageoutlet"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:src="@drawable/ic_outlet"
+                    android:src="@drawable/ic_store"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="28dp"/>
                 
@@ -159,7 +160,8 @@
                     android:layout_width="132dp"
                     android:layout_height="184dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="7dp">
+                    app:cardElevation="7dp"
+                    app:cardBackgroundColor="@color/white">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -170,7 +172,9 @@
                             android:id="@+id/imgbarang"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/ic_barang"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_gift"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -178,6 +182,8 @@
                             android:text="Kelola Barang"
                             android:textColor="@color/black"
                             android:textSize="16sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
                             android:fontFamily="@font/sairabold"
                             android:layout_below="@+id/imgbarang"/>
 
@@ -191,7 +197,8 @@
                     android:layout_height="150dp"
                     android:layout_marginTop="13dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="7dp">
+                    app:cardElevation="7dp"
+                    app:cardBackgroundColor="@color/white">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -202,7 +209,9 @@
                             android:id="@+id/imgsupplier"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/ic_supplier"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_cashier"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -210,6 +219,8 @@
                             android:text="Supplier"
                             android:textColor="@color/black"
                             android:textSize="16sp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
                             android:fontFamily="@font/sairabold"
                             android:layout_below="@+id/imgsupplier"/>
 
@@ -227,30 +238,33 @@
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_user_gudang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="109dp"
+                    android:layout_width="132dp"
+                    android:layout_height="115dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="7dp">
+                    app:cardElevation="7dp"
+                    app:cardBackgroundColor="@color/white">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp">
 
                         <ImageView
                             android:id="@+id/imguser"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
-                            android:layout_marginStart="10dp"
-                            android:src="@drawable/ic_user"/>
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:src="@drawable/ic_operator"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="User"
-                            android:layout_marginEnd="20dp"
+                            android:layout_marginEnd="5dp"
                             android:textColor="@color/black"
-                            android:layout_marginStart="10dp"
                             android:textSize="16sp"
                             android:fontFamily="@font/sairabold"
                             android:layout_toRightOf="@+id/imguser"/>
@@ -265,7 +279,8 @@
                     android:layout_height="216dp"
                     android:layout_marginTop="13dp"
                     app:cardCornerRadius="10dp"
-                    app:cardElevation="7dp">
+                    app:cardElevation="7dp"
+                    app:cardBackgroundColor="@color/white">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -276,7 +291,9 @@
                             android:id="@+id/imgtransfer"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
-                            android:src="@drawable/ic_transfer"/>
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_location"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -284,8 +301,11 @@
                             android:text="Trasnsfer Barang"
                             android:textColor="@color/black"
                             android:textSize="14sp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="5dp"
                             android:fontFamily="@font/sairabold"
-                            android:layout_below="@+id/imgtransfer"/>
+                            android:layout_below="@+id/imgtransfer" />
 
                     </RelativeLayout>
 
