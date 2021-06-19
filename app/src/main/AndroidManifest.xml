@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity"></activity>
+        <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity"></activity>
+        <activity android:name=".adapter.kirimBarang.ReportPengirimanGudangActivity" />
+        <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />

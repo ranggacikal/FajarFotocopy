@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haloqlinic.fajarfotocopy.R;
-import com.haloqlinic.fajarfotocopy.gudang.baranggudang.ReportPengirimanGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ReportPengirimanGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 

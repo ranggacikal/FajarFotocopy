@@ -37,27 +37,27 @@
             android:gravity="center">
 
             <EditText
-                android:id="@+id/edt_dialog_id_pengiriman"
+                android:id="@+id/edt_dialog_qty_pcs"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Id Pengiriman"
+                android:hint="Masukan Jumlah (Pcs)"
                 android:inputType="text"
                 android:textColor="@color/black"
                 android:fontFamily="@font/sairabold"/>
 
             <EditText
-                android:id="@+id/edt_dialog_qty"
+                android:id="@+id/edt_dialog_qty_pack"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:hint="Masukan Jumlah"
+                android:hint="Masukan Jumlah (Pack)"
                 android:inputType="number"
                 android:textColor="@color/black"
                 android:fontFamily="@font/sairabold"/>

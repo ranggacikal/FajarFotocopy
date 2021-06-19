@@ -143,9 +143,9 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("tambahPengiriman")
-    Call<ResponseTambahPengiriman> tambahPengiriman(@Field("id_pengiriman") String id_pengiriman,
-                                                    @Field("id_barang") String id_barang,
+    Call<ResponseTambahPengiriman> tambahPengiriman(@Field("id_barang") String id_barang,
                                                     @Field("jumlah") String jumlah,
+                                                    @Field("jumlah_pack") String jumlah_pack,
                                                     @Field("id_outlet") String id_outlet,
                                                     @Field("id_status_pengiriman") String id_status_pengiriman);
 

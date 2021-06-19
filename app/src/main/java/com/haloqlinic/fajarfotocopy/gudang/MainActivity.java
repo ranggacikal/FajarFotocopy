@@ -12,7 +12,6 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
-import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private HomeFragment homeFragment;
     private InformasiGudangFragment informasiGudangFragment;
     private KirimBarangFragment kirimBarangFragment;
-    private ProfileFragment profileFragment;
+//    private ProfileFragment profileFragment;
 
 
     @Override
@@ -64,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
             case 2 :
                 replaceFragment(kirimBarangFragment);
                 break;
-            case 3 :
-                replaceFragment(profileFragment);
-                break;
+//            case 3 :
+//                replaceFragment(profileFragment);
+//                break;
         }
 
     }
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         homeFragment = new HomeFragment();
         informasiGudangFragment = new InformasiGudangFragment();
-        profileFragment = new ProfileFragment();
+//        profileFragment = new ProfileFragment();
         kirimBarangFragment = new KirimBarangFragment();
 
 
