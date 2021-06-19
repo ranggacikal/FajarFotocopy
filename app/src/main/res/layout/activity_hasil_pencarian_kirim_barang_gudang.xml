@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="121dp"
@@ -153,6 +152,7 @@
             android:layout_height="33dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Chekoout"

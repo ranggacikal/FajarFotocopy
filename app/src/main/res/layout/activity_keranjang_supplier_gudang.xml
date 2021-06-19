@@ -214,7 +214,7 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Discount"
-                android:textColor="#5DE1E6"
+                android:textColor="@color/red"
                 android:textSize="12sp" />
 
             <TextView
@@ -331,7 +331,7 @@
         <Button
             android:layout_width="345dp"
             android:layout_height="49dp"
-            android:background="@drawable/btn_biru_muda"
+            android:background="@drawable/btn_black"
             android:text="Bayar"
             android:fontFamily="@font/sairamedium"
             android:textSize="20sp"

@@ -179,7 +179,7 @@
             android:id="@+id/btn_simpan_tambah_outlet"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/btn_biru_muda"
+            android:background="@drawable/btn_black"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"

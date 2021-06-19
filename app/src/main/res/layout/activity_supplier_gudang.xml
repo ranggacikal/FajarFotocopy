@@ -58,7 +58,7 @@
                 android:id="@+id/btn_jasa_supplier"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@drawable/btn_biru_muda"
+                android:background="@drawable/btn_black"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa"
                 android:textColor="@color/white"
@@ -72,7 +72,7 @@
                 android:background="@drawable/btn_merah"
                 android:fontFamily="@font/sairamedium"
                 android:text="Barang"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
 
@@ -92,7 +92,7 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="@drawable/bg_btn_blue"
+            android:background="@drawable/btn_gold"
             android:fontFamily="@font/sairamedium"
             android:text="Barcode"
             android:textColor="@color/white"
@@ -182,9 +182,10 @@
             android:background="@drawable/btn_merah"
             android:layout_marginStart="44dp"
             android:layout_marginTop="27dp"
+            android:layout_marginEnd="10dp"
             android:textSize="10sp"
             android:fontFamily="@font/sairamedium"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Chekoout"/>
 
     </LinearLayout>

@@ -70,7 +70,7 @@
         android:layout_marginEnd="25dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
-        android:background="@drawable/bg_btn_blue"
+        android:background="@drawable/btn_black"
         android:text="Lihat List Pengiriman Barang"
         android:textColor="@color/white"
         android:fontFamily="@font/sairabold"/>

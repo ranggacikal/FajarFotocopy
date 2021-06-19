@@ -56,7 +56,7 @@
         android:layout_marginEnd="40dp"
         android:background="@drawable/btn_merah"
         android:text="Hapus"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="12sp"
         android:fontFamily="@font/sairamedium"
         android:layout_below="@+id/linear_transfer_barang"
@@ -66,6 +66,7 @@
         android:layout_width="match_parent"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_below="@id/btn_hapus_keranjang_kirim_barang_gudang">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -124,10 +125,11 @@
             android:layout_height="33dp"
             android:layout_marginStart="100dp"
             android:layout_marginTop="25dp"
+            android:layout_marginEnd="10dp"
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Chekoout"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
     </LinearLayout>

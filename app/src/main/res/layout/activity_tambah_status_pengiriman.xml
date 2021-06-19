@@ -89,7 +89,8 @@
             android:layout_marginEnd="30dp"
             android:layout_marginTop="15dp"
             android:text="Pilih Tanggal"
-            android:background="@drawable/btn_biru_muda"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_gold"
             android:fontFamily="@font/sairabold"/>
 
 
@@ -101,7 +102,8 @@
         android:layout_height="50dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:background="@drawable/btn_biru_muda"
+        android:background="@drawable/btn_black"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
         android:text="Buat Pengiriman Barang"/>

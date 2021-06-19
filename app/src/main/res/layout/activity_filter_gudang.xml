@@ -58,7 +58,7 @@
             android:id="@+id/btn_stock_rendah_filter_gudang"
             android:layout_width="130dp"
             android:layout_height="40dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Stock Terendah"
             android:textColor="@color/white"
@@ -69,10 +69,10 @@
             android:layout_width="130dp"
             android:layout_height="40dp"
             android:layout_marginLeft="20dp"
-            android:background="@drawable/btn_biru_muda"
+            android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Stock Tertinggi"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="13sp" />
 
     </LinearLayout>
@@ -121,7 +121,7 @@
         android:textSize="15dp"
         android:fontFamily="@font/sairamedium"
         android:textColor="@color/white"
-        android:background="@drawable/btn_merah"
+        android:background="@drawable/btn_black"
         android:layout_below="@+id/radio_grup_button" />
 
 </RelativeLayout>

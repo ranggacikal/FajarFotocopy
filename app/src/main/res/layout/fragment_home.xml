@@ -98,7 +98,7 @@
             android:id="@+id/btn_keluar_gudang"
             android:layout_width="85dp"
             android:layout_height="33dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/btn_black"
             android:text="Keluar"
             android:textColor="@color/white"
             android:fontFamily="@font/sairabold"

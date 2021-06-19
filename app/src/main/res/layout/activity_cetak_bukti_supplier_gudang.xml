@@ -175,7 +175,7 @@
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            android:background="@drawable/bg_btn_blue"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Cetak Bukti"
             android:textColor="@color/white"

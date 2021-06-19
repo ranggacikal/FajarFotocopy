@@ -142,7 +142,7 @@
             android:id="@+id/btn_edit_data_toko_gudang"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:background="@drawable/bg_btn_blue"
+            android:background="@drawable/btn_black"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Edit"
@@ -159,7 +159,7 @@
             android:layout_marginTop="20dp"
             android:text="Hapus"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:fontFamily="@font/sairamedium"/>
 
 
