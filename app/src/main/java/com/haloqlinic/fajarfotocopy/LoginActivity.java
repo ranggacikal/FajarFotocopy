@@ -14,6 +14,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 
 import retrofit2.Call;
@@ -97,6 +98,9 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (level.equals("gudang")){
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            finish();
+                        }else if (level.equals("kepala toko")){
+                            startActivity(new Intent(LoginActivity.this, HomeKetoActivity.class));
                             finish();
                         }
 

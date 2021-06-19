@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,7 +120,7 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         progressDialog.setMessage("Menambahkan Barang Ke Pengiriman barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, id_toko, id_status)
+        ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, id_toko, id_status, "pending")
                 .enqueue(new Callback<ResponseTambahPengiriman>() {
                     @Override
                     public void onResponse(Call<ResponseTambahPengiriman> call, Response<ResponseTambahPengiriman> response) {
@@ -137,6 +138,11 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
 
                         }else{
                             progressDialog.dismiss();
+                            Log.d("checkDataPengiriman", "id_barang: "+id_barang);
+                            Log.d("checkDataPengiriman", "qty: "+qty);
+                            Log.d("checkDataPengiriman", "pack: "+pack);
+                            Log.d("checkDataPengiriman", "id_toko: "+id_toko);
+                            Log.d("checkDataPengiriman", "id_status: "+id_status);
                             Toast.makeText(context, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
