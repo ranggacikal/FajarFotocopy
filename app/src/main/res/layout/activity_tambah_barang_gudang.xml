@@ -64,7 +64,7 @@
             android:text="Tambah KAtegori"
             android:textSize="12sp"
             android:textColor="@color/white"
-            android:background="@color/red"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:layout_marginTop="5dp" />
 
@@ -89,7 +89,7 @@
                 android:text="Scan Barcode"
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                android:background="@drawable/bg_btn_blue"
+                android:background="@drawable/btn_gold"
                 android:fontFamily="@font/sairamedium"
                 android:layout_marginTop="5dp" />
 
@@ -402,7 +402,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/btn_biru_muda"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Simpan"
             android:textColor="@color/white"

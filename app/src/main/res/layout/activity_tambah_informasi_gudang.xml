@@ -119,7 +119,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_biru_muda"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Simpan"
             android:textColor="@color/white"

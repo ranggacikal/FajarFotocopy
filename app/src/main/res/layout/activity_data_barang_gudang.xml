@@ -93,7 +93,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="39dp"
         android:layout_marginTop="21dp"
-        android:background="@drawable/btn_biru_muda"
+        android:background="@drawable/btn_gold"
         android:fontFamily="@font/sairabold"
         android:padding="5dp"
         android:src="@drawable/ic_filter"
@@ -103,6 +103,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_data_barang_gudamg"
         android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_barcode_data_barang_gudang"
         android:layout_marginTop="20dp"/>

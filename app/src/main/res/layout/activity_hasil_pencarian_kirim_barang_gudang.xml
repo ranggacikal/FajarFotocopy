@@ -66,7 +66,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="39dp"
                 android:layout_marginTop="21dp"
-                android:background="@drawable/btn_biru_muda"
+                android:background="@drawable/btn_gold"
                 android:fontFamily="@font/sairabold"
                 android:padding="5dp"
                 android:src="@drawable/ic_filter"
@@ -156,7 +156,7 @@
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Chekoout"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="10sp" />
 
     </LinearLayout>

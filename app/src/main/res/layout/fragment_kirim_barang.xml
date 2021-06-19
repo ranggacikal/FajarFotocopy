@@ -37,7 +37,7 @@
             android:id="@+id/card_kirim_barang"
             android:layout_width="match_parent"
             android:layout_height="109dp"
-            app:cardBackgroundColor="@color/blue2"
+            app:cardBackgroundColor="#D4B44E"
             android:layout_marginStart="41dp"
             app:cardCornerRadius="10dp"
             android:layout_marginEnd="41dp">
@@ -51,7 +51,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_plus"
+                    android:src="@drawable/ic_plus_baru"
                     android:layout_marginStart="28dp"/>
 
                 <TextView
@@ -72,7 +72,7 @@
             android:id="@+id/card_report_pengiriman"
             android:layout_width="match_parent"
             android:layout_height="109dp"
-            app:cardBackgroundColor="@color/blue2"
+            app:cardBackgroundColor="#D4B44E"
             android:layout_marginStart="41dp"
             app:cardCornerRadius="10dp"
             android:layout_marginTop="35dp"
@@ -87,7 +87,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_history"
+                    android:src="@drawable/ic_history_baru"
                     android:layout_marginStart="28dp"/>
 
                 <TextView

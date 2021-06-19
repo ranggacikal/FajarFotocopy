@@ -75,7 +75,7 @@
         android:textSize="15dp"
         android:fontFamily="@font/sairamedium"
         android:textColor="@color/white"
-        android:background="@drawable/btn_merah"
+        android:background="@drawable/btn_black"
         android:layout_below="@+id/radio_grup_button" />
 
 </RelativeLayout>
