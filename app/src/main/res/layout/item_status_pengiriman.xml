@@ -9,7 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:layout_marginHorizontal="5dp">
 
 
         <LinearLayout
@@ -19,8 +20,9 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp">
 
                 <TextView
                     android:id="@+id/text_id_status_report_pengiriman"
@@ -30,22 +32,26 @@
                     android:text="ID status pengiriman"
                     android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/text_tanggal_report_pengiriman"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/sairabold"
-                    android:text="Tanggal"
-                    android:textColor="@color/black" />
 
             </RelativeLayout>
 
+
+            <TextView
+                android:id="@+id/text_tanggal_report_pengiriman"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/sairabold"
+                android:text="Tanggal"
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/text_nama_toko_report_pengiriman"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/sairabold"
                 android:gravity="center"
                 android:text="Nama Toko"
@@ -64,6 +70,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginBottom="15dp"
             android:textColor="@color/black"
             android:textSize="14sp" />

@@ -81,6 +81,7 @@
         android:background="@drawable/button_filter"
         android:fontFamily="@font/sairabold"
         android:padding="5dp"
+        android:paddingHorizontal="5dp"
         android:src="@drawable/ic_filter"
         android:text="Filter" />
 
@@ -98,6 +99,7 @@
         android:padding="5dp"
         android:src="@drawable/ic_filter"
         android:text="Scan Barcode"
+        android:paddingHorizontal="5dp"
         android:textColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView

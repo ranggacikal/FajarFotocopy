@@ -147,6 +147,7 @@
             android:layout_marginTop="20dp"
             android:text="Edit"
             android:textSize="20sp"
+            android:paddingHorizontal="5dp"
             android:textColor="@color/white"
             android:fontFamily="@font/sairamedium"/>
 
@@ -158,6 +159,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Hapus"
+            android:paddingHorizontal="5dp"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:fontFamily="@font/sairamedium"/>

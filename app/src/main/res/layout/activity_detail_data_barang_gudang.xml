@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Nama Barang" />
 
@@ -54,6 +55,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
             android:inputType="textCapWords"
             android:fontFamily="@font/sairamedium" />
 
@@ -62,12 +64,14 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Stock Barang" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -109,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Harga Modal Gudang" />
 
@@ -136,6 +141,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
+            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -143,6 +149,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Harga Jual Toko" />
 
@@ -186,6 +193,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
             android:inputType="number"
             android:fontFamily="@font/sairamedium" />
 
@@ -194,6 +202,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Harga Jual Toko Pack" />
 
@@ -201,6 +210,7 @@
             android:id="@+id/edt_harga_jual_toko_pack_edit"
             android:layout_width="348dp"
             android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
@@ -211,6 +221,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Asal Barang" />
 
@@ -221,6 +232,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="textCapWords"
+            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -228,6 +240,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Diskon" />
 
@@ -238,6 +251,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
+            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -245,6 +259,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Diskon Pack" />
 
@@ -255,6 +270,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
+            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -262,6 +278,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Foto" />
 
@@ -269,6 +286,7 @@
             android:id="@+id/image_detail_barang_gudang"
             android:layout_width="120dp"
             android:layout_height="120dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_profile" />
 
@@ -278,6 +296,7 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
+            android:paddingHorizontal="5dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Edit"
@@ -291,6 +310,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
+            android:paddingHorizontal="5dp"
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Hapus"

@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/blue2"
+    app:cardBackgroundColor="#D4B44E"
     app:cardCornerRadius="10dp"
     app:cardElevation="6dp">
 
@@ -15,6 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -22,7 +23,7 @@
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/icon_img_error"/>
+                android:src="@drawable/ic_gift"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -86,7 +87,9 @@
             android:text="Status"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="10dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/white"
             android:fontFamily="@font/sairabold"/>
 
