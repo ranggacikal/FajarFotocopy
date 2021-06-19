@@ -93,8 +93,8 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         dialog.setContentView(R.layout.dialog_qty_kirim_barang);
         dialog.setCancelable(false);
 
-        final EditText edtQty = dialog.findViewById(R.id.edt_dialog_qty);
-        final EditText edtId = dialog.findViewById(R.id.edt_dialog_id_pengiriman);
+        final EditText edtQty = dialog.findViewById(R.id.edt_dialog_qty_pcs);
+        final EditText edtPack = dialog.findViewById(R.id.edt_dialog_qty_pack);
         final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang);
 
         dialog.show();
@@ -103,14 +103,14 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
             @Override
             public void onClick(View v) {
                 String qty = edtQty.getText().toString();
-                String id_pengiriman = edtId.getText().toString();
-                tambahPengiriman(qty, id_pengiriman);
+                String pack = edtPack.getText().toString();
+                tambahPengiriman(qty, pack);
             }
         });
 
     }
 
-    private void tambahPengiriman(String qty, String id_pengiriman) {
+    private void tambahPengiriman(String qty, String pack) {
 
         String id_toko = kirimBarangGudangActivity.id_toko;
         String id_status = kirimBarangGudangActivity.id_status_pengiriman;
@@ -119,7 +119,7 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         progressDialog.setMessage("Menambahkan Barang Ke Pengiriman barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPengiriman(id_pengiriman, id_barang, qty, id_toko, id_status)
+        ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, id_toko, id_status)
                 .enqueue(new Callback<ResponseTambahPengiriman>() {
                     @Override
                     public void onResponse(Call<ResponseTambahPengiriman> call, Response<ResponseTambahPengiriman> response) {
