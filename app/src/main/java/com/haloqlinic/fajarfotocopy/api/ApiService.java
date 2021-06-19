@@ -23,6 +23,7 @@ import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatu
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
@@ -147,7 +148,8 @@ public interface ApiService {
                                                     @Field("jumlah") String jumlah,
                                                     @Field("jumlah_pack") String jumlah_pack,
                                                     @Field("id_outlet") String id_outlet,
-                                                    @Field("id_status_pengiriman") String id_status_pengiriman);
+                                                    @Field("id_status_pengiriman") String id_status_pengiriman,
+                                                    @Field("status_barang") String status_barang);
 
     @FormUrlEncoded
     @POST("getListPengiriman")
@@ -205,5 +207,9 @@ public interface ApiService {
     @POST("editKategori")
     Call<ResponseEditKategori> editKtegori(@Field("id_kategori") String id_kategori,
                                            @Field("nama_kategori") String nama_kategori);
+
+    @FormUrlEncoded
+    @POST("listStatusPengirimanByToko")
+    Call<ResponseStatusPengirimanByToko> statusPengirimanByToko(@Field("id_outlet") String id_outlet);
 
 }
