@@ -48,6 +48,7 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="27dp"
+            android:layout_marginHorizontal="10dp"
             android:background="@drawable/bg_rectangle"
             android:padding="15dp" />
 
@@ -65,6 +66,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="39dp"
                 android:layout_marginTop="21dp"
+                android:paddingHorizontal="5dp"
                 android:background="@drawable/btn_gold"
                 android:fontFamily="@font/sairabold"
                 android:padding="5dp"
@@ -80,6 +82,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="21dp"
                 android:layout_marginStart="40dp"
+                android:paddingHorizontal="5dp"
                 android:background="@drawable/button_filter"
                 android:fontFamily="@font/sairabold"
                 android:padding="5dp"

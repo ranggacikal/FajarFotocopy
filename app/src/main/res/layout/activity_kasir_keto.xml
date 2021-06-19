@@ -55,9 +55,10 @@
                 android:id="@+id/btn_jasa_kasir_keto"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:background="@drawable/btn_biru_muda"
+                android:background="@drawable/btn_black"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa"
+                android:paddingHorizontal="5dp"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -69,7 +70,8 @@
                 android:background="@drawable/btn_merah"
                 android:fontFamily="@font/sairamedium"
                 android:text="Barang"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
+                android:paddingHorizontal="5dp"
                 android:textSize="20sp" />
 
 
@@ -89,7 +91,8 @@
             android:layout_height="54dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:background="@drawable/bg_btn_blue"
+            android:background="@drawable/btn_gold"
+            android:paddingHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
             android:text="Barcode"
             android:textColor="@color/white"
@@ -109,6 +112,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
             android:orientation="vertical">
 
 
@@ -176,12 +180,14 @@
             android:id="@+id/btn_chekout_kasir_keto"
             android:layout_width="96dp"
             android:layout_height="33dp"
+            android:layout_marginHorizontal="5dp"
             android:background="@drawable/btn_merah"
             android:layout_marginStart="44dp"
             android:layout_marginTop="27dp"
             android:textSize="10sp"
+            android:paddingHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="Chekoout"/>
 
     </LinearLayout>

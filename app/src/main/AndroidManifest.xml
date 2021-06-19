@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haloqlinic.fajarfotocopy">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity"></activity>
+        <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity"></activity>
+        <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity" />
         <activity android:name=".adapter.kirimBarang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
@@ -83,5 +81,8 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
