@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.FajarFotocopy" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/tosca</item>
-        <item name="colorPrimaryVariant">@color/tosca</item>
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/gold</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

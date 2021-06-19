@@ -3,7 +3,7 @@
 
     <style name="Theme.FajarFotocopy" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/tosca</item>
+        <item name="colorPrimary">@color/gold</item>
 <!--        <item name="colorPrimaryVariant">@color/tosca</item>-->
 <!--        <item name="colorOnPrimary">@color/white</item>-->
 <!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
@@ -15,7 +15,7 @@
         <!-- Customize your theme here. -->
 
 
-        <item name="colorPrimaryVariant">@color/tosca</item>
+        <item name="colorPrimaryVariant">@color/gold</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorSurface">@color/white</item>
         <item name="colorOnPrimary">@color/white</item>

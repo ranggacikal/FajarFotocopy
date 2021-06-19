@@ -64,6 +64,7 @@
         <activity android:name=".gudang.baranggudang.DetailDataBarangGudangActivity" />
         <activity android:name=".gudang.baranggudang.DataBarangGudangActivity" />
         <activity android:name=".gudang.baranggudang.TambahBarangGudangActivity" />
+        <activity android:name=".gudang.baranggudang.TambahKategoriActivity" />
         <activity android:name=".gudang.baranggudang.BarangGudangActivity" />
         <activity android:name=".gudang.tokogudang.DataPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.DataTokoGudangActivity" />
