@@ -23,6 +23,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import com.haloqlinic.fajarfotocopy.R;
+
 public class ListPengirimanKetoActivity extends AppCompatActivity {
 
     private ActivityListPengirimanKetoBinding binding;

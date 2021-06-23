@@ -56,43 +56,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pcs" />
-
             <Button
                 android:id="@+id/btn_barcode_tambah_stockpcs_keto"
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="30dp"
                 android:text="Scan Barcode"
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                android:background="@drawable/bg_btn_blue"
+                android:background="@drawable/btn_black"
+                android:padding="10dp"
                 android:fontFamily="@font/sairamedium"
                 android:layout_marginTop="5dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pack" />
 
-            <Button
-                android:id="@+id/btn_barcode_tambah_stockpack_keto"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:text="Scan Barcode"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:background="@drawable/bg_btn_blue"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="5dp" />
 
         </LinearLayout>
 
@@ -107,11 +84,13 @@
 
         <EditText
             android:id="@+id/edt_tambah_nama_barang_keto"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
             android:inputType="textCapWords"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
@@ -125,10 +104,12 @@
 
         <EditText
             android:id="@+id/edt_tambah_jenis_barang_keto"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="30dp"
             android:background="@drawable/bg_rectangle"
             android:inputType="textCapWords"
             android:fontFamily="@font/sairamedium" />
@@ -143,8 +124,10 @@
 
         <EditText
             android:id="@+id/edt_tambah_kode_barang_keto"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:inputType="textCapWords"
@@ -164,7 +147,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -179,6 +163,8 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:inputType="number"
+                android:padding="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/sairamedium"
                 android:layout_marginTop="10dp" />
@@ -196,7 +182,9 @@
                 android:layout_height="50dp"
                 android:inputType="number"
                 android:fontFamily="@font/sairamedium"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginStart="10dp"
+                android:padding="10dp"
                 android:background="@drawable/bg_rectangle"
                 android:layout_marginTop="10dp" />
 
@@ -206,11 +194,12 @@
 
         <Button
             android:id="@+id/btn_tambah_barang_keto"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_biru_muda"
+            android:layout_marginHorizontal="30dp"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Simpan"
             android:textColor="@color/white"

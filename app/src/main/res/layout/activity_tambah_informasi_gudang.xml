@@ -56,8 +56,10 @@
             android:text="Pilih Tanggal" />
 
         <EditText
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -72,8 +74,10 @@
             android:text="Pilih Judul" />
 
         <EditText
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -90,10 +94,12 @@
 
 
         <EditText
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
+            android:padding="10dp"
+            android:layout_marginHorizontal="30dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium"
             android:inputType="textMultiLine" />
@@ -108,15 +114,17 @@
 
         <ImageView
             android:id="@+id/image_tambah_informasi_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_profile" />
 
         <Button
             android:id="@+id/btn_tambah_informasi_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/btn_black"

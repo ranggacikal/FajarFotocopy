@@ -21,9 +21,9 @@
         app:tabMode="fixed"
         android:layout_alignParentBottom="true"
         app:tabTextAppearance="@style/MineCustomTabText"
-        app:tabIndicatorColor="@color/white"
-        app:tabSelectedTextColor="@color/white"
+        app:tabIndicatorColor="@color/black"
+        app:tabSelectedTextColor="@color/black"
         style="@style/MineCustomTabText"
-        android:background="@android:color/black" />
+        android:background="@color/gold" />
 
 </RelativeLayout>

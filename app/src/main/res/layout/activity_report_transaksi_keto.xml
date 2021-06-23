@@ -61,28 +61,37 @@
             <Button
                 android:id="@+id/btn_hari_ini"
                 android:layout_width="85dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="28dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Hari Ini"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_black"
                 android:textSize="10sp" />
 
             <Button
                 android:id="@+id/btn_bulan_ini"
                 android:layout_width="85dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Bulan Ini"
+                android:background="@drawable/btn_black"
+                android:textColor="@color/white"
                 android:textSize="10sp" />
 
             <Button
                 android:id="@+id/btn_bulan_lalu"
                 android:layout_width="85dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Bulan Lalu"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_black"
                 android:textSize="10sp" />
 
         </LinearLayout>
@@ -103,6 +112,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:layout_marginHorizontal="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -110,9 +120,10 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="15dp"
+                        android:layout_marginHorizontal="5dp"
                         android:fontFamily="@font/sairamedium"
                         android:text="Rp. 500.0000"
-                        android:textColor="#5DE1E6"
+                        android:textColor="@color/gold"
                         android:textSize="14sp" />
 
                     <TextView
@@ -121,6 +132,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/sairamedium"
                         android:text="Total Penjualan Harian"
+                        android:layout_marginHorizontal="5dp"
                         android:textColor="#959494" />
 
                 </LinearLayout>
@@ -137,6 +149,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
+                    android:layout_marginHorizontal="10dp"
                     android:orientation="vertical">
 
                     <TextView
@@ -146,7 +159,8 @@
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/sairamedium"
                         android:text="Rp. 500.0000"
-                        android:textColor="#5DE1E6"
+                        android:layout_marginHorizontal="5dp"
+                        android:textColor="@color/gold"
                         android:textSize="14sp" />
 
                     <LinearLayout
@@ -161,6 +175,7 @@
                             android:layout_gravity="center"
                             android:fontFamily="@font/sairamedium"
                             android:text="Total Penjualan"
+                            android:layout_marginHorizontal="5dp"
                             android:textColor="#959494" />
 
                         <TextView
@@ -169,6 +184,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="3dp"
+                            android:layout_marginHorizontal="5dp"
                             android:fontFamily="@font/sairamedium"
                             android:text="Bulan"
                             android:textColor="#959494" />
@@ -184,9 +200,9 @@
         </androidx.cardview.widget.CardView>
 
         <Button
-            android:layout_width="70dp"
+            android:layout_width="85dp"
             android:layout_height="40dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/btn_black"
             android:text="Cetak Bukti"
             android:textColor="@color/white"
             android:fontFamily="@font/sairamedium"
@@ -197,6 +213,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="20dp">
 
         </androidx.recyclerview.widget.RecyclerView>

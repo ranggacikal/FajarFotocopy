@@ -30,7 +30,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="25dp"
-                android:src="@drawable/ic_notif" />
+                android:src="@drawable/ic_notif_baru" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -252,7 +252,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginHorizontal="5dp"
                 android:paddingHorizontal="5dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/card_home_keto"
                 android:orientation="horizontal">
 
