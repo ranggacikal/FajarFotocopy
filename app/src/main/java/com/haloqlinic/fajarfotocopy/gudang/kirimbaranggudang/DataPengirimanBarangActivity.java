@@ -58,24 +58,30 @@ public class DataPengirimanBarangActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
 
                     int status = response.body().getStatus();
-                    String nama_toko = response.body().getGetListPengiriman().get(0).getNamaOutlet();
-                    String tanggal = response.body().getGetListPengiriman().get(0).getTanggalPengiriman();
 
-                    if (tanggal == null || nama_toko == null){
+                    List<GetListPengirimanItem> dataPengiriman = response.body().getGetListPengiriman();
 
+                    if (dataPengiriman != null) {
+
+                        String nama_toko = response.body().getGetListPengiriman().get(0).getNamaOutlet();
+                        String tanggalPengiriman = response.body().getGetListPengiriman().get(0).getTanggalPengiriman();
+
+                        if (tanggal != null || nama_toko != null){
+
+                            binding.textNamaTokoDataPengiriman.setText(nama_toko);
+                            binding.textTanggalDataPengiriman.setText(tanggalPengiriman);
+
+                        }
+
+                    }else{
                         binding.textTanggalDataPengiriman.setText("null");
                         binding.textNamaTokoDataPengiriman.setText("null");
-
-                    }else {
-
-                        binding.textNamaTokoDataPengiriman.setText(nama_toko);
-                        binding.textTanggalDataPengiriman.setText(tanggal);
-
                     }
+
+
 
                     if (status==1){
 
-                        List<GetListPengirimanItem> dataPengiriman = response.body().getGetListPengiriman();
                         DataPengirimanAdapter adapter = new DataPengirimanAdapter(DataPengirimanBarangActivity.this, dataPengiriman);
                         binding.rvDataPengirimanBarang.setHasFixedSize(true);
                         binding.rvDataPengirimanBarang.setLayoutManager(new LinearLayoutManager(DataPengirimanBarangActivity.this));

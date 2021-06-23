@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.haloqlinic.fajarfotocopy">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true">
-        <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity"></activity>
+        <activity android:name=".kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity"></activity>
+        <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity" />
         <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity" />
         <activity android:name=".adapter.kirimBarang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity" />
@@ -64,6 +68,7 @@
         <activity android:name=".gudang.baranggudang.DetailDataBarangGudangActivity" />
         <activity android:name=".gudang.baranggudang.DataBarangGudangActivity" />
         <activity android:name=".gudang.baranggudang.TambahBarangGudangActivity" />
+        <activity android:name=".gudang.baranggudang.TambahKategoriActivity" />
         <activity android:name=".gudang.baranggudang.BarangGudangActivity" />
         <activity android:name=".gudang.tokogudang.DataPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.DataTokoGudangActivity" />
@@ -73,6 +78,7 @@
         <activity android:name=".gudang.tokogudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
+
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.MainActivity" />
         <activity
@@ -81,8 +87,5 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

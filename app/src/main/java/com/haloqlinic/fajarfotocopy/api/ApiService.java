@@ -15,9 +15,11 @@ import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutle
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
+import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
+import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -26,6 +28,7 @@ import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchSt
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
+import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
@@ -211,5 +214,31 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("listStatusPengirimanByToko")
     Call<ResponseStatusPengirimanByToko> statusPengirimanByToko(@Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("tambahBarangOutlet")
+    Call<ResponseTambahBarangOutlet> tambahBarangOutlet(@Field("id_barang_outlet") String id_barang_outlet,
+                                                        @Field("id_barang") String id_barang,
+                                                        @Field("harga_jual") String harga_jual,
+                                                        @Field("harga_jual_pack") String harga_jual_pack,
+                                                        @Field("stock") String stock,
+                                                        @Field("jumlah_pack") String jumlah_pack,
+                                                        @Field("diskon") String diskon,
+                                                        @Field("diskon_pack") String diskon_pack,
+                                                        @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("hapusPengiriman")
+    Call<ResponseHapusPengiriman> hapusPengiriman(@Field("id_pengiriman") String id_pengiriman);
+
+    @FormUrlEncoded
+    @POST("editPengiriman")
+    Call<ResponseEditPengiriman> editPengiriman(@Field("id_pengiriman") String id_pengiriman,
+                                                @Field("id_barang") String id_barang,
+                                                @Field("jumlah") String jumlah,
+                                                @Field("jumlah_pack") String jumlah_pack,
+                                                @Field("id_outlet") String id_outlet,
+                                                @Field("id_status_pengiriman") String id_status_pengiriman,
+                                                @Field("status_barang") String status_barang);
 
 }

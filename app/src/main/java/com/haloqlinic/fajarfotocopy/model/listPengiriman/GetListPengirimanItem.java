@@ -7,11 +7,20 @@ public class GetListPengirimanItem{
 	@SerializedName("id_status_pengiriman")
 	private String idStatusPengiriman;
 
-	@SerializedName("jumlah")
-	private String jumlah;
-
 	@SerializedName("id_pengiriman")
 	private String idPengiriman;
+
+	@SerializedName("nama_outlet")
+	private String namaOutlet;
+
+	@SerializedName("image_barang")
+	private String imageBarang;
+
+	@SerializedName("jumlah_pack")
+	private String jumlahPack;
+
+	@SerializedName("jumlah")
+	private String jumlah;
 
 	@SerializedName("id_barang")
 	private String idBarang;
@@ -19,17 +28,20 @@ public class GetListPengirimanItem{
 	@SerializedName("status_pengiriman")
 	private String statusPengiriman;
 
+	@SerializedName("harga_jual_toko_pack")
+	private String hargaJualTokoPack;
+
 	@SerializedName("id_outlet")
 	private String idOutlet;
+
+	@SerializedName("status_barang")
+	private String statusBarang;
 
 	@SerializedName("nama_barang")
 	private String namaBarang;
 
-	@SerializedName("nama_outlet")
-	private String namaOutlet;
-
-	@SerializedName("image_barang")
-	private String imageBarang;
+	@SerializedName("harga_jual_toko")
+	private String hargaJualToko;
 
 	@SerializedName("tanggal_pengiriman")
 	private String tanggalPengiriman;
@@ -42,52 +54,12 @@ public class GetListPengirimanItem{
 		return idStatusPengiriman;
 	}
 
-	public void setJumlah(String jumlah){
-		this.jumlah = jumlah;
-	}
-
-	public String getJumlah(){
-		return jumlah;
-	}
-
 	public void setIdPengiriman(String idPengiriman){
 		this.idPengiriman = idPengiriman;
 	}
 
 	public String getIdPengiriman(){
 		return idPengiriman;
-	}
-
-	public void setIdBarang(String idBarang){
-		this.idBarang = idBarang;
-	}
-
-	public String getIdBarang(){
-		return idBarang;
-	}
-
-	public void setStatusPengiriman(String statusPengiriman){
-		this.statusPengiriman = statusPengiriman;
-	}
-
-	public String getStatusPengiriman(){
-		return statusPengiriman;
-	}
-
-	public void setIdOutlet(String idOutlet){
-		this.idOutlet = idOutlet;
-	}
-
-	public String getIdOutlet(){
-		return idOutlet;
-	}
-
-	public void setNamaBarang(String namaBarang){
-		this.namaBarang = namaBarang;
-	}
-
-	public String getNamaBarang(){
-		return namaBarang;
 	}
 
 	public void setNamaOutlet(String namaOutlet){
@@ -106,6 +78,78 @@ public class GetListPengirimanItem{
 		return imageBarang;
 	}
 
+	public void setJumlahPack(String jumlahPack){
+		this.jumlahPack = jumlahPack;
+	}
+
+	public String getJumlahPack(){
+		return jumlahPack;
+	}
+
+	public void setJumlah(String jumlah){
+		this.jumlah = jumlah;
+	}
+
+	public String getJumlah(){
+		return jumlah;
+	}
+
+	public void setIdBarang(String idBarang){
+		this.idBarang = idBarang;
+	}
+
+	public String getIdBarang(){
+		return idBarang;
+	}
+
+	public void setStatusPengiriman(String statusPengiriman){
+		this.statusPengiriman = statusPengiriman;
+	}
+
+	public String getStatusPengiriman(){
+		return statusPengiriman;
+	}
+
+	public void setHargaJualTokoPack(String hargaJualTokoPack){
+		this.hargaJualTokoPack = hargaJualTokoPack;
+	}
+
+	public String getHargaJualTokoPack(){
+		return hargaJualTokoPack;
+	}
+
+	public void setIdOutlet(String idOutlet){
+		this.idOutlet = idOutlet;
+	}
+
+	public String getIdOutlet(){
+		return idOutlet;
+	}
+
+	public void setStatusBarang(String statusBarang){
+		this.statusBarang = statusBarang;
+	}
+
+	public String getStatusBarang(){
+		return statusBarang;
+	}
+
+	public void setNamaBarang(String namaBarang){
+		this.namaBarang = namaBarang;
+	}
+
+	public String getNamaBarang(){
+		return namaBarang;
+	}
+
+	public void setHargaJualToko(String hargaJualToko){
+		this.hargaJualToko = hargaJualToko;
+	}
+
+	public String getHargaJualToko(){
+		return hargaJualToko;
+	}
+
 	public void setTanggalPengiriman(String tanggalPengiriman){
 		this.tanggalPengiriman = tanggalPengiriman;
 	}
@@ -119,14 +163,18 @@ public class GetListPengirimanItem{
 		return 
 			"GetListPengirimanItem{" + 
 			"id_status_pengiriman = '" + idStatusPengiriman + '\'' + 
-			",jumlah = '" + jumlah + '\'' + 
 			",id_pengiriman = '" + idPengiriman + '\'' + 
-			",id_barang = '" + idBarang + '\'' + 
-			",status_pengiriman = '" + statusPengiriman + '\'' + 
-			",id_outlet = '" + idOutlet + '\'' + 
-			",nama_barang = '" + namaBarang + '\'' + 
 			",nama_outlet = '" + namaOutlet + '\'' + 
 			",image_barang = '" + imageBarang + '\'' + 
+			",jumlah_pack = '" + jumlahPack + '\'' + 
+			",jumlah = '" + jumlah + '\'' + 
+			",id_barang = '" + idBarang + '\'' + 
+			",status_pengiriman = '" + statusPengiriman + '\'' + 
+			",harga_jual_toko_pack = '" + hargaJualTokoPack + '\'' + 
+			",id_outlet = '" + idOutlet + '\'' + 
+			",status_barang = '" + statusBarang + '\'' + 
+			",nama_barang = '" + namaBarang + '\'' + 
+			",harga_jual_toko = '" + hargaJualToko + '\'' + 
 			",tanggal_pengiriman = '" + tanggalPengiriman + '\'' + 
 			"}";
 		}

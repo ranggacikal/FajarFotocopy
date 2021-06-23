@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -29,6 +30,9 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     if (level.equals("gudang")){
                         startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                        finish();
+                    }else if (level.equals("kepala toko")){
+                        startActivity(new Intent(SplashScreenActivity.this, HomeKetoActivity.class));
                         finish();
                     }
                 }else{
