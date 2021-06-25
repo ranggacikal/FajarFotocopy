@@ -29,6 +29,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -160,18 +161,16 @@ public class TambahUserGudangActivity extends AppCompatActivity {
     }
 
     private void tambahUser() {
-
-        String id_user = binding.edtTambahIdUserGudang.getText().toString();
         String nama_user = binding.edtTambahNamaUserGudang.getText().toString();
         String username = binding.edtTambahUsernameUserGudang.getText().toString();
         String password = binding.edtTambahPasswordUserGudang.getText().toString();
         String image = imageToString();
 
-        if (id_user.isEmpty()){
-            binding.edtTambahIdUserGudang.setError("id user tidak boleh kosong");
-            binding.edtTambahIdUserGudang.requestFocus();
-            return;
-        }
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+
+        String randomId = String.format("%06d", number);
+        String id_user = "U"+randomId;
 
         if (nama_user.isEmpty()){
             binding.edtTambahNamaUserGudang.setError("Nama Lengkap tidak boleh kosong");
@@ -207,7 +206,6 @@ public class TambahUserGudangActivity extends AppCompatActivity {
 
                     if (status==1){
                         Toast.makeText(TambahUserGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
-                        binding.edtTambahIdUserGudang.setText("");
                         binding.edtTambahNamaUserGudang.setText("");
                         binding.edtTambahUsernameUserGudang.setText("");
                         binding.edtTambahPasswordUserGudang.setText("");
