@@ -8,11 +8,12 @@ import android.os.Handler;
 
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private static int SPLASH_TIME_OUT = 4000;
+    private static int SPLASH_TIME_OUT = 2500;
     private SharedPreferencedConfig preferencedConfig;
 
     @Override
@@ -34,6 +35,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                     }else if (level.equals("kepala toko")){
                         startActivity(new Intent(SplashScreenActivity.this, HomeKetoActivity.class));
                         finish();
+                    }else if (level.equals("User")){
+                        startActivity(new Intent(SplashScreenActivity.this, MainKasirActivity.class));
                     }
                 }else{
                     startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
