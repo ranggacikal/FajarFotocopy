@@ -16,14 +16,18 @@ import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
+import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
@@ -33,6 +37,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -241,4 +246,27 @@ public interface ApiService {
                                                 @Field("id_status_pengiriman") String id_status_pengiriman,
                                                 @Field("status_barang") String status_barang);
 
+    @FormUrlEncoded
+    @POST("tambahStatusPenjualan")
+    Call<ResponseTambahStatusPenjualan> tambahStatusPenjualan(@Field("id_status_penjualan") String id_status_penjualan,
+                                                              @Field("status_penjualan") String status_penjualan,
+                                                              @Field("tanggal_penjualan") String tanggal_penjualan,
+                                                              @Field("id_outlet") String id_outlet);
+
+    @GET("getIdStatusPenjualan")
+    Call<ResponseGetIdStatusPenjualan> getIdStatusPenjualan();
+
+    @FormUrlEncoded
+    @POST("hapusStatusPenjualan")
+    Call<ResponseHapusStatusPenjualan> hapusStatusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("searchBarangOutletByNama")
+    Call<ResponseBarangOutletByNama> barangOutletByNama(@Field("nama_barang") String nama_barang,
+                                                        @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("searchBarangOutletById")
+    Call<ResponseBarangOutletById> barangOutletById(@Field("id_barang") String id_barang,
+                                                    @Field("id_outlet") String id_outlet);
 }
