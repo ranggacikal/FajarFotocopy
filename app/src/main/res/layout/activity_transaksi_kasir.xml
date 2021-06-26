@@ -59,10 +59,10 @@
                 android:layout_width="120dp"
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="10dp"
-                android:padding="10dp"
-                android:gravity="center"
                 android:background="@drawable/btn_black"
                 android:fontFamily="@font/sairamedium"
+                android:gravity="center"
+                android:padding="10dp"
                 android:text="Jasa"
                 android:textColor="@color/white"
                 android:textSize="12dp" />
@@ -71,42 +71,95 @@
                 android:id="@+id/btn_barang_kasir"
                 android:layout_width="120dp"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
                 android:layout_marginHorizontal="10dp"
-                android:padding="10dp"
+                android:layout_marginStart="20dp"
                 android:background="@drawable/btn_merah"
                 android:fontFamily="@font/sairamedium"
-                android:text="Barang"
                 android:gravity="center"
+                android:padding="10dp"
+                android:text="Barang"
                 android:textColor="@color/black"
                 android:textSize="12dp" />
 
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview_supplier_kasir"
+        <LinearLayout
+            android:id="@+id/linear_jasa_kasir"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:padding="10dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_rectangle" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btn_barcode_supplier_kasir"
+            <SearchView
+                android:id="@+id/searchview_supplier_jasa_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_rectangle"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/btn_barcode_supplier_Jasa_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairamedium"
+                android:padding="10dp"
+                android:text="Barcode"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_jasa_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_barang_kasir"
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairamedium"
-            android:text="Barcode"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <SearchView
+                android:id="@+id/searchview_supplier_barang_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_rectangle"
+                android:padding="10dp" />
+
+            <Button
+                android:id="@+id/btn_barcode_supplier_barang_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairamedium"
+                android:padding="10dp"
+                android:text="Barcode"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_barang_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"/>
+
+        </LinearLayout>
 
 
     </LinearLayout>
@@ -192,14 +245,14 @@
             android:layout_width="96dp"
             android:layout_height="33dp"
             android:layout_marginHorizontal="10dp"
-            android:padding="10dp"
-            android:background="@drawable/btn_merah"
             android:layout_marginStart="44dp"
             android:layout_marginTop="27dp"
-            android:textSize="10sp"
+            android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
+            android:padding="10dp"
+            android:text="Chekoout"
             android:textColor="@color/black"
-            android:text="Chekoout"/>
+            android:textSize="10sp" />
 
     </LinearLayout>
 
