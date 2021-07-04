@@ -16,8 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="@drawable/background_header_green">
+            android:layout_height="80dp">
 
             <LinearLayout
                 android:id="@+id/linear_back_transaksi_kasir"
@@ -30,14 +29,14 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas" />
+                    android:src="@drawable/ic_back_atas_black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
                     android:text="Transaksi"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
 
@@ -49,7 +48,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -84,29 +83,44 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchview_supplier_kasir"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:padding="10dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/bg_rectangle" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_barcode_supplier_kasir"
-            android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairamedium"
-            android:text="Barcode"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchview_supplier_kasir"
+                android:layout_width="275dp"
+                android:layout_height="54dp"
+                android:padding="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/bg_rectangle" />
+
+            <Button
+                android:id="@+id/btn_barcode_supplier_kasir"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_marginVertical="15dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairamedium"
+                android:text="Barcode"
+                android:textColor="@color/white"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+      <androidx.recyclerview.widget.RecyclerView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginVertical="10dp"
+          android:layout_marginHorizontal="20dp">
+
+      </androidx.recyclerview.widget.RecyclerView>
 
 
     </LinearLayout>
