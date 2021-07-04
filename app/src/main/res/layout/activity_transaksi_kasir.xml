@@ -8,7 +8,7 @@
     tools:context=".kasir.transaksikasir.TransaksiKasirActivity">
 
     <LinearLayout
-        android:id="@+id/linear_header"
+        android:id="@+id/linear_header_barang_outlet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -88,13 +88,24 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <androidx.appcompat.widget.SearchView
+            <SearchView
                 android:id="@+id/searchview_supplier_kasir"
                 android:layout_width="275dp"
                 android:layout_height="54dp"
                 android:padding="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_gravity="center"
+                android:layout_marginVertical="20dp"
+                android:background="@drawable/bg_rectangle" />
+
+            <SearchView
+                android:id="@+id/searchview_barang_outlet_barcode"
+                android:layout_width="275dp"
+                android:layout_height="54dp"
+                android:padding="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
                 android:layout_marginVertical="20dp"
                 android:background="@drawable/bg_rectangle" />
 
@@ -114,18 +125,21 @@
 
         </LinearLayout>
 
-      <androidx.recyclerview.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginVertical="10dp"
-          android:layout_marginHorizontal="20dp">
-
-      </androidx.recyclerview.widget.RecyclerView>
-
-
     </LinearLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_barang_outlet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_header_barang_outlet"
+        android:layout_marginVertical="10dp"
+        android:layout_above="@+id/linear_footer_barang_outlet"
+        android:layout_marginHorizontal="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <LinearLayout
+        android:id="@+id/linear_footer_barang_outlet"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
