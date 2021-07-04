@@ -110,7 +110,7 @@
                         android:background="@drawable/btn_black"
                         android:fontFamily="@font/sairabold"
                         android:text="Keluar"
-                        android:padding="10dp"
+                        android:textAlignment="center"
                         android:textSize="9sp"
                         android:textColor="@color/white" />
 

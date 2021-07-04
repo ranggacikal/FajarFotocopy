@@ -49,7 +49,7 @@ public class HomeKasirFragment extends Fragment {
     }
 
     private SharedPreferencedConfig preferencedConfig;
-    TextView txtNama, txtTanggal;
+    TextView txtNama, txtTanggal, txtNamaKasir;
     Button btnKeluar;
 
     private Calendar calendar;
@@ -66,12 +66,14 @@ public class HomeKasirFragment extends Fragment {
         txtNama = rootView.findViewById(R.id.text_nama_home_kasir);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_kasir);
         cardToko = rootView.findViewById(R.id.card_transaksi_kasir);
+        txtNamaKasir = rootView.findViewById(R.id.text_nama_toko_kasir);
 
         btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
+        txtNamaKasir.setText(preferencedConfig.getPreferenceIdOutlet());
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
