@@ -16,6 +16,7 @@ import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
+import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
@@ -36,6 +37,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBaran
 import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
+import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 
@@ -269,4 +271,18 @@ public interface ApiService {
     @POST("searchBarangOutletById")
     Call<ResponseBarangOutletById> barangOutletById(@Field("id_barang") String id_barang,
                                                     @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("tambahPenjualan")
+    Call<ResponseTambahPenjualan> tambahPenjualan(@Field("id_penjualan") String id_penjualan,
+                                                  @Field("id_barang_outlet") String id_barang_outlet,
+                                                  @Field("jumlah_barang") String jumlah_barang,
+                                                  @Field("total") String total,
+                                                  @Field("tanggal_penjualan") String tanggal_penjualan,
+                                                  @Field("nama_kasir") String nama_kasir,
+                                                  @Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("getBarangPenjualan")
+    Call<ResponseDataBarangPenjualan> dataBarangPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
 }

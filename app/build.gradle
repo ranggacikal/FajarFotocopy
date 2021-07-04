@@ -84,5 +84,8 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    //elegant number picker
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
 
 }
