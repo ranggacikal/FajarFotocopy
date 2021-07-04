@@ -7,16 +7,19 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
+import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,10 +50,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         setContentView(view);
 
         preferencedConfig = new SharedPreferencedConfig(this);
-        binding.linearJasaKasir.setVisibility(View.GONE);
-        binding.linearBarangKasir.setVisibility(View.VISIBLE);
-        binding.recyclerBarangKasir.setHasFixedSize(true);
-        binding.recyclerBarangKasir.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+        binding.recyclerBarangOutlet.setHasFixedSize(true);
+        binding.recyclerBarangOutlet.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -61,8 +62,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         binding.btnJasaKasir.setTextColor(Color.parseColor("#FFFFFF"));
                         binding.btnBarangKasir.setBackgroundResource(R.drawable.btn_merah);
                         binding.btnBarangKasir.setTextColor(Color.parseColor("#000000"));
-                        binding.linearJasaKasir.setVisibility(View.VISIBLE);
-                        binding.linearBarangKasir.setVisibility(View.GONE);
                     }
                 });
 
@@ -75,22 +74,37 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         binding.btnJasaKasir.setTextColor(Color.parseColor("#000000"));
                         binding.btnBarangKasir.setBackgroundResource(R.drawable.btn_black);
                         binding.btnBarangKasir.setTextColor(Color.parseColor("#FFFFFF"));
-                        binding.linearJasaKasir.setVisibility(View.GONE);
-                        binding.linearBarangKasir.setVisibility(View.VISIBLE);
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(binding.searchviewBarangKasir)
+        PushDownAnim.setPushDownAnimTo(binding.searchviewSupplierKasir)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        binding.searchviewBarangKasir.setQueryHint("Masukan Nama Barang");
-                        binding.searchviewBarangKasir.setIconified(false);
+                        binding.searchviewSupplierKasir.setQueryHint("Masukan Nama Barang");
+                        binding.searchviewSupplierKasir.setIconified(false);
                     }
                 });
 
-        binding.searchviewBarangKasir.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        PushDownAnim.setPushDownAnimTo(binding.btnBarcodeSupplierKasir)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+                                TransaksiKasirActivity.this
+                        );
+
+                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+                        intentIntegrator.setBeepEnabled(true);
+                        intentIntegrator.setOrientationLocked(true);
+                        intentIntegrator.setCaptureActivity(Capture.class);
+                        intentIntegrator.initiateScan();
+                    }
+                });
+
+        binding.searchviewSupplierKasir.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -109,7 +123,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
     private void loadSearchBarangKasir(String textCari) {
 
         if (textCari.equals("")){
-            binding.recyclerBarangKasir.setVisibility(View.GONE);
+            binding.recyclerBarangOutlet.setVisibility(View.GONE);
         }else {
 
             ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
@@ -120,7 +134,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
                                 List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
                                 BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari);
-                                binding.recyclerBarangKasir.setAdapter(adapter);
+                                binding.recyclerBarangOutlet.setAdapter(adapter);
 
                             } else {
                                 Toast.makeText(TransaksiKasirActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();

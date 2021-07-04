@@ -23,7 +23,8 @@
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
-        <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity" />
+        <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".kasir.MainKasirActivity" />
         <activity android:name=".kepalatoko.keranjangketo.KeranjangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.CetakBuktiMintaBarangKetoActivity" />

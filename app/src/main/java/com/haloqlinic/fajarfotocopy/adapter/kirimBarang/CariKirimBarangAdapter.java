@@ -25,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaIte
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 
 import org.jetbrains.annotations.NotNull;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -73,7 +74,9 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
             @Override
             public void onClick(View v) {
                 id_barang = dataCariBarang.get(position).getIdBarang();
-                tampilDialog();
+                int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
+                int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
+                tampilDialog(stockPack, stockPcs);
             }
         });
 
@@ -81,13 +84,15 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
             @Override
             public void onClick(View v) {
                 id_barang = dataCariBarang.get(position).getIdBarang();
-                tampilDialog();
+                int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
+                int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
+                tampilDialog(stockPack, stockPcs);
             }
         });
 
     }
 
-    private void tampilDialog() {
+    private void tampilDialog(int stockPack, int stockPcs) {
 
         dialog = new Dialog(context);
 
@@ -97,6 +102,7 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         final EditText edtQty = dialog.findViewById(R.id.edt_dialog_qty_pcs);
         final EditText edtPack = dialog.findViewById(R.id.edt_dialog_qty_pack);
         final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang);
+        final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang);
 
         dialog.show();
 
@@ -105,16 +111,35 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
             public void onClick(View v) {
                 String qty = edtQty.getText().toString();
                 String pack = edtPack.getText().toString();
-                tambahPengiriman(qty, pack);
+                tambahPengiriman(qty, pack, stockPcs, stockPack);
+            }
+        });
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
             }
         });
 
     }
 
-    private void tambahPengiriman(String qty, String pack) {
+    private void tambahPengiriman(String qty, String pack, int stockPcs, int stockPack) {
 
         String id_toko = kirimBarangGudangActivity.id_toko;
         String id_status = kirimBarangGudangActivity.id_status_pengiriman;
+
+        if (Integer.parseInt(qty)>stockPcs){
+            Toast.makeText(context, "Jumlah stock tidak cukup dengan quantity yg anda masukan",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (Integer.parseInt(pack)>stockPack){
+            Toast.makeText(context, "Jumlah stock tidak cukup dengan quantity yg anda masukan",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Menambahkan Barang Ke Pengiriman barang");
