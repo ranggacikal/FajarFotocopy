@@ -4,17 +4,26 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import java.util.List;
+
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 import retrofit2.Call;
@@ -28,6 +37,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
     String id_status_penjualan;
 
     private ActivityTransaksiKasirBinding binding;
+    private SharedPreferencedConfig preferencedConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +45,12 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         binding = ActivityTransaksiKasirBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        preferencedConfig = new SharedPreferencedConfig(this);
+        binding.linearJasaKasir.setVisibility(View.GONE);
+        binding.linearBarangKasir.setVisibility(View.VISIBLE);
+        binding.recyclerBarangKasir.setHasFixedSize(true);
+        binding.recyclerBarangKasir.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -64,9 +80,61 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.searchviewBarangKasir)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.searchviewBarangKasir.setQueryHint("Masukan Nama Barang");
+                        binding.searchviewBarangKasir.setIconified(false);
+                    }
+                });
 
+        binding.searchviewBarangKasir.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String textCari) {
+                loadSearchBarangKasir(textCari);
+                return true;
+            }
+        });
 
         getStatusPenjualan();
+    }
+
+    private void loadSearchBarangKasir(String textCari) {
+
+        if (textCari.equals("")){
+            binding.recyclerBarangKasir.setVisibility(View.GONE);
+        }else {
+
+            ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
+                    .enqueue(new Callback<ResponseBarangOutletByNama>() {
+                        @Override
+                        public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
+                            if (response.isSuccessful()) {
+
+                                List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
+                                BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari);
+                                binding.recyclerBarangKasir.setAdapter(adapter);
+
+                            } else {
+                                Toast.makeText(TransaksiKasirActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBarangOutletByNama> call, Throwable t) {
+                            Toast.makeText(TransaksiKasirActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+        }
+
     }
 
     private void getStatusPenjualan() {

@@ -91,7 +91,7 @@
             android:orientation="vertical">
 
             <SearchView
-                android:id="@+id/searchview_supplier_jasa_kasir"
+                android:id="@+id/searchview_jasa_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
@@ -101,7 +101,7 @@
                 android:padding="10dp" />
 
             <Button
-                android:id="@+id/btn_barcode_supplier_Jasa_kasir"
+                android:id="@+id/btn_barcode_Jasa_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
@@ -130,7 +130,7 @@
             android:orientation="vertical">
 
             <SearchView
-                android:id="@+id/searchview_supplier_barang_kasir"
+                android:id="@+id/searchview_barang_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
@@ -140,7 +140,7 @@
                 android:padding="10dp" />
 
             <Button
-                android:id="@+id/btn_barcode_supplier_barang_kasir"
+                android:id="@+id/btn_barcode_barang_kasir"
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_gravity="center"
