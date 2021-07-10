@@ -165,6 +165,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             binding.searchviewSupplierKasir.setVisibility(View.VISIBLE);
             binding.btnCariDenganNamaBarangOutlet.setVisibility(View.GONE);
         }else{
+
+            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletById(textCariId, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletById>() {
                         @Override
@@ -222,7 +224,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         if (textCari.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
         }else {
-
+            binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletByNama>() {
                         @Override
