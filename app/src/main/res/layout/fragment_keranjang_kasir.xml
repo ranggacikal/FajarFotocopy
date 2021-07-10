@@ -200,7 +200,8 @@
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Discount"
-                android:textColor="#5DE1E6"
+                android:textColor="#D4B44E"
+                android:textStyle="bold"
                 android:textSize="12sp" />
 
             <TextView
@@ -293,7 +294,8 @@
                     android:layout_marginStart="31dp"
                     android:fontFamily="@font/sairamedium"
                     android:text="Discount"
-                    android:textColor="#5DE1E6"
+                    android:textStyle="bold"
+                    android:textColor="#D4B44E"
                     android:textSize="15sp" />
 
                 <TextView
@@ -322,10 +324,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:padding="10dp"
             android:layout_marginHorizontal="40dp"
             android:background="@drawable/btn_black"
             android:text="Bayar"
+            android:textAlignment="center"
             android:fontFamily="@font/sairamedium"
             android:textSize="20sp"
             android:textColor="@color/white"

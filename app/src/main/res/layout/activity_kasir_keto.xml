@@ -8,6 +8,7 @@
     tools:context=".kepalatoko.kasirketo.KasirKetoActivity">
 
     <LinearLayout
+        android:id="@+id/linear_header_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -15,8 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="@drawable/background_header_green">
+            android:layout_height="80dp">
 
             <LinearLayout
                 android:id="@+id/linear_back_kasir_keto"
@@ -28,14 +28,14 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas" />
+                    android:src="@drawable/ic_back_atas_black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Kasir"
-                    android:textColor="@color/white"
+                    android:text="Kasir Kepala Toko"
+                    android:textColor="@color/black"
                     android:textSize="24sp" />
 
 
@@ -46,7 +46,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -58,9 +58,8 @@
                 android:background="@drawable/btn_black"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa"
-                android:paddingHorizontal="5dp"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="15sp"/>
 
             <Button
                 android:id="@+id/btn_barang_kasir_keto"
@@ -71,37 +70,69 @@
                 android:fontFamily="@font/sairamedium"
                 android:text="Barang"
                 android:textColor="@color/black"
-                android:paddingHorizontal="5dp"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.SearchView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <SearchView
             android:id="@+id/searchview_kasir_keto"
-            android:layout_width="333dp"
+            android:layout_width="275dp"
             android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/bg_rectangle" />
+
+        <SearchView
+            android:id="@+id/searchview_barang_keto_barcode"
+            android:layout_width="275dp"
+            android:layout_height="54dp"
+            android:padding="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_marginVertical="20dp"
             android:background="@drawable/bg_rectangle" />
 
         <Button
             android:id="@+id/btn_barcode_kasir_keto"
-            android:layout_width="333dp"
+            android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/btn_gold"
-            android:paddingHorizontal="5dp"
+            android:layout_marginHorizontal="15dp"
+            android:padding="5dp"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Barcode"
+            android:layout_marginVertical="15dp"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textAlignment="center"
+            android:textSize="10sp" />
 
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_barang_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_header_barang_keto"
+            android:layout_marginVertical="10dp"
+            android:layout_above="@+id/linear_footer_barang_keto"
+            android:layout_marginHorizontal="20dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_footer_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
@@ -132,7 +163,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/supplier_total_jasa_kasir_keto"
+                    android:id="@+id/txt_total_transaksi_jasa_keto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -161,7 +192,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/supplier_total_barang_kasir_keto"
+                    android:id="@+id/txt_total_transaksi_barang_keto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
@@ -178,17 +209,17 @@
 
         <Button
             android:id="@+id/btn_chekout_kasir_keto"
-            android:layout_width="96dp"
-            android:layout_height="33dp"
-            android:layout_marginHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="30dp"
             android:background="@drawable/btn_merah"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="27dp"
-            android:textSize="10sp"
-            android:paddingHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
+            android:padding="11dp"
+            android:text="Chek-out"
+            android:layout_marginVertical="15dp"
+            android:textAlignment="center"
             android:textColor="@color/black"
-            android:text="Chekoout"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
 
