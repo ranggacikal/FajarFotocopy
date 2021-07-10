@@ -1,6 +1,7 @@
 package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -8,20 +9,25 @@ import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -37,7 +43,7 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class TransaksiKasirActivity extends AppCompatActivity {
 
-    String id_status_penjualan;
+    public String id_status_penjualan;
 
     private ActivityTransaksiKasirBinding binding;
     private SharedPreferencedConfig preferencedConfig;
@@ -52,6 +58,12 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.recyclerBarangOutlet.setHasFixedSize(true);
         binding.recyclerBarangOutlet.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+
+        binding.recyclerBarangOutletBarcode.setHasFixedSize(true);
+        binding.recyclerBarangOutletBarcode.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+
+        binding.searchviewBarangOutletBarcode.setQueryHint("ID Barang");
+        binding.searchviewBarangOutletBarcode.setIconified(false);
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -117,7 +129,80 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             }
         });
 
+        binding.searchviewBarangOutletBarcode.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String textCariId) {
+                loadSearchBarangById(textCariId);
+                return true;
+            }
+        });
+
         getStatusPenjualan();
+    }
+
+    private void loadSearchBarangById(String textCariId) {
+
+        if (textCariId.equals("")){
+            binding.recyclerBarangOutlet.setVisibility(View.GONE);
+            binding.searchviewBarangOutletBarcode.setVisibility(View.GONE);
+            binding.searchviewSupplierKasir.setVisibility(View.VISIBLE);
+            binding.btnCariDenganNamaBarangOutlet.setVisibility(View.GONE);
+        }else{
+            ConfigRetrofit.service.barangOutletById(textCariId, preferencedConfig.getPreferenceIdOutlet())
+                    .enqueue(new Callback<ResponseBarangOutletById>() {
+                        @Override
+                        public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
+                            if (response.isSuccessful()){
+
+                                List<SearchBarangOutletByIdItem> dataCariId = response.body().getSearchBarangOutletById();
+
+                                if (dataCariId==null){
+                                    Toast.makeText(TransaksiKasirActivity.this, "Data barang kosong",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
+                                BarangOutletIdAdapter adapterId = new BarangOutletIdAdapter(TransaksiKasirActivity.this, dataCariId, TransaksiKasirActivity.this);
+                                binding.recyclerBarangOutletBarcode.setAdapter(adapterId);
+
+                            }else{
+                                Toast.makeText(TransaksiKasirActivity.this, "Gagal Load Barang", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<ResponseBarangOutletById> call, Throwable t) {
+                            Toast.makeText(TransaksiKasirActivity.this, "Error: "+t.getMessage(),
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+                requestCode, resultCode, data
+        );
+
+        if (intentResult.getContents() != null) {
+
+            binding.searchviewSupplierKasir.setVisibility(View.GONE);
+            binding.btnCariDenganNamaBarangOutlet.setVisibility(View.VISIBLE);
+            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
+            binding.searchviewBarangOutletBarcode.setQuery(intentResult.getContents(), false);
+            binding.recyclerBarangOutlet.setVisibility(View.GONE);
+            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
+
+        } else {
+            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loadSearchBarangKasir(String textCari) {
@@ -133,6 +218,12 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                             if (response.isSuccessful()) {
 
                                 List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
+
+                                if (dataCari == null){
+                                    Toast.makeText(TransaksiKasirActivity.this, "Data Outlet Kosong",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+
                                 BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari);
                                 binding.recyclerBarangOutlet.setAdapter(adapter);
 

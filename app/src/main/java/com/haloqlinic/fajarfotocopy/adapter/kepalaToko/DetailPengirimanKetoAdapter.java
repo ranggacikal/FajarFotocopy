@@ -83,7 +83,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 .error(R.drawable.ic_gift)
                 .into(holder.imgBarang);
 
-        holder.linearTextTolakTerima.setVisibility(View.GONE);
+        holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
 
         if (status_barang.equals("diterima")){
 
@@ -98,6 +98,8 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
             holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
             holder.txtDitolak.setVisibility(View.VISIBLE);
 
+        }else if (status_barang.equals("pending")){
+            holder.linearBtnTolakTerima.setVisibility(View.VISIBLE);
         }
 
         holder.txtNamaBarang.setText(listPengiriman.get(position).getNamaBarang());

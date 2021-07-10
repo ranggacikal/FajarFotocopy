@@ -127,11 +127,39 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btn_cari_dengan_nama_barang_outlet"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="center"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:layout_marginVertical="15dp"
+        android:layout_below="@+id/linear_header_barang_outlet"
+        android:background="@drawable/btn_black"
+        android:fontFamily="@font/sairamedium"
+        android:text="Cari Dengan Nama"
+        android:textColor="@color/white"
+        android:textSize="10sp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_barang_outlet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_header_barang_outlet"
+        android:layout_below="@+id/btn_cari_dengan_nama_barang_outlet"
+        android:layout_marginVertical="10dp"
+        android:layout_above="@+id/linear_footer_barang_outlet"
+        android:layout_marginHorizontal="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_barang_outlet_barcode"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_cari_dengan_nama_barang_outlet"
         android:layout_marginVertical="10dp"
         android:layout_above="@+id/linear_footer_barang_outlet"
         android:layout_marginHorizontal="20dp">
