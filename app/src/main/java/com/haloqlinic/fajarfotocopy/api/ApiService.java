@@ -40,6 +40,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiri
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -285,4 +286,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getBarangPenjualan")
     Call<ResponseDataBarangPenjualan> dataBarangPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("editStatusPembayaran")
+    Call<ResponseUpdateStatusPenjualan> updateStatusPenjualan(@Field("id_status_penjualan") String id_status_penjualan,
+                                                              @Field("tanggal_penjualan") String tanggal_penjualan,
+                                                              @Field("status_penjualan") String status_penjualan,
+                                                              @Field("id_outlet") String id_outlet,
+                                                              @Field("metode_bayar") String metode_bayar,
+                                                              @Field("total_harga") String total_harga,
+                                                              @Field("jumlah_diskon") String jumlah_diskon);
 }

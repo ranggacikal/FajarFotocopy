@@ -142,6 +142,18 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             }
         });
 
+        PushDownAnim.setPushDownAnimTo(binding.btnChekoutKasir)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(TransaksiKasirActivity.this, PembayaranKasirActivity.class);
+                        intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        startActivity(intent);
+
+                    }
+                });
+
         getStatusPenjualan();
     }
 
@@ -224,7 +236,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 }
 
-                                BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari);
+                                BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
                                 binding.recyclerBarangOutlet.setAdapter(adapter);
 
                             } else {

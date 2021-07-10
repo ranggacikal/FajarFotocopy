@@ -47,18 +47,17 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="47dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="#C4C4C4"
-            android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa/Barang"
@@ -66,10 +65,15 @@
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="40dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="57dp"
+                android:gravity="center"
                 android:layout_marginTop="12dp"
                 android:paddingHorizontal="5dp"
                 android:fontFamily="@font/sairamedium"
@@ -77,32 +81,31 @@
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
                 android:layout_marginTop="12dp"
                 android:paddingHorizontal="5dp"
+                android:gravity="center"
                 android:fontFamily="@font/sairamedium"
                 android:text="Harga"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="12dp"
-                android:paddingHorizontal="5dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Disc/Item"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:paddingHorizontal="5dp"
@@ -110,70 +113,19 @@
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
-            android:orientation="horizontal">
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:paddingHorizontal="5dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Nama Barang"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:gravity="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
-                android:text="Jumlah"
-                android:textColor="@color/black"
                 android:paddingHorizontal="5dp"
-                android:textSize="12sp" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Harga"
-                android:paddingHorizontal="5dp"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:paddingHorizontal="5dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Discount"
-                android:textColor="@color/red"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairabold"
-                android:text="Total"
-                android:paddingHorizontal="5dp"
+                android:text="action"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -181,6 +133,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list_barang_pembayaran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -189,131 +142,130 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginHorizontal="5dp"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Id Transaksi"
+                    android:text="ID Transaksi"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/sairabold"/>
+
+                <TextView
+                    android:id="@+id/id_transaksi_pembayaran"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="ID Transaksi"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/sairareguler"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
                     android:text="Tanggal"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Kasir"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
+                    android:fontFamily="@font/sairabold"/>
 
                 <TextView
+                    android:id="@+id/text_tanggal_pembayaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Discount"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Total"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Pembayaran"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginHorizontal="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Id Transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
+                    android:layout_alignParentEnd="true"
                     android:text="Tanggal"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/sairareguler"/>
 
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Kasir"
+                    android:text="Nama Kasir"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
+                    android:fontFamily="@font/sairabold"/>
 
                 <TextView
+                    android:id="@+id/text_nama_kasir_pembayaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Discount"
+                    android:layout_alignParentEnd="true"
+                    android:text="ID Transaksi"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/sairareguler"/>
+
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/edt_diskon_pembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_rectangle"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="Discount"
+                android:paddingStart="15dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sairabold"/>
+
+            <Spinner
+                android:id="@+id/spinner_pembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_rectangle"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:entries="@array/pembayaran"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
                     android:text="Total"
+                    android:textSize="17sp"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/sairabold"/>
 
                 <TextView
+                    android:id="@+id/text_total_bayar_pembayaran"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Pembayaran"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="17sp"
+                    android:text="ID Transaksi"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:fontFamily="@font/sairareguler"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_bayar_pembayaran"
             android:layout_width="345dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
