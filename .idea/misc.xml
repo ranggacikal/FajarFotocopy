@@ -11,12 +11,17 @@
         <entry key="app/src/main/res/drawable/btn_gold.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/btn_merah.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/button_filter.xml" value="0.25462962962962965" />
+        <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_pembayaran_kasir.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/item_list_pembayaran.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
