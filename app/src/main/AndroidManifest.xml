@@ -12,10 +12,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:replace="android:theme"
         android:theme="@style/Theme.FajarFotocopy"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity"></activity>
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
+        <activity
+            android:name=".kasir.transaksikasir.TransaksiKasirActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+        <activity android:name=".kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity" />
         <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity" />
         <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity" />
         <activity android:name=".adapter.kirimBarang.ReportPengirimanGudangActivity" />
@@ -23,8 +26,6 @@
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
-        <activity android:name=".kasir.transaksikasir.TransaksiKasirActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".kasir.MainKasirActivity" />
         <activity android:name=".kepalatoko.keranjangketo.KeranjangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.CetakBuktiMintaBarangKetoActivity" />
@@ -81,7 +82,6 @@
         <activity android:name=".gudang.tokogudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
-
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.MainActivity" />
         <activity

@@ -24,6 +24,7 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -142,7 +143,10 @@ public class HomeKasirFragment extends Fragment {
                         if(response.isSuccessful()){
                             int status = response.body().getStatus();
                             if(status == 1){
-                                startActivity(new Intent(getActivity(), TransaksiKasirActivity.class));
+                                Intent intent = new Intent(getActivity(), TransaksiKasirActivity.class);
+                                intent.putExtra("namaActivity", "HomeKasir");
+                                startActivity(intent);
+                                getActivity().finish();
                             }else {
                                 Toast.makeText(getContext(), "Gagal Membuat Penjualan", Toast.LENGTH_SHORT).show();
                             }
