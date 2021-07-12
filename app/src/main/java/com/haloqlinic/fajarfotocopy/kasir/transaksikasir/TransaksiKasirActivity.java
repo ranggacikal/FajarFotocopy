@@ -14,10 +14,13 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
@@ -48,6 +51,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
     private ActivityTransaksiKasirBinding binding;
     private SharedPreferencedConfig preferencedConfig;
 
+    String nameActivity = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +63,15 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.recyclerBarangOutlet.setHasFixedSize(true);
         binding.recyclerBarangOutlet.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+        binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
         binding.recyclerBarangOutletBarcode.setHasFixedSize(true);
         binding.recyclerBarangOutletBarcode.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
 
         binding.searchviewBarangOutletBarcode.setQueryHint("ID Barang");
         binding.searchviewBarangOutletBarcode.setIconified(false);
+
+        nameActivity = getIntent().getStringExtra("namaActivity");
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -166,7 +174,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             binding.btnCariDenganNamaBarangOutlet.setVisibility(View.GONE);
         }else{
 
-            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
+            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletById(textCariId, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletById>() {
                         @Override
@@ -224,6 +232,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         if (textCari.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
         }else {
+            binding.recyclerBarangOutletBarcode.setVisibility(View.GONE);
             binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletByNama>() {
@@ -231,15 +240,17 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
                             if (response.isSuccessful()) {
 
-                                List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
+                                int status = response.body().getStatus();
 
-                                if (dataCari == null){
-                                    Toast.makeText(TransaksiKasirActivity.this, "Data Outlet Kosong",
-                                            Toast.LENGTH_SHORT).show();
+                                if (status==1) {
+
+                                    List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
+
+                                    CariBarangOutletAdapter adapterNama = new CariBarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
+                                    binding.recyclerBarangOutlet.setAdapter(adapterNama);
+                                }else{
+                                    Toast.makeText(TransaksiKasirActivity.this, "Kosong", Toast.LENGTH_SHORT).show();
                                 }
-
-                                BarangOutletAdapter adapter = new BarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
-                                binding.recyclerBarangOutlet.setAdapter(adapter);
 
                             } else {
                                 Toast.makeText(TransaksiKasirActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
@@ -323,6 +334,19 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     int status = response.body().getStatus();
                     if (status == 1) {
+
+                        if (!nameActivity.equals("")){
+
+                            if (nameActivity.equals("HomeKeto")){
+                                startActivity(new Intent(TransaksiKasirActivity.this, HomeKetoActivity.class));
+                                finish();
+                            }else if (nameActivity.equals("HomeKasir")){
+                                startActivity(new Intent(TransaksiKasirActivity.this, MainKasirActivity.class));
+                                finish();
+                            }
+
+                        }
+
                         finish();
                     } else {
                         Toast.makeText(TransaksiKasirActivity.this, "Gagal Membatalkan Transaksi", Toast.LENGTH_SHORT).show();

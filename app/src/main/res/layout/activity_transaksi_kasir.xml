@@ -147,6 +147,7 @@
         android:id="@+id/recycler_barang_outlet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_above="@+id/linear_footer_barang_outlet"
         android:layout_below="@+id/linear_header_barang_outlet"
         android:layout_marginHorizontal="20dp"
@@ -158,6 +159,7 @@
         android:id="@+id/recycler_barang_outlet_barcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_above="@+id/linear_footer_barang_outlet"
         android:layout_below="@+id/linear_header_barang_outlet"
         android:layout_marginHorizontal="20dp"
@@ -180,65 +182,65 @@
             android:orientation="vertical">
 
 
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="10dp"-->
-<!--                android:orientation="horizontal">-->
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="10dp"-->
+            <!--                android:orientation="horizontal">-->
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="21dp"-->
-<!--                    android:layout_marginTop="13dp"-->
-<!--                    android:fontFamily="@font/sairamedium"-->
-<!--                    android:text="Total Produk Jasa :"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="18sp" />-->
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="21dp"-->
+            <!--                    android:layout_marginTop="13dp"-->
+            <!--                    android:fontFamily="@font/sairamedium"-->
+            <!--                    android:text="Total Produk Jasa :"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="18sp" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/txt_total_transaksi_jasa_kasir"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="5dp"-->
-<!--                    android:layout_marginTop="13dp"-->
-<!--                    android:fontFamily="@font/sairamedium"-->
-<!--                    android:text="0"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="18sp" />-->
-
-
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="10dp"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="21dp"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:fontFamily="@font/sairamedium"-->
-<!--                    android:text="Total Produk Barang :"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="18sp" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/txt_total_transaksi_barang_kasir"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="5dp"-->
-<!--                    android:layout_marginTop="5dp"-->
-<!--                    android:fontFamily="@font/sairamedium"-->
-<!--                    android:text="0"-->
-<!--                    android:textColor="@color/white"-->
-<!--                    android:textSize="18sp" />-->
+            <!--                <TextView-->
+            <!--                    android:id="@+id/txt_total_transaksi_jasa_kasir"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="5dp"-->
+            <!--                    android:layout_marginTop="13dp"-->
+            <!--                    android:fontFamily="@font/sairamedium"-->
+            <!--                    android:text="0"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="18sp" />-->
 
 
-<!--            </LinearLayout>-->
+            <!--            </LinearLayout>-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginHorizontal="10dp"-->
+            <!--                android:orientation="horizontal">-->
+
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="21dp"-->
+            <!--                    android:layout_marginTop="5dp"-->
+            <!--                    android:fontFamily="@font/sairamedium"-->
+            <!--                    android:text="Total Produk Barang :"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="18sp" />-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/txt_total_transaksi_barang_kasir"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginStart="5dp"-->
+            <!--                    android:layout_marginTop="5dp"-->
+            <!--                    android:fontFamily="@font/sairamedium"-->
+            <!--                    android:text="0"-->
+            <!--                    android:textColor="@color/white"-->
+            <!--                    android:textSize="18sp" />-->
+
+
+            <!--            </LinearLayout>-->
 
         </LinearLayout>
 
