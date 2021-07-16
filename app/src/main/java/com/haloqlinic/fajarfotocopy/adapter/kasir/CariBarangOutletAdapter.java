@@ -78,59 +78,60 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
 
-//        holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                number = holder.numberPicker.getNumber();
-//                int stock = Integer.parseInt(cariBarangOutlet.get(position).getStock());
-//                if (number.equals("0")){
-//                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-//                    holder.numberPicker.setNumber("1");
-//                }else if (Integer.parseInt(number) > stock ){
-//                    Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
-//                    holder.numberPicker.setNumber(String.valueOf(stock));
-//                }else{
-//                    total = Integer.parseInt(number) * Integer.parseInt(cariBarangOutlet.get(position).getHargaJual());
-//                    Log.d("testTotal", "number: "+number+" harga: "+cariBarangOutlet.get(position).getHargaJual()+" total: "+total);
-//                }
-//
-//            }
-//        });
-//
-//        PushDownAnim.setPushDownAnimTo(holder.itemView)
-//                .setScale(MODE_SCALE, 0.89f)
-//                .setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
-//                .setScale(MODE_SCALE, 0.89f)
-//                .setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//
-//                        if (number!=null) {
-//
-//                            if (number.equals("0")) {
-//                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
-//                                return;
-//                            }
-//
-//                        }
-//
-//                        String id_barang_outlet = cariBarangOutlet.get(position).getIdBarangOutlet();
-//                        String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
-//                        tambahPenjualan(id_barang_outlet, id_status_penjualan);
-//
-//                    }
-//                });
+        holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                number = holder.numberPicker.getNumber();
+                int stock = Integer.parseInt(cariBarangOutlet.get(position).getStock());
+                if (number.equals("0")){
+                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
+                    holder.numberPicker.setNumber("1");
+                }else if (Integer.parseInt(number) > stock ){
+                    Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
+                    holder.numberPicker.setNumber(String.valueOf(stock));
+                }else{
+                    total = Integer.parseInt(number) * Integer.parseInt(cariBarangOutlet.get(position).getHargaJual());
+                    Log.d("testTotal", "number: "+number+" harga: "+cariBarangOutlet.get(position).getHargaJual()+" total: "+total);
+                }
+
+            }
+        });
+
+        PushDownAnim.setPushDownAnimTo(holder.itemView)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (number!=null) {
+
+                            if (number.equals("0")) {
+                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                        }
+
+                        String id_barang_outlet = cariBarangOutlet.get(position).getIdBarangOutlet();
+                        String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
+                        String id_barang = cariBarangOutlet.get(position).getIdBarang();
+                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang);
+
+                    }
+                });
 
     }
 
-    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan) {
+    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan, String id_barang) {
 
         preferencedConfig = new SharedPreferencedConfig(context);
 
@@ -150,7 +151,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         progressDialog.setMessage("Menambahkan barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, number, String.valueOf(total),
+        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, id_barang, number, String.valueOf(total),
                 tanggal, preferencedConfig.getPreferenceNama(), id_status_penjualan).enqueue(new Callback<ResponseTambahPenjualan>() {
             @Override
             public void onResponse(Call<ResponseTambahPenjualan> call, Response<ResponseTambahPenjualan> response) {

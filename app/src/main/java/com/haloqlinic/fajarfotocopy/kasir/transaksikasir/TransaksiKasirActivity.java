@@ -12,7 +12,6 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
-import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;

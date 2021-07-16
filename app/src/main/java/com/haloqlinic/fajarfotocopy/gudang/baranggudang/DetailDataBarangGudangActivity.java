@@ -42,6 +42,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
     private static final int IMG_REQUEST = 777;
     private Bitmap bitmap;
 
+    String id_kategori;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        id_kategori = getIntent().getStringExtra("id_kategori");
         String id_barang = getIntent().getStringExtra("id_barang");
         String nama_barang = getIntent().getStringExtra("nama_barang");
         String stock = getIntent().getStringExtra("stock");
@@ -334,7 +337,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.editBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, diskon, diskon_pack, image_barang).enqueue(new Callback<ResponseEditBarang>() {
+                jumlah_pack, diskon, diskon_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
             @Override
             public void onResponse(Call<ResponseEditBarang> call, Response<ResponseEditBarang> response) {
                 if (response.isSuccessful()){
