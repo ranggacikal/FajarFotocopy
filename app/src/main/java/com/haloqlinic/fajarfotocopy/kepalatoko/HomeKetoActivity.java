@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -34,6 +35,7 @@ public class HomeKetoActivity extends AppCompatActivity {
 
     private ActivityHomeKetoBinding binding;
     private SharedPreferencedConfig preferencedConfig;
+    TextView txtNama, txtTanggal, txtNamaToko;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -46,7 +48,23 @@ public class HomeKetoActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        txtNama = findViewById(R.id.text_nama_home_keto);
+        txtTanggal = findViewById(R.id.text_tanggal_home_keto);
+        txtNamaToko = findViewById(R.id.text_nama_toko_keto);
+
         preferencedConfig = new SharedPreferencedConfig(this);
+
+
+        txtNama.setText(preferencedConfig.getPreferenceNama());
+        txtNamaToko.setText(preferencedConfig.getPreferenceIdOutlet());
+
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
+
+        txtTanggal.setText(date);
+
 
         PushDownAnim.setPushDownAnimTo(binding.linearListPengiriman)
                 .setScale(MODE_SCALE, 0.89f)
