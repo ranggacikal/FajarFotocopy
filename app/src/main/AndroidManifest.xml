@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.haloqlinic.fajarfotocopy">
 
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,9 +12,10 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".kasir.transaksikasir.TransaksiBerhasilActivity"></activity>
         <activity
             android:name=".kasir.transaksikasir.TransaksiKasirActivity"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity" />
         <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity" />
         <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity" />
@@ -90,5 +88,8 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>

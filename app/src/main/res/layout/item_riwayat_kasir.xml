@@ -1,59 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:background="@color/white">
 
-
-    <TextView
-        android:id="@+id/text_item_id_penjualan"
-        android:layout_width="80dp"
+    <LinearLayout
+        android:id="@+id/linear_riwayat"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:gravity="center"
-        android:text="Id Penjualan"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/text_item_qty"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:gravity="center"
-        android:text="Qty"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
+        <TextView
+            android:id="@+id/text_item_id_penjualan"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Id Penjualan"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
-    <TextView
-        android:id="@+id/text_item_nama_barang"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:gravity="center"
-        android:text="Nama barang"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
+        <TextView
+            android:id="@+id/text_item_qty"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Qty"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
-    <TextView
-        android:id="@+id/text_item_discount"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:gravity="center"
-        android:text="Discount"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
+        <TextView
+            android:id="@+id/text_item_nama_barang"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Nama barang"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
-    <TextView
-        android:id="@+id/text_item_total"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/sairabold"
-        android:gravity="center"
-        android:text="Total"
-        android:textColor="@color/black"
-        android:textSize="11sp" />
+        <TextView
+            android:id="@+id/text_item_discount"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Discount"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/text_item_total"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Total"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_cetak_bukti"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="Cetak Bukti"
+        android:textColor="@color/white"
+        android:fontFamily="@font/sairamedium"
+        android:textSize="10sp"
+        android:background="@drawable/btn_black"
+        android:layout_below="@+id/linear_riwayat"
+        />
+
+
+
+</RelativeLayout>
