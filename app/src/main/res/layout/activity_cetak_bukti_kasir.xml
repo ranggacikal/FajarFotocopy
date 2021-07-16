@@ -184,7 +184,8 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <Button
-            android:layout_width="345dp"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="40dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
