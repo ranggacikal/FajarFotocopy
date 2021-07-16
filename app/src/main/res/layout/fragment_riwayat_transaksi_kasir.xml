@@ -25,12 +25,24 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/txt_tanggal_riwayat_transaksi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Riwayat"
+        android:layout_below="@id/headerkeranjang"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/sairabold"
+        android:textColor="@color/black"/>
+
     <LinearLayout
         android:id="@+id/linear_abu"
         android:layout_width="match_parent"
         android:layout_height="47dp"
-        android:layout_below="@id/headerkeranjang"
         android:layout_gravity="center"
+        android:layout_below="@+id/txt_tanggal_riwayat_transaksi"
         android:layout_marginTop="15dp"
         android:background="#C4C4C4"
         android:orientation="horizontal">

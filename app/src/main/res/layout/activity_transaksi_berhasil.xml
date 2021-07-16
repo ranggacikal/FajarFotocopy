@@ -51,9 +51,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Lihat Detail"
+                android:fontFamily="@font/sairabold"
                 android:layout_alignParentBottom="true"
                 android:layout_marginTop="30dp"
-                android:background="@drawable/btn_merah"
+                android:textColor="@color/white"
+                android:background="@drawable/btn_black"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginBottom="50dp"/>
 

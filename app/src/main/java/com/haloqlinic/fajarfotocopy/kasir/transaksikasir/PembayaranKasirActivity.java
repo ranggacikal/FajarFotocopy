@@ -155,7 +155,9 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                             if (status == 1){
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Pembayaran Berhasil", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(PembayaranKasirActivity.this, MainKasirActivity.class));
+                                Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiBerhasilActivity.class);
+                                intent.putExtra("id_status_penjualan", id_status_penjualan);
+                                startActivity(intent);
                                 finish();
                             }else{
                                 Toast.makeText(PembayaranKasirActivity.this,
