@@ -101,15 +101,16 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                     @Override
                     public void onClick(View v) {
                         String id_barang_outlet = dataCari.get(position).getIdBarangOutlet();
+                        String id_barang = dataCari.get(position).getIdBarang();
                         String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
-                        tambahPenjualan(id_barang_outlet, id_status_penjualan);
+                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang);
 
                     }
                 });
 
     }
 
-    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan) {
+    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan, String id_barang) {
 
         preferencedConfig = new SharedPreferencedConfig(context);
 
@@ -129,7 +130,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
         progressDialog.setMessage("Menambahkan barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, number, String.valueOf(total),
+        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, id_barang, number, String.valueOf(total),
                 tanggal, preferencedConfig.getPreferenceNama(), id_status_penjualan).enqueue(new Callback<ResponseTambahPenjualan>() {
             @Override
             public void onResponse(Call<ResponseTambahPenjualan> call, Response<ResponseTambahPenjualan> response) {

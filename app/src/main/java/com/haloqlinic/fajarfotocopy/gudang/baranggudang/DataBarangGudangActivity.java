@@ -37,6 +37,11 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 public class DataBarangGudangActivity extends AppCompatActivity {
 
     private ActivityDataBarangGudangBinding binding;
+    boolean searchId = false;
+    boolean searchName = false;
+
+    String textId = "";
+    String textName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +70,9 @@ public class DataBarangGudangActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                loadSearchById(newText);
+                textId = newText;
+                loadSearchById(textId);
+                searchId = true;
                 return true;
             }
         });
@@ -105,7 +112,9 @@ public class DataBarangGudangActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
 
-                loadDataCari(newText);
+                textName = newText;
+                loadDataCari(textName);
+                searchName = true;
                 return true;
             }
         });
@@ -216,6 +225,18 @@ public class DataBarangGudangActivity extends AppCompatActivity {
                 }
             });
 
+        }
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (searchId = true){
+            loadSearchById(textId);
+        }else if (searchName = true){
+            loadDataCari(textName);
         }
 
     }

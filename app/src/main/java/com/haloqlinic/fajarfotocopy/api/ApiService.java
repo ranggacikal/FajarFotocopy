@@ -12,6 +12,7 @@ import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLeve
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevelOutlet.ResponseDataUserByOutletLevel;
 import com.haloqlinic.fajarfotocopy.model.dataUserByNama.ResponseDataUserByNama;
 import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutlet;
+import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.ResponseDetailStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
@@ -31,6 +32,8 @@ import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangO
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusPenjualanByBulan;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
@@ -40,6 +43,8 @@ import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiri
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.transaksiByBulan.ResponseTransaksiByBulan;
+import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHari;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 
 import retrofit2.Call;
@@ -134,7 +139,8 @@ public interface ApiService {
                                         @Field("jumlah_pack") String jumlah_pack,
                                         @Field("diskon") String diskon,
                                         @Field("diskon_pack") String diskon_pack,
-                                        @Field("image_barang") String image_barang);
+                                        @Field("image_barang") String image_barang,
+                                        @Field("id_kategori_barang") String id_kategori);
 
     @FormUrlEncoded
     @POST("hapusBarang")
@@ -277,6 +283,7 @@ public interface ApiService {
     @POST("tambahPenjualan")
     Call<ResponseTambahPenjualan> tambahPenjualan(@Field("id_penjualan") String id_penjualan,
                                                   @Field("id_barang_outlet") String id_barang_outlet,
+                                                  @Field("id_barang") String id_barang,
                                                   @Field("jumlah_barang") String jumlah_barang,
                                                   @Field("total") String total,
                                                   @Field("tanggal_penjualan") String tanggal_penjualan,
@@ -296,4 +303,26 @@ public interface ApiService {
                                                               @Field("metode_bayar") String metode_bayar,
                                                               @Field("total_harga") String total_harga,
                                                               @Field("jumlah_diskon") String jumlah_diskon);
+
+    @FormUrlEncoded
+    @POST("getTransaksiByBulan")
+    Call<ResponseTransaksiByBulan> transaksiByBulan(@Field("bulan") String bulan,
+                                                    @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("getTransaksiByHari")
+    Call<ResponseTransaksiByHari> transaksiByHari(@Field("hari") String hari,
+                                                  @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("getStatusPenjualanByBulan")
+    Call<ResponseStatusPenjualanByBulan> statusPenjualanByBulan(@Field("bulan") String bulan);
+
+    @FormUrlEncoded
+    @POST("getStatusPenjualanByHari")
+    Call<ResponseStatusPenjualanByHari> statusPenjualanByHari(@Field("hari") String hari);
+
+    @FormUrlEncoded
+    @POST("detailStatusPenjualan")
+    Call<ResponseDetailStatusPenjualan> detailStatusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
 }

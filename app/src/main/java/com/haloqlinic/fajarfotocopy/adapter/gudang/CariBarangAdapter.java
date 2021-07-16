@@ -59,6 +59,7 @@ public class CariBarangAdapter extends RecyclerView.Adapter<CariBarangAdapter.Ca
         String diskon = dataBarang.get(position).getDiskon();
         String diskon_pack = dataBarang.get(position).getDiskonPack();
         String image = dataBarang.get(position).getImageBarang();
+        String id_kategori = dataBarang.get(position).getIdKategoriBarang();
 
         Glide.with(context)
                 .load(image)
@@ -91,6 +92,7 @@ public class CariBarangAdapter extends RecyclerView.Adapter<CariBarangAdapter.Ca
                         intent.putExtra("diskon", diskon);
                         intent.putExtra("diskon_pack", diskon_pack);
                         intent.putExtra("image", image);
+                        intent.putExtra("id_kategori", id_kategori);
                         context.startActivity(intent);
                     }
                 });
