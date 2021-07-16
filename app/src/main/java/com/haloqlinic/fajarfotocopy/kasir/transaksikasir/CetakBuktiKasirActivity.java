@@ -58,7 +58,22 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.btnCetakBuktiPenjualan)
+                .setScale( MODE_SCALE, 0.89f  )
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        createPdf();
+                    }
+                });
+
         loadData();
+
+    }
+
+    private void createPdf() {
+
+
 
     }
 
