@@ -45,7 +45,7 @@ public class RiwayatTransaksiKasirFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_riwayat_transaksi_kasir, container, false);
 
-        txtTanggal = rootView.findViewById(R.id.txt_tanggal_riwayat_transaksi);
+        txtTanggal = rootView.findViewById(R.id.txt_tanggal_riwayat_kasir);
         rvRiwayat = rootView.findViewById(R.id.recycler_riwayat_kasir);
 
         rvRiwayat.setHasFixedSize(true);
