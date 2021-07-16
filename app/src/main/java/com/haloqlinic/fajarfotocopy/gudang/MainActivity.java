@@ -88,9 +88,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.ic_informasi));
-        tabLayout.addTab(tabLayout.newTab().setText("Kirim Barang").setIcon(R.drawable.ic_kirimbarang_baru));
-        tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile_baru));
+        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
+        tabLayout.addTab(tabLayout.newTab().setText("Kirim Barang").setIcon(R.drawable.ic_history_baru));
+        tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
     }
 

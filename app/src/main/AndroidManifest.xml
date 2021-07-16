@@ -12,7 +12,8 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".kasir.transaksikasir.TransaksiBerhasilActivity"></activity>
+        <activity android:name=".kasir.transaksikasir.DetailStatusPenjualanActivity"></activity>
+        <activity android:name=".kasir.transaksikasir.TransaksiBerhasilActivity" />
         <activity
             android:name=".kasir.transaksikasir.TransaksiKasirActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
@@ -88,8 +89,8 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

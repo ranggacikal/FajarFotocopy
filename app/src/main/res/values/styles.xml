@@ -6,7 +6,7 @@
         <item name="textAllCaps">false</item>
         <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/sairabold</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="materialComponent" parent="Theme.MaterialComponents.Light">

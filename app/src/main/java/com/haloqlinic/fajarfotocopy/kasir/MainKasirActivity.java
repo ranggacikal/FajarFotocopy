@@ -88,8 +88,8 @@ public class MainKasirActivity extends AppCompatActivity {
         keranjangKasirFragment = new KeranjangKasirFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.ic_informasi));
-        tabLayout.addTab(tabLayout.newTab().setText("Riwayat Transaksi").setIcon(R.drawable.ic_riwayat));
+        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
+        tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.ic_riwayat_transaksi));
         tabLayout.addTab(tabLayout.newTab().setText("Keranjang").setIcon(R.drawable.ic_keranjang));
 
     }

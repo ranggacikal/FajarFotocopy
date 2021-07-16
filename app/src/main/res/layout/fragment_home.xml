@@ -267,7 +267,7 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginEnd="15dp"
                             android:fontFamily="@font/sairabold"
-                            android:text="Trasnsfer Barang"
+                            android:text="Transfer Barang"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
