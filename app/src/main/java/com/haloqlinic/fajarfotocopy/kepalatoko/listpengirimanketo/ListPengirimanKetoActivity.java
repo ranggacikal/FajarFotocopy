@@ -24,6 +24,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import com.haloqlinic.fajarfotocopy.R;
+import com.thekhaeng.pushdownanim.PushDownAnim;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class ListPengirimanKetoActivity extends AppCompatActivity {
 
@@ -37,6 +40,15 @@ public class ListPengirimanKetoActivity extends AppCompatActivity {
         binding = ActivityListPengirimanKetoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackListPengirimanKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         preferencedConfig = new SharedPreferencedConfig(this);
 

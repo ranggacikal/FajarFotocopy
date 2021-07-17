@@ -11,13 +11,21 @@ import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityCekStockTokoGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 public class TambahTokoGudangActivity extends AppCompatActivity {
+
+    private ActivityTambahTokoGudangBinding binding;
+
 
     EditText edtId, edtNama, edtProvinsi, edtKota, edtKecamatan, edtKelurahan, edtKodePos;
     Button btnSimpan;
@@ -25,7 +33,18 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_toko_gudang);
+        binding = ActivityTambahTokoGudangBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTambahTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         edtId = findViewById(R.id.edt_id_tambah_outlet);
         edtNama = findViewById(R.id.edt_nama_tambah_outlet);
@@ -36,12 +55,16 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
         edtKodePos = findViewById(R.id.edt_kodepos_tambah_outlet);
         btnSimpan = findViewById(R.id.btn_simpan_tambah_outlet);
 
-        btnSimpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                simpanTambahOutlet();
-            }
-        });
+
+
+        PushDownAnim.setPushDownAnimTo(binding.btnSimpanTambahOutlet)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        simpanTambahOutlet();
+                    }
+                });
     }
 
     private void simpanTambahOutlet() {

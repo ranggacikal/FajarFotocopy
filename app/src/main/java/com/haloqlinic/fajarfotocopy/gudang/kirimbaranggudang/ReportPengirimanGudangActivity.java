@@ -15,12 +15,15 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityDataPengirimanBarangBind
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengirimanGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.DataStatusPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class ReportPengirimanGudangActivity extends AppCompatActivity {
 
@@ -32,6 +35,15 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
         binding = ActivityReportPengirimanGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackReportPengirimanGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         binding.rvReportPengiriman.setHasFixedSize(true);
         binding.rvReportPengiriman.setLayoutManager(new LinearLayoutManager(ReportPengirimanGudangActivity.this));

@@ -56,6 +56,15 @@ public class TambahUserGudangActivity extends AppCompatActivity {
 
         initSpinnerToko();
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTambahUserGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
         PushDownAnim.setPushDownAnimTo(binding.imageTambahUserGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

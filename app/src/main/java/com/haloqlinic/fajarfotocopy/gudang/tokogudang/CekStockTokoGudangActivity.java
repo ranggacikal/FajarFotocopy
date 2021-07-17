@@ -20,12 +20,15 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CekStokTokoGudangAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.SearchCekStockTokoAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityCekStockTokoGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.SearchStockByTokoItem;
 import com.haloqlinic.fajarfotocopy.model.stockToko.GetStockByTokoItem;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +37,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 public class CekStockTokoGudangActivity extends AppCompatActivity {
+
+    private ActivityCekStockTokoGudangBinding binding;
+
 
     LinearLayout linearCekStockGudang;
     RecyclerView rvCekStockGudang;
@@ -52,13 +60,28 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cek_stock_toko_gudang);
+        binding = ActivityCekStockTokoGudangBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackCekStockTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+
         linearCekStockGudang = findViewById(R.id.linear_recycler_cek_stok_gudang);
         rvCekStockGudang = findViewById(R.id.recycler_cek_stock_tokogudang);
         spinnerCekStockToko = findViewById(R.id.spinner_cekstocktokogudang);
         progressBar = findViewById(R.id.progressBar_cek_stok_toko_gudang);
         imgBack = findViewById(R.id.img_back_cek_stock_toko_gudang);
         searchCekStock = findViewById(R.id.search_cek_stok_toko_gudang);
+
+
 
         progressDialog = new ProgressDialog(CekStockTokoGudangActivity.this);
         progressDialog.setMessage("Memuat data outlet");

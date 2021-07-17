@@ -33,12 +33,14 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.linearBackDetailBarangStockGudang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(binding.linearBackDetailBarangStockGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         binding.txtNamaTokoDetailBarangGudang.setText(getIntent().getStringExtra("nama_toko"));
         binding.txtNamaBarangGudang.setText(getIntent().getStringExtra("nama_barang"));

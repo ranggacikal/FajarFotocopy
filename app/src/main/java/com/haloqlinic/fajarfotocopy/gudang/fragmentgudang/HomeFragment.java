@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,10 @@ import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.notifikasigudang.NotifikasiGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.usergudang.UserGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -46,7 +50,8 @@ public class HomeFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    CardView cardToko, cardBarang, cardUser;
+    CardView cardToko, cardBarang, cardUser, cardSupplier, cardTransfer;
+    ImageView imgNotif;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,6 +64,11 @@ public class HomeFragment extends Fragment {
         cardToko = rootView.findViewById(R.id.card_outlet_gudang);
         cardBarang = rootView.findViewById(R.id.card_kelola_barang_gudang);
         cardUser = rootView.findViewById(R.id.card_user_gudang);
+        cardSupplier = rootView.findViewById(R.id.card_supplier_gudang);
+        cardTransfer = rootView.findViewById(R.id.card_transfer_barang_gudang);
+
+        imgNotif = rootView.findViewById(R.id.img_notif);
+
         btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
@@ -70,6 +80,15 @@ public class HomeFragment extends Fragment {
         date = dateFormat.format(calendar.getTime());
 
         txtTanggal.setText(date);
+
+        PushDownAnim.setPushDownAnimTo(imgNotif)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), NotifikasiGudangActivity.class));
+                    }
+                });
 
         PushDownAnim.setPushDownAnimTo(cardToko)
                 .setScale(MODE_SCALE, 0.89f)
@@ -86,6 +105,33 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), UserGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardBarang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), BarangGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardSupplier)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), SupplierGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardTransfer)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), TransferBarangGudangActivity.class));
                     }
                 });
 
@@ -115,14 +161,7 @@ public class HomeFragment extends Fragment {
                 });
 
 
-        PushDownAnim.setPushDownAnimTo(cardBarang)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), BarangGudangActivity.class));
-                    }
-                });
+
 
         return rootView;
     }

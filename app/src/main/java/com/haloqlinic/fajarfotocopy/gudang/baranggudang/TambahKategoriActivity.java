@@ -48,12 +48,14 @@ public class TambahKategoriActivity extends AppCompatActivity {
                     }
                 });
 
-        binding.linearBackTambahKategori.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTambahKategori)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         binding.recyclerDataKategori.setHasFixedSize(true);
         binding.recyclerDataKategori.setLayoutManager(new LinearLayoutManager(TambahKategoriActivity.this));

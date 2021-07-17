@@ -8,23 +8,27 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityTokoGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityUserGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.tokogudang.CekStockTokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class UserGudangActivity extends AppCompatActivity {
 
-    LinearLayout linearTambahUserGudang,linearDataUserGudang;
+    private ActivityUserGudangBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_gudang);
+        binding = ActivityUserGudangBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        linearTambahUserGudang = findViewById(R.id.linear_tambah_user_gudang);
-        linearDataUserGudang = findViewById(R.id.linear_data_user_gudang);
-
-        PushDownAnim.setPushDownAnimTo(linearTambahUserGudang)
+        PushDownAnim.setPushDownAnimTo(binding.linearTambahUserGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -33,7 +37,7 @@ public class UserGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(linearDataUserGudang)
+        PushDownAnim.setPushDownAnimTo(binding.linearDataUserGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -41,5 +45,16 @@ public class UserGudangActivity extends AppCompatActivity {
                         startActivity(new Intent(UserGudangActivity.this, DataUserGudangActivity.class));
                     }
                 });
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackUserGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+
     }
 }

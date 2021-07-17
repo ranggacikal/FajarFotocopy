@@ -38,8 +38,6 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
     private ActivityKirimBarangGudangBinding binding;
 
-
-
     public String id_toko, id_status_pengiriman;
 
     @Override
@@ -51,6 +49,15 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
         getLastIdStatusPengiriman();
 
         id_toko = getIntent().getStringExtra("id_toko");
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackKirimGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
 
         binding.searchviewKirimBarangGudang.setOnClickListener(new View.OnClickListener() {
             @Override
