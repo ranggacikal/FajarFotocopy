@@ -94,7 +94,8 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
-            android:text="Cari"
+            android:text="Submit"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

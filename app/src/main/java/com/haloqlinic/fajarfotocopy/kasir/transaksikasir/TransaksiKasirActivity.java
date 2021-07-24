@@ -71,6 +71,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         binding.searchviewBarangOutletBarcode.setIconified(false);
 
         nameActivity = getIntent().getStringExtra("namaActivity");
+        id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -161,7 +162,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     }
                 });
 
-        getStatusPenjualan();
+//        getStatusPenjualan();
     }
 
     private void loadSearchBarangById(String textCariId) {
@@ -266,30 +267,30 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     }
 
-    private void getStatusPenjualan() {
-        ConfigRetrofit.service.getIdStatusPenjualan().enqueue(new Callback<ResponseGetIdStatusPenjualan>() {
-            @Override
-            public void onResponse(Call<ResponseGetIdStatusPenjualan> call, Response<ResponseGetIdStatusPenjualan> response) {
-                if (response.isSuccessful()) {
-                    int status = response.body().getStatus();
-                    if (status == 1) {
-                        id_status_penjualan = response.body().getDataIdStatusPenjualan().getIdStatusPenjualan();
-
-                    } else {
-                        Toast.makeText(TransaksiKasirActivity.this, "Gagal Mengambil Id Status Penjualan", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseGetIdStatusPenjualan> call, Throwable t) {
-                Toast.makeText(TransaksiKasirActivity.this, "error" + t.getMessage(), Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
+//    private void getStatusPenjualan() {
+//        ConfigRetrofit.service.getIdStatusPenjualan().enqueue(new Callback<ResponseGetIdStatusPenjualan>() {
+//            @Override
+//            public void onResponse(Call<ResponseGetIdStatusPenjualan> call, Response<ResponseGetIdStatusPenjualan> response) {
+//                if (response.isSuccessful()) {
+//                    int status = response.body().getStatus();
+//                    if (status == 1) {
+//                        id_status_penjualan = response.body().getDataIdStatusPenjualan().getIdStatusPenjualan();
+//
+//                    } else {
+//                        Toast.makeText(TransaksiKasirActivity.this, "Gagal Mengambil Id Status Penjualan", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseGetIdStatusPenjualan> call, Throwable t) {
+//                Toast.makeText(TransaksiKasirActivity.this, "error" + t.getMessage(), Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+//    }
 
     @Override
     public void onBackPressed() {

@@ -126,6 +126,20 @@
 
             </RelativeLayout>
 
+            <EditText
+                android:id="@+id/edt_item_jumlah_pack_transfer"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_rectangle"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:hint="Jumlah Pack"
+                android:paddingStart="20dp"/>
+
         </LinearLayout>
 
         <Button
@@ -137,6 +151,19 @@
             android:layout_marginEnd="10dp"
             android:background="@drawable/btn_gold"
             android:text="Tambah Pesanan"
+            android:fontFamily="@font/sairabold"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_tambah_barang_transfer"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_gold"
+            android:visibility="gone"
+            android:text="Tambah Barang"
             android:fontFamily="@font/sairabold"
             android:textColor="@color/white"/>
 

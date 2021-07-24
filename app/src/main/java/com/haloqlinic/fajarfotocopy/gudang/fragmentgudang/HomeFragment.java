@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.usergudang.UserGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -46,7 +47,7 @@ public class HomeFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    CardView cardToko, cardBarang, cardUser;
+    CardView cardToko, cardBarang, cardUser, cardTransferBarang;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment {
         cardBarang = rootView.findViewById(R.id.card_kelola_barang_gudang);
         cardUser = rootView.findViewById(R.id.card_user_gudang);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
+        cardTransferBarang = rootView.findViewById(R.id.card_transfer_barang_gudang);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
@@ -86,6 +88,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), UserGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardTransferBarang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), TransferBarangGudangActivity.class));
                     }
                 });
 

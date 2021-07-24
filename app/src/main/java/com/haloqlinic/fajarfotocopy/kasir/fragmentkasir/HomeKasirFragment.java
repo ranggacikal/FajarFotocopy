@@ -145,6 +145,7 @@ public class HomeKasirFragment extends Fragment {
                             if(status == 1){
                                 Intent intent = new Intent(getActivity(), TransaksiKasirActivity.class);
                                 intent.putExtra("namaActivity", "HomeKasir");
+                                intent.putExtra("id_status_penjualan", id_status_penjualan);
                                 startActivity(intent);
                                 getActivity().finish();
                             }else {

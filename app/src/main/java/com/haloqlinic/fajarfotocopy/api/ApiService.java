@@ -4,6 +4,7 @@ import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
+import com.haloqlinic.fajarfotocopy.model.countBarangTransfer.ResponseCountBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.dataKategoriDesc.ResponseDataKategoriDesc;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
@@ -13,17 +14,22 @@ import com.haloqlinic.fajarfotocopy.model.dataUserByLevelOutlet.ResponseDataUser
 import com.haloqlinic.fajarfotocopy.model.dataUserByNama.ResponseDataUserByNama;
 import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutlet;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.ResponseDetailStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.detailTransferBarang.ResponseDetailTransferBarang;
+import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
+import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.hapusStatusTransfer.ResponseHapusStatusTransfer;
+import com.haloqlinic.fajarfotocopy.model.hapusTransferCancel.ResponseHapusTransferCancel;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -34,6 +40,7 @@ import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchSt
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusPenjualanByBulan;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
+import com.haloqlinic.fajarfotocopy.model.statusTransferByBulan.ResponseStatusTransferByBulan;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
@@ -43,6 +50,8 @@ import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiri
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.tambahStatusTransfer.ResponseTambahStatusTransfer;
+import com.haloqlinic.fajarfotocopy.model.tambahTransferBarang.ResponseTambahTransferBarang;
 import com.haloqlinic.fajarfotocopy.model.transaksiByBulan.ResponseTransaksiByBulan;
 import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHari;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
@@ -325,4 +334,61 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("detailStatusPenjualan")
     Call<ResponseDetailStatusPenjualan> detailStatusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("getIdBarangOutlet")
+    Call<ResponseGetIdBarangOutlet> getIdBarangOutlet(@Field("id_outlet") String id_outlet,
+                                                      @Field("id_barang") String id_barang);
+
+    @FormUrlEncoded
+    @POST("editBarangOutlet")
+    Call<ResponseEditBarangOutlet> editBarangOutlet(@Field("id_barang_outlet") String id_barang_outlet,
+                                                    @Field("id_barang") String id_barang,
+                                                    @Field("harga_jual") String harga_jual,
+                                                    @Field("harga_jual_pack") String harga_jual_pack,
+                                                    @Field("stock") String stock,
+                                                    @Field("jumlah_pack") String jumlah_pack,
+                                                    @Field("diskon") String diskon,
+                                                    @Field("diskon_pack") String diskon_pack,
+                                                    @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("tambahStatusTransfer")
+    Call<ResponseTambahStatusTransfer> tambahStatusTransfer(@Field("id_status_transfer") String id_status_transfer,
+                                                            @Field("tanggal_transfer") String tanggal_transfer,
+                                                            @Field("id_outlet_pengirim") String id_outlet_pengirim,
+                                                            @Field("id_outlet_penerima") String id_outlet_penerima,
+                                                            @Field("outlet_pengirim") String outlet_pengirim,
+                                                            @Field("outlet_penerima") String outlet_penerima);
+
+    @FormUrlEncoded
+    @POST("tambahTransferBarang")
+    Call<ResponseTambahTransferBarang> tambahTransferBarang(@Field("id_transfer_barang") String id_transfer_barang,
+                                                            @Field("id_barang_outlet_pengirim") String id_barang_outlet_pengirim,
+                                                            @Field("id_barang") String id_barang,
+                                                            @Field("jumlah") String jumlah,
+                                                            @Field("jumlah_pack") String jumlah_pack,
+                                                            @Field("id_status_transfer") String id_status_transfer,
+                                                            @Field("status_barang") String status_barang);
+
+    @FormUrlEncoded
+    @POST("getStatusTransferByBulan")
+    Call<ResponseStatusTransferByBulan> statusTransferByBulan(@Field("bulan") String bulan);
+
+    @FormUrlEncoded
+    @POST("detailTransferBarang")
+    Call<ResponseDetailTransferBarang> detailTransferBarang(@Field("id_status_transfer") String id_status_transfer);
+
+    @FormUrlEncoded
+    @POST("hapusStatusTransfer")
+    Call<ResponseHapusStatusTransfer> hapusStatusTransfer(@Field("id_status_transfer") String id_status_transfer);
+
+    @FormUrlEncoded
+    @POST("getCount")
+    Call<ResponseCountBarangTransfer> countTransferBarang(@Field("id_status_transfer") String id_status_transfer);
+
+    @FormUrlEncoded
+    @POST("hapusTransferBarang")
+    Call<ResponseHapusTransferCancel> hapusTransferCancel(@Field("id_status_transfer") String id_status_transfer);
+
 }

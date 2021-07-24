@@ -8,8 +8,10 @@
     tools:context=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity">
 
     <LinearLayout
+        android:id="@+id/linear_head_hasil"
+        android:layout_above="@+id/linear_foot_transfer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
 
@@ -48,8 +50,8 @@
             android:layout_width="333dp"
             android:layout_height="54dp"
             android:layout_gravity="center"
-            android:layout_marginTop="27dp"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="27dp"
             android:background="@drawable/bg_rectangle"
             android:padding="15dp" />
 
@@ -80,8 +82,8 @@
                 android:layout_height="45dp"
                 android:layout_below="@+id/linear_header"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="21dp"
                 android:layout_marginStart="40dp"
+                android:layout_marginTop="21dp"
                 android:background="@drawable/button_filter"
                 android:fontFamily="@font/sairabold"
                 android:paddingHorizontal="5dp"
@@ -92,10 +94,21 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_transfer_barang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_transfer_barang_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp">
+            android:visibility="gone">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -103,6 +116,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linear_foot_transfer"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
@@ -127,8 +141,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="21dp"
-                    android:layout_marginEnd="5dp"
                     android:layout_marginTop="13dp"
+                    android:layout_marginEnd="5dp"
                     android:fontFamily="@font/sairamedium"
                     android:text="Total Produk :"
                     android:textColor="@color/white"
@@ -159,8 +173,8 @@
             android:layout_marginTop="25dp"
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
-            android:text="Chekoout"
             android:paddingHorizontal="5dp"
+            android:text="Chekoout"
             android:textColor="@color/black"
             android:textSize="10sp" />
 

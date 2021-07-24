@@ -49,7 +49,8 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".gudang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
-        <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity" />
+        <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".gudang.transferbaranggudang.TransferBarangGudangActivity" />
         <activity android:name=".LoginSebagaiActivity" />
         <activity android:name=".SplashScreenActivity">

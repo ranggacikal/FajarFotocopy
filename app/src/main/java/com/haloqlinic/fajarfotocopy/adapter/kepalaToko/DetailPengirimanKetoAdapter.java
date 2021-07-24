@@ -22,7 +22,10 @@ import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity;
+import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
+import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.IdBarangOutletItem;
+import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
@@ -153,7 +156,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
                                 hargaPcs = edthargaPcs.getText().toString();
-                                hargaPack = edtHargaPack.getText().toString();
+                                    hargaPack = edtHargaPack.getText().toString();
                                 diskon = edtDiskonPcs.getText().toString();
                                 diskonPack = edtDiskonPack.getText().toString();
 
@@ -211,15 +214,18 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             progressDialog.dismiss();
 
                             int status = response.body().getStatus();
+                            String pesan = response.body().getPesan();
 
-                            if (status==1){
+                            if (pesan.equals("barang Sudah Terdaftar")){
+                                dialog.dismiss();
+                                getIdBarangOutlet();
+                            }else {
                                 dialog.dismiss();
                                 Toast.makeText(context, "Berhasil Menerima Data", Toast.LENGTH_SHORT).show();
 //                                hapusPengiriman();
                                 editPengiriman();
-                            }else{
-                                Toast.makeText(context, "Gagal Menambah Data", Toast.LENGTH_SHORT).show();
                             }
+
                         }else{
                             progressDialog.dismiss();
                             Toast.makeText(context, "Terjadi kesalahan diserver", Toast.LENGTH_SHORT).show();
@@ -232,6 +238,100 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void getIdBarangOutlet() {
+
+        ProgressDialog progressGetId = new ProgressDialog(context);
+        progressGetId.setMessage("memuat id barang outlet");
+        progressGetId.show();
+
+        ConfigRetrofit.service.getIdBarangOutlet(id_outlet, id_barang).enqueue(new Callback<ResponseGetIdBarangOutlet>() {
+            @Override
+            public void onResponse(Call<ResponseGetIdBarangOutlet> call, Response<ResponseGetIdBarangOutlet> response) {
+                if (response.isSuccessful()){
+                    progressGetId.dismiss();
+                    int status = response.body().getStatus();
+
+                    if (status == 1){
+
+                        List<IdBarangOutletItem> dataBarang = response.body().getIdBarangOutlet();
+                        String id_barang_outlet = "";
+                        String stock_pcs = "";
+                        String stock_pack = "";
+                        for (int a = 0; a<dataBarang.size(); a++){
+
+                            id_barang_outlet = dataBarang.get(a).getIdBarangOutlet();
+                            stock_pcs = dataBarang.get(a).getStock();
+                            stock_pack = dataBarang.get(a).getJumlahPack();
+
+                        }
+
+                        editStock(id_barang_outlet, stock_pcs, stock_pack);
+
+                    }else{
+                        progressGetId.dismiss();
+                        Toast.makeText(context, "Gagal get ID", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressGetId.dismiss();
+                    Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseGetIdBarangOutlet> call, Throwable t) {
+                progressGetId.dismiss();
+                Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack) {
+
+        ProgressDialog progressEdit = new ProgressDialog(context);
+        progressEdit.setMessage("Edit Stock");
+        progressEdit.show();
+
+        int jumlah_stock_pcs = Integer.parseInt(stock_pcs) + Integer.parseInt(jumlah_pcs);
+        int jumlah_stock_pack = Integer.parseInt(stock_pack) + Integer.parseInt(jumlah_pack);
+
+        ConfigRetrofit.service.editBarangOutlet(id_barang_outlet_edit, id_barang, hargaPcs, hargaPack,
+                String.valueOf(jumlah_stock_pcs), String.valueOf(jumlah_stock_pack), diskon, diskonPack,
+                id_outlet).enqueue(new Callback<ResponseEditBarangOutlet>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditBarangOutlet> call, Response<ResponseEditBarangOutlet> response) {
+                        if (response.isSuccessful()){
+
+                            progressEdit.dismiss();
+
+                            int status = response.body().getStatus();
+
+                            if (status == 1){
+
+                                Toast.makeText(context, "Berhasil Tambah Stock", Toast.LENGTH_SHORT).show();
+                                editPengiriman();
+
+                            }else{
+                                Toast.makeText(context, "Gagal Tambah Stock", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            progressEdit.dismiss();
+                            Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditBarangOutlet> call, Throwable t) {
+                        progressEdit.dismiss();
+                        Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
     }
 
     private void editPengiriman() {
