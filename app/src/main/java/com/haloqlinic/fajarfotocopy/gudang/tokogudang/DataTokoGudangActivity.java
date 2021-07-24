@@ -15,12 +15,15 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityDataTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailBarangStockGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class DataTokoGudangActivity extends AppCompatActivity {
 
@@ -34,6 +37,15 @@ public class DataTokoGudangActivity extends AppCompatActivity {
         setContentView(view);
 
         loadDataToko();
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackDataTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
     }
 
     private void loadDataToko() {

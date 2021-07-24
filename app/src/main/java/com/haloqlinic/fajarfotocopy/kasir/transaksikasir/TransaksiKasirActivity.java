@@ -59,6 +59,41 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTransaksiKasir)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(TransaksiKasirActivity.this)
+                                .setTitle("Batal Transaksi?")
+                                .setMessage("Apakah anda yakin ingin membatalkan transaksi ini?")
+                                .setCancelable(false)
+                                .setPositiveButton("Iya", new BottomSheetMaterialDialog.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int which) {
+
+                                        TransaksiKasirActivity.super.onBackPressed();
+
+                                        hapusStatusPenjualan();
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .setNegativeButton("Tidak", new BottomSheetMaterialDialog.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int which) {
+                                        dialogInterface.dismiss();
+                                    }
+                                })
+                                .build();
+
+                        // Show Dialog
+                        mBottomSheetDialog.show();
+
+                    }
+                });
+
+
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.recyclerBarangOutlet.setHasFixedSize(true);
         binding.recyclerBarangOutlet.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));

@@ -99,6 +99,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:padding="10dp"
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/sairamedium" />
 
@@ -113,6 +114,7 @@
                 android:id="@+id/edt_stock_barang_pack_gudang"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
+                android:padding="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_rectangle"
@@ -148,6 +150,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:inputType="number"
+                android:padding="10dp"
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/sairamedium" />
 
@@ -164,6 +167,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
+                android:padding="10dp"
                 android:inputType="number"
                 android:background="@drawable/bg_rectangle"
                 android:fontFamily="@font/sairamedium" />
@@ -199,7 +203,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_rectangle"
-                android:fontFamily="@font/sairamedium" />
+                android:fontFamily="@font/sairamedium"
+                android:padding="10dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -215,7 +220,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/bg_rectangle"
-                android:fontFamily="@font/sairamedium" />
+                android:fontFamily="@font/sairamedium"
+                android:padding="10dp" />
 
         </LinearLayout>
 

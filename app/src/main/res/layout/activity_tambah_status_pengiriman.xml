@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Kirim Barang"
+                    android:text="Tambah Pengiriman"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 

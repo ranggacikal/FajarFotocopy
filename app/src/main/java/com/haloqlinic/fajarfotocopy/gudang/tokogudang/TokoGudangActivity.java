@@ -8,39 +8,64 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityTokoGudangBinding;
+
+import com.thekhaeng.pushdownanim.PushDownAnim;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class TokoGudangActivity extends AppCompatActivity {
 
-    LinearLayout linearCekStock, linearTambahOutlet, linearDataOutlet;
+    private ActivityTokoGudangBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_toko_gudang);
+        binding = ActivityTokoGudangBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        linearCekStock = findViewById(R.id.linear_cek_stock_gudang);
-        linearTambahOutlet = findViewById(R.id.linear_tambah_toko_gudang);
-        linearDataOutlet = findViewById(R.id.linear_data_toko_gudang);
+        PushDownAnim.setPushDownAnimTo(binding.linearCekStockGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TokoGudangActivity.this, CekStockTokoGudangActivity.class));
+                    }
+                });
 
-        linearCekStock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TokoGudangActivity.this, CekStockTokoGudangActivity.class));
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(binding.linearTambahTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TokoGudangActivity.this, TambahTokoGudangActivity.class));
+                    }
+                });
 
-        linearTambahOutlet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TokoGudangActivity.this, TambahTokoGudangActivity.class));
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(binding.linearDataTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TokoGudangActivity.this, DataTokoGudangActivity.class));
+                    }
+                });
 
-        linearDataOutlet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(TokoGudangActivity.this, DataTokoGudangActivity.class));
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
     }
+
+
 }

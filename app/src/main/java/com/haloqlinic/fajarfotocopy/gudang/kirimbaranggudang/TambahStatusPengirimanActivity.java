@@ -54,6 +54,16 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
 
         initSpinner();
         dateFormatter = new SimpleDateFormat("dd MMMM yyyy");
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackStatusPengiriman)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
         PushDownAnim.setPushDownAnimTo(binding.btnPilihTanggalStatusPengiriman)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

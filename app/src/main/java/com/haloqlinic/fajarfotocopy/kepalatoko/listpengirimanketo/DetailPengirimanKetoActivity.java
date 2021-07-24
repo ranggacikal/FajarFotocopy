@@ -15,12 +15,15 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailPengirimanKetoBinding;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
@@ -33,6 +36,16 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
         binding = ActivityDetailPengirimanKetoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackDetailListPengirimanKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
 
         id_status = getIntent().getStringExtra("id_status_pengiriman");
         tanggal = getIntent().getStringExtra("tanggal");

@@ -13,17 +13,25 @@ import android.widget.Toast;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityLoginBinding;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 public class LoginActivity extends AppCompatActivity {
+
+    private ActivityLoginBinding binding;
+
 
     EditText edtUsername, edtPassword;
     Button btnLogin;
@@ -33,20 +41,26 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         preferencedConfig = new SharedPreferencedConfig(this);
 
         edtUsername = findViewById(R.id.edt_username_login_gudang);
         edtPassword = findViewById(R.id.edt_password_login_gudang);
         btnLogin = findViewById(R.id.btn_login_gudang);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login();
-            }
-        });
+
+
+        PushDownAnim.setPushDownAnimTo(binding.btnLoginGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        login();
+                    }
+                });
+
 
     }
 
@@ -56,13 +70,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = edtPassword.getText().toString();
 
         if (username.isEmpty()){
-            edtUsername.setError("usernmae tidak boleh kosong");
+            edtUsername.setError("Username Tidak Boleh Kosong");
             edtUsername.requestFocus();
             return;
         }
 
         if (password.isEmpty()){
-            edtPassword.setError("password tidak boleh kosong");
+            edtPassword.setError("Password Tidak Boleh Kosong");
             edtPassword.requestFocus();
             return;
         }
@@ -110,13 +124,13 @@ public class LoginActivity extends AppCompatActivity {
 
                     }else{
                         progressDialog.dismiss();
-                        Toast.makeText(LoginActivity.this, "Username/password salah", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Username/Password Salah", Toast.LENGTH_SHORT).show();
                     }
 
 
                 }else{
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Username/password salah", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Username/Password Salah", Toast.LENGTH_SHORT).show();
                 }
 
             }
