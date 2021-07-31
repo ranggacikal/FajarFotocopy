@@ -363,9 +363,9 @@
             android:id="@+id/image_detail_barang_gudang"
             android:layout_width="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_height="120dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_operator" />
+            android:src="@drawable/ic_gift" />
 
         <Button
             android:id="@+id/btn_edit_barang_gudang"

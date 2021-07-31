@@ -35,7 +35,7 @@
                         android:layout_width="43dp"
                         android:layout_height="43dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_profile_baru" />
+                        android:src="@drawable/ic_operator" />
 
                     <LinearLayout
                         android:id="@+id/linear_atas"
