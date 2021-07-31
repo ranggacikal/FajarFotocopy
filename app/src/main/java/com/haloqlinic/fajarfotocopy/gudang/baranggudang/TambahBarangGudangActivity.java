@@ -307,17 +307,17 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (diskon.isEmpty()){
-            binding.edtTambahDiskonBarangGudang.setError("Field tidak boleh kosong");
-            binding.edtTambahDiskonBarangGudang.requestFocus();
-            return;
-        }
-
-        if (diskon_pack.isEmpty()){
-            binding.edtTambahDiskonpackBarangGudang.setError("Field tidak boleh kosong");
-            binding.edtTambahDiskonpackBarangGudang.requestFocus();
-            return;
-        }
+//        if (diskon.isEmpty()){
+//            binding.edtTambahDiskonBarangGudang.setError("Field tidak boleh kosong");
+//            binding.edtTambahDiskonBarangGudang.requestFocus();
+//            return;
+//        }
+//
+//        if (diskon_pack.isEmpty()){
+//            binding.edtTambahDiskonpackBarangGudang.setError("Field tidak boleh kosong");
+//            binding.edtTambahDiskonpackBarangGudang.requestFocus();
+//            return;
+//        }
 
         ProgressDialog progressDialog = new ProgressDialog(TambahBarangGudangActivity.this);
         progressDialog.setMessage("Menambahkan data barang");

@@ -51,11 +51,12 @@
 
         <EditText
             android:id="@+id/edt_nama_barang_gudang"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
+            android:padding="5dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="textCapWords"
             android:fontFamily="@font/sairamedium" />
 
@@ -85,8 +86,9 @@
                 android:id="@+id/edt_stock_barang_pcs_gudang"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="10dp"
+                android:padding="5dp"
                 android:inputType="number"
                 android:fontFamily="@font/sairamedium" />
 
@@ -101,8 +103,9 @@
                 android:id="@+id/edt_stock_barang_pack_gudang"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="10dp"
+                android:padding="5dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:inputType="number"
                 android:fontFamily="@font/sairamedium" />
 
@@ -119,10 +122,12 @@
 
         <EditText
             android:id="@+id/edt_harga_modal_gudang_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="number"
             android:fontFamily="@font/sairamedium" />
 
@@ -136,12 +141,13 @@
 
         <EditText
             android:id="@+id/edt_harga_modal_toko_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/sairamedium" />
 
         <TextView
@@ -155,8 +161,10 @@
 
         <EditText
             android:id="@+id/edt_harga_jual_toko_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
@@ -172,10 +180,11 @@
 
         <EditText
             android:id="@+id/edt_harga_modal_gudang_pack_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="number"
             android:fontFamily="@font/sairamedium" />
 
@@ -189,11 +198,12 @@
 
         <EditText
             android:id="@+id/edt_harga_modal_toko_pack_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="number"
             android:fontFamily="@font/sairamedium" />
 
@@ -208,9 +218,10 @@
 
         <EditText
             android:id="@+id/edt_harga_jual_toko_pack_edit"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
+            android:padding="5dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="number"
@@ -227,76 +238,59 @@
 
         <EditText
             android:id="@+id/edt_asal_barang_gudang"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:inputType="textCapWords"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/sairamedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="5dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Diskon" />
+
 
         <EditText
-            android:id="@+id/edt_diskon_edit"
-            android:layout_width="348dp"
+            android:id="@+id/edt_diskon_barang_pcs_gudang"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:inputType="number"
-            android:layout_marginHorizontal="10dp"
+            android:inputType="textCapWords"
+            android:visibility="gone"
+            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/sairamedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="5dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Diskon Pack" />
 
         <EditText
-            android:id="@+id/edt_diskon_pack_edit"
-            android:layout_width="348dp"
+            android:id="@+id/edt_diskon_barang_pack_gudang"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:padding="5dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:inputType="number"
-            android:layout_marginHorizontal="10dp"
+            android:inputType="textCapWords"
+            android:visibility="gone"
+            android:layout_marginHorizontal="30dp"
             android:fontFamily="@font/sairamedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="5dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Foto" />
 
         <ImageView
             android:id="@+id/image_detail_barang_gudang"
-            android:layout_width="120dp"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="120dp"
-            android:layout_marginHorizontal="10dp"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_profile" />
 
         <Button
             android:id="@+id/btn_edit_barang_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:paddingHorizontal="5dp"
+            android:padding="5dp"
+            android:layout_marginHorizontal="40dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:text="Edit"
@@ -305,12 +299,13 @@
 
         <Button
             android:id="@+id/btn_hapus_barang_stock_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:paddingHorizontal="5dp"
+            android:layout_marginHorizontal="40dp"
+            android:padding="5dp"
             android:background="@drawable/btn_merah"
             android:fontFamily="@font/sairamedium"
             android:text="Hapus"
