@@ -28,6 +28,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
                 if (preferencedConfig.getPreferenceIsLogin()){
                     String level = preferencedConfig.getPreferenceLevel();
+                    finish();
 
                     if (level.equals("gudang")){
                         startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
@@ -37,6 +38,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                         finish();
                     }else if (level.equals("User")){
                         startActivity(new Intent(SplashScreenActivity.this, MainKasirActivity.class));
+                        finish();
                     }
                 }else{
                     startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));

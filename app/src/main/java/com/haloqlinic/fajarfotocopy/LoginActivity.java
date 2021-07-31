@@ -120,6 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }else if (level.equals("User")){
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
+                            finish();
                         }
 
                     }else{
