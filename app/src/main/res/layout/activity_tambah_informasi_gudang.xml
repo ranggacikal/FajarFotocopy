@@ -55,15 +55,29 @@
             android:fontFamily="@font/sairamedium"
             android:text="Pilih Tanggal" />
 
-        <EditText
+        <TextView
+            android:id="@+id/text_tanggal_informasi_gudang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairabold"
+            android:text="00 - 00 - 0000"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_pilih_tanggal_tambah_informasi_gudang"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_marginHorizontal="30dp"
-            android:padding="10dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginTop="15dp"
+            android:text="Pilih Tanggal"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/sairabold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,11 +89,10 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:padding="10dp"
+            android:layout_height="50dp"
+            android:padding="7dp"
             android:layout_marginHorizontal="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginVertical="5dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
@@ -95,10 +108,9 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
+            android:layout_height="250dp"
+            android:layout_marginVertical="5dp"
+            android:padding="7dp"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium"

@@ -203,14 +203,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:textSize="20sp"
                 android:fontFamily="@font/sairamedium"
-                android:text="Rp" />
+                android:text="Rp"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/edt_tambah_harga_modal_gudang"

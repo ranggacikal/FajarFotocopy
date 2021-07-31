@@ -325,7 +325,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.tambahBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, diskon, diskon_pack, image_barang, id_kategori).enqueue(new Callback<ResponseTambahBarang>() {
+                jumlah_pack,  image_barang, id_kategori).enqueue(new Callback<ResponseTambahBarang>() {
             @Override
             public void onResponse(Call<ResponseTambahBarang> call, Response<ResponseTambahBarang> response) {
                 if (response.isSuccessful()){

@@ -23,7 +23,7 @@
         android:background="#D4B44E"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
+        app:tabSelectedTextColor="@color/white"
         app:tabTextAppearance="@style/MineCustomTabText" />
 
 </RelativeLayout>
