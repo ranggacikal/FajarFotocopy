@@ -13,8 +13,10 @@
         <entry key="app/src/main/res/drawable/button_filter.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pembayaran_kasir.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_list_pembayaran.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />

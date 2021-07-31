@@ -124,8 +124,6 @@ public interface ApiService {
                                             @Field("harga_jual_toko_pack") String harga_jual_toko_pack,
                                             @Field("asal_barang") String asal_barang,
                                             @Field("jumlah_pack") String jumlah_pack,
-                                            @Field("diskon") String diskon,
-                                            @Field("diskon_pack") String diskon_pack,
                                             @Field("image_barang") String image_barang,
                                             @Field("id_kategori_barang") String id_kategori_barang);
 

@@ -112,13 +112,13 @@ public class LoginActivity extends AppCompatActivity {
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_IMG, img);
                         preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, true);
 
-                        if (level.equals("gudang")){
+                        if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
-                        }else if (level.equals("kepala toko")){
+                        }else if (level.equals("Kepala Toko")){
                             startActivity(new Intent(LoginActivity.this, HomeKetoActivity.class));
                             finish();
-                        }else if (level.equals("User")){
+                        }else if (level.equals("Karyawan Toko")){
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
                             finish();
                         }

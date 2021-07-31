@@ -96,9 +96,10 @@ public class TambahUserGudangActivity extends AppCompatActivity {
         });
 
         ArrayList<String> levelList = new ArrayList<>();
-        levelList.add("Gudang");
+        levelList.add("Kepala Gudang");
+        levelList.add("Karyawan Gudang");
         levelList.add("Kepala Toko");
-        levelList.add("User");
+        levelList.add("Karyawan Toko");
 
         ArrayAdapter<String> adapterLevel = new ArrayAdapter<String>(TambahUserGudangActivity.this, R.layout.spinner_item, levelList);
         binding.spinnerTambahLevelUserGudang.setAdapter(adapterLevel);

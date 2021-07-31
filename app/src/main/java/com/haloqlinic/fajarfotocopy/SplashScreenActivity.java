@@ -30,13 +30,13 @@ public class SplashScreenActivity extends AppCompatActivity {
                     String level = preferencedConfig.getPreferenceLevel();
                     finish();
 
-                    if (level.equals("gudang")){
+                    if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
                         startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
                         finish();
-                    }else if (level.equals("kepala toko")){
+                    }else if (level.equals("Kepala Toko")){
                         startActivity(new Intent(SplashScreenActivity.this, HomeKetoActivity.class));
                         finish();
-                    }else if (level.equals("User")){
+                    }else if (level.equals("Karyawan Toko")){
                         startActivity(new Intent(SplashScreenActivity.this, MainKasirActivity.class));
                         finish();
                     }

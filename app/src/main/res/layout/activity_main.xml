@@ -7,25 +7,11 @@
     android:background="@color/white"
     tools:context=".gudang.MainActivity">
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/frame_home_gudang"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/tab_layout_gudang">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <FrameLayout
-                android:id="@+id/frame_home_gudang"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@+id/tab_layout_gudang" />
-
-        </LinearLayout>
-
-    </ScrollView>
+        android:layout_above="@+id/tab_layout_gudang" />
 
 
     <com.google.android.material.tabs.TabLayout

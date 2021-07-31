@@ -65,6 +65,13 @@ public class HomeFragment extends Fragment {
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
+        String level = preferencedConfig.getPreferenceLevel();
+
+        if (level.equals("Karyawan Gudang")){
+            cardToko.setVisibility(View.GONE);
+            cardUser.setVisibility(View.GONE);
+        }
+
         txtNama.setText(preferencedConfig.getPreferenceNama());
 
         calendar = Calendar.getInstance();
