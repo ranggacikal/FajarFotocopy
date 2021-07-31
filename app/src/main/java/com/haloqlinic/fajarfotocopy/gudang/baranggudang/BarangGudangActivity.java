@@ -50,5 +50,14 @@ public class BarangGudangActivity extends AppCompatActivity {
                         startActivity(new Intent(BarangGudangActivity.this, DataBarangGudangActivity.class));
                     }
                 });
+
+        PushDownAnim.setPushDownAnimTo(binding.linearCekStockBarangGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(BarangGudangActivity.this, CekStockBarangGudangActivity.class));
+                    }
+                });
     }
 }

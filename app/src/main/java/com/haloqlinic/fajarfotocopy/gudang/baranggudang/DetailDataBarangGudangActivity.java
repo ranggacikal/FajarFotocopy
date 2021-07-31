@@ -77,8 +77,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         binding.edtHargaModalTokoPackEdit.setText(harga_modal_toko_pack);
         binding.edtHargaJualTokoPackEdit.setText(harga_jual_toko_pack);
         binding.edtAsalBarangGudang.setText(asal_barang);
-        binding.edtDiskonEdit.setText(diskon);
-        binding.edtDiskonPackEdit.setText(diskon_pack);
+        binding.edtDiskonBarangPackGudang.setText(diskon);
+        binding.edtDiskonBarangPcsGudang.setText(diskon_pack);
 
         Glide.with(DetailDataBarangGudangActivity.this)
                 .load(image)
@@ -249,8 +249,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String harga_jual_toko_pack = binding.edtHargaJualTokoPackEdit.getText().toString();
         String asal_barang = binding.edtAsalBarangGudang.getText().toString();
         String jumlah_pack = binding.edtStockBarangPackGudang.getText().toString();
-        String diskon = binding.edtDiskonEdit.getText().toString();
-        String diskon_pack = binding.edtDiskonPackEdit.getText().toString();
+        String diskon = binding.edtDiskonBarangPcsGudang.getText().toString();
+        String diskon_pack = binding.edtDiskonBarangPackGudang.getText().toString();
         String image_barang = "";
 
         if (nama_barang.isEmpty()){
@@ -313,17 +313,17 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (diskon.isEmpty()){
-            binding.edtDiskonEdit.setError("Field tidak boleh kosong");
-            binding.edtDiskonEdit.requestFocus();
-            return;
-        }
-
-        if (diskon_pack.isEmpty()){
-            binding.edtDiskonPackEdit.setError("Field tidak boleh kosong");
-            binding.edtDiskonPackEdit.requestFocus();
-            return;
-        }
+//        if (diskon.isEmpty()){
+//            binding.edtDiskonBarangPcsGudang.setError("Field tidak boleh kosong");
+//            binding.edtDiskonBarangPcsGudang.requestFocus();
+//            return;
+//        }
+//
+//        if (diskon_pack.isEmpty()){
+//            binding.edtDiskonBarangPcsGudang.setError("Field tidak boleh kosong");
+//            binding.edtDiskonBarangPackGudang.requestFocus();
+//            return;
+//        }
 
         if (bitmap == null){
             image_barang = getIntent().getStringExtra("image");

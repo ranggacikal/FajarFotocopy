@@ -12,7 +12,8 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".kasir.transaksikasir.DetailStatusPenjualanActivity"></activity>
+        <activity android:name=".gudang.baranggudang.CekStockBarangGudangActivity"></activity>
+        <activity android:name=".kasir.transaksikasir.DetailStatusPenjualanActivity" />
         <activity android:name=".kasir.transaksikasir.TransaksiBerhasilActivity" />
         <activity
             android:name=".kasir.transaksikasir.TransaksiKasirActivity"
@@ -49,7 +50,8 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".gudang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
-        <activity android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity"
+        <activity
+            android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
         <activity android:name=".gudang.transferbaranggudang.TransferBarangGudangActivity" />
         <activity android:name=".LoginSebagaiActivity" />
@@ -90,8 +92,8 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
     </application>
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
 
 </manifest>
