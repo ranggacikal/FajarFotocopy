@@ -337,7 +337,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.editBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, diskon, diskon_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
+                jumlah_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
             @Override
             public void onResponse(Call<ResponseEditBarang> call, Response<ResponseEditBarang> response) {
                 if (response.isSuccessful()){

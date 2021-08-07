@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.gudang.baranggudang;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
@@ -141,7 +142,9 @@ public class DataBarangGudangActivity extends AppCompatActivity {
                         List<SearchBarangByIdItem> dataBarangScanner = response.body().getSearchBarangById();
                         CariBarangIdAdapter adapterScanner = new CariBarangIdAdapter(DataBarangGudangActivity.this, dataBarangScanner);
                         binding.recyclerDataBarangGudamgScanner.setHasFixedSize(true);
-                        binding.recyclerDataBarangGudamgScanner.setLayoutManager(new LinearLayoutManager(DataBarangGudangActivity.this));
+                        GridLayoutManager manager = new GridLayoutManager(DataBarangGudangActivity.this,
+                                2, GridLayoutManager.VERTICAL, false);
+                        binding.recyclerDataBarangGudamgScanner.setLayoutManager(manager);
                         binding.recyclerDataBarangGudamgScanner.setAdapter(adapterScanner);
                         binding.recyclerDataBarangGudamgScanner.setVisibility(View.VISIBLE);
                         binding.recyclerDataBarangGudamg.setVisibility(View.GONE);
@@ -206,7 +209,9 @@ public class DataBarangGudangActivity extends AppCompatActivity {
                             List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
                             CariBarangAdapter adapter = new CariBarangAdapter(DataBarangGudangActivity.this, dataBarang);
                             binding.recyclerDataBarangGudamg.setHasFixedSize(true);
-                            binding.recyclerDataBarangGudamg.setLayoutManager(new LinearLayoutManager(DataBarangGudangActivity.this));
+                            GridLayoutManager manager = new GridLayoutManager(DataBarangGudangActivity.this,
+                                    2, GridLayoutManager.VERTICAL, false);
+                            binding.recyclerDataBarangGudamg.setLayoutManager(manager);
                             binding.recyclerDataBarangGudamg.setAdapter(adapter);
 
                         } else {

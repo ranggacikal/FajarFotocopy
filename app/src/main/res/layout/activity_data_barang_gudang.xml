@@ -99,19 +99,19 @@
         android:background="@drawable/btn_gold"
         android:fontFamily="@font/sairabold"
         android:padding="5dp"
+        android:paddingHorizontal="5dp"
         android:src="@drawable/ic_filter"
         android:text="Scan Barcode"
-        android:paddingHorizontal="5dp"
         android:textColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_data_barang_gudamg"
         android:layout_width="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btn_barcode_data_barang_gudang"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_data_barang_gudamg_scanner"

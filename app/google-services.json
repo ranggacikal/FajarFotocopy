@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "358027184919",
+    "project_id": "fajarfotocopy-20355",
+    "storage_bucket": "fajarfotocopy-20355.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358027184919:android:04ebf6669a01edff224552",
+        "android_client_info": {
+          "package_name": "com.haloqlinic.fajarfotocopy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358027184919-mqve4rbm3tnm3bo7gm5fv1e6jlca7rp4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.haloqlinic.fajarfotocopy",
+            "certificate_hash": "bad21c8c7de588bdc54a0bde89c83983155739ec"
+          }
+        },
+        {
+          "client_id": "358027184919-0cba3fk9klmb9akn1q41a1sm1h561t2q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsgk03sVrgaVJNlhq6Am1LeII1RigLE80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358027184919-0cba3fk9klmb9akn1q41a1sm1h561t2q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
