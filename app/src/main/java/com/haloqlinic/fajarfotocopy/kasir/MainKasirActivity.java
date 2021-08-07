@@ -12,7 +12,6 @@ import com.haloqlinic.fajarfotocopy.R;
 
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.InformasiKasirFragment;
-import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.KeranjangKasirFragment;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.RiwayatTransaksiKasirFragment;
 
 public class MainKasirActivity extends AppCompatActivity {
@@ -22,7 +21,6 @@ public class MainKasirActivity extends AppCompatActivity {
     private HomeKasirFragment homeKasirFragment;
     private InformasiKasirFragment informasiKasirFragment;
     private RiwayatTransaksiKasirFragment riwayatTransaksiKasirFragment;
-    private KeranjangKasirFragment keranjangKasirFragment;
 
 
     @Override
@@ -65,9 +63,7 @@ public class MainKasirActivity extends AppCompatActivity {
             case 2 :
                 replaceFragment(riwayatTransaksiKasirFragment);
                 break;
-            case 3 :
-                replaceFragment(keranjangKasirFragment);
-                break;
+
         }
 
     }
@@ -85,12 +81,10 @@ public class MainKasirActivity extends AppCompatActivity {
         homeKasirFragment = new HomeKasirFragment();
         informasiKasirFragment = new InformasiKasirFragment();
         riwayatTransaksiKasirFragment = new RiwayatTransaksiKasirFragment();
-        keranjangKasirFragment = new KeranjangKasirFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
         tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
         tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.ic_riwayat_transaksi));
-        tabLayout.addTab(tabLayout.newTab().setText("Keranjang").setIcon(R.drawable.ic_keranjang));
 
     }
 

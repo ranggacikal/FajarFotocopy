@@ -183,25 +183,25 @@ public class TambahUserGudangActivity extends AppCompatActivity {
         String id_user = "U"+randomId;
 
         if (nama_user.isEmpty()){
-            binding.edtTambahNamaUserGudang.setError("Nama Lengkap tidak boleh kosong");
+            binding.edtTambahNamaUserGudang.setError("Nama Lengkap Tidak Boleh Kosong!");
             binding.edtTambahUsernameUserGudang.requestFocus();
             return;
         }
 
         if (username.isEmpty()){
-            binding.edtTambahUsernameUserGudang.setError("username tidak boleh kosong");
+            binding.edtTambahUsernameUserGudang.setError("Username Tidak Boleh Kosong!");
             binding.edtTambahUsernameUserGudang.requestFocus();
             return;
         }
 
         if (password.isEmpty()){
-            binding.edtTambahPasswordUserGudang.setError("password tidak boleh kosong");
+            binding.edtTambahPasswordUserGudang.setError("Password Tidak Boleh Kosong!");
             binding.edtTambahPasswordUserGudang.requestFocus();
             return;
         }
 
         ProgressDialog progressDialog = new ProgressDialog(TambahUserGudangActivity.this);
-        progressDialog.setMessage("Menambhkan User");
+        progressDialog.setMessage("Menambahkan User");
         progressDialog.show();
 
         ConfigRetrofit.service.register(id_user, nama_user, username, password, level, id_toko, image).enqueue(new Callback<ResponseRegister>() {
@@ -226,7 +226,7 @@ public class TambahUserGudangActivity extends AppCompatActivity {
 
                 }else{
                     progressDialog.dismiss();
-                    Toast.makeText(TambahUserGudangActivity.this, "Terjadi Kesalahan Di server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahUserGudangActivity.this, "Terjadi Kesalahan Di Server...", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -268,7 +268,7 @@ public class TambahUserGudangActivity extends AppCompatActivity {
         if (bitmap != null) {
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
         } else if (bitmap == null) {
-            Toast.makeText(this, "Gambar Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Gambar Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
         }
         byte[] imgByte = byteArrayOutputStream.toByteArray();
 

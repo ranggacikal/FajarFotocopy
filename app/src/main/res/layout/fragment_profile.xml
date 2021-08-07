@@ -62,7 +62,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="5dp"
-        android:background="@drawable/ic_profile_baru" />
+        android:background="@drawable/ic_profile" />
 
 
 </RelativeLayout>
