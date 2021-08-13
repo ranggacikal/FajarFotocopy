@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.haloqlinic.fajarfotocopy">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +12,7 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".driver.MainDriverActivity"></activity>
         <activity
             android:name=".kasir.transaksikasir.InvoiceKasirActivity"
             android:exported="true" />
@@ -106,5 +104,8 @@
             </intent-filter>
         </service>
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

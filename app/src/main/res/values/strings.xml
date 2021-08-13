@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">FGE</string>
+    <string name="app_name">FEG</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="default_notification_channel_id">fajar_fotocopy_channel</string>
 
     <string-array name="pembayaran">
         <item>Cash</item>
         <item>Debit</item>
     </string-array>
-
-    <string name="default_notification_channel_id">fajar_fotocopy_channel</string>
 
 </resources>
