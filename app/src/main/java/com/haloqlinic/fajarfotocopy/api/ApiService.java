@@ -308,7 +308,8 @@ public interface ApiService {
                                                               @Field("id_outlet") String id_outlet,
                                                               @Field("metode_bayar") String metode_bayar,
                                                               @Field("total_harga") String total_harga,
-                                                              @Field("jumlah_diskon") String jumlah_diskon);
+                                                              @Field("jumlah_diskon") String jumlah_diskon,
+                                                              @Field("image_pembayaran") String image_pembayaran);
 
     @FormUrlEncoded
     @POST("getTransaksiByBulan")

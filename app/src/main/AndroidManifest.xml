@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.haloqlinic.fajarfotocopy">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +15,10 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".gudang.baranggudang.CekStockBarangGudangActivity"></activity>
+        <activity
+            android:name=".kasir.transaksikasir.InvoiceKasirActivity"
+            android:exported="true" />
+        <activity android:name=".gudang.baranggudang.CekStockBarangGudangActivity" />
         <activity android:name=".kasir.transaksikasir.DetailStatusPenjualanActivity" />
         <activity android:name=".kasir.transaksikasir.TransaksiBerhasilActivity" />
         <activity
@@ -91,9 +97,14 @@
             android:screenOrientation="portrait"
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme" />
-    </application>
-    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.CAMERA" />
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
 
 </manifest>

@@ -63,7 +63,9 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        createPdf();
+                        Intent intent = new Intent(CetakBuktiKasirActivity.this, InvoiceKasirActivity.class);
+                        intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        startActivity(intent);
                     }
                 });
 

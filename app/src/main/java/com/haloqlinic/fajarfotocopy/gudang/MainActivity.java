@@ -1,13 +1,21 @@
 package com.haloqlinic.fajarfotocopy.gudang;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.google.android.material.tabs.TabLayout;
+import com.haloqlinic.fajarfotocopy.Constants;
+import com.haloqlinic.fajarfotocopy.MyNotificationManager;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
@@ -24,10 +32,29 @@ public class MainActivity extends AppCompatActivity {
     private ProfileFragment profileFragment;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+//            NotificationManager mNotificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//            int importance = NotificationManager.IMPORTANCE_HIGH;
+//            NotificationChannel mChannel = new NotificationChannel(Constants.CHANNEL_ID, Constants.CHANNEL_NAME, importance);
+//            mChannel.setDescription(Constants.CHANNEL_DESCRIPTION);
+//            mChannel.enableLights(true);
+//            mChannel.setLightColor(Color.RED);
+//            mChannel.enableVibration(true);
+//            mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+//            mNotificationManager.createNotificationChannel(mChannel);
+//        }
+////
+////        /*
+////         * Displaying a notification locally
+////         */
+//        MyNotificationManager.getInstance(this).displayNotification("Greetings", "Hello how are you?");
 
         getAllWidgets();
         bindWidgetsWithAnEvent();

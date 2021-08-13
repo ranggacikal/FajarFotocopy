@@ -5,7 +5,9 @@
 
     <string-array name="pembayaran">
         <item>Cash</item>
-        <item>Tempo</item>
+        <item>Debit</item>
     </string-array>
+
+    <string name="default_notification_channel_id">fajar_fotocopy_channel</string>
 
 </resources>

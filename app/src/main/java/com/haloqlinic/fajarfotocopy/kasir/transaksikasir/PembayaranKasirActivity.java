@@ -1,30 +1,39 @@
 package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityHomeKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPembayaranKasirBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +63,8 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     private String date;
 
     private SharedPreferencedConfig preferencedConfig;
+
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +110,34 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 }
             });
 
-            metode_bayar = String.valueOf(binding.spinnerPembayaran.getSelectedItem());
+            binding.spinnerPembayaran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    metode_bayar = binding.spinnerPembayaran.getSelectedItem().toString();
+                    Log.d("cekMetodeBayar", "onItemSelected: "+metode_bayar);
+
+                    if(metode_bayar.equals("Cash")){
+                        binding.linearBuktiTfPembayaran.setVisibility(View.GONE);
+                    }else{
+                        binding.linearBuktiTfPembayaran.setVisibility(View.VISIBLE);
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+        PushDownAnim.setPushDownAnimTo(binding.imgBuktiTfPembayaran)
+                .setScale( MODE_SCALE, 0.89f  )
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        pilihGambar();
+                    }
+                });
 
             binding.idTransaksiPembayaran.setText(id_status_penjualan);
             binding.textTanggalPembayaran.setText(tanggal);
@@ -118,6 +156,51 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 });
 
             loadDataPembayaran();
+    }
+
+    private void pilihGambar() {
+
+        ImagePicker.with(PembayaranKasirActivity.this)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+
+            Log.d("requestCodeImg", "onActivityResult: " + requestCode);
+
+            Uri uri1 = data.getData();
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            binding.imgBuktiTfPembayaran.setImageBitmap(bitmap);
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Dibatalkan", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private String imageToString() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        if (bitmap != null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        } else if (bitmap == null) {
+            Toast.makeText(this, "Gambar Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+        }
+        byte[] imgByte = byteArrayOutputStream.toByteArray();
+
+        return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
 
     private void bayar() {
@@ -139,11 +222,11 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(PembayaranKasirActivity.this);
         progressDialog.setMessage("memproses pembayaran");
-        progressDialog.dismiss();
+        progressDialog.show();
 
         ConfigRetrofit.service.updateStatusPenjualan(id_status_penjualan, tanggal2,
                 "selesai", preferencedConfig.getPreferenceIdOutlet(), metode_bayar,
-                postTotal, postDiskon)
+                postTotal, postDiskon, imageToString())
                 .enqueue(new Callback<ResponseUpdateStatusPenjualan>() {
                     @Override
                     public void onResponse(Call<ResponseUpdateStatusPenjualan> call, Response<ResponseUpdateStatusPenjualan> response) {
