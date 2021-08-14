@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityLoginBinding;
+import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
@@ -127,6 +128,10 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }else if (level.equals("Karyawan Toko")){
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
+                            getToken();
+                            finish();
+                        } else if (level.equals("Driver")){
+                            startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
                             getToken();
                             finish();
                         }
