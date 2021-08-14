@@ -10,15 +10,20 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengirimanGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahUserGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
@@ -242,26 +247,50 @@ public class TambahUserGudangActivity extends AppCompatActivity {
     }
 
     private void pilihImage() {
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMG_REQUEST);
+        ImagePicker.with(TambahUserGudangActivity.this)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null) {
-            Uri path = data.getData();
+        switch (requestCode) {
+            case (49374):
+                IntentResult intentResult = IntentIntegrator.parseActivityResult(
+                        requestCode, resultCode, data
+                );
 
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
-                binding.imageTambahUserGudang.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                if (intentResult.getContents() != null) {
+
+                    binding.edtTambahUsernameUserGudang.setText(intentResult.getContents());
+                    Log.d("requestCodeScan", "onActivityResult: " + requestCode);
+
+                }
+                break;
+            case (2404):
+                if (resultCode == RESULT_OK) {
+
+                    Log.d("requestCodeImg", "onActivityResult: " + requestCode);
+
+                    Uri uri1 = data.getData();
+                    try {
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    binding.imageTambahUserGudang.setImageBitmap(bitmap);
+
+                } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                    Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(TambahUserGudangActivity.this, "Dibatalkan", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
         }
     }
 
