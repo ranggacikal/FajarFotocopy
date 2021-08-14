@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp"
+            android:layout_height="120dp"
             android:background="@drawable/background_header_green">
 
             <LinearLayout
@@ -47,52 +47,75 @@
         </LinearLayout>
 
 
-        <SearchView
-            android:id="@+id/searchview_datausergudang"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginHorizontal="30dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium"
-            android:padding="7dp" />
 
-        <Spinner
-            android:id="@+id/spinner_data_user_pilih_toko_gudang"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:background="@drawable/bg_rectangle"
-            android:visibility="gone"
-            android:fontFamily="@font/sairamedium"/>
 
-        <Spinner
-            android:id="@+id/spinner_data_user_pilih_level_gudang"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="25dp"
-            android:visibility="gone"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_data_user_gudang"
-            android:layout_width="match_parent"
-            android:layout_marginHorizontal="10dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"/>
-
-        <TextView
-            android:id="@+id/text_kosong_data_user"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tidak Ada Data Untuk Hasil Pencarian Ini"
-            android:textSize="16sp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:visibility="gone"
-            android:layout_below="@+id/searchview_datausergudang"
-            android:fontFamily="@font/sairabold"/>
+            android:layout_marginTop="27dp"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinner_data_level_user_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginHorizontal="40dp"
+                android:background="@drawable/bg_rectangle"
+                android:padding="10dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar_data_user_gudang"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:layout_above="@+id/linear_recycler_data_user_gudang"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_recycler_data_user_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@+id/linear_header"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Daftar User"
+                android:textSize="20sp"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginStart="39dp"/>
+
+            <SearchView
+                android:id="@+id/search_data_user_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginEnd="39dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_rectangle"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_data_user_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+
 
 
     </LinearLayout>

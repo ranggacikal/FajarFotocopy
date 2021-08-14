@@ -16,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="121dp"
+            android:layout_height="120dp"
             android:background="@drawable/background_header_green"
             android:orientation="vertical">
 
@@ -93,7 +93,7 @@
             <SearchView
                 android:id="@+id/search_cek_stok_toko_gudang"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="39dp"
                 android:layout_marginEnd="39dp"
                 android:layout_marginTop="15dp"
