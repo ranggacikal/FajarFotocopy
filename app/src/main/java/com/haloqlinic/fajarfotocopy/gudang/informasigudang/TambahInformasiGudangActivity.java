@@ -45,7 +45,6 @@ public class TambahInformasiGudangActivity extends AppCompatActivity {
     String tanggal;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

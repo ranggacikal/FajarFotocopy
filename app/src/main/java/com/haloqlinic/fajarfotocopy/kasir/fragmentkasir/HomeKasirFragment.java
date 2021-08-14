@@ -145,9 +145,8 @@ public class HomeKasirFragment extends Fragment {
                             if(status == 1){
                                 Intent intent = new Intent(getActivity(), TransaksiKasirActivity.class);
                                 intent.putExtra("namaActivity", "HomeKasir");
-                                intent.putExtra("id_status_penjualan", id_status_penjualan);
+                                preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_ID_STATUS_PENJUALAN, id_status_penjualan);
                                 startActivity(intent);
-                                getActivity().finish();
                             }else {
                                 Toast.makeText(getContext(), "Gagal Membuat Penjualan", Toast.LENGTH_SHORT).show();
                             }

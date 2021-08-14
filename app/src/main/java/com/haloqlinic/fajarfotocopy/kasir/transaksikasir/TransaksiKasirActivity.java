@@ -106,7 +106,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         binding.searchviewBarangOutletBarcode.setIconified(false);
 
         nameActivity = getIntent().getStringExtra("namaActivity");
-        id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
+        id_status_penjualan = preferencedConfig.getPreferenceIdStatusPenjualan();
 
         PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -193,6 +193,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         Intent intent = new Intent(TransaksiKasirActivity.this, PembayaranKasirActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
                         startActivity(intent);
+                        finish();
 
                     }
                 });

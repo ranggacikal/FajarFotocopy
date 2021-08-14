@@ -15,38 +15,137 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
             android:layout_marginStart="75dp"
+            android:layout_marginTop="38dp"
+            android:fontFamily="@font/sairamedium"
             android:text="Riwayat Transaksi"
-            android:textSize="24sp"
             android:textColor="@color/white"
-            android:fontFamily="@font/sairamedium"/>
+            android:textSize="24sp" />
 
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/txt_tanggal_riwayat_kasir"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tanggal"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:layout_below="@+id/headerkeranjang"
-        android:fontFamily="@font/sairabold"/>
+    <Button
+        android:id="@+id/btn_lihat_laporan_kasir"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_gold"
+        android:layout_alignParentBottom="true"
+        android:fontFamily="@font/sairabold"
+        android:text="Lihat Laporan Kasir"
+        android:textColor="@color/white" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_riwayat_kasir"
+    <LinearLayout
+        android:id="@+id/linear_pilihan_bulan_hari"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_tanggal_riwayat_kasir">
+        android:layout_below="@+id/headerkeranjang"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Pilih Report Penjualan Berdasarkan : "
+            android:textColor="@color/black" />
 
+        <Spinner
+            android:id="@+id/spinner_pilih_hari_bulan"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_tanggal_report_kasir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_pilihan_bulan_hari"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Pilih Tanggal" />
+
+        <TextView
+            android:id="@+id/text_tanggal_report_kasir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairabold"
+            android:text="00 - 00 - 0000"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btn_pilih_tanggal_report_kasir"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/sairabold"
+            android:text="Pilih Tanggal"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_pilih_bulan_tahun_report_kasir"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_pilihan_bulan_hari"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Bulan : "
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_bulan_report_kasir"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Tahun : "
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_tahun_report_kasir"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
 
 
 </RelativeLayout>

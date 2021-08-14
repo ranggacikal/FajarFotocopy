@@ -318,4 +318,10 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(PembayaranKasirActivity.this, TransaksiKasirActivity.class));
+    }
 }
