@@ -11,6 +11,7 @@ public class SharedPreferencedConfig {
     public static final String PREFERENCE_USERNAME = "prefUsername";
     public static final String PREFERENCE_LEVEL = "prefLevel";
     public static final String PREFERENCE_ID_OUTLET = "prefIdOutlet";
+    public static final String PREFERENCE_ID_STATUS_PENJUALAN = "prefIdStatusPenjualan";
     public static final String PREFERENCE_IMG = "prefImg";
     public static final String PREFERENCE_IS_LOGIN = "prefIsLogin";
 
@@ -56,6 +57,10 @@ public class SharedPreferencedConfig {
 
     public String getPreferenceIdOutlet(){
         return preferences.getString(PREFERENCE_ID_OUTLET, "");
+    }
+
+    public String getPreferenceIdStatusPenjualan(){
+        return preferences.getString(PREFERENCE_ID_STATUS_PENJUALAN, "");
     }
 
     public String getPreferenceImg(){
