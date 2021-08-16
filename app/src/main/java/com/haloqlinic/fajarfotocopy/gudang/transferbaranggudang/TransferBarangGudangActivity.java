@@ -94,6 +94,15 @@ public class TransferBarangGudangActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackTransferGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
     }
 
     private void tambahStatusTransfer() {
