@@ -19,7 +19,7 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
-import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
@@ -374,7 +374,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         if (!nameActivity.equals("")){
 
                             if (nameActivity.equals("HomeKeto")){
-                                startActivity(new Intent(TransaksiKasirActivity.this, HomeKetoActivity.class));
+                                startActivity(new Intent(TransaksiKasirActivity.this, MainKetoActivity.class));
                                 finish();
                             }else if (nameActivity.equals("HomeKasir")){
                                 startActivity(new Intent(TransaksiKasirActivity.this, MainKasirActivity.class));

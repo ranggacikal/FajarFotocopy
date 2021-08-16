@@ -4,7 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13518518518518519" />
+        <entry key="..\:/FEG/app/src/main/res/drawable/card_home_keto.xml" value="0.21614583333333334" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_home_keto.xml" value="0.22" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_main_keto.xml" value="0.1859375" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_transfer_barang_gudang.xml" value="0.15" />
+        <entry key="..\:/FEG/app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/fragment_home_keto.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/fragment_informasi_keto.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/fragment_profile_keto.xml" value="0.1859375" />
         <entry key="app/src/main/res/drawable/bg_btn_blue.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/bg_bulat.xml" value="0.25462962962962965" />
         <entry key="app/src/main/res/drawable/bg_edt_white.xml" value="0.25462962962962965" />
