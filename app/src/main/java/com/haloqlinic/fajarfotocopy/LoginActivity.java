@@ -42,6 +42,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText edtUsername, edtPassword;
     Button btnLogin;
 
+    String token;
+    String tokenLocal = "";
+
     private SharedPreferencedConfig preferencedConfig;
 
     @Override
@@ -100,6 +103,41 @@ public class LoginActivity extends AppCompatActivity {
 
                     int status = response.body().getStatus();
 
+
+
+                    FirebaseMessaging.getInstance().getToken()
+                            .addOnCompleteListener(new OnCompleteListener<String>() {
+                                @Override
+                                public void onComplete(@NonNull Task<String> task) {
+                                    if (!task.isSuccessful()) {
+                                        Log.w("statusGetToken", "Fetching FCM registration token failed", task.getException());
+                                        return;
+                                    }
+
+                                    // Get new FCM registration token
+
+
+
+                                    tokenLocal = preferencedConfig.getPreferenceTokenFcm();
+
+                                    if(tokenLocal.equals("")){
+                                        token = task.getResult();
+                                        preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_TOKEN_FCM, token);
+
+                                    }else{
+                                        token = tokenLocal;
+                                        preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_TOKEN_FCM, token);
+                                    }
+
+                                    // Log and toast
+//                        String msg = getString(R.string.msg_token_fmt, token);
+                                    Log.d("statusGetToken", token);
+                                    Toast.makeText(LoginActivity.this, "berhasil get Token", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                    Log.d("checkTokenLocal", "login: "+tokenLocal);
+
                     if (status==1){
                         progressDialog.dismiss();
 
@@ -120,19 +158,15 @@ public class LoginActivity extends AppCompatActivity {
 
                         if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                            getToken();
                             finish();
                         }else if (level.equals("Kepala Toko")){
                             startActivity(new Intent(LoginActivity.this, HomeKetoActivity.class));
-                            getToken();
                             finish();
                         }else if (level.equals("Karyawan Toko")){
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
-                            getToken();
                             finish();
                         } else if (level.equals("Driver")){
                             startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
-                            getToken();
                             finish();
                         }
 
@@ -169,7 +203,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
                         // Get new FCM registration token
-                        String token = task.getResult();
+                        token = task.getResult();
 
                         // Log and toast
 //                        String msg = getString(R.string.msg_token_fmt, token);

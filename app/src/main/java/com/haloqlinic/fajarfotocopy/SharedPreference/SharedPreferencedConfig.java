@@ -13,6 +13,7 @@ public class SharedPreferencedConfig {
     public static final String PREFERENCE_ID_OUTLET = "prefIdOutlet";
     public static final String PREFERENCE_ID_STATUS_PENJUALAN = "prefIdStatusPenjualan";
     public static final String PREFERENCE_IMG = "prefImg";
+    public static final String PREFERENCE_TOKEN_FCM = "prefTokenFcm";
     public static final String PREFERENCE_IS_LOGIN = "prefIsLogin";
 
     SharedPreferences preferences;
@@ -65,6 +66,10 @@ public class SharedPreferencedConfig {
 
     public String getPreferenceImg(){
         return preferences.getString(PREFERENCE_IMG, "");
+    }
+
+    public String getPreferenceTokenFcm(){
+        return preferences.getString(PREFERENCE_TOKEN_FCM, "");
     }
 
     public Boolean getPreferenceIsLogin(){

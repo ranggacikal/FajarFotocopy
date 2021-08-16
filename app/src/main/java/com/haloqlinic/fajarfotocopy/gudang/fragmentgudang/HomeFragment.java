@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,8 @@ public class HomeFragment extends Fragment {
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         String level = preferencedConfig.getPreferenceLevel();
+
+        Log.d("checkTokenLocal", "Home: "+preferencedConfig.getPreferenceTokenFcm());
 
         if (level.equals("Karyawan Gudang")){
             cardToko.setVisibility(View.GONE);
