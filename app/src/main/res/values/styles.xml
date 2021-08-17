@@ -4,7 +4,6 @@
     <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">10sp</item>
         <item name="textAllCaps">false</item>
-        <item name="android:padding">2dp</item>
         <item name="android:fontFamily">@font/sairabold</item>
         <item name="android:textColor">@color/black</item>
     </style>

@@ -18,12 +18,13 @@
         android:id="@+id/tab_layout_driver"
         style="@style/MineCustomTabText"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="#D4B44E"
+        android:background="@color/gold"
         app:tabGravity="fill"
         app:tabMode="fixed"
         app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/black"
         app:tabTextAppearance="@style/MineCustomTabText" />
 
 </RelativeLayout>

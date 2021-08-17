@@ -16,7 +16,7 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_kasir"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         app:tabGravity="fill"
         app:tabMode="fixed"
         android:layout_alignParentBottom="true"

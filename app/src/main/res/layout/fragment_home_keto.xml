@@ -160,9 +160,9 @@
                 android:layout_height="100dp"
                 android:layout_below="@id/linear_kasir_keto"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="25dp"
                 android:background="@drawable/card_home_keto"
                 android:orientation="horizontal"
-                android:layout_marginTop="25dp"
                 android:paddingHorizontal="5dp">
 
                 <ImageView
@@ -184,8 +184,6 @@
 
 
             </LinearLayout>
-
-
 
 
             <LinearLayout
