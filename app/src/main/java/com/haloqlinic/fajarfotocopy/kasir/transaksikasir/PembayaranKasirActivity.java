@@ -65,6 +65,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     private SharedPreferencedConfig preferencedConfig;
 
     private Bitmap bitmap;
+    String from_keto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +73,8 @@ public class PembayaranKasirActivity extends AppCompatActivity {
             binding = ActivityPembayaranKasirBinding.inflate(getLayoutInflater());
             View view = binding.getRoot();
             setContentView(view);
+
+            from_keto = getIntent().getStringExtra("from_keto");
 
             preferencedConfig = new SharedPreferencedConfig(this);
 
@@ -240,6 +243,9 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                                         "Pembayaran Berhasil", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiBerhasilActivity.class);
                                 intent.putExtra("id_status_penjualan", id_status_penjualan);
+                                if (from_keto!=null){
+                                    intent.putExtra("from_keto", from_keto);
+                                }
                                 startActivity(intent);
                                 finish();
                             }else{

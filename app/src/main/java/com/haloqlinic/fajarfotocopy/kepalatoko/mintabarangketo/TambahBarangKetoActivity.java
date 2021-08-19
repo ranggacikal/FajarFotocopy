@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CekStockAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CekStockIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kepalaToko.MintaBarangAdapter;
@@ -26,6 +27,8 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -40,6 +43,7 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
     public String id_barcode = "";
     public String nama = "";
 
+    private SharedPreferencedConfig preferencedConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
         binding = ActivityTambahBarangKetoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        preferencedConfig = new SharedPreferencedConfig(this);
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackCariMintaBarangKeto)
                 .setScale(MODE_SCALE, 0.89f)
@@ -93,14 +99,15 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
             binding.recyclerMintaBarangKeto.setVisibility(View.GONE);
         }else {
 
-            ConfigRetrofit.service.cariBarang(newText).enqueue(new Callback<ResponseCariBarangByNama>() {
+            ConfigRetrofit.service.barangOutletByNama(newText, preferencedConfig.getPreferenceIdOutlet())
+                    .enqueue(new Callback<ResponseBarangOutletByNama>() {
                 @Override
-                public void onResponse(Call<ResponseCariBarangByNama> call, Response<ResponseCariBarangByNama> response) {
+                public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
                     if (response.isSuccessful()){
                         binding.recyclerMintaBarangKeto.setVisibility(View.VISIBLE);
                         int status = response.body().getStatus();
                         if (status==1){
-                            List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
+                            List<SearchBarangOutletByNamaItem> dataBarang = response.body().getSearchBarangOutletByNama();
                             MintaBarangAdapter adapter = new MintaBarangAdapter(TambahBarangKetoActivity.this,
                                     dataBarang, TambahBarangKetoActivity.this);
                             binding.recyclerMintaBarangKeto.setAdapter(adapter);
@@ -115,7 +122,7 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseCariBarangByNama> call, Throwable t) {
+                public void onFailure(Call<ResponseBarangOutletByNama> call, Throwable t) {
                     Toast.makeText(TambahBarangKetoActivity.this, "Error: "+t.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 }
