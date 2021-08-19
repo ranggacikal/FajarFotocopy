@@ -7,216 +7,159 @@
     android:background="@color/white"
     tools:context=".kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/headerkeranjang"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="@drawable/background_header_green">
-
-            <LinearLayout
-                android:id="@+id/linear_back_report_keto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Report Transaksi"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
+        android:layout_height="120dp"
+        android:background="@drawable/background_header_green">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linear_back_report_transaksi_keto"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="38dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_atas" />
 
-            <ImageButton
-                android:id="@+id/btn_kalender"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="25dp"
-                android:gravity="center"
-                android:src="@drawable/ic_kalendar" />
-
-            <Button
-                android:id="@+id/btn_hari_ini"
-                android:layout_width="85dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="4dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/sairamedium"
-                android:text="Hari Ini"
+                android:text="Report Transaksi"
                 android:textColor="@color/white"
-                android:background="@drawable/btn_black"
-                android:textSize="10sp" />
+                android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/btn_bulan_ini"
-                android:layout_width="85dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Bulan Ini"
-                android:background="@drawable/btn_black"
-                android:textColor="@color/white"
-                android:textSize="10sp" />
-
-            <Button
-                android:id="@+id/btn_bulan_lalu"
-                android:layout_width="85dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Bulan Lalu"
-                android:textColor="@color/white"
-                android:background="@drawable/btn_black"
-                android:textSize="10sp" />
 
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="360dp"
-            android:layout_height="147dp"
-            android:layout_gravity="center"
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_lihat_laporan_keto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_gold"
+        android:fontFamily="@font/sairabold"
+        android:text="Lihat Laporan Kasir"
+        android:textColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/linear_pilihan_bulan_hari_keto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/headerkeranjang"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Pilih Report Transaksi Berdasarkan : "
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_hari_bulan_keto"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rectangle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_tanggal_report_keto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_keto"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            app:cardCornerRadius="10dp"
-            app:cardElevation="5dp">
+            android:fontFamily="@font/sairamedium"
+            android:text="Pilih Tanggal" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginHorizontal="5dp"
-                        android:fontFamily="@font/sairamedium"
-                        android:text="Rp. 500.0000"
-                        android:textColor="@color/gold"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/sairamedium"
-                        android:text="Total Penjualan Harian"
-                        android:layout_marginHorizontal="5dp"
-                        android:textColor="#959494" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/garis"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:background="#C4C4C4" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/sairamedium"
-                        android:text="Rp. 500.0000"
-                        android:layout_marginHorizontal="5dp"
-                        android:textColor="@color/gold"
-                        android:textSize="14sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/sairamedium"
-                            android:text="Total Penjualan"
-                            android:layout_marginHorizontal="5dp"
-                            android:textColor="#959494" />
-
-                        <TextView
-                            android:id="@+id/bulan_total_penjualan_keto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="3dp"
-                            android:layout_marginHorizontal="5dp"
-                            android:fontFamily="@font/sairamedium"
-                            android:text="Bulan"
-                            android:textColor="#959494" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/text_tanggal_report_keto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairabold"
+            android:text="00 - 00 - 0000"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <Button
-            android:layout_width="85dp"
-            android:layout_height="40dp"
-            android:background="@drawable/btn_black"
-            android:text="Cetak Bukti"
-            android:textColor="@color/white"
-            android:fontFamily="@font/sairamedium"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="10dp"
-            android:textSize="10sp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/btn_pilih_tanggal_report_keto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp">
+            android:layout_height="50dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/sairabold"
+            android:text="Pilih Tanggal"
+            android:textColor="@color/white" />
 
-        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_pilih_bulan_tahun_report_keto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_keto"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Bulan : "
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_bulan_report_keto"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Tahun : "
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_tahun_report_keto"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rectangle"/>
 
     </LinearLayout>
 

@@ -26,6 +26,7 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -61,17 +62,17 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
                 2, GridLayoutManager.VERTICAL, false);
         binding.recyclerMintaBarangKeto.setLayoutManager(manager);
 
-        binding.searchviewMintaBarangGudang.setOnClickListener(new View.OnClickListener() {
+        binding.searchviewMintaBarangKeto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 binding.recyclerMintaBarangKeto.setVisibility(View.GONE);
-                binding.searchviewMintaBarangGudang.setQueryHint("Cari Barang");
-                binding.searchviewMintaBarangGudang.setIconified(false);
+                binding.searchviewMintaBarangKeto.setQueryHint("Cari Barang");
+                binding.searchviewMintaBarangKeto.setIconified(false);
             }
         });
 
 
-        binding.searchviewMintaBarangGudang.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        binding.searchviewMintaBarangKeto.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -85,6 +86,24 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnBarcodeMintaBarangKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.recyclerMintaBarangKeto.setVisibility(View.GONE);
+                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+                                TambahBarangKetoActivity.this
+                        );
+
+                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+                        intentIntegrator.setBeepEnabled(true);
+                        intentIntegrator.setOrientationLocked(true);
+                        intentIntegrator.setCaptureActivity(Capture.class);
+                        intentIntegrator.initiateScan();
+                    }
+                });
     }
 
     private void loadData(String newText) {

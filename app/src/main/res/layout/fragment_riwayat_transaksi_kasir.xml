@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/headerkeranjang"
         android:layout_width="match_parent"
-        android:layout_height="121dp"
+        android:layout_height="120dp"
         android:background="@drawable/background_header_green">
 
         <TextView
@@ -59,7 +59,8 @@
         <Spinner
             android:id="@+id/spinner_pilih_hari_bulan"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rectangle"/>
 
     </LinearLayout>
 
@@ -143,7 +144,8 @@
         <Spinner
             android:id="@+id/spinner_pilih_tahun_report_kasir"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:background="@drawable/bg_rectangle"/>
 
     </LinearLayout>
 
