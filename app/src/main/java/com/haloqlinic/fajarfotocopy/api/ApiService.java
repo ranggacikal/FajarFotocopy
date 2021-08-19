@@ -20,12 +20,15 @@ import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
+import com.haloqlinic.fajarfotocopy.model.editStatusBarangTransfer.ResponseEditStatusBarangTransfer;
+import com.haloqlinic.fajarfotocopy.model.editStatusTransfer.ResponseEditStatusTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangTransfer.ResponseHapusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
@@ -358,7 +361,8 @@ public interface ApiService {
                                                             @Field("id_outlet_pengirim") String id_outlet_pengirim,
                                                             @Field("id_outlet_penerima") String id_outlet_penerima,
                                                             @Field("outlet_pengirim") String outlet_pengirim,
-                                                            @Field("outlet_penerima") String outlet_penerima);
+                                                            @Field("outlet_penerima") String outlet_penerima,
+                                                            @Field("status_transfer") String status_transfer);
 
     @FormUrlEncoded
     @POST("tambahTransferBarang")
@@ -404,5 +408,19 @@ public interface ApiService {
                                           @Field("status_permintaan_barang") String status_permintaan_barang,
                                           @Field("tanggal_permintaan_barang") String tanggal_permintaan_barang,
                                           @Field("nama_toko") String nama_toko);
+
+    @FormUrlEncoded
+    @POST("hapusBarangTransfer")
+    Call<ResponseHapusBarangTransfer> hapusBarangTransfer(@Field("id_transfer_barang") String id_transfer_barang);
+
+    @FormUrlEncoded
+    @POST("editStatusTransfer")
+    Call<ResponseEditStatusTransfer> editStatusTransfer(@Field("id_status_transfer") String id_status_transfer,
+                                                        @Field("status_transfer") String status_transfer);
+
+    @FormUrlEncoded
+    @POST("editBarangTransfer")
+    Call<ResponseEditStatusBarangTransfer> editStatusBarangTransfer(@Field("id_status_transfer") String id_status_transfer,
+                                                                    @Field("status_transfer") String status_transfer);
 
 }

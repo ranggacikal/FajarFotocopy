@@ -14,6 +14,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDataUserGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransferBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.gudang.usergudang.TambahUserGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
@@ -45,12 +46,16 @@ public class TransferBarangGudangActivity extends AppCompatActivity {
     private SimpleDateFormat dateFormat;
     private String date;
 
+    String from_activity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTransferBarangGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        from_activity = getIntent().getStringExtra("from_activity");
 
         initSpinnerTokoPengirim();
         initSpinnerTokoPenerima();
@@ -99,7 +104,17 @@ public class TransferBarangGudangActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish();
+
+                        if (from_activity!=null){
+                            if (from_activity.equals("keranjang_transfer_gudang")){
+                                startActivity(new Intent(TransferBarangGudangActivity.this,
+                                        MainActivity.class));
+                                finish();
+                            }
+                        }else {
+
+                            finish();
+                        }
                     }
                 });
 
@@ -123,7 +138,7 @@ public class TransferBarangGudangActivity extends AppCompatActivity {
         date = dateFormat.format(calendar.getTime());
 
         ConfigRetrofit.service.tambahStatusTransfer(id_status_transfer, date, id_outlet_pengirim,
-                id_outlet_penerima, nama_outlet_pengirim, nama_outlet_penerima)
+                id_outlet_penerima, nama_outlet_pengirim, nama_outlet_penerima, "")
                 .enqueue(new Callback<ResponseTambahStatusTransfer>() {
                     @Override
                     public void onResponse(Call<ResponseTambahStatusTransfer> call, Response<ResponseTambahStatusTransfer> response) {
@@ -274,5 +289,20 @@ public class TransferBarangGudangActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (from_activity!=null){
+            if (from_activity.equals("keranjang_transfer_gudang")){
+                startActivity(new Intent(TransferBarangGudangActivity.this,
+                        MainActivity.class));
+                finish();
+            }
+        }else {
+
+            finish();
+        }
     }
 }

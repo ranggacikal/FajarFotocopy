@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
@@ -19,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.adapter.gudang.CariTransferBarangIdAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityHasilPencarianTransferBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransferBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.countBarangTransfer.ResponseCountBarangTransfer;
@@ -50,6 +52,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
     public String id_status_transfer = "";
     String count_keranjang = "";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +66,9 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         getCount();
 
         binding.rvTransferBarang.setHasFixedSize(true);
-        binding.rvTransferBarang.setLayoutManager(new LinearLayoutManager(HasilPencarianTransferBarangGudangActivity.this));
+        GridLayoutManager manager = new GridLayoutManager(HasilPencarianTransferBarangGudangActivity.this,
+                2, GridLayoutManager.VERTICAL, false);
+        binding.rvTransferBarang.setLayoutManager(manager);
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackHasilPencarianTransferGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -133,6 +138,18 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                 return true;
             }
         });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnChekoutTransfer)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(HasilPencarianTransferBarangGudangActivity.this,
+                                KeranjangTransferBarangGudangActivity.class);
+                        intent.putExtra("id_status_transfer", id_status_transfer);
+                        startActivity(intent);
+                    }
+                });
 
     }
 

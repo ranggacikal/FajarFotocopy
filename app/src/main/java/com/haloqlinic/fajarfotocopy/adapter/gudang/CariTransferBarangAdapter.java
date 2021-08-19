@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
@@ -63,7 +64,7 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CariTransferBarangViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull CariTransferBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaJual());
         int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaJualPack());
@@ -81,17 +82,14 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
 
-        holder.numberPicker.setNumber("1");
+//        holder.numberPicker.setNumber("1");
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 number = holder.numberPicker.getNumber();
                 int stock = Integer.parseInt(dataBarang.get(position).getStock());
-                if (number.equals("0")){
-                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-                    holder.numberPicker.setNumber("1");
-                }else if (Integer.parseInt(number) > stock ){
+                if (Integer.parseInt(number) > stock ){
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
                 }
@@ -135,12 +133,17 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
 
 
         Random rnd = new Random();
-        int number = rnd.nextInt(999999);
+        int numberRandom = rnd.nextInt(999999);
 
-        String randomId = String.format("%06d", number);
+        String randomId = String.format("%06d", numberRandom);
         String id_transfer_barang = "TB"+randomId;
 
         String id_status_transfer = hasilActivity.id_status_transfer;
+
+        if (number.equals("0")){
+            Toast.makeText(context, "Jumlah Barang Tidak Boleh 0 (NOL)", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("menambahkan barang");
@@ -176,6 +179,12 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
                     @Override
                     public void onFailure(Call<ResponseTambahTransferBarang> call, Throwable t) {
                         progressDialog.dismiss();
+                        Log.d("paramTambahTransfer", "id_status_transfer: "+id_status_transfer);
+                        Log.d("paramTambahTransfer", "id_transfer_barang: "+id_transfer_barang);
+                        Log.d("paramTambahTransfer", "id_barang_outlet_pengirim: "+id_barang_outlet_pengirim);
+                        Log.d("paramTambahTransfer", "id_barang: "+id_barang);
+                        Log.d("paramTambahTransfer", "number: "+number);
+                        Log.d("paramTambahTransfer", "jumlah_pack: "+jumlah_pack);
                         Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
