@@ -67,17 +67,17 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
                 2, GridLayoutManager.VERTICAL, false);
         binding.recyclerMintaBarangKeto.setLayoutManager(manager);
 
-        binding.searchviewMintaBarangGudang.setOnClickListener(new View.OnClickListener() {
+        binding.searchviewMintaBarangKeto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 binding.recyclerMintaBarangKeto.setVisibility(View.GONE);
-                binding.searchviewMintaBarangGudang.setQueryHint("Cari Barang");
-                binding.searchviewMintaBarangGudang.setIconified(false);
+                binding.searchviewMintaBarangKeto.setQueryHint("Cari Barang");
+                binding.searchviewMintaBarangKeto.setIconified(false);
             }
         });
 
 
-        binding.searchviewMintaBarangGudang.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        binding.searchviewMintaBarangKeto.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
