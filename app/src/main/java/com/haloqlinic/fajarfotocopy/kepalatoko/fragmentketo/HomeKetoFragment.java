@@ -27,6 +27,8 @@ import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.ListPengirimanKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.MintaBarangKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -113,7 +115,7 @@ public class HomeKetoFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        startActivity(new Intent(getActivity(), TransaksiKasirActivity.class));
+                        startActivity(new Intent(getActivity(), TambahBarangKetoActivity.class));
                     }
                 });
 
