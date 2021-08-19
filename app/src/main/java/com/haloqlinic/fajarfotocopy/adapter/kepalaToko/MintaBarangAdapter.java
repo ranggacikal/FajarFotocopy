@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.MintaBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -27,17 +28,17 @@ import java.util.List;
 public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.MintaBarangViewHolder> {
 
     Context context;
-    List<SearchBarangByNamaItem> dataBarang;
+    List<SearchBarangOutletByNamaItem> dataBarang;
     TambahBarangKetoActivity tambahBarangKetoActivity;
     Dialog dialog;
 
 
-    public MintaBarangAdapter(Context context, List<SearchBarangByNamaItem> dataBarang, TambahBarangKetoActivity tambahBarangKetoActivity) {
+    public MintaBarangAdapter(Context context, List<SearchBarangOutletByNamaItem> dataBarang,
+                              TambahBarangKetoActivity tambahBarangKetoActivity) {
         this.context = context;
         this.dataBarang = dataBarang;
         this.tambahBarangKetoActivity = tambahBarangKetoActivity;
     }
-
 
     @NonNull
     @Override
@@ -90,7 +91,7 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_minta_barang);
             txtStockPcs = itemView.findViewById(R.id.text_item_stock_pcs_minta_barang);
             txtPack = itemView.findViewById(R.id.text_item_stock_pack_minta_barang);
-            txtTambah = itemView.findViewById(R.id.text_item_edit_cek_stock);
+            txtTambah = itemView.findViewById(R.id.text_item_tambah_minta_barang);
         }
     }
 }

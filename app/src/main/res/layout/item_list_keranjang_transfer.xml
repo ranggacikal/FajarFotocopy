@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/text_item_nama_keranjang_transfer"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sairabold"
         android:gravity="center"
@@ -16,10 +16,9 @@
         android:textSize="11sp" />
 
 
-
     <TextView
         android:id="@+id/text_item_jumlah_keranjang_transfer"
-        android:layout_width="100dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sairabold"
         android:gravity="center"
@@ -29,7 +28,7 @@
 
     <TextView
         android:id="@+id/text_item_jumlah_pack_transfer"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sairabold"
         android:gravity="center"
@@ -38,9 +37,10 @@
         android:textSize="11sp" />
 
     <LinearLayout
-        android:id="@+id/img_hapus_barang"
+        android:id="@+id/img_hapus_barang_transfer"
         android:layout_width="50dp"
         android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <ImageView

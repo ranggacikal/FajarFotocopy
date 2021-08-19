@@ -19,6 +19,8 @@ public class TransaksiBerhasilActivity extends AppCompatActivity {
     
     String id_status_penjualan = "";
 
+    String from_keto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,7 @@ public class TransaksiBerhasilActivity extends AppCompatActivity {
         setContentView(view);
         
         id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
-
+        from_keto = getIntent().getStringExtra("from_keto");
         PushDownAnim.setPushDownAnimTo(binding.btnTransaksiBerhasil)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
@@ -35,6 +37,9 @@ public class TransaksiBerhasilActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(TransaksiBerhasilActivity.this, CetakBuktiKasirActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        if (from_keto!=null){
+                            intent.putExtra("from_keto", from_keto);
+                        }
                         startActivity(intent);
                         finish();
                     }

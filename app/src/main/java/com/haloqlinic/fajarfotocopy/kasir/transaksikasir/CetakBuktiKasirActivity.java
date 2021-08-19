@@ -15,6 +15,7 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailBarangStockGudangBinding;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.DetailStatusPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.ResponseDetailStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -36,6 +37,8 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
 
     String id_status_penjualan = "";
 
+    String from_keto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,7 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
         setContentView(view);
 
         id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
+        from_keto = getIntent().getStringExtra("from_keto");
 
         binding.recyclerCetakBukti.setHasFixedSize(true);
         binding.recyclerCetakBukti.setLayoutManager(new LinearLayoutManager(CetakBuktiKasirActivity.this));
@@ -53,8 +57,17 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class));
-                        finish();
+                        if (from_keto!=null){
+                            if (from_keto.equals("kepala_toko")){
+                                startActivity(new Intent(CetakBuktiKasirActivity.this, MainKetoActivity.class));
+                                finish();
+                            }
+                        }else {
+
+                            startActivity(new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class));
+                            finish();
+
+                        }
                     }
                 });
 

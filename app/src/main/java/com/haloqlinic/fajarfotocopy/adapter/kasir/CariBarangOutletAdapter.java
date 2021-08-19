@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.adapter.kasir;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
@@ -68,7 +69,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
         int hargaPcs = Integer.parseInt(cariBarangOutlet.get(position).getHargaJual());
@@ -174,6 +175,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                     Log.d("paramPenjualan", "tanggal: "+tanggal);
                     Log.d("paramPenjualan", "nama: "+preferencedConfig.getPreferenceNama());
                     Log.d("paramPenjualan", "idStatusPenjualan: "+id_status_penjualan);
+                    Log.d("paramPenjualan", "ERROR: "+response.message());
                     Toast.makeText(context, "Gagal Saat menambahkan barang", Toast.LENGTH_SHORT).show();
                 }
             }

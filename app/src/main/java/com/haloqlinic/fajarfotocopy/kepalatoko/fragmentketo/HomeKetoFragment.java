@@ -184,7 +184,9 @@ public class HomeKetoFragment extends Fragment {
                                         if(status == 1){
                                             Intent intent = new Intent(getActivity(), TransaksiKasirActivity.class);
                                             intent.putExtra("namaActivity", "HomeKeto");
-                                            intent.putExtra("id_status_penjualan", id_status_penjualan);
+//                                            intent.putExtra("id_status_penjualan", id_status_penjualan);
+
+                                            preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_ID_STATUS_PENJUALAN, id_status_penjualan);
                                             startActivity(intent);
                                             getActivity().finish();
                                         }else {
