@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.kepalatoko;
+package com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo;
 
 import android.os.Bundle;
 
@@ -10,15 +10,12 @@ import android.view.ViewGroup;
 
 import com.haloqlinic.fajarfotocopy.R;
 
-
-public class HomeKetoFragment extends Fragment {
-
+public class ProfileKetoFragment extends Fragment {
 
 
-    public HomeKetoFragment() {
+    public ProfileKetoFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -31,6 +28,6 @@ public class HomeKetoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home_keto, container, false);
+        return inflater.inflate(R.layout.fragment_profile_keto, container, false);
     }
 }

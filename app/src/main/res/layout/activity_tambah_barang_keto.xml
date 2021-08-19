@@ -18,7 +18,7 @@
             android:background="@drawable/background_header_green">
 
             <LinearLayout
-                android:id="@+id/linear_back_tambah_barang_gudang"
+                android:id="@+id/linear_back_cari_minta_barang_keto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="38dp"
@@ -33,7 +33,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sairamedium"
-                    android:text="Tambah Barang"
+                    android:text="Cari Barang"
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
@@ -43,165 +43,50 @@
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Barcode" />
-
-        <LinearLayout
+        <SearchView
+            android:id="@+id/searchview_minta_barang_gudang"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_barcode_tambah_stockpcs_keto"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginHorizontal="30dp"
-                android:text="Scan Barcode"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                android:background="@drawable/btn_black"
-                android:padding="10dp"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="5dp" />
-
-
-
-        </LinearLayout>
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Nama Barang" />
-
-        <EditText
-            android:id="@+id/edt_tambah_nama_barang_keto"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:inputType="textCapWords"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_height="50dp"
             android:layout_marginHorizontal="30dp"
-            android:padding="10dp"
+            android:layout_marginTop="25dp"
             android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
+            android:hint="Cari Barang"
+            android:padding="7dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Jenis Barang" />
-
-        <EditText
-            android:id="@+id/edt_tambah_jenis_barang_keto"
+        <Button
+            android:id="@+id/btn_barcode_minta_barang_keto"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:padding="10dp"
-            android:layout_marginHorizontal="30dp"
-            android:background="@drawable/bg_rectangle"
-            android:inputType="textCapWords"
-            android:fontFamily="@font/sairamedium" />
+            android:layout_height="45dp"
+            android:layout_marginStart="39dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="39dp"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/sairabold"
+            android:padding="5dp"
+            android:paddingHorizontal="5dp"
+            android:src="@drawable/ic_filter"
+            android:text="Scan Barcode"
+            android:textColor="@color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Kode Barang" />
-
-        <EditText
-            android:id="@+id/edt_tambah_kode_barang_keto"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:padding="10dp"
-            android:layout_marginHorizontal="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:inputType="textCapWords"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Stock Barang" />
-
-
-
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginHorizontal="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pcs" />
-
-            <EditText
-                android:id="@+id/tambah_harga_jual_tokopcs_keto"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:inputType="number"
-                android:padding="10dp"
-                android:layout_marginHorizontal="10dp"
-                android:background="@drawable/bg_rectangle"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pack" />
-
-            <EditText
-                android:id="@+id/tambah_harga_jual_tokopack_keto"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="10dp"
-                android:padding="10dp"
-                android:background="@drawable/bg_rectangle"
-                android:layout_marginTop="10dp" />
-
-        </LinearLayout>
-
-
+            android:layout_below="@+id/btn_barcode_data_barang_gudang"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp" />
 
         <Button
             android:id="@+id/btn_tambah_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
-            android:text="Simpan"
+            android:text="Buat Pengiriman"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

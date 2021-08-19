@@ -55,7 +55,6 @@ public class CekStockAdapter extends RecyclerView.Adapter<CekStockAdapter.CekSto
 
     @Override
     public void onBindViewHolder(@NonNull CekStockViewHolder holder, @SuppressLint("RecyclerView") int position) {
-
         String img = dataBarang.get(position).getImageBarang();
 
         Glide.with(context)

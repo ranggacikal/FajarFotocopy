@@ -24,7 +24,7 @@ import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
-import com.haloqlinic.fajarfotocopy.kepalatoko.HomeKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         }else if (level.equals("Kepala Toko")){
-                            startActivity(new Intent(LoginActivity.this, HomeKetoActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MainKetoActivity.class));
                             finish();
                         }else if (level.equals("Karyawan Toko")){
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));

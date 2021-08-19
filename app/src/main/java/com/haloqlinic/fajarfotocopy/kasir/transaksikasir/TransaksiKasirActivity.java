@@ -371,18 +371,14 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     int status = response.body().getStatus();
                     if (status == 1) {
 
-                        if (nameActivity!=null) {
+                        if (!nameActivity.equals("")){
 
-                            if (!nameActivity.equals("")) {
-
-                                if (nameActivity.equals("HomeKeto")) {
-                                    startActivity(new Intent(TransaksiKasirActivity.this, HomeKetoActivity.class));
-                                    finish();
-                                } else if (nameActivity.equals("HomeKasir")) {
-                                    startActivity(new Intent(TransaksiKasirActivity.this, MainKasirActivity.class));
-                                    finish();
-                                }
-
+                            if (nameActivity.equals("HomeKeto")){
+                                startActivity(new Intent(TransaksiKasirActivity.this, HomeKetoActivity.class));
+                                finish();
+                            }else if (nameActivity.equals("HomeKasir")){
+                                startActivity(new Intent(TransaksiKasirActivity.this, MainKasirActivity.class));
+                                finish();
                             }
 
                         }
