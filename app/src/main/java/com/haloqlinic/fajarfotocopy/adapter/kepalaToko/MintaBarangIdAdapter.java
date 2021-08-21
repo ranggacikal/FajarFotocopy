@@ -7,9 +7,11 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,11 +32,14 @@ import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoA
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
+import com.haloqlinic.fajarfotocopy.model.mintaBarang.ResponseMintaBarang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -46,6 +51,9 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
     List<SearchBarangByIdItem> dataBarang;
     TambahBarangKetoActivity tambahBarangKetoActivity;
     Dialog dialog;
+    SimpleDateFormat dateFormat;
+    Calendar calendar;
+    String id_barang = "";
 
     public MintaBarangIdAdapter(Context context, List<SearchBarangByIdItem> dataBarang, TambahBarangKetoActivity tambahBarangKetoActivity) {
         this.context = context;
@@ -61,7 +69,7 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MintaBarangIdViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MintaBarangIdViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String img = dataBarang.get(position).getImageBarang();
 
         Glide.with(context)
@@ -73,16 +81,97 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
         holder.txtStockPcs.setText(dataBarang.get(position).getStock());
         holder.txtPack.setText(dataBarang.get(position).getJumlahPack());
 
-        PushDownAnim.setPushDownAnimTo(holder.txtTambah)
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id_barang = dataBarang.get(position).getNamaBarang();
+                int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
+                int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
+                tampilDialog(stockPack, stockPcs);
+            }
+        });
+
+        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id_barang = dataBarang.get(position).getIdBarang();
-                        String stock = dataBarang.get(position).getStock();
-                        String jumlah_pack = dataBarang.get(position).getJumlahPack();
+                        id_barang = dataBarang.get(position).getNamaBarang();
+                        int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
+                        int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
+                        tampilDialog(stockPack, stockPcs);
                     }
                 });
+    }
+
+    private void tampilDialog(int stockPack, int stockPcs) {
+        dialog = new Dialog(context);
+
+        dialog.setContentView(R.layout.dialog_minta_barang);
+        dialog.setCancelable(false);
+
+        final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang_keto);
+        final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang_keto);
+
+        dialog.show();
+
+        txtTambahBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tambahMintaBarang(stockPcs, stockPack);
+            }
+        });
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void tambahMintaBarang(int stockPcs, int stockPack) {
+        String nama_toko = tambahBarangKetoActivity.nama_toko;
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+
+        String date = dateFormat.format(calendar.getTime());
+
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Menambahkan Barang Ke Permintaan Barang");
+        progressDialog.show();
+
+        ConfigRetrofit.service.mintaBarang(id_barang, "Dalam Proses", date, nama_toko).enqueue(new Callback<ResponseMintaBarang>() {
+            @Override
+            public void onResponse(Call<ResponseMintaBarang> call, Response<ResponseMintaBarang> response) {
+                if (response.isSuccessful()) {
+                    progressDialog.dismiss();
+                    int status = response.body().getStatus();
+
+                    if (status == 1) {
+                        Toast.makeText(context, "Berhasil Menambahkan data", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    } else {
+                        Toast.makeText(context, "Gagal Menambahkan Data", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+
+                } else {
+                    progressDialog.dismiss();
+                    Log.d("checkDataPermintaan", "id_barang: " + id_barang);
+                    Log.d("checkDataPermintaan", "nama_toko: " + nama_toko);
+                    Toast.makeText(context, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
+                    dialog.dismiss();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseMintaBarang> call, Throwable t) {
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -93,7 +182,8 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
 
     public class MintaBarangIdViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMintaBarang;
-        TextView txtNamaBarang, txtStockPcs, txtPack, txtTambah;
+        TextView txtNamaBarang, txtStockPcs, txtPack;
+        Button btnTambah;
 
 
         public MintaBarangIdViewHolder(@NonNull View itemView) {
@@ -102,7 +192,7 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_minta_barang);
             txtStockPcs = itemView.findViewById(R.id.text_item_stock_pcs_minta_barang);
             txtPack = itemView.findViewById(R.id.text_item_stock_pack_minta_barang);
-            txtTambah = itemView.findViewById(R.id.text_item_tambah_minta_barang);
+            btnTambah = itemView.findViewById(R.id.btn_tambah_minta_barang_keto);
         }
 
     }

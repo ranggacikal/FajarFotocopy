@@ -1,5 +1,7 @@
 package com.haloqlinic.fajarfotocopy.adapter.kirimBarang;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -23,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
@@ -80,15 +83,17 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
             }
         });
 
-        holder.btnTambah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                id_barang = dataCariBarang.get(position).getIdBarang();
-                int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
-                int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
-                tampilDialog(stockPack, stockPcs);
-            }
-        });
+        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        id_barang = dataCariBarang.get(position).getIdBarang();
+                        int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
+                        int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
+                        tampilDialog(stockPack, stockPcs);
+                    }
+                });
 
     }
 
@@ -129,13 +134,13 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         String id_toko = kirimBarangGudangActivity.id_toko;
         String id_status = kirimBarangGudangActivity.id_status_pengiriman;
 
-        if (Integer.parseInt(qty)>stockPcs){
+        if (Integer.parseInt(qty) > stockPcs) {
             Toast.makeText(context, "Jumlah stock tidak cukup dengan quantity yg anda masukan",
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (Integer.parseInt(pack)>stockPack){
+        if (Integer.parseInt(pack) > stockPack) {
             Toast.makeText(context, "Jumlah stock tidak cukup dengan quantity yg anda masukan",
                     Toast.LENGTH_SHORT).show();
             return;
@@ -149,25 +154,25 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
                 .enqueue(new Callback<ResponseTambahPengiriman>() {
                     @Override
                     public void onResponse(Call<ResponseTambahPengiriman> call, Response<ResponseTambahPengiriman> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             progressDialog.dismiss();
                             int status = response.body().getStatus();
 
-                            if (status==1){
+                            if (status == 1) {
                                 Toast.makeText(context, "Berhasil Menambahkan data", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
-                            }else{
+                            } else {
                                 Toast.makeText(context, "Gagal Menambahkan Data", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
 
-                        }else{
+                        } else {
                             progressDialog.dismiss();
-                            Log.d("checkDataPengiriman", "id_barang: "+id_barang);
-                            Log.d("checkDataPengiriman", "qty: "+qty);
-                            Log.d("checkDataPengiriman", "pack: "+pack);
-                            Log.d("checkDataPengiriman", "id_toko: "+id_toko);
-                            Log.d("checkDataPengiriman", "id_status: "+id_status);
+                            Log.d("checkDataPengiriman", "id_barang: " + id_barang);
+                            Log.d("checkDataPengiriman", "qty: " + qty);
+                            Log.d("checkDataPengiriman", "pack: " + pack);
+                            Log.d("checkDataPengiriman", "id_toko: " + id_toko);
+                            Log.d("checkDataPengiriman", "id_status: " + id_status);
                             Toast.makeText(context, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
@@ -175,7 +180,7 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
 
                     @Override
                     public void onFailure(Call<ResponseTambahPengiriman> call, Throwable t) {
-                        Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 

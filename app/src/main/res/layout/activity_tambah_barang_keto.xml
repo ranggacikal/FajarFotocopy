@@ -92,7 +92,7 @@
         android:layout_marginBottom="17dp"
         android:background="@drawable/btn_black"
         android:fontFamily="@font/sairamedium"
-        android:text="Buat Pengiriman"
+        android:text="Buat Permintaan"
         android:textColor="@color/white"
         android:textSize="20sp" />
 

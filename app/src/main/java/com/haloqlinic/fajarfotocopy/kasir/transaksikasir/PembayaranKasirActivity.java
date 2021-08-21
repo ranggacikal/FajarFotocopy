@@ -133,6 +133,16 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 }
             });
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackPembayaranKasir)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(PembayaranKasirActivity.this, TransaksiKasirActivity.class));
+                        finish();
+                    }
+                });
+
         PushDownAnim.setPushDownAnimTo(binding.imgBuktiTfPembayaran)
                 .setScale( MODE_SCALE, 0.89f  )
                 .setOnClickListener(new View.OnClickListener() {

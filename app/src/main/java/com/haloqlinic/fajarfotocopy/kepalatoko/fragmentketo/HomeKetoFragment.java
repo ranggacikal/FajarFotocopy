@@ -27,7 +27,6 @@ import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.ListPengirimanKetoActivity;
-import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.MintaBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
