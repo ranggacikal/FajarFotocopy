@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.gudang.fragmentgudang;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,16 +20,24 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.usergudang.UserGudangActivity;
+import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualanGudang.ResponseTambahStatusPenjualanGudang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
@@ -45,10 +54,10 @@ public class HomeFragment extends Fragment {
     TextView txtNama, txtTanggal;
     Button btnKeluar;
 
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
+    private Calendar calendar, calendarStatusPenjualanGudang;
+    private SimpleDateFormat dateFormat, dateFormatStatusPenjualanGudang;
     private String date;
-    CardView cardToko, cardBarang, cardUser, cardTransferBarang;
+    CardView cardToko, cardBarang, cardUser, cardTransferBarang, cardSupplier;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +72,7 @@ public class HomeFragment extends Fragment {
         cardUser = rootView.findViewById(R.id.card_user_gudang);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
         cardTransferBarang = rootView.findViewById(R.id.card_transfer_barang_gudang);
+        cardSupplier = rootView.findViewById(R.id.card_supplier_gudang);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
@@ -89,6 +99,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), TokoGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardSupplier)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tambahStatusPenjualanGudang();
                     }
                 });
 
@@ -146,6 +165,58 @@ public class HomeFragment extends Fragment {
                 });
 
         return rootView;
+    }
+
+    private void tambahStatusPenjualanGudang() {
+
+        ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Menambahkan Status Penjualan Gudang");
+        progressDialog.show();
+
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+
+        String randomId = String.format("%06d", number);
+        String id_status_penjualan_gudang = "SPG"+randomId;
+
+        calendarStatusPenjualanGudang = Calendar.getInstance();
+        dateFormatStatusPenjualanGudang = new SimpleDateFormat("dd MMMM yyyy");
+
+        String dateStatusPenjulanGudang = dateFormatStatusPenjualanGudang.format(
+                calendarStatusPenjualanGudang.getTime());
+
+        ConfigRetrofit.service.tambahStatusPenjualanGudang(id_status_penjualan_gudang, dateStatusPenjulanGudang,
+                "pending", "", "", "", "", "")
+                .enqueue(new Callback<ResponseTambahStatusPenjualanGudang>() {
+                    @Override
+                    public void onResponse(Call<ResponseTambahStatusPenjualanGudang> call, Response<ResponseTambahStatusPenjualanGudang> response) {
+                        if (response.isSuccessful()){
+                            progressDialog.dismiss();
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                Intent intent = new Intent(getContext(), SupplierGudangActivity.class);
+                                intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
+                                startActivity(intent);
+
+                            }else{
+                                Toast.makeText(getContext(), "Gagal Menambahkan penjualan, silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Response dari server error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseTambahStatusPenjualanGudang> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getContext(), "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
     private void keluarAkun() {

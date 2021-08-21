@@ -120,11 +120,22 @@
                     android:id="@+id/elegant_nb_item_barang_outlet"
                     android:layout_width="100dp"
                     android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_centerHorizontal="true"/>
+                    android:layout_marginBottom="10dp" />
 
             </RelativeLayout>
+
+            <EditText
+                android:id="@+id/edt_jumlah_pack_item_barang"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center_horizontal"
+                android:hint="Jumlah Pack"
+                android:textSize="11sp"
+                android:visibility="gone"
+                android:inputType="number"/>
 
             <EditText
                 android:id="@+id/edt_item_jumlah_pack_transfer"

@@ -87,143 +87,64 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="400dp"
+            android:layout_width="match_parent"
             android:layout_height="47dp"
-            android:layout_gravity="center"
             android:layout_marginTop="11dp"
             android:background="#C4C4C4"
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="12dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa/Barang"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="57dp"
                 android:layout_marginTop="12dp"
+                android:textAlignment="center"
                 android:fontFamily="@font/sairamedium"
                 android:text="QTY"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
+
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="52dp"
+                android:textAlignment="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Harga"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Disc/Item"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000000"/>
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Total"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="400dp"
-            android:layout_height="47dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/keranjang_nama_jasa_barang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Nama Barang"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_minus_keranjang" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Jumlah"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="10dp"
-                    android:src="@drawable/ic_plus_keranjang" />
-
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Harga"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Discount"
-                android:textColor="@color/red"
-                android:textSize="12sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/sairabold"
-                android:text="Total"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
@@ -231,102 +152,125 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="376dp"
+            android:id="@+id/rv_keranjang_supplier"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            tools:listitem="@layout/item_keranjang_supplier"
             android:layout_gravity="center">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
-        <LinearLayout
-            android:layout_width="376dp"
-            android:layout_height="121dp"
-            android:layout_marginStart="17dp"
-            android:background="@drawable/bg_rectangle"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:layout_marginTop="17dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Sub Total :"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Discount :"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Total Harga :"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="80dp"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:layout_marginTop="17dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Sub Total"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Discount"
-                    android:textColor="#5DE1E6"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="31dp"
-                    android:fontFamily="@font/sairabold"
-                    android:text="Total Harga"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
         <Spinner
-            android:layout_width="345dp"
+            android:id="@+id/spinner_metode_bayar_supplier"
+            android:layout_width="match_parent"
             android:layout_height="49dp"
+            android:layout_marginHorizontal="20dp"
             android:background="@drawable/bg_rectangle"
             android:layout_marginTop="20dp"
             android:layout_gravity="center"/>
+
+        <Spinner
+            android:id="@+id/spinner_jenis_bayar_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/bg_rectangle"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/edt_jumlah_bayar_supplier"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Jumlah Bayar"
+            android:inputType="number"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"/>
+
+        <RelativeLayout
+            android:id="@+id/relative_total_kurang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Jumlah Kurang : "
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt_total_kurang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Rp.0,0"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginVertical="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Kembalian : "
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt_kembalian_supplier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Rp.0,0"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginVertical="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Total : "
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt_total_supplier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="Rp.0,0"
+                android:fontFamily="@font/sairabold"
+                android:layout_marginVertical="10dp"
+                android:textColor="@color/black"
+                android:textSize="17sp"/>
+
+        </RelativeLayout>
 
         <Button
             android:layout_width="345dp"
@@ -337,6 +281,7 @@
             android:textSize="20sp"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
             android:layout_gravity="center"/>
 
     </LinearLayout>
