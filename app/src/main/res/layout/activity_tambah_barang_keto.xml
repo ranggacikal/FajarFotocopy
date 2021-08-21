@@ -8,40 +8,43 @@
     tools:context=".kepalatoko.mintabarangketo.TambahBarangKetoActivity">
 
     <LinearLayout
+        android:id="@+id/linear_header_minta_barang"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="121dp"
+        android:background="@drawable/background_header_green">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="@drawable/background_header_green">
+            android:id="@+id/linear_back_cari_minta_barang_keto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="38dp">
 
-            <LinearLayout
-                android:id="@+id/linear_back_cari_minta_barang_keto"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp">
+                android:src="@drawable/ic_back_atas" />
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Cari Barang"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sairamedium"
+                android:text="Cari Barang"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
 
 
         </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btn_tambah_barang_keto"
+        android:layout_below="@+id/linear_header_minta_barang"
+        android:orientation="vertical">
 
         <SearchView
             android:id="@+id/searchview_minta_barang_keto"
@@ -72,24 +75,25 @@
             android:id="@+id/recycler_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/btn_barcode_data_barang_gudang"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp" />
 
-        <Button
-            android:id="@+id/btn_tambah_barang_keto"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="30dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairamedium"
-            android:text="Buat Pengiriman"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_tambah_barang_keto"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="17dp"
+        android:background="@drawable/btn_black"
+        android:fontFamily="@font/sairamedium"
+        android:text="Buat Pengiriman"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
 
 </RelativeLayout>

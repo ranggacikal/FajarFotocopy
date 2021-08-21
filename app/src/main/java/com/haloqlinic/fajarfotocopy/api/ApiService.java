@@ -55,6 +55,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiri
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualanGudang.ResponseTambahStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusTransfer.ResponseTambahStatusTransfer;
 import com.haloqlinic.fajarfotocopy.model.tambahTransferBarang.ResponseTambahTransferBarang;
 import com.haloqlinic.fajarfotocopy.model.transaksiByBulan.ResponseTransaksiByBulan;
@@ -403,8 +404,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("tambahPermintaanBarang")
-    Call<ResponseMintaBarang> mintaBarang(@Field("id_permintaan_barang") String id_permintaan_barang,
-                                          @Field("nama_barang") String nama_barang,
+    Call<ResponseMintaBarang> mintaBarang(@Field("nama_barang") String nama_barang,
                                           @Field("status_permintaan_barang") String status_permintaan_barang,
                                           @Field("tanggal_permintaan_barang") String tanggal_permintaan_barang,
                                           @Field("nama_toko") String nama_toko);
@@ -423,4 +423,27 @@ public interface ApiService {
     Call<ResponseEditStatusBarangTransfer> editStatusBarangTransfer(@Field("id_status_transfer") String id_status_transfer,
                                                                     @Field("status_transfer") String status_transfer);
 
+    @FormUrlEncoded
+    @POST("tambahStatusPenjualanGudang")
+    Call<ResponseTambahStatusPenjualanGudang> tambahStatusPenjualanGudang(
+            @Field("id_status_penjualan_gudang") String id_status_penjualan_gudang,
+            @Field("tanggal_penjualan") String tanggal_penjualan,
+            @Field("status_penjualan") String status_penjualan,
+            @Field("metode_bayar") String metode_bayar,
+            @Field("total_harga") String total_harga,
+            @Field("jumlah_bayar") String jumlah_bayar,
+            @Field("jumlah_kurang") String jumlah_kurang,
+            @Field("image_bukti_tf") String image_bukti_tf
+    );
+
+    @FormUrlEncoded
+    @POST("tambahPenjualanGudang")
+    Call<ResponseTambahPenjualan> tambahPenjualan(
+            @Field("id_barang") String id_barang,
+            @Field("jumlah_barang") String jumlah_barang,
+            @Field("jumlah_pack") String jumlah_pack,
+            @Field("total") String total,
+            @Field("nama_user") String nama_user,
+            @Field("id_status_penjualan_gudang") String id_status_penjualan_gudang
+    );
 }

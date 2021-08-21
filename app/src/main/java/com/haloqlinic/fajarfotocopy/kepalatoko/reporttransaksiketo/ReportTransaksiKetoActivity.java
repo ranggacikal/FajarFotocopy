@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.kepalatoko.reporttransaksiketo;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportTransaksiKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahInformasiGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.kasir.InvoiceLaporanKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.InvoiceKasirActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -32,26 +34,14 @@ import java.util.Calendar;
 
 public class ReportTransaksiKetoActivity extends AppCompatActivity {
 
-    private Calendar calendar;
-    private DatePickerDialog datePickerDialog;
-    private SimpleDateFormat dateFormatter;
-    private String date;
-
-    TextView txtTanggal;
-    Spinner spinnerPilihan, spinnerBulan, spinnerTahun;
-    Button btnPilihTanggal, btnLihatLaporan;
-    LinearLayout linearTanggal, linearBulanTahun;
-
-    private String[] pilihanItem = {"Hari", "Bulan"};
-    private String[] bulanItem = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-            "September", "Oktober", "November", "Desember"};
-    private String[] tahunItem = {"2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028",
-            "2029", "2030"};
-
-    String bulan, tahun;
-    String pilihan;
+    private ActivityReportTransaksiKetoBinding binding;
 
 
-
-
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityReportTransaksiKetoBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+    }
 }
