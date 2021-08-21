@@ -6,10 +6,12 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -23,25 +25,41 @@ import com.haloqlinic.fajarfotocopy.adapter.kepalaToko.MintaBarangIdAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahBarangKetoBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
+import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
+import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
+import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TambahBarangKetoActivity extends AppCompatActivity {
 
+    public static String nama_toko;
+    public static String status_permintaan_barang;
     private ActivityTambahBarangKetoBinding binding;
     public String id_barcode = "";
     public String nama = "";
+
+
+    String from_keto_minta_barang;
+
+
 
     private SharedPreferencedConfig preferencedConfig;
 
@@ -54,12 +72,17 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
 
         preferencedConfig = new SharedPreferencedConfig(this);
 
+        nama_toko = preferencedConfig.getPreferenceIdOutlet();
+
+        from_keto_minta_barang = getIntent().getStringExtra("from_keto_minta_barang");
+
+
         PushDownAnim.setPushDownAnimTo(binding.linearBackCariMintaBarangKeto)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish();
+                       finish();
                     }
                 });
         binding.recyclerMintaBarangKeto.setHasFixedSize(true);
@@ -76,7 +99,6 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
             }
         });
 
-
         binding.searchviewMintaBarangKeto.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -91,7 +113,58 @@ public class TambahBarangKetoActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnBarcodeMintaBarangKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        binding.recyclerMintaBarangKeto.setVisibility(View.GONE);
+                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+                                TambahBarangKetoActivity.this
+                        );
+
+                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+                        intentIntegrator.setBeepEnabled(true);
+                        intentIntegrator.setOrientationLocked(true);
+                        intentIntegrator.setCaptureActivity(Capture.class);
+                        intentIntegrator.initiateScan();
+                    }
+                });
+
+//        PushDownAnim.setPushDownAnimTo(binding.btnTambahBarangKeto)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        tambahPermintaan();
+//                    }
+//                });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnTambahBarangKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        Intent intent = new Intent(TambahBarangKetoActivity.this, HomeKetoFragment.class);
+//                        intent.putExtra("status_permintaan_barang", status_permintaan_barang);
+//                        intent.putExtra("from_keto_minta_barang", "kepala_toko");
+//                        startActivity(intent);
+                        Toast.makeText(TambahBarangKetoActivity.this, "Berhasil Buat Permintaan Barang", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                });
+
+
     }
+
+
+
+//    private void tambahPermintaan() {
+//
+//
+//    }
 
     private void loadData(String newText) {
 
