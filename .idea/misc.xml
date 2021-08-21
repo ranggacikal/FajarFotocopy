@@ -19,12 +19,14 @@
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
         <entry key="app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/activity_kasir_keto.xml" value="0.12090163934426229" />
+        <entry key="app/src/main/res/layout/activity_keranjang_supplier_gudang.xml" value="0.16" />
         <entry key="app/src/main/res/layout/activity_keranjang_transfer_barang_gudang.xml" value="0.1287568306010929" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_minta_barang_keto.xml" value="0.12090163934426229" />
         <entry key="app/src/main/res/layout/activity_pembayaran_kasir.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_report_penjualan.xml" value="0.12192622950819672" />
+        <entry key="app/src/main/res/layout/activity_supplier_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_tambah_barang_keto.xml" value="0.12090163934426229" />
         <entry key="app/src/main/res/layout/activity_tambah_informasi_gudang.xml" value="0.12192622950819672" />
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
@@ -33,8 +35,10 @@
         <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.14" />
+        <entry key="app/src/main/res/layout/item_barang_outlet.xml" value="0.12" />
         <entry key="app/src/main/res/layout/item_cek_stock.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/item_data_barang.xml" value="0.12" />
+        <entry key="app/src/main/res/layout/item_keranjang_supplier.xml" value="0.15" />
         <entry key="app/src/main/res/layout/item_list_keranjang_transfer.xml" value="0.1287568306010929" />
         <entry key="app/src/main/res/layout/item_list_pembayaran.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />

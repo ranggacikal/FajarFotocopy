@@ -94,12 +94,12 @@
                 android:id="@+id/searchview_barang_gudang_barcode"
                 android:layout_width="275dp"
                 android:layout_height="54dp"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
                 android:layout_gravity="center"
-                android:visibility="gone"
                 android:layout_marginVertical="20dp"
-                android:background="@drawable/bg_rectangle" />
+                android:layout_marginStart="20dp"
+                android:background="@drawable/bg_rectangle"
+                android:padding="10dp"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_barcode_supplier_gudang"
@@ -107,118 +107,50 @@
                 android:layout_height="54dp"
                 android:layout_gravity="center"
                 android:layout_marginHorizontal="15dp"
-                android:padding="5dp"
+                android:layout_marginVertical="15dp"
                 android:background="@drawable/btn_black"
                 android:fontFamily="@font/sairamedium"
+                android:padding="5dp"
                 android:text="Barcode"
-                android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="10sp" />
 
         </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_barang_gudang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/linear_footer_barang_gudang"
-            android:layout_below="@+id/linear_header_barang_gudang"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-
     </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_barang_gudang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_below="@id/linear_header_barang_gudang"
+        android:layout_above="@+id/linear_footer_barang_gudang"
+        android:layout_marginVertical="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/linear_footer_barang_gudang"
         android:layout_width="match_parent"
         android:layout_height="83dp"
         android:layout_alignParentBottom="true"
-        android:background="#000000"
         android:orientation="horizontal">
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Total Produk Jasa :"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txt_total_transaksi_barang_gudang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="13dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="21dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Total Produk Barang :"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-                <TextView
-                    android:id="@+id/txt_total_transaksi_jasa_gudang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="0"
-                    android:textColor="@color/white"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
 
         <Button
             android:id="@+id/btn_chekout_supplier"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="30dp"
-            android:background="@drawable/btn_merah"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:padding="11dp"
-            android:text="Chek-out"
-            android:layout_marginVertical="15dp"
+            android:text="Lihat List Barang"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
     </LinearLayout>
