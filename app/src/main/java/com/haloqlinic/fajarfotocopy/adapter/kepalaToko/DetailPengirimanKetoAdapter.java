@@ -123,9 +123,113 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(context, "Tolak", Toast.LENGTH_SHORT).show();
+                        tampilDialogTolak();
                     }
                 });
+
+    }
+
+    private void tampilDialogTolak() {
+        dialog = new Dialog(context);
+
+        dialog.setContentView(R.layout.dialog_tolak_barang);
+        dialog.setCancelable(false);
+        final TextView txtTolakBarang = dialog.findViewById(R.id.text_dialog_tolak_barang);
+        final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tolak_barang_outlet);
+
+        dialog.show();
+
+        txtTolakBarang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder((Activity) context)
+                        .setTitle("Tolak barang?")
+                        .setMessage("Apakah anda yakin ingin menolak barang ini?")
+                        .setCancelable(false)
+                        .setPositiveButton("Tolak", new BottomSheetMaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+//                                hargaPcs = edthargaPcs.getText().toString();
+//                                    hargaPack = edtHargaPack.getText().toString();
+//                                diskon = edtDiskonPcs.getText().toString();
+//                                diskonPack = edtDiskonPack.getText().toString();
+//
+//                                if (hargaPcs.isEmpty() || hargaPack.isEmpty() || diskon.isEmpty() || diskonPack.isEmpty()){
+//                                    Toast.makeText(context, "Form tidak boleh kosong", Toast.LENGTH_SHORT).show();
+//                                    return;
+//                                }
+
+                                tolakBarang();
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setNegativeButton("Batal", new BottomSheetMaterialDialog.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int which) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .build();
+
+                // Show Dialog
+                mBottomSheetDialog.show();
+
+            }
+        });
+
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+    }
+
+    private void tolakBarang() {
+        Random rnd = new Random();
+        int number = rnd.nextInt(999999);
+
+        String randomId = String.format("%06d", number);
+
+        String id_barang_outlet = "BO"+randomId;
+
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Tolak Barang");
+        progressDialog.show();
+
+        ConfigRetrofit.service.hapusPengiriman(id_pengiriman)
+                .enqueue(new Callback<ResponseHapusPengiriman>() {
+                    @Override
+                    public void onResponse(Call<ResponseHapusPengiriman> call, Response<ResponseHapusPengiriman> response) {
+                        if (response.isSuccessful()){
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+                            String pesan = response.body().getPesan();
+
+                            if (pesan.equals("Barang Berhasil Ditolak")){
+                                dialog.dismiss();
+                                getIdBarangOutlet();
+                            }else {
+                                dialog.dismiss();
+                                Toast.makeText(context, "Berhasil Menolak Data", Toast.LENGTH_SHORT).show();
+//                                hapusPengiriman();
+                                editPengiriman();
+                            }
+
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Terjadi kesalahan diserver", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseHapusPengiriman> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
     }
 
@@ -133,13 +237,13 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         dialog = new Dialog(context);
 
-        dialog.setContentView(R.layout.dialog_tambah_barang_outlet);
+        dialog.setContentView(R.layout.dialog_terima_barang);
         dialog.setCancelable(false);
 
-        final EditText edthargaPcs = dialog.findViewById(R.id.edt_dialog_harga_pcs);
-        final EditText edtHargaPack = dialog.findViewById(R.id.edt_dialog_harga_pack);
-        final EditText edtDiskonPcs = dialog.findViewById(R.id.edt_dialog_diskon);
-        final EditText edtDiskonPack = dialog.findViewById(R.id.edt_dialog_diskon_pack);
+//        final EditText edthargaPcs = dialog.findViewById(R.id.edt_dialog_harga_pcs);
+//        final EditText edtHargaPack = dialog.findViewById(R.id.edt_dialog_harga_pack);
+//        final EditText edtDiskonPcs = dialog.findViewById(R.id.edt_dialog_diskon);
+//        final EditText edtDiskonPack = dialog.findViewById(R.id.edt_dialog_diskon_pack);
         final TextView txtTerimaBarang = dialog.findViewById(R.id.text_dialog_terima_barang);
         final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang_outlet);
 
@@ -155,15 +259,15 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         .setPositiveButton("Terima", new BottomSheetMaterialDialog.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int which) {
-                                hargaPcs = edthargaPcs.getText().toString();
-                                    hargaPack = edtHargaPack.getText().toString();
-                                diskon = edtDiskonPcs.getText().toString();
-                                diskonPack = edtDiskonPack.getText().toString();
-
-                                if (hargaPcs.isEmpty() || hargaPack.isEmpty() || diskon.isEmpty() || diskonPack.isEmpty()){
-                                    Toast.makeText(context, "Form tidak boleh kosong", Toast.LENGTH_SHORT).show();
-                                    return;
-                                }
+//                                hargaPcs = edthargaPcs.getText().toString();
+//                                    hargaPack = edtHargaPack.getText().toString();
+//                                diskon = edtDiskonPcs.getText().toString();
+//                                diskonPack = edtDiskonPack.getText().toString();
+//
+//                                if (hargaPcs.isEmpty() || hargaPack.isEmpty() || diskon.isEmpty() || diskonPack.isEmpty()){
+//                                    Toast.makeText(context, "Form tidak boleh kosong", Toast.LENGTH_SHORT).show();
+//                                    return;
+//                                }
 
                                 terimaBarang();
                                 dialogInterface.dismiss();

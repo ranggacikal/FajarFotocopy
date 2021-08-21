@@ -10,10 +10,12 @@
         <entry key="..\:/FEG/app/src/main/res/layout/activity_cek_stock_toko_gudang.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_data_pengiriman_barang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_minta_barang_keto.xml" value="0.22" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_pengiriman_keto.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_hasil_pencarian_kirim_barang_gudang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_home_keto.xml" value="0.22" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_keranjang_minta_barang_keto.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_kirim_barang_gudang.xml" value="0.1983695652173913" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_login.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main_driver.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main_kasir.xml" value="0.1983695652173913" />
@@ -29,6 +31,9 @@
         <entry key="..\:/FEG/app/src/main/res/layout/dialog_minta_barang.xml" value="0.22" />
         <entry key="..\:/FEG/app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/dialog_stock_barang.xml" value="0.1983695652173913" />
+        <entry key="..\:/FEG/app/src/main/res/layout/dialog_tambah_barang_outlet.xml" value="0.19021739130434784" />
+        <entry key="..\:/FEG/app/src/main/res/layout/dialog_terima_barang.xml" value="0.19021739130434784" />
+        <entry key="..\:/FEG/app/src/main/res/layout/dialog_tolak_barang.xml" value="0.25" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_home_keto.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_informasi_keto.xml" value="0.2" />
