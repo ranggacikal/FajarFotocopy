@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.notifikasigudang.NotifikasiGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
@@ -58,6 +60,7 @@ public class HomeFragment extends Fragment {
     private SimpleDateFormat dateFormat, dateFormatStatusPenjualanGudang;
     private String date;
     CardView cardToko, cardBarang, cardUser, cardTransferBarang, cardSupplier;
+    ImageView imgNotif;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,6 +76,7 @@ public class HomeFragment extends Fragment {
         btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
         cardTransferBarang = rootView.findViewById(R.id.card_transfer_barang_gudang);
         cardSupplier = rootView.findViewById(R.id.card_supplier_gudang);
+        imgNotif = rootView.findViewById(R.id.img_notif);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
@@ -161,6 +165,15 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), BarangGudangActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(imgNotif)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), NotifikasiGudangActivity.class));
                     }
                 });
 
