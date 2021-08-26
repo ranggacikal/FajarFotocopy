@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
+import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.MintaBarangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,9 +28,10 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     private HomeFragment homeFragment;
-    private InformasiGudangFragment informasiGudangFragment;
+//    private InformasiGudangFragment informasiGudangFragment;
     private KirimBarangFragment kirimBarangFragment;
     private ProfileFragment profileFragment;
+    private MintaBarangFragment mintaBarangFragment;
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -85,11 +87,14 @@ public class MainActivity extends AppCompatActivity {
             case 0 :
                 replaceFragment(homeFragment);
                 break;
+//            case 1 :
+//                replaceFragment(informasiGudangFragment);
+//                break;
             case 1 :
-                replaceFragment(informasiGudangFragment);
+                replaceFragment(kirimBarangFragment);
                 break;
             case 2 :
-                replaceFragment(kirimBarangFragment);
+                replaceFragment(mintaBarangFragment);
                 break;
             case 3 :
                 replaceFragment(profileFragment);
@@ -109,14 +114,16 @@ public class MainActivity extends AppCompatActivity {
     private void setupTabLayout() {
 
         homeFragment = new HomeFragment();
-        informasiGudangFragment = new InformasiGudangFragment();
+//        informasiGudangFragment = new InformasiGudangFragment();
         profileFragment = new ProfileFragment();
         kirimBarangFragment = new KirimBarangFragment();
+        mintaBarangFragment = new MintaBarangFragment();
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
+//        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
         tabLayout.addTab(tabLayout.newTab().setText("Kirim Barang").setIcon(R.drawable.ic_history_baru));
+        tabLayout.addTab(tabLayout.newTab().setText("Minta Barang").setIcon(R.drawable.ic_minta_barang_gudang));
         tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
     }

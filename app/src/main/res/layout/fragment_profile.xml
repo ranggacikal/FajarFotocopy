@@ -9,7 +9,7 @@
     <RelativeLayout
         android:id="@+id/headerprofile"
         android:layout_width="match_parent"
-        android:layout_height="121dp"
+        android:layout_height="120dp"
         android:background="@drawable/background_header_green">
 
         <TextView
