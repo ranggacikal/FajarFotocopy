@@ -32,6 +32,7 @@ import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangTok
 import com.haloqlinic.fajarfotocopy.model.hapusBarangTransfer.ResponseHapusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.hapusPenjualanByIdStatus.ResponseHapusPenjualanGudangByIdStatus;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualanGudang.ResponseHapusStatusPenjualanGudang;
@@ -468,4 +469,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getSumPenjualanGudang")
     Call<ResponseSumPenjualanGudang> sumTotalPenjualanGudang(@Field("id_status_penjualan_gudang") String id_status_pejualan_gudang);
+
+    @FormUrlEncoded
+    @POST("hapusBarangPenjualanGudangByIdStatus")
+    Call<ResponseHapusPenjualanGudangByIdStatus> hapusPenjualanIdStatus(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang);
+
 }

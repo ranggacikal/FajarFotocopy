@@ -1,5 +1,7 @@
 package com.haloqlinic.fajarfotocopy.gudang.suppliergudang;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -10,6 +12,8 @@ import android.app.ProgressDialog;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,10 +25,12 @@ import com.haloqlinic.fajarfotocopy.adapter.gudang.KeranjangSupplierAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityKeranjangSupplierGudangBinding;
+import com.haloqlinic.fajarfotocopy.formatNumber.NumberTextWatcher;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.BarangPenjualanGudangItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.sumPenjualanGudang.ResponseSumPenjualanGudang;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -59,6 +65,8 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         binding.rvKeranjangSupplier.setHasFixedSize(true);
         binding.rvKeranjangSupplier.setLayoutManager(new LinearLayoutManager(KeranjangSupplierGudangActivity.this));
+
+        binding.edtJumlahBayarSupplier.addTextChangedListener(new NumberTextWatcher(binding.edtJumlahBayarSupplier));
 
         loadDataKeranjang();
         loadSumTotal();
@@ -139,6 +147,22 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(binding.rvKeranjangSupplier);
+
+        PushDownAnim.setPushDownAnimTo(binding.btnHitungKeranjangSupplier)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String jumlahBayarStr = binding.edtJumlahBayarSupplier.getText().toString();
+                        String jumlahReplace = jumlahBayarStr.replace(".", "").replace(",", "");
+                        jumlahBayar = Integer.parseInt(jumlahReplace);
+                        int kembalian = jumlahBayar - total;
+                        int jumlahKurang = total - jumlahBayar;
+
+                        binding.txtKembalianSupplier.setText("Rp" + NumberFormat.getInstance().format(kembalian));
+                        binding.txtTotalKurang.setText("Rp" + NumberFormat.getInstance().format(jumlahKurang));
+                    }
+                });
 
     }
 
