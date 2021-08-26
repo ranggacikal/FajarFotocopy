@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".gudang.suppliergudang.TransaksiBerhasilGudangActivity"
+            android:exported="true" />
+        <activity
             android:name=".kepalatoko.mintabarangketo.DetailMintaBarangKetoActivity"
             android:exported="true" />
         <activity
@@ -59,7 +62,7 @@
         <activity android:name=".gudang.informasigudang.TambahInformasiGudangActivity" />
         <activity android:name=".gudang.notifikasigudang.DetailNotifikasiGudangActivity" />
         <activity android:name=".gudang.notifikasigudang.NotifikasiGudangActivity" />
-        <activity android:name=".gudang.CetakBuktiTransferKirimGudangActivity" />
+        <activity android:name=".gudang.transferbaranggudang.CetakBuktiTransferKirimGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.KeranjangKirimBarangGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.HasilPencarianKirimBarangGudangActivity" />
         <activity

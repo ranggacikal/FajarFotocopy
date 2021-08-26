@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="7dp"
+    app:cardBackgroundColor="#D4B44E"
+    android:layout_margin="10dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginHorizontal="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_store_baru" />
+
+                <TextView
+                    android:id="@+id/text_item_nama_toko_minta_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/sairabold"
+                    android:text="Nama Toko"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+
+                <TextView
+                    android:id="@+id/text_item_tanggal_minta_barang_gudang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sairabold"
+                    android:text="Tanggal"
+                    android:layout_marginStart="15dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/text_item_nama_barang_minta_barang_gudang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="Nama Barang"
+                android:textColor="@color/black"
+                android:fontFamily="@font/sairamedium"
+                android:textSize="22sp"/>
+
+        </LinearLayout>
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>

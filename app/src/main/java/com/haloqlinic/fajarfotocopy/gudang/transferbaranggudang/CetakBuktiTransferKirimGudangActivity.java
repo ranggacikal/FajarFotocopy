@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang;
+package com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
