@@ -21,6 +21,7 @@ import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.editStatusBarangTransfer.ResponseEditStatusBarangTransfer;
+import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.editStatusTransfer.ResponseEditStatusTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
@@ -473,5 +474,18 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("hapusBarangPenjualanGudangByIdStatus")
     Call<ResponseHapusPenjualanGudangByIdStatus> hapusPenjualanIdStatus(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang);
+
+    @FormUrlEncoded
+    @POST("editStatusPenjualanGudang")
+    Call<ResponseEditStatusPenjualanGudang> editStatusPenjualanGudang(
+
+            @Field("id_status_penjualan_gudang") String id_status_penjualan_gudang,
+            @Field("status_penjualan") String status_penjualan,
+            @Field("metode_bayar") String metode_bayar,
+            @Field("total_harga") String total_harga,
+            @Field("jumlah_bayar") String jumlah_bayar,
+            @Field("jumlah_kurang") String jumlah_kurang,
+            @Field("image_bukti_tf") String image_bukti_tf
+    );
 
 }
