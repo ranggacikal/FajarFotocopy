@@ -234,7 +234,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
                     if (status==1){
 
-                        Intent intent = new Intent(KeranjangSupplierGudangActivity.this, TransaksiBerhasilActivity.class);
+                        Intent intent = new Intent(KeranjangSupplierGudangActivity.this, TransaksiBerhasilGudangActivity.class);
                         intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
                         startActivity(intent);
 
