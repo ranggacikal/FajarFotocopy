@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:layout_alignParentStart="true"
     android:layout_alignParentTop="true"
+    android:background="@color/white"
     android:fillViewport="true"
     tools:context=".gudang.suppliergudang.KeranjangSupplierGudangActivity">
 
@@ -97,46 +97,46 @@
                 android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:textAlignment="center"
                 android:fontFamily="@font/sairamedium"
                 android:text="Jasa/Barang"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#000000"/>
+                android:background="#000000" />
 
             <TextView
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:textAlignment="center"
                 android:fontFamily="@font/sairamedium"
                 android:text="QTY"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#000000"/>
+                android:background="#000000" />
 
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
                 android:layout_marginTop="12dp"
                 android:fontFamily="@font/sairamedium"
                 android:text="Harga"
+                android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="#000000"/>
+                android:background="#000000" />
 
             <TextView
                 android:layout_width="100dp"
@@ -155,45 +155,62 @@
             android:id="@+id/rv_keranjang_supplier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            tools:listitem="@layout/item_keranjang_supplier"
-            android:layout_gravity="center">
+            tools:listitem="@layout/item_keranjang_supplier">
 
         </androidx.recyclerview.widget.RecyclerView>
 
         <Spinner
             android:id="@+id/spinner_metode_bayar_supplier"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_rectangle"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
+            android:background="@drawable/bg_rectangle" />
 
         <Spinner
             android:id="@+id/spinner_jenis_bayar_supplier"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/bg_rectangle"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center"/>
+            android:background="@drawable/bg_rectangle" />
 
-        <EditText
-            android:id="@+id/edt_jumlah_bayar_supplier"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:hint="Jumlah Bayar"
-            android:inputType="number"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginHorizontal="15dp">
+
+            <EditText
+                android:id="@+id/edt_jumlah_bayar_supplier"
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:hint="Jumlah Bayar"
+                android:layout_centerVertical="true"
+                android:inputType="number" />
+
+            <Button
+                android:id="@+id/btn_hitung_keranjang_supplier"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_gold"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:text="HITUNG"/>
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/relative_total_kurang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginHorizontal="20dp"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -209,11 +226,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="Rp.0,0"
-                android:fontFamily="@font/sairabold"
                 android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Rp.0,0"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
 
         </RelativeLayout>
 
@@ -236,11 +253,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="Rp.0,0"
-                android:fontFamily="@font/sairabold"
                 android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Rp.0,0"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
 
         </RelativeLayout>
 
@@ -263,26 +280,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:text="Rp.0,0"
-                android:fontFamily="@font/sairabold"
                 android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Rp.0,0"
                 android:textColor="@color/black"
-                android:textSize="17sp"/>
+                android:textSize="17sp" />
 
         </RelativeLayout>
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="30dp"
-            android:background="@drawable/btn_black"
-            android:text="Bayar"
-            android:fontFamily="@font/sairamedium"
-            android:textSize="20sp"
-            android:textColor="@color/white"
+            android:layout_width="345dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="15dp"
-            android:layout_gravity="center"/>
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/sairamedium"
+            android:text="Bayar"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

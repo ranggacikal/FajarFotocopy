@@ -28,6 +28,7 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.hapusPenjualanByIdStatus.ResponseHapusPenjualanGudangByIdStatus;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualanGudang.ResponseHapusStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -251,8 +252,7 @@ public class SupplierGudangActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int which) {
 
                         SupplierGudangActivity.super.onBackPressed();
-
-                        hapusStatusPenjualanBarang();
+                        hapusBarangBarangByIdStatus();
                         dialogInterface.dismiss();
                     }
                 })
@@ -268,11 +268,39 @@ public class SupplierGudangActivity extends AppCompatActivity {
         mBottomSheetDialog.show();
     }
 
-    private void hapusStatusPenjualanBarang() {
+    private void hapusBarangBarangByIdStatus() {
 
-        ProgressDialog progressDialog = new ProgressDialog(SupplierGudangActivity.this);
-        progressDialog.setMessage("Menyelesaikan Transaksi");
-        progressDialog.show();
+        ConfigRetrofit.service.hapusPenjualanIdStatus(id_status_penjualan_gudang).enqueue(new Callback<ResponseHapusPenjualanGudangByIdStatus>() {
+            @Override
+            public void onResponse(Call<ResponseHapusPenjualanGudangByIdStatus> call, Response<ResponseHapusPenjualanGudangByIdStatus> response) {
+                if (response.isSuccessful()){
+
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        Toast.makeText(SupplierGudangActivity.this, "Berhasil menghapus semua data",
+                                Toast.LENGTH_SHORT).show();
+                        hapusStatusPenjualanBarang();
+                    }else{
+                        Toast.makeText(SupplierGudangActivity.this, "Gagal hapus semua data",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseHapusPenjualanGudangByIdStatus> call, Throwable t) {
+                Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void hapusStatusPenjualanBarang() {
 
         ConfigRetrofit.service.hapusStatusPenjualanGudang(id_status_penjualan_gudang).enqueue(new Callback<ResponseHapusStatusPenjualanGudang>() {
             @Override
@@ -291,14 +319,12 @@ public class SupplierGudangActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    progressDialog.dismiss();
                     Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseHapusStatusPenjualanGudang> call, Throwable t) {
-                progressDialog.dismiss();
                 Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
             }
         });
