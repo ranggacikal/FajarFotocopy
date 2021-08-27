@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
@@ -57,6 +59,8 @@ public class HomeKetoFragment extends Fragment {
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal, txtNamaToko;
     Button btnKeluar;
+    ImageView imageView;
+
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -70,6 +74,7 @@ public class HomeKetoFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home_keto, container, false);
 
+        imageView = rootView.findViewById(R.id.imgprofile);
         txtNama = rootView.findViewById(R.id.text_nama_home_keto);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_keto);
         txtNamaToko = rootView.findViewById(R.id.text_nama_toko_keto);
@@ -84,7 +89,7 @@ public class HomeKetoFragment extends Fragment {
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
         txtNamaToko.setText(preferencedConfig.getPreferenceIdOutlet());
-
+        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");

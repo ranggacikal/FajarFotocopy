@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
@@ -61,6 +62,14 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
         int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaModalGudang());
         int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaModalGudangPack());
 
+        String image = dataBarang.get(position).getImageBarang();
+
+
+        Glide.with(context)
+                .load(image)
+                .error(R.drawable.ic_gift)
+                .into(holder.imgBarang);
+
         holder.txtNama.setText(dataBarang.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
@@ -87,14 +96,14 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.itemView)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.itemView)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
         PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
                 .setScale(MODE_SCALE, 0.89f)
