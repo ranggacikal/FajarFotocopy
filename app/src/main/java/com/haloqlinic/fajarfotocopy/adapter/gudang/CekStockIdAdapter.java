@@ -30,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.CekSotckIdViewHolder> {
+public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.CekStockIdViewHolder> {
 
     Context context;
     List<SearchBarangByIdItem> dataBarang;
@@ -45,13 +45,13 @@ public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.Ce
 
     @NonNull
     @Override
-    public CekSotckIdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CekStockIdViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cek_stock, parent, false);
-        return new CekSotckIdViewHolder(view);
+        return new CekStockIdViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CekSotckIdViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CekStockIdViewHolder holder, int position) {
         String img = dataBarang.get(position).getImageBarang();
 
         Glide.with(context)
@@ -171,12 +171,12 @@ public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.Ce
         return dataBarang.size();
     }
 
-    public class CekSotckIdViewHolder extends RecyclerView.ViewHolder {
+    public class CekStockIdViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgCekStock;
         TextView txtNamaBarang, txtStockPcs, txtPack, txtEdit;
 
-        public CekSotckIdViewHolder(@NonNull View itemView) {
+        public CekStockIdViewHolder(@NonNull View itemView) {
             super(itemView);
             imgCekStock = itemView.findViewById(R.id.img_item_cek_stock);
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_cek_stock);

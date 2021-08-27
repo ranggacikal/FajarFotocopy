@@ -97,14 +97,14 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.itemView)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.itemView)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
 
         holder.btnTambahPesanan.setVisibility(View.GONE);
         holder.btnTambahBarang.setVisibility(View.VISIBLE);

@@ -149,7 +149,7 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
                     }
 
                 }else{
-                    Toast.makeText(TambahTokoGudangActivity.this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahTokoGudangActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
                 }
             }
 
