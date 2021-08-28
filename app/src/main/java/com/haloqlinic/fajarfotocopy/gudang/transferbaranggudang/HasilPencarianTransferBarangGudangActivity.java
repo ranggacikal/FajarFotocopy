@@ -283,9 +283,9 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     private void hapusTransferBarangCancel() {
 
-        ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
-        progressDialog.setMessage("Menghapus data transfer barang");
-        progressDialog.show();
+//        ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
+//        progressDialog.setMessage("Menghapus data transfer barang");
+//        progressDialog.show();
 
         ConfigRetrofit.service.hapusTransferCancel(id_status_transfer).enqueue(new Callback<ResponseHapusTransferCancel>() {
             @Override
@@ -294,7 +294,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
                     int status = response.body().getStatus();
                     String pesan = response.body().getPesan();
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
 
                     if (status==1){
 
@@ -306,7 +306,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                     }
 
                 }else{
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -314,7 +314,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             @Override
             public void onFailure(Call<ResponseHapusTransferCancel> call, Throwable t) {
 
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -324,16 +324,16 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     private void hapusStatusTransfer() {
 
-        ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
-        progressDialog.setMessage("Membatalkan Transfer barang");
-        progressDialog.show();
+//        ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
+//        progressDialog.setMessage("Membatalkan Transfer barang");
+//        progressDialog.show();
 
         ConfigRetrofit.service.hapusStatusTransfer(id_status_transfer).enqueue(new Callback<ResponseHapusStatusTransfer>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusTransfer> call, Response<ResponseHapusStatusTransfer> response) {
                 if (response.isSuccessful()){
 
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     int status = response.body().getStatus();
                     String pesan = response.body().getPesan();
 
@@ -348,14 +348,14 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                     }
 
                 }else{
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
                     Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseHapusStatusTransfer> call, Throwable t) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
                 Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

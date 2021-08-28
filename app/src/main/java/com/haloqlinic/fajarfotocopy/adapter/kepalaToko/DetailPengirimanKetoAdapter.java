@@ -81,6 +81,10 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
         id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
         status_barang = listPengiriman.get(position).getStatusBarang();
 
+        hargaPcs = listPengiriman.get(position).getHargaJualToko();
+        hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
+
+
         Glide.with(context)
                 .load(img_barang)
                 .error(R.drawable.ic_gift)
@@ -310,7 +314,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
         progressDialog.show();
 
         ConfigRetrofit.service.tambahBarangOutlet(id_barang_outlet, id_barang, hargaPcs, hargaPack,
-                jumlah_pcs, jumlah_pack, diskon, diskonPack, id_outlet)
+                jumlah_pcs, jumlah_pack, "0", "0", id_outlet)
                 .enqueue(new Callback<ResponseTambahBarangOutlet>() {
                     @Override
                     public void onResponse(Call<ResponseTambahBarangOutlet> call, Response<ResponseTambahBarangOutlet> response) {

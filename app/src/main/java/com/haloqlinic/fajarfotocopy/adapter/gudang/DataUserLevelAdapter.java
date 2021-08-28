@@ -1,6 +1,9 @@
 package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.gudang.usergudang.DetailDataUserGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.DataUserByLevelItem;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -44,6 +49,24 @@ public class DataUserLevelAdapter extends RecyclerView.Adapter<DataUserLevelAdap
         holder.txtLevel.setText(dataUser.get(position).getLevel());
 
         Glide.with(context).load(urlImage).into(holder.imgDataUser);
+
+        PushDownAnim.setPushDownAnimTo(holder.itemView)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, DetailDataUserGudangActivity.class);
+                        intent.putExtra("id_user", dataUser.get(position).getIdUser());
+                        intent.putExtra("nama_user", dataUser.get(position).getNamaLengkap());
+                        intent.putExtra("username", dataUser.get(position).getUsername());
+                        intent.putExtra("password", dataUser.get(position).getPassword());
+                        intent.putExtra("level", dataUser.get(position).getLevel());
+                        intent.putExtra("id_outlet", dataUser.get(position).getIdOutlet());
+                        intent.putExtra("nama_outlet", dataUser.get(position).getNamaOutlet());
+                        intent.putExtra("foto", dataUser.get(position).getFoto());
+                        context.startActivity(intent);
+                    }
+                });
     }
 
     @Override

@@ -60,8 +60,15 @@ public class DataBarangGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        binding.searchviewDatabaranggudangScanner.setQueryHint("id barang");
-        binding.searchviewDatabaranggudangScanner.setIconified(false);
+        binding.searchviewDatabaranggudangScanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                binding.searchviewDatabaranggudangScanner.setQueryHint("id barang");
+                binding.searchviewDatabaranggudangScanner.setIconified(false);
+
+            }
+        });
 
         binding.searchviewDatabaranggudangScanner.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

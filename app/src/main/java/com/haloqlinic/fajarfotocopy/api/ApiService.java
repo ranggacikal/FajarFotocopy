@@ -18,12 +18,14 @@ import com.haloqlinic.fajarfotocopy.model.detailTransferBarang.ResponseDetailTra
 import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
+import com.haloqlinic.fajarfotocopy.model.editImageUser.ResponseEditImageUser;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.editStatusBarangTransfer.ResponseEditStatusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.editStatusTransfer.ResponseEditStatusTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
+import com.haloqlinic.fajarfotocopy.model.editUser.ResponseEditUser;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
@@ -39,6 +41,7 @@ import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStat
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualanGudang.ResponseHapusStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusTransfer.ResponseHapusStatusTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusTransferCancel.ResponseHapusTransferCancel;
+import com.haloqlinic.fajarfotocopy.model.hapusUser.ResponseHapusUser;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -85,11 +88,11 @@ public interface ApiService {
     @POST("tambahOutlet")
     Call<ResponseTambahOutlet> tambahOutlet(@Field("id_outlet") String id_outlet,
                                             @Field("nama_outlet") String nama_outlet,
-                                            @Field("provinsi") String provinsi,
                                             @Field("kota") String kota,
-                                            @Field("kecamatan") String kecamatan,
-                                            @Field("kelurahan") String kelurahan,
-                                            @Field("kode_pos") String kode_pos);
+                                            @Field("persentase") String persentase,
+                                            @Field("gaji") String gaji,
+                                            @Field("jumlah_anggota") String jumlah_anggota,
+                                            @Field("alamat") String alamat);
 
     @GET("getDataToko")
     Call<ResponseDataToko> dataToko();
@@ -427,7 +430,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("editBarangTransfer")
     Call<ResponseEditStatusBarangTransfer> editStatusBarangTransfer(@Field("id_status_transfer") String id_status_transfer,
-                                                                    @Field("status_transfer") String status_transfer);
+                                                                    @Field("status_barang") String status_transfer);
 
     @FormUrlEncoded
     @POST("tambahStatusPenjualanGudang")
@@ -487,5 +490,22 @@ public interface ApiService {
             @Field("jumlah_kurang") String jumlah_kurang,
             @Field("image_bukti_tf") String image_bukti_tf
     );
+
+    @FormUrlEncoded
+    @POST("editDataUser")
+    Call<ResponseEditUser> editUser(@Field("id_user") String id_user,
+                                    @Field("nama_lengkap") String nama_lengkap,
+                                    @Field("username") String username,
+                                    @Field("level") String level,
+                                    @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("editDataImageUser")
+    Call<ResponseEditImageUser> editImageUser(@Field("id_user") String id_user,
+                                              @Field("foto") String foto);
+
+    @FormUrlEncoded
+    @POST("hapusUser")
+    Call<ResponseHapusUser> hapusUser(@Field("id_user") String id_user);
 
 }

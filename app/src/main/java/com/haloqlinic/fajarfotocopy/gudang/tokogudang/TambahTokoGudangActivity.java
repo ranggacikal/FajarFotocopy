@@ -13,6 +13,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCekStockTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahTokoGudangBinding;
+import com.haloqlinic.fajarfotocopy.formatNumber.NumberTextWatcher;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -48,14 +49,10 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
 
         edtId = findViewById(R.id.edt_id_tambah_outlet);
         edtNama = findViewById(R.id.edt_nama_tambah_outlet);
-        edtProvinsi = findViewById(R.id.edt_provinsi_tambah_outlet);
         edtKota = findViewById(R.id.edt_kota_tambah_outlet);
-        edtKecamatan = findViewById(R.id.edt_kecamatan_tambah_outlet);
-        edtKelurahan = findViewById(R.id.edt_kelurahan_tambah_outlet);
-        edtKodePos = findViewById(R.id.edt_kodepos_tambah_outlet);
         btnSimpan = findViewById(R.id.btn_simpan_tambah_outlet);
 
-
+        binding.edtGajiTambahOutlet.addTextChangedListener(new NumberTextWatcher(binding.edtGajiTambahOutlet));
 
         PushDownAnim.setPushDownAnimTo(binding.btnSimpanTambahOutlet)
                 .setScale(MODE_SCALE, 0.89f)
@@ -71,11 +68,12 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
 
         String id = edtId.getText().toString();
         String nama = edtNama.getText().toString();
-        String provinsi = edtProvinsi.getText().toString();
-        String kota = edtKota.getText().toString();
-        String kecamatan = edtKecamatan.getText().toString();
-        String kelurahan = edtKelurahan.getText().toString();
-        String kodePos = edtKodePos.getText().toString();
+        String kota = binding.edtKotaTambahOutlet.getText().toString();
+        String persentase = binding.edtPersentaseTambahOutlet.getText().toString();
+        String gajiStr = binding.edtGajiTambahOutlet.getText().toString();
+        String gaji = gajiStr.replace(".", "").replace(",", "");
+        String jumlah_anggota = binding.edtJumlahAnggotaTambahOutlet.getText().toString();
+        String alamat = binding.edtAlamatTambahOutlet.getText().toString();
 
         if (id.isEmpty()){
             edtId.setError("Id Tidak boleh Kosong");
@@ -89,33 +87,33 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (provinsi.isEmpty()){
-            edtProvinsi.setError("Provinsi Tidak boleh Kosong");
-            edtProvinsi.requestFocus();
-            return;
-        }
-
         if (kota.isEmpty()){
-            edtKota.setError("Kota Tidak boleh Kosong");
-            edtKota.requestFocus();
+            binding.edtKotaTambahOutlet.setError("Kota Tidak boleh Kosong");
+            binding.edtKotaTambahOutlet.requestFocus();
             return;
         }
 
-        if (kecamatan.isEmpty()){
-            edtKecamatan.setError("Kecamatan Tidak boleh Kosong");
-            edtKecamatan.requestFocus();
+        if (persentase.isEmpty()){
+            binding.edtPersentaseTambahOutlet.setError("Persentase Tidak boleh Kosong");
+            binding.edtPersentaseTambahOutlet.requestFocus();
             return;
         }
 
-        if (kelurahan.isEmpty()){
-            edtKelurahan.setError("Kelurahan Tidak boleh Kosong");
-            edtKelurahan.requestFocus();
+        if (gaji.isEmpty()){
+            binding.edtGajiTambahOutlet.setError("Gaji Tidak boleh Kosong");
+            binding.edtGajiTambahOutlet.requestFocus();
             return;
         }
 
-        if (kodePos.isEmpty()){
-            edtKodePos.setError("Kdoe pos Tidak boleh Kosong");
-            edtKodePos.requestFocus();
+        if (jumlah_anggota.isEmpty()){
+            binding.edtJumlahAnggotaTambahOutlet.setError("Jumlah Anggota Tidak boleh Kosong");
+            binding.edtJumlahAnggotaTambahOutlet.requestFocus();
+            return;
+        }
+
+        if (alamat.isEmpty()){
+            binding.edtAlamatTambahOutlet.setError("Alamat Tidak boleh Kosong");
+            binding.edtAlamatTambahOutlet.requestFocus();
             return;
         }
 
@@ -123,7 +121,7 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Menambahkan outlet");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahOutlet(id, nama, provinsi, kota, kecamatan, kelurahan, kodePos).enqueue(new Callback<ResponseTambahOutlet>() {
+        ConfigRetrofit.service.tambahOutlet(id, nama, kota, persentase, gaji, jumlah_anggota, alamat).enqueue(new Callback<ResponseTambahOutlet>() {
             @Override
             public void onResponse(Call<ResponseTambahOutlet> call, Response<ResponseTambahOutlet> response) {
                 if (response.isSuccessful()){
@@ -137,11 +135,11 @@ public class TambahTokoGudangActivity extends AppCompatActivity {
                         Toast.makeText(TambahTokoGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
                         edtId.setText("");
                         edtNama.setText("");
-                        edtProvinsi.setText("");
-                        edtKota.setText("");
-                        edtKecamatan.setText("");
-                        edtKelurahan.setText("");
-                        edtKodePos.setText("");
+                        binding.edtKotaTambahOutlet.setText("");
+                        binding.edtPersentaseTambahOutlet.setText("");
+                        binding.edtGajiTambahOutlet.setText("");
+                        binding.edtJumlahAnggotaTambahOutlet.setText("");
+                        binding.edtAlamatTambahOutlet.setText("");
                         edtId.requestFocus();
                     }else{
                         progressDialog.dismiss();
