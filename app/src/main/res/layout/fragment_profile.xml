@@ -60,8 +60,8 @@
         android:layout_height="120dp"
         android:layout_below="@id/headerprofile"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:layout_marginHorizontal="5dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/ic_profile" />
 
 

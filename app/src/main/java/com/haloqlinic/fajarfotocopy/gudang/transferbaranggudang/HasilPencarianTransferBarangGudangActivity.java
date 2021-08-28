@@ -215,30 +215,34 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
     private void cariBarangById() {
 
         if (id_barang.equals("")){
-
             binding.rvTransferBarang.setVisibility(View.GONE);
 
         }else{
+            ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
+            progressDialog.setMessage("Mencari Data");
+            progressDialog.show();
+
             ConfigRetrofit.service.barangOutletById(id_barang, id_outlet).enqueue(new Callback<ResponseBarangOutletById>() {
                 @Override
                 public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
                     if (response.isSuccessful()){
+
+                        progressDialog.dismiss();
 
                         int status = response.body().getStatus();
                         String pesan = response.body().getPesan();
 
                         List<SearchBarangOutletByIdItem> dataId = response.body().getSearchBarangOutletById();
 
-                        if (status==1){
+                        if (status == 1) {
 
-                            CariTransferBarangIdAdapter adapterId = new CariTransferBarangIdAdapter(HasilPencarianTransferBarangGudangActivity.this,
-                                    dataId);
-                            binding.rvTransferBarang.setAdapter(adapterId);
-
-                        }else{
+                            CariTransferBarangIdAdapter adapter = new CariTransferBarangIdAdapter(HasilPencarianTransferBarangGudangActivity.this,
+                                    dataId, HasilPencarianTransferBarangGudangActivity.this);
+                            binding.rvTransferBarang.setAdapter(adapter);
+                        } else {
                             Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
-                        }
 
+                        }
                     }else{
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "response gagal", Toast.LENGTH_SHORT).show();
                     }
@@ -364,6 +368,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     private void cariBarang(String newText) {
 
+
         if (newText.equals("")){
             binding.rvTransferBarang.setVisibility(View.GONE);
         }else {
@@ -371,6 +376,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             ConfigRetrofit.service.barangOutletByNama(newText, id_outlet).enqueue(new Callback<ResponseBarangOutletByNama>() {
                 @Override
                 public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
+
                     if (response.isSuccessful() && response.body() != null) {
 
                         binding.rvTransferBarang.setVisibility(View.VISIBLE);

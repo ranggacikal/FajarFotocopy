@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
@@ -55,6 +56,8 @@ public class HomeFragment extends Fragment {
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal;
     Button btnKeluar;
+    ImageView imageView;
+
 
     private Calendar calendar, calendarStatusPenjualanGudang;
     private SimpleDateFormat dateFormat, dateFormatStatusPenjualanGudang;
@@ -68,6 +71,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
 
+        imageView = rootView.findViewById(R.id.imgprofile);
         txtNama = rootView.findViewById(R.id.text_nama_home_gudang);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_gudang);
         cardToko = rootView.findViewById(R.id.card_outlet_gudang);
@@ -81,6 +85,8 @@ public class HomeFragment extends Fragment {
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         String level = preferencedConfig.getPreferenceLevel();
+        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+
 
         Log.d("checkTokenLocal", "Home: "+preferencedConfig.getPreferenceTokenFcm());
 
