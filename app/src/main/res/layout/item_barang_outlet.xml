@@ -126,13 +126,14 @@
 
             <EditText
                 android:id="@+id/edt_jumlah_pack_item_barang"
-                android:layout_width="130dp"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="20dp"
+                android:visibility="gone"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:hint="Jumlah Pack"
                 android:textSize="11sp"
-                android:visibility="gone"
                 android:inputType="number"/>
 
             <EditText

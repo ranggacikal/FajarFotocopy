@@ -16,6 +16,8 @@
         <entry key="..\:/FEG/app/src/main/res/layout/activity_cetak_bukti_supplier_gudang.xml" value="0.16" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_data_pengiriman_barang.xml" value="0.19021739130434784" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_data_pertoko_gudang.xml" value="0.22056159420289856" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_data_barang_gudang.xml" value="0.22056159420289856" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_minta_barang_keto.xml" value="0.22" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_pengiriman_keto.xml" value="0.18614130434782608" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_hasil_pencarian_kirim_barang_gudang.xml" value="0.19021739130434784" />
@@ -55,7 +57,7 @@
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_minta_barang.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_profile_keto.xml" value="0.1859375" />
-        <entry key="..\:/FEG/app/src/main/res/layout/item_barang_outlet.xml" value="0.19021739130434784" />
+        <entry key="..\:/FEG/app/src/main/res/layout/item_barang_outlet.xml" value="0.25" />
         <entry key="..\:/FEG/app/src/main/res/layout/item_cari_barang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/item_cek_stock.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/item_cek_stok_toko_gudang.xml" value="0.1983695652173913" />
@@ -86,26 +88,21 @@
         <entry key="app/src/main/res/layout/activity_cek_stock_barang_gudang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_detail_data_user_gudang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
         <entry key="app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.11875" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pembayaran_kasir.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/activity_report_pengiriman_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_report_penjualan.xml" value="0.12192622950819672" />
         <entry key="app/src/main/res/layout/activity_tambah_informasi_gudang.xml" value="0.12192622950819672" />
-        <entry key="app/src/main/res/layout/activity_tambah_toko_gudang.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_web_view_report_pengiriman.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.14" />
         <entry key="app/src/main/res/layout/item_cek_stock.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/item_data_barang.xml" value="0.12" />
-        <entry key="app/src/main/res/layout/item_data_user.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/item_list_pembayaran.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notification.xml" value="0.1284153005464481" />

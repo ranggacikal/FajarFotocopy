@@ -56,17 +56,21 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        editStatusTransfer();
+                            editStatusTransfer();
                     }
                 });
 
     }
 
+
+
     private void editStatusTransfer() {
 
+
         ProgressDialog progresStatusTransfer = new ProgressDialog(KeranjangTransferBarangGudangActivity.this);
-        progresStatusTransfer.setMessage("Memproses Checkout Anda");
+        progresStatusTransfer.setMessage("Memproses Checkout Anda ...");
         progresStatusTransfer.show();
+
 
         ConfigRetrofit.service.editStatusTransfer(id_status_transfer, "dalam proses")
                 .enqueue(new Callback<ResponseEditStatusTransfer>() {
@@ -80,7 +84,7 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
                                 editStatusBarang();
                             }else{
                                 Toast.makeText(KeranjangTransferBarangGudangActivity.this,
-                                        "Gagal Checkout", Toast.LENGTH_SHORT).show();
+                                        "Gagal Check Out.", Toast.LENGTH_SHORT).show();
                             }
                         }else{
                             progresStatusTransfer.dismiss();

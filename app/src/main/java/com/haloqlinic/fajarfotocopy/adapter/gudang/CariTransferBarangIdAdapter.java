@@ -89,11 +89,8 @@ public class CariTransferBarangIdAdapter extends RecyclerView.Adapter<CariTransf
             public void onClick(View view) {
                 number = holder.numberPicker.getNumber();
                 int stock = Integer.parseInt(dataBarangId.get(position).getStock());
-                if (number.equals("0")){
-                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-                    holder.numberPicker.setNumber("1");
-                }else if (Integer.parseInt(number) > stock ){
-                    Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(number) > stock ){
+                    Toast.makeText(context, "Stock Tidak Mencukupi Untuk Quantity Ini.", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
                 }
 
@@ -149,7 +146,7 @@ public class CariTransferBarangIdAdapter extends RecyclerView.Adapter<CariTransf
         }
 
         ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("menambahkan barang");
+        progressDialog.setMessage("Menambahkan Barang ...");
         progressDialog.show();
 
         ConfigRetrofit.service.tambahTransferBarang(id_transfer_barang, id_barang_outlet_pengirim, id_barang,
