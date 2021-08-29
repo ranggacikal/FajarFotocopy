@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.adapter.kepalaToko;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -70,19 +71,19 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull DetailPengirimanKetoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull DetailPengirimanKetoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        id_barang = listPengiriman.get(position).getIdBarang();
+//        id_barang = listPengiriman.get(position).getIdBarang();
         img_barang = listPengiriman.get(position).getImageBarang();
-        id_outlet = listPengiriman.get(position).getIdOutlet();
-        jumlah_pcs = listPengiriman.get(position).getJumlah();
-        jumlah_pack = listPengiriman.get(position).getJumlahPack();
-        id_pengiriman = listPengiriman.get(position).getIdPengiriman();
-        id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
+//        id_outlet = listPengiriman.get(position).getIdOutlet();
+//        jumlah_pcs = listPengiriman.get(position).getJumlah();
+//        jumlah_pack = listPengiriman.get(position).getJumlahPack();
+//        id_pengiriman = listPengiriman.get(position).getIdPengiriman();
+//        id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
         status_barang = listPengiriman.get(position).getStatusBarang();
-
-        hargaPcs = listPengiriman.get(position).getHargaJualToko();
-        hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
+//
+//        hargaPcs = listPengiriman.get(position).getHargaJualToko();
+//        hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
 
 
         Glide.with(context)
@@ -118,6 +119,19 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        id_barang = listPengiriman.get(position).getIdBarang();
+
+
+                        id_outlet = listPengiriman.get(position).getIdOutlet();
+                        jumlah_pcs = listPengiriman.get(position).getJumlah();
+                        jumlah_pack = listPengiriman.get(position).getJumlahPack();
+                        id_pengiriman = listPengiriman.get(position).getIdPengiriman();
+                        id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
+                        status_barang = listPengiriman.get(position).getStatusBarang();
+
+                        hargaPcs = listPengiriman.get(position).getHargaJualToko();
+                        hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
                         tampilDialog();
                     }
                 });
@@ -127,6 +141,15 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        id_barang = listPengiriman.get(position).getIdBarang();
+                        id_outlet = listPengiriman.get(position).getIdOutlet();
+                        jumlah_pcs = listPengiriman.get(position).getJumlah();
+                        jumlah_pack = listPengiriman.get(position).getJumlahPack();
+                        id_pengiriman = listPengiriman.get(position).getIdPengiriman();
+                        id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
+                        status_barang = listPengiriman.get(position).getStatusBarang();
+                        hargaPcs = listPengiriman.get(position).getHargaJualToko();
+                        hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
                         tampilDialogTolak();
                     }
                 });
@@ -201,24 +224,27 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
         progressDialog.setMessage("Tolak Barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.hapusPengiriman(id_pengiriman)
-                .enqueue(new Callback<ResponseHapusPengiriman>() {
+        ConfigRetrofit.service.editPengiriman(id_pengiriman, id_barang, jumlah_pcs, jumlah_pack,
+                id_outlet, id_status_pengiriman, "ditolak")
+                .enqueue(new Callback<ResponseEditPengiriman>() {
                     @Override
-                    public void onResponse(Call<ResponseHapusPengiriman> call, Response<ResponseHapusPengiriman> response) {
+                    public void onResponse(Call<ResponseEditPengiriman> call, Response<ResponseEditPengiriman> response) {
                         if (response.isSuccessful()){
                             progressDialog.dismiss();
 
                             int status = response.body().getStatus();
                             String pesan = response.body().getPesan();
 
-                            if (pesan.equals("Barang Berhasil Ditolak")){
+                            if (status==1){
+                                Log.d("editHapusPengiriman", "onResponse: "+"berhasil");
+                                Toast.makeText(context, "Berhasil menolak barang", Toast.LENGTH_SHORT).show();
+                                detailPengirimanKetoActivity.loadDetailPengiriman();
                                 dialog.dismiss();
-                                getIdBarangOutlet();
-                            }else {
-                                dialog.dismiss();
-                                Toast.makeText(context, "Berhasil Menolak Data", Toast.LENGTH_SHORT).show();
-//                                hapusPengiriman();
-                                editPengiriman();
+                                notifyDataSetChanged();
+                            }else{
+
+                                Toast.makeText(context, "Gagal menolak barang", Toast.LENGTH_SHORT).show();
+                                Log.d("editHapusPengiriman", "onResponse: "+"Gagal");
                             }
 
                         }else{
@@ -228,9 +254,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     }
 
                     @Override
-                    public void onFailure(Call<ResponseHapusPengiriman> call, Throwable t) {
+                    public void onFailure(Call<ResponseEditPengiriman> call, Throwable t) {
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -399,9 +425,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack) {
 
-        ProgressDialog progressEdit = new ProgressDialog(context);
-        progressEdit.setMessage("Edit Stock");
-        progressEdit.show();
+//        ProgressDialog progressEdit = new ProgressDialog(context);
+//        progressEdit.setMessage("Edit Stock");
+//        progressEdit.show();
 
         int jumlah_stock_pcs = Integer.parseInt(stock_pcs) + Integer.parseInt(jumlah_pcs);
         int jumlah_stock_pack = Integer.parseInt(stock_pack) + Integer.parseInt(jumlah_pack);
@@ -413,7 +439,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     public void onResponse(Call<ResponseEditBarangOutlet> call, Response<ResponseEditBarangOutlet> response) {
                         if (response.isSuccessful()){
 
-                            progressEdit.dismiss();
+//                            progressEdit.dismiss();
 
                             int status = response.body().getStatus();
 
@@ -427,14 +453,14 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             }
 
                         }else{
-                            progressEdit.dismiss();
+//                            progressEdit.dismiss();
                             Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseEditBarangOutlet> call, Throwable t) {
-                        progressEdit.dismiss();
+//                        progressEdit.dismiss();
                         Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -444,9 +470,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     private void editPengiriman() {
 
-        ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Edit data di pengiriman");
-        progressDialog.show();
+//        ProgressDialog progressDialog = new ProgressDialog(context);
+//        progressDialog.setMessage("Edit data di pengiriman");
+//        progressDialog.show();
 
         ConfigRetrofit.service.editPengiriman(id_pengiriman, id_barang, jumlah_pcs, jumlah_pack,
                 id_outlet, id_status_pengiriman, "diterima")
@@ -454,24 +480,25 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     @Override
                     public void onResponse(Call<ResponseEditPengiriman> call, Response<ResponseEditPengiriman> response) {
                         if (response.isSuccessful()){
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
                             int status = response.body().getStatus();
                             if (status==1){
                                 Log.d("editHapusPengiriman", "onResponse: "+"berhasil");
                                 detailPengirimanKetoActivity.loadDetailPengiriman();
+                                notifyDataSetChanged();
                             }else{
                                 Log.d("editHapusPengiriman", "onResponse: "+"Gagal");
                             }
 
                         }else{
-                            progressDialog.dismiss();
+//                            progressDialog.dismiss();
                             Log.d("editHapusPengiriman", "onResponse: "+"Gagal From server");
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseEditPengiriman> call, Throwable t) {
-                        progressDialog.dismiss();
+//                        progressDialog.dismiss();
                         Log.d("editHapusPengiriman", "onResponse: "+t.getMessage());
                     }
                 });

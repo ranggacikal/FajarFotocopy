@@ -98,8 +98,13 @@ public class DataUserGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Memuat Data User...");
         progressDialog.show();
 
-        searchDataUser.setQueryHint("Cari User");
-        searchDataUser.setIconified(false);
+        searchDataUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchDataUser.setQueryHint("Cari User");
+                searchDataUser.setIconified(false);
+            }
+        });
 
         searchDataUser.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

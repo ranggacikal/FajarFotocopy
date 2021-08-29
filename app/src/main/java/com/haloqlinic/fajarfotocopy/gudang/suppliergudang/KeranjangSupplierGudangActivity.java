@@ -85,7 +85,12 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
         binding.edtJumlahBayarSupplier.addTextChangedListener(new NumberTextWatcher(binding.edtJumlahBayarSupplier));
 
         loadDataKeranjang();
-        loadSumTotal();
+
+        if (dataBarang==null) {
+            Toast.makeText(KeranjangSupplierGudangActivity.this, "Anda Belum Memilih barang", Toast.LENGTH_SHORT).show();
+        }else{
+            loadSumTotal();
+        }
 
         ArrayAdapter<String> adapterMetode = new ArrayAdapter<String>(KeranjangSupplierGudangActivity.this,
                 R.layout.spinner_item, metodeBayarItem);
@@ -122,8 +127,11 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
                 if (jenis_bayar.equals("Tempo")) {
                     binding.relativeTotalKurang.setVisibility(View.VISIBLE);
+                    binding.relativeKembalianSupplier.setVisibility(View.GONE);
+
                 } else {
                     binding.relativeTotalKurang.setVisibility(View.GONE);
+                    binding.relativeKembalianSupplier.setVisibility(View.VISIBLE);
                 }
             }
 

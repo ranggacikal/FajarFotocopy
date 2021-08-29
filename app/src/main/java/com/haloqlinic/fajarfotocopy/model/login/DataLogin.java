@@ -22,6 +22,12 @@ public class DataLogin{
 	@SerializedName("id_user")
 	private String idUser;
 
+	@SerializedName("nama_outlet")
+	private String namaOutlet;
+
+	@SerializedName("firebase_token")
+	private String firebaseToken;
+
 	@SerializedName("username")
 	private String username;
 
@@ -73,6 +79,22 @@ public class DataLogin{
 		return idUser;
 	}
 
+	public void setNamaOutlet(String namaOutlet){
+		this.namaOutlet = namaOutlet;
+	}
+
+	public String getNamaOutlet(){
+		return namaOutlet;
+	}
+
+	public void setFirebaseToken(String firebaseToken){
+		this.firebaseToken = firebaseToken;
+	}
+
+	public String getFirebaseToken(){
+		return firebaseToken;
+	}
+
 	public void setUsername(String username){
 		this.username = username;
 	}
@@ -91,6 +113,8 @@ public class DataLogin{
 			",nama_lengkap = '" + namaLengkap + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",id_user = '" + idUser + '\'' + 
+			",nama_outlet = '" + namaOutlet + '\'' + 
+			",firebase_token = '" + firebaseToken + '\'' + 
 			",username = '" + username + '\'' + 
 			"}";
 		}

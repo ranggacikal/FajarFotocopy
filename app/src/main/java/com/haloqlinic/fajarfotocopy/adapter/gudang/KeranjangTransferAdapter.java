@@ -112,6 +112,7 @@ public class KeranjangTransferAdapter extends RecyclerView.Adapter<KeranjangTran
 
                         Toast.makeText(context, pesan, Toast.LENGTH_SHORT).show();
                         keranjangTransferBarangGudangActivity.loadKeranjangTransfer();
+                        notifyDataSetChanged();
 
 
                     }else{

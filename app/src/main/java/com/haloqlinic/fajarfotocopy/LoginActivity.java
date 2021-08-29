@@ -147,9 +147,11 @@ public class LoginActivity extends AppCompatActivity {
                         String level = response.body().getDataLogin().getLevel();
                         String id_outlet = response.body().getDataLogin().getIdOutlet();
                         String img = response.body().getDataLogin().getFoto();
+                        String nama_toko = response.body().getDataLogin().getNamaOutlet();
 
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_ID_USER, id_user);
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_NAMA, nama);
+                        preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_NAMA_TOKO, nama_toko);
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_USERNAME, username);
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_LEVEL, level);
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_ID_OUTLET, id_outlet);

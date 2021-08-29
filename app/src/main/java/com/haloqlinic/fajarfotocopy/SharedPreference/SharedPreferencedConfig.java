@@ -8,6 +8,7 @@ public class SharedPreferencedConfig {
     public static final String PREFERENCE_FAJAR_FOTOCOPY = "prefFajarFotocopy";
     public static final String PREFERENCE_ID_USER = "prefIdUser";
     public static final String PREFERENCE_NAMA = "prefNama";
+    public static final String PREFERENCE_NAMA_TOKO = "prefNamaToko";
     public static final String PREFERENCE_USERNAME = "prefUsername";
     public static final String PREFERENCE_LEVEL = "prefLevel";
     public static final String PREFERENCE_ID_OUTLET = "prefIdOutlet";
@@ -46,6 +47,10 @@ public class SharedPreferencedConfig {
 
     public String getPreferenceNama(){
         return preferences.getString(PREFERENCE_NAMA, "");
+    }
+
+    public String getPreferenceNamaToko(){
+        return preferences.getString(PREFERENCE_NAMA_TOKO, "");
     }
 
     public String getPreferenceUsername(){

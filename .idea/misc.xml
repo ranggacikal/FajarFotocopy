@@ -4,17 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13518518518518519" />
-        <entry key="..\:/FEG/app/src/main/res/drawable/bg_gold.xml" value="0.21614583333333334" />
-        <entry key="..\:/FEG/app/src/main/res/drawable/bg_gold_tua.xml" value="0.21614583333333334" />
-        <entry key="..\:/FEG/app/src/main/res/drawable/btn_gold.xml" value="0.21614583333333334" />
         <entry key="..\:/FEG/app/src/main/res/drawable/card_home_keto.xml" value="0.21614583333333334" />
         <entry key="..\:/FEG/app/src/main/res/drawable/ic_minta_barang_gudang.xml" value="0.21614583333333334" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_barang_gudang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_cek_stock_barang_gudang.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_cek_stock_toko_gudang.xml" value="0.1983695652173913" />
-        <entry key="..\:/FEG/app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.25" />
-        <entry key="..\:/FEG/app/src/main/res/layout/activity_cetak_bukti_supplier_gudang.xml" value="0.16" />
-        <entry key="..\:/FEG/app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.2" />
+        <entry key="..\:/FEG/app/src/main/res/layout/activity_cetak_bukti_supplier_gudang.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_data_pengiriman_barang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_minta_barang_keto.xml" value="0.22" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_detail_pengiriman_keto.xml" value="0.18614130434782608" />
@@ -25,7 +21,6 @@
         <entry key="..\:/FEG/app/src/main/res/layout/activity_keranjang_supplier_gudang.xml" value="0.18" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_keranjang_transfer_barang_gudang.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_kirim_barang_gudang.xml" value="0.1983695652173913" />
-        <entry key="..\:/FEG/app/src/main/res/layout/activity_list_pengiriman_keto.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main_driver.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/activity_main_kasir.xml" value="0.1983695652173913" />
@@ -47,8 +42,6 @@
         <entry key="..\:/FEG/app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.19021739130434784" />
         <entry key="..\:/FEG/app/src/main/res/layout/dialog_stock_barang.xml" value="0.1983695652173913" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/FEG/app/src/main/res/layout/fragment_home_driver.xml" value="0.22" />
-        <entry key="..\:/FEG/app/src/main/res/layout/fragment_home_kasir.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_home_keto.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_informasi_keto.xml" value="0.2" />
         <entry key="..\:/FEG/app/src/main/res/layout/fragment_keranjang_gudang.xml" value="0.18614130434782608" />
@@ -86,10 +79,12 @@
         <entry key="app/src/main/res/layout/activity_cek_stock_barang_gudang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_data_pertoko_gudang.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_detail_data_user_gudang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
         <entry key="app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.11875" />
+        <entry key="app/src/main/res/layout/activity_keranjang_supplier_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_pembayaran_kasir.xml" value="0.15" />

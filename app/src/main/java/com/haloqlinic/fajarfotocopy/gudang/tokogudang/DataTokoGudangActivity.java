@@ -90,4 +90,10 @@ public class DataTokoGudangActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataToko();
+    }
 }

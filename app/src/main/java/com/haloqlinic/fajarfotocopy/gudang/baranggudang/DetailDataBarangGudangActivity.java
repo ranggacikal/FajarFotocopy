@@ -10,11 +10,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDataBarangGudangBinding;
@@ -180,25 +182,33 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
     private void pilihGambar() {
 
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, IMG_REQUEST);
+        ImagePicker.with(DetailDataBarangGudangActivity.this)
+                .crop()                    //Crop image(Optional), Check Customization for more option
+                .compress(1024)            //Final image size will be less than 1 MB(Optional)
+                .maxResultSize(1080, 1080)    //Final image resolution will be less than 1080 x 1080(Optional)
+                .start();
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == IMG_REQUEST && resultCode == RESULT_OK && data != null) {
-            Uri path = data.getData();
+        if (resultCode == RESULT_OK) {
 
+            Log.d("requestCodeImg", "onActivityResult: " + requestCode);
+
+            Uri uri1 = data.getData();
             try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), path);
-                binding.imageDetailBarangGudang.setImageBitmap(bitmap);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri1);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            binding.imageDetailBarangGudang.setImageBitmap(bitmap);
+
+        } else if (resultCode == ImagePicker.RESULT_ERROR) {
+            Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(DetailDataBarangGudangActivity.this, "Dibatalkan", Toast.LENGTH_SHORT).show();
         }
     }
 

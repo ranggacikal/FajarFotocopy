@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
 import com.haloqlinic.fajarfotocopy.model.editImageUser.ResponseEditImageUser;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
+import com.haloqlinic.fajarfotocopy.model.editOutlet.ResponseEditOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.editStatusBarangTransfer.ResponseEditStatusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
@@ -507,5 +508,15 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("hapusUser")
     Call<ResponseHapusUser> hapusUser(@Field("id_user") String id_user);
+
+    @FormUrlEncoded
+    @POST("editOutlet")
+    Call<ResponseEditOutlet> editOutlet(@Field("id_outlet") String id_outlet,
+                                        @Field("nama_outlet") String nama_outlet,
+                                        @Field("kota") String kota,
+                                        @Field("persentase") String persentase,
+                                        @Field("gaji") String gaji,
+                                        @Field("jumlah_anggota") String jumlah_anggota,
+                                        @Field("alamat") String alamat);
 
 }

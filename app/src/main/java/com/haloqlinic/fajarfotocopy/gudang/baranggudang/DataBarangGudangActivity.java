@@ -60,37 +60,11 @@ public class DataBarangGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        binding.searchviewDatabaranggudangScanner.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                binding.searchviewDatabaranggudangScanner.setQueryHint("id barang");
-                binding.searchviewDatabaranggudangScanner.setIconified(false);
-
-            }
-        });
-
-        binding.searchviewDatabaranggudangScanner.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                textId = newText;
-                loadSearchById(textId);
-                searchId = true;
-                return true;
-            }
-        });
-
         binding.searchviewDatabaranggudang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 binding.searchviewDatabaranggudang.setQueryHint("Cari Nama Barang");
                 binding.searchviewDatabaranggudang.setIconified(false);
-                binding.searchviewDatabaranggudangScanner.setVisibility(View.GONE);
             }
         });
 
@@ -186,8 +160,7 @@ public class DataBarangGudangActivity extends AppCompatActivity {
 
         if (intentResult.getContents() != null) {
 
-            binding.searchviewDatabaranggudangScanner.setVisibility(View.VISIBLE);
-            binding.searchviewDatabaranggudangScanner.setQuery(intentResult.getContents(), false);
+            loadSearchById(intentResult.getContents());
 
         } else {
             Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
