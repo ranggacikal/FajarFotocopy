@@ -1,6 +1,7 @@
 package com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -144,6 +146,12 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        getCount();
+                        if (count_keranjang.equals("0")) {
+                            Toast.makeText(HasilPencarianTransferBarangGudangActivity.this,
+                                    "Data Tidak Boleh Kosong!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         Intent intent = new Intent(HasilPencarianTransferBarangGudangActivity.this,
                                 KeranjangTransferBarangGudangActivity.class);
                         intent.putExtra("id_status_transfer", id_status_transfer);
@@ -162,22 +170,25 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         ConfigRetrofit.service.countTransferBarang(id_status_transfer).enqueue(new Callback<ResponseCountBarangTransfer>() {
             @Override
             public void onResponse(Call<ResponseCountBarangTransfer> call, Response<ResponseCountBarangTransfer> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     progressDialog.dismiss();
 
                     int status = response.body().getStatus();
+                    Log.d("checkCount", "onResponse: "+count_keranjang);
 
-                    if (status==1){
+                    if (status == 1) {
 
                         count_keranjang = String.valueOf(response.body().getCountBarangTransfer());
                         binding.transferTotalGudang.setText(count_keranjang);
 
-                    }else{
+                    } else {
                         binding.transferTotalGudang.setText("0");
+                        Toast.makeText(HasilPencarianTransferBarangGudangActivity.this,
+                                "Response Error", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Gagal memuat Jumlah data",
                             Toast.LENGTH_SHORT).show();
@@ -187,7 +198,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             @Override
             public void onFailure(Call<ResponseCountBarangTransfer> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(),
+                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: " + t.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
         });
@@ -214,10 +225,10 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     private void cariBarangById() {
 
-        if (id_barang.equals("")){
+        if (id_barang.equals("")) {
             binding.rvTransferBarang.setVisibility(View.GONE);
 
-        }else{
+        } else {
             ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
             progressDialog.setMessage("Mencari Data");
             progressDialog.show();
@@ -225,7 +236,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             ConfigRetrofit.service.barangOutletById(id_barang, id_outlet).enqueue(new Callback<ResponseBarangOutletById>() {
                 @Override
                 public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
-                    if (response.isSuccessful()){
+                    if (response.isSuccessful()) {
 
                         progressDialog.dismiss();
 
@@ -243,14 +254,14 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                             Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
 
                         }
-                    }else{
+                    } else {
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "response gagal", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
                 public void onFailure(Call<ResponseBarangOutletById> call, Throwable t) {
-                    Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -294,22 +305,22 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         ConfigRetrofit.service.hapusTransferCancel(id_status_transfer).enqueue(new Callback<ResponseHapusTransferCancel>() {
             @Override
             public void onResponse(Call<ResponseHapusTransferCancel> call, Response<ResponseHapusTransferCancel> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
                     String pesan = response.body().getPesan();
 //                    progressDialog.dismiss();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
                         hapusStatusTransfer();
 
-                    }else{
+                    } else {
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
 //                    progressDialog.dismiss();
                     Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
                 }
@@ -319,7 +330,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             public void onFailure(Call<ResponseHapusTransferCancel> call, Throwable t) {
 
 //                progressDialog.dismiss();
-                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -335,23 +346,23 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         ConfigRetrofit.service.hapusStatusTransfer(id_status_transfer).enqueue(new Callback<ResponseHapusStatusTransfer>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusTransfer> call, Response<ResponseHapusStatusTransfer> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
 //                    progressDialog.dismiss();
                     int status = response.body().getStatus();
                     String pesan = response.body().getPesan();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan, Toast.LENGTH_SHORT).show();
                         finish();
 
-                    }else{
+                    } else {
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, pesan
                                 , Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
 //                    progressDialog.dismiss();
                     Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
@@ -360,7 +371,7 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             @Override
             public void onFailure(Call<ResponseHapusStatusTransfer> call, Throwable t) {
 //                progressDialog.dismiss();
-                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -369,9 +380,9 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
     private void cariBarang(String newText) {
 
 
-        if (newText.equals("")){
+        if (newText.equals("")) {
             binding.rvTransferBarang.setVisibility(View.GONE);
-        }else {
+        } else {
 
             ConfigRetrofit.service.barangOutletByNama(newText, id_outlet).enqueue(new Callback<ResponseBarangOutletByNama>() {
                 @Override
@@ -407,7 +418,6 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
             });
 
         }
-
 
 
     }

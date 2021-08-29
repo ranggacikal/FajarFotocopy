@@ -146,7 +146,7 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
         }
 
         ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("menambahkan barang");
+        progressDialog.setMessage("Menambahkan Barang ...");
         progressDialog.show();
 
         ConfigRetrofit.service.tambahTransferBarang(id_transfer_barang, id_barang_outlet_pengirim, id_barang,

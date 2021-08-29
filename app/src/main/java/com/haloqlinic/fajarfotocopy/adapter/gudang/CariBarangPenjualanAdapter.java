@@ -83,8 +83,8 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
                 number = holder.numberPicker.getNumber();
                 int stock = Integer.parseInt(dataBarang.get(position).getStock());
                 if (number.equals("0")){
-                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-                    holder.numberPicker.setNumber("1");
+//                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
+                    holder.numberPicker.setNumber("0");
                 }else if (Integer.parseInt(number) > stock ){
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
