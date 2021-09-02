@@ -76,8 +76,8 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 //        id_barang = listPengiriman.get(position).getIdBarang();
         img_barang = listPengiriman.get(position).getImageBarang();
 //        id_outlet = listPengiriman.get(position).getIdOutlet();
-//        jumlah_pcs = listPengiriman.get(position).getJumlah();
-//        jumlah_pack = listPengiriman.get(position).getJumlahPack();
+        jumlah_pcs = listPengiriman.get(position).getJumlah();
+        jumlah_pack = listPengiriman.get(position).getJumlahPack();
 //        id_pengiriman = listPengiriman.get(position).getIdPengiriman();
 //        id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
         status_barang = listPengiriman.get(position).getStatusBarang();

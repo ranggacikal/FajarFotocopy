@@ -111,6 +111,7 @@ public class SupplierGudangActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(SupplierGudangActivity.this, KeranjangSupplierGudangActivity.class);
                         intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
+                        Log.d("cekSupplier", "id: "+id_status_penjualan_gudang);
                         startActivity(intent);
                     }
                 });

@@ -110,6 +110,17 @@ public class DetailDataUserGudangActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.btnDetailUpdatePasswordUserGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetailDataUserGudangActivity.this, UpdatePasswordActivity.class);
+                        intent.putExtra("idl_user", id_user);
+                        startActivity(intent);
+                    }
+                });
+
         binding.spinnerDetailLevelUserGudang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

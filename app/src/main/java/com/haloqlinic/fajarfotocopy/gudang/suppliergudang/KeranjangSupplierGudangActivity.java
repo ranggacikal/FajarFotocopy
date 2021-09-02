@@ -86,12 +86,6 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         loadDataKeranjang();
 
-        if (dataBarang==null) {
-            Toast.makeText(KeranjangSupplierGudangActivity.this, "Anda Belum Memilih barang", Toast.LENGTH_SHORT).show();
-        }else{
-            loadSumTotal();
-        }
-
         ArrayAdapter<String> adapterMetode = new ArrayAdapter<String>(KeranjangSupplierGudangActivity.this,
                 R.layout.spinner_item, metodeBayarItem);
         adapterMetode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -395,14 +389,13 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
 
                     progressDialog.dismiss();
-
                     int status = response.body().getStatus();
-
                     if (status == 1) {
 
                         dataBarang = response.body().getBarangPenjualanGudang();
                         adapter = new KeranjangSupplierAdapter(KeranjangSupplierGudangActivity.this, dataBarang);
                         binding.rvKeranjangSupplier.setAdapter(adapter);
+                        loadSumTotal();
 
                     } else {
                         Toast.makeText(KeranjangSupplierGudangActivity.this,

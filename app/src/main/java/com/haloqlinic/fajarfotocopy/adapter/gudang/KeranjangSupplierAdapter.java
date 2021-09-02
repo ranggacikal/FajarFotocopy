@@ -37,7 +37,7 @@ public class KeranjangSupplierAdapter extends RecyclerView.Adapter<KeranjangSupp
 
         holder.txtNamaBarang.setText(dataBarang.get(position).getNamaBarang());
         holder.txtQty.setText(dataBarang.get(position).getJumlahBarang());
-        int harga = Integer.parseInt(dataBarang.get(position).getHargaModalGudang());
+        int harga = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
         int total = Integer.parseInt(dataBarang.get(position).getTotal());
 
         holder.txtHarga.setText("Rp"+ NumberFormat.getInstance().format(harga));
