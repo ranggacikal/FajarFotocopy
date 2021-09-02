@@ -25,14 +25,14 @@
         />
 
     <Button
-        android:layout_alignParentBottom="true"
-        android:textColor="#ffffff"
-        android:background="@drawable/btn_gold"
-        android:text="Cetak PDF"
-        android:layout_marginHorizontal="15dp"
-        android:layout_marginBottom="10dp"
         android:id="@+id/savePdfBtn"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/btn_gold"
+        android:text="Cetak PDF"
+        android:textColor="#ffffff" />
 
 </RelativeLayout>

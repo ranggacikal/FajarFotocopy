@@ -33,8 +33,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/linear_back_report_pengiriman_gudang"
+        android:layout_marginTop="20dp"
         android:background="@drawable/background_green_2">
 
         <Button
@@ -71,7 +71,7 @@
                 android:id="@+id/spinner_pilih_hari_bulan_pengiriman"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_rectangle"/>
+                android:background="@drawable/bg_rectangle" />
 
         </LinearLayout>
 
@@ -127,8 +127,8 @@
             android:layout_below="@+id/linear_pilihan_bulan_hari_pengiriman"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="15dp"
-            android:visibility="gone"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -146,17 +146,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="7dp"
                 android:fontFamily="@font/sairabold"
                 android:text="Tahun : "
-                android:layout_marginTop="10dp"
                 android:textColor="@color/black" />
 
             <Spinner
                 android:id="@+id/spinner_pilih_tahun_report_pengiriman"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@drawable/bg_rectangle"/>
+                android:background="@drawable/bg_rectangle" />
 
         </LinearLayout>
 

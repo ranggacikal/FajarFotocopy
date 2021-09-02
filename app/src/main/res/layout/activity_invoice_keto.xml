@@ -5,27 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".kasir.InvoiceLaporanKasirActivity">
+    tools:context=".kepalatoko.kasirketo.InvoiceKetoActivity">
 
     <WebView
+        android:id="@+id/webViewKeto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webViewLaporanKasir"
-        android:layout_above="@+id/savePdfBtnLaporanKasir"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_above="@+id/savePdfBtnKeto"
+        android:layout_marginBottom="10dp" />
 
     <ProgressBar
+        android:id="@+id/progressInvoiceKeto"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/progressInvoiceLaporanKasir"
-        />
+        android:layout_centerInParent="true" />
 
     <Button
-        android:id="@+id/savePdfBtnLaporanKasir"
+        android:id="@+id/savePdfBtnKeto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

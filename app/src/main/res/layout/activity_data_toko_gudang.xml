@@ -44,8 +44,9 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchview_data_toko_gudang"
-            android:layout_width="333dp"
-            android:layout_height="54dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_rectangle"
             android:padding="15dp" />

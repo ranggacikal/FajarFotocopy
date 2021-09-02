@@ -37,18 +37,25 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         nama_outlet = getIntent().getStringExtra("nama_outlet");
         kota = getIntent().getStringExtra("kota");
         persentase = getIntent().getStringExtra("persentase");
-        gaji = getIntent().getStringExtra("gaji");
         jumlah_anggota = getIntent().getStringExtra("jumlah_anggota");
         alamat = getIntent().getStringExtra("alamat");
 
         binding.edtNamaTokoEditOutlet.setText(nama_outlet);
         binding.edtKotaEditOutlet.setText(kota);
         binding.edtPersentaseEditOutlet.setText(persentase);
-        binding.edtGajiEditOutlet.setText(gaji);
         binding.edtJumlahAnggotaEditOutlet.setText(jumlah_anggota);
         binding.edtAlamatEditOutlet.setText(alamat);
 
         PushDownAnim.setPushDownAnimTo(binding.btnEditDataTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editToko();
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackEditTokoGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -63,8 +70,7 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         String nama_edit = binding.edtNamaTokoEditOutlet.getText().toString();
         String kota_edit = binding.edtKotaEditOutlet.getText().toString();
         String presentase_edit = binding.edtPersentaseEditOutlet.getText().toString();
-        String gaji_edit = binding.edtGajiEditOutlet.getText().toString();
-        String anggot_edit = binding.edtPersentaseEditOutlet.getText().toString();
+        String anggot_edit = binding.edtJumlahAnggotaEditOutlet.getText().toString();
         String alamat_edit = binding.edtAlamatEditOutlet.getText().toString();
 
         if (nama_edit.isEmpty()){
@@ -85,12 +91,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (gaji_edit.isEmpty()){
-            binding.edtGajiEditOutlet.setError("gaji Tidak boleh kosong");
-            binding.edtGajiEditOutlet.requestFocus();
-            return;
-        }
-
         if (anggot_edit.isEmpty()){
             binding.edtJumlahAnggotaEditOutlet.setError("Anggota Tidak boleh kosong");
             binding.edtJumlahAnggotaEditOutlet.requestFocus();
@@ -107,7 +107,7 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Edit Data Toko");
         progressDialog.show();
 
-        ConfigRetrofit.service.editOutlet(id_outlet, nama_edit, kota_edit, presentase_edit, gaji_edit,
+        ConfigRetrofit.service.editOutlet(id_outlet, nama_edit, kota_edit, presentase_edit,
                 anggot_edit, alamat_edit).enqueue(new Callback<ResponseEditOutlet>() {
             @Override
             public void onResponse(Call<ResponseEditOutlet> call, Response<ResponseEditOutlet> response) {

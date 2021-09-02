@@ -91,7 +91,6 @@ public interface ApiService {
                                             @Field("nama_outlet") String nama_outlet,
                                             @Field("kota") String kota,
                                             @Field("persentase") String persentase,
-                                            @Field("gaji") String gaji,
                                             @Field("jumlah_anggota") String jumlah_anggota,
                                             @Field("alamat") String alamat);
 
@@ -515,7 +514,6 @@ public interface ApiService {
                                         @Field("nama_outlet") String nama_outlet,
                                         @Field("kota") String kota,
                                         @Field("persentase") String persentase,
-                                        @Field("gaji") String gaji,
                                         @Field("jumlah_anggota") String jumlah_anggota,
                                         @Field("alamat") String alamat);
 

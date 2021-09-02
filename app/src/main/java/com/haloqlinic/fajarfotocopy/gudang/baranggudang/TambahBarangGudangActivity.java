@@ -352,7 +352,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 //        }
 
         ProgressDialog progressDialog = new ProgressDialog(TambahBarangGudangActivity.this);
-        progressDialog.setMessage("Menambahkan data barang");
+        progressDialog.setMessage("Menambahkan data barang, mohon menunggu sampai data berhasil bertambah ...");
         progressDialog.show();
 
         ConfigRetrofit.service.tambahBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
