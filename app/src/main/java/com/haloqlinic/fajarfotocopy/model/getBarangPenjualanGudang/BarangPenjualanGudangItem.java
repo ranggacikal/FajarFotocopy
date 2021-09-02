@@ -19,6 +19,9 @@ public class BarangPenjualanGudangItem{
 	@SerializedName("jumlah_pack")
 	private String jumlahPack;
 
+	@SerializedName("tanggal_penjualan")
+	private String tanggalPenjualan;
+
 	@SerializedName("id_kategori_barang")
 	private String idKategoriBarang;
 
@@ -27,6 +30,9 @@ public class BarangPenjualanGudangItem{
 
 	@SerializedName("status_penjualan")
 	private String statusPenjualan;
+
+	@SerializedName("harga_modal_toko")
+	private String hargaModalToko;
 
 	@SerializedName("id_barang")
 	private String idBarang;
@@ -83,6 +89,14 @@ public class BarangPenjualanGudangItem{
 		return jumlahPack;
 	}
 
+	public void setTanggalPenjualan(String tanggalPenjualan){
+		this.tanggalPenjualan = tanggalPenjualan;
+	}
+
+	public String getTanggalPenjualan(){
+		return tanggalPenjualan;
+	}
+
 	public void setIdKategoriBarang(String idKategoriBarang){
 		this.idKategoriBarang = idKategoriBarang;
 	}
@@ -105,6 +119,14 @@ public class BarangPenjualanGudangItem{
 
 	public String getStatusPenjualan(){
 		return statusPenjualan;
+	}
+
+	public void setHargaModalToko(String hargaModalToko){
+		this.hargaModalToko = hargaModalToko;
+	}
+
+	public String getHargaModalToko(){
+		return hargaModalToko;
 	}
 
 	public void setIdBarang(String idBarang){
@@ -156,9 +178,11 @@ public class BarangPenjualanGudangItem{
 			",id_penjualan_gudang = '" + idPenjualanGudang + '\'' + 
 			",image_barang = '" + imageBarang + '\'' + 
 			",jumlah_pack = '" + jumlahPack + '\'' + 
+			",tanggal_penjualan = '" + tanggalPenjualan + '\'' + 
 			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
 			",total = '" + total + '\'' + 
 			",status_penjualan = '" + statusPenjualan + '\'' + 
+			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
 			",jumlah_barang = '" + jumlahBarang + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 

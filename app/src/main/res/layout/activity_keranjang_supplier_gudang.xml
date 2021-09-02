@@ -214,6 +214,35 @@
             android:src="@drawable/icon_bukti_tf"
             android:visibility="gone"/>
 
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Total : "
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/txt_total_supplier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginVertical="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Rp.0,0"
+                android:textColor="@color/black"
+                android:textSize="17sp" />
+
+        </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/relative_total_kurang"
             android:layout_width="match_parent"
@@ -260,33 +289,6 @@
 
             <TextView
                 android:id="@+id/txt_kembalian_supplier"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginVertical="10dp"
-                android:fontFamily="@font/sairabold"
-                android:text="Rp.0,0"
-                android:textColor="@color/black"
-                android:textSize="17sp" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:fontFamily="@font/sairabold"
-                android:text="Total : "
-                android:textColor="@color/black"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/txt_total_supplier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

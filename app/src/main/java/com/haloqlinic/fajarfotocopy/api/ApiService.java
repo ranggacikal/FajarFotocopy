@@ -70,6 +70,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahStatusTransfer.ResponseTambahSta
 import com.haloqlinic.fajarfotocopy.model.tambahTransferBarang.ResponseTambahTransferBarang;
 import com.haloqlinic.fajarfotocopy.model.transaksiByBulan.ResponseTransaksiByBulan;
 import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHari;
+import com.haloqlinic.fajarfotocopy.model.updatePassword.ResponsePassword;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 
 import retrofit2.Call;
@@ -518,5 +519,10 @@ public interface ApiService {
                                         @Field("gaji") String gaji,
                                         @Field("jumlah_anggota") String jumlah_anggota,
                                         @Field("alamat") String alamat);
+
+    @FormUrlEncoded
+    @POST("editPassword")
+    Call<ResponsePassword> updatePassword(@Field("id_user") String id_user,
+                                          @Field("password") String password);
 
 }

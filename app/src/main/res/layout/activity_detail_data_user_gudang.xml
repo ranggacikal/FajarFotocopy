@@ -256,6 +256,20 @@
             android:textColor="@color/black"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/btn_detail_update_password_user_gudang"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_gold"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/sairamedium"
+            android:paddingHorizontal="5dp"
+            android:text="Update Password"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
 </ScrollView>

@@ -197,6 +197,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Hapus"
+            android:visibility="gone"
             android:paddingHorizontal="5dp"
             android:textSize="20sp"
             android:textColor="@color/black"

@@ -59,8 +59,8 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
     @Override
     public void onBindViewHolder(@NonNull CariBarangPenjualanViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaModalGudang());
-        int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaModalGudangPack());
+        int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+        int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaModalTokoPack());
 
         String image = dataBarang.get(position).getImageBarang();
 
@@ -89,8 +89,8 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
                 }else{
-                    total = Integer.parseInt(number) * Integer.parseInt(dataBarang.get(position).getHargaModalGudang());
-                    Log.d("testTotal", "number: "+number+" harga: "+dataBarang.get(position).getHargaModalGudang()+" total: "+total);
+                    total = Integer.parseInt(number) * Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+                    Log.d("testTotal", "number: "+number+" harga: "+dataBarang.get(position).getHargaModalToko()+" total: "+total);
                 }
 
             }

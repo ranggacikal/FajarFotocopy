@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.adapter.kepalaToko;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,8 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
                         Intent intent = new Intent(context, DetailPengirimanKetoActivity.class);
                         intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                         intent.putExtra("tanggal", tanggal);
+                        Log.d("cekListPengiriman", "id: "+id_status_pengiriman);
+                        Log.d("cekListPengiriman", "tanggal: "+tanggal);
                         context.startActivity(intent);
 
                     }
