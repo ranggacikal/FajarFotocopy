@@ -49,12 +49,16 @@ public class InvoiceKetoActivity extends AppCompatActivity {
         bulan_tahun = getIntent().getStringExtra("bulan_tahun");
         tanggal = getIntent().getStringExtra("tanggal");
 
-        if (pilihan.equals("Hari")){
+        if (pilihan.equals("Hari") || pilihan.equals("hari")){
 
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
                     "getTransaksiByHari?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
                     "&hari="+tanggal;
 
+        }else if (pilihan.equals("bulan") || pilihan.equals("Bulan")){
+            link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
+                    "getTransaksiByBulan?bulan="+bulan_tahun+
+                    "&id_outlet="+preferencedConfig.getPreferenceIdOutlet();
         }
 
         binding.webViewKeto.setWebViewClient(new myWebclient());

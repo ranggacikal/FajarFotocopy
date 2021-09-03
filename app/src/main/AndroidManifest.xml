@@ -107,6 +107,7 @@
         <activity android:name=".gudang.tokogudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
+        <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.MainActivity" />
         <activity

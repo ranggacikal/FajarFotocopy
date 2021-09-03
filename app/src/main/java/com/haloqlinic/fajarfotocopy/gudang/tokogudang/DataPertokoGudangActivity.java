@@ -107,7 +107,7 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Edit Data Toko");
         progressDialog.show();
 
-        ConfigRetrofit.service.editOutlet(id_outlet, nama_edit, kota_edit, presentase_edit, gaji_edit,
+        ConfigRetrofit.service.editOutlet(id_outlet, nama_edit, kota_edit, presentase_edit,
                 anggot_edit, alamat_edit).enqueue(new Callback<ResponseEditOutlet>() {
             @Override
             public void onResponse(Call<ResponseEditOutlet> call, Response<ResponseEditOutlet> response) {
