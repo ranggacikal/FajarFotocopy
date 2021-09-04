@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.adapter.kirimBarang;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.hapusMintaBarang.ResponseHapusMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -60,7 +62,7 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CariKirimBarangViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull CariKirimBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         String img = dataCariBarang.get(position).getImageBarang();
         String nama_barang = dataCariBarang.get(position).getNamaBarang();
@@ -160,6 +162,10 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
 
                             if (status == 1) {
                                 Toast.makeText(context, "Berhasil Menambahkan data", Toast.LENGTH_SHORT).show();
+                                String id_minta_barang = kirimBarangGudangActivity.id_minta_barang;
+                                if (id_minta_barang!=null) {
+                                    hapusMintaBarang(id_minta_barang);
+                                }
                                 dialog.dismiss();
                             } else {
                                 Toast.makeText(context, "Gagal Menambahkan Data", Toast.LENGTH_SHORT).show();
@@ -183,6 +189,36 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
                         Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
+    }
+
+    private void hapusMintaBarang(String id_minta_barang) {
+
+        ConfigRetrofit.service.hapusMintaBarang(id_minta_barang).enqueue(new Callback<ResponseHapusMintaBarang>() {
+            @Override
+            public void onResponse(Call<ResponseHapusMintaBarang> call, Response<ResponseHapusMintaBarang> response) {
+                if (response.isSuccessful()){
+
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        Toast.makeText(context, "Berhasil Update Minta Barang", Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        Toast.makeText(context, "Gagal Update Minta Barang", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(context, "Response dari server error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseHapusMintaBarang> call, Throwable t) {
+                Toast.makeText(context, "Koneksi Internet Error", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

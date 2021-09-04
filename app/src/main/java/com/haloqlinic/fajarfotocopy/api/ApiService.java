@@ -36,6 +36,7 @@ import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLast
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangTransfer.ResponseHapusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
+import com.haloqlinic.fajarfotocopy.model.hapusMintaBarang.ResponseHapusMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.hapusOutlet.ResponseHapusOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanByIdStatus.ResponseHapusPenjualanGudangByIdStatus;
@@ -531,5 +532,9 @@ public interface ApiService {
 
     @GET("getPermintaanBarang")
     Call<ResponseDataPermintaanBarang> dataPermintaanBarang();
+
+    @FormUrlEncoded
+    @POST("hapusPermintaanBarang")
+    Call<ResponseHapusMintaBarang> hapusMintaBarang(@Field("id_minta_barang") String hapus_minta_barang);
 
 }
