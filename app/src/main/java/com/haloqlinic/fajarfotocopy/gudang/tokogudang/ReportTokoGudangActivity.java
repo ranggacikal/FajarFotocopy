@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang;
+package com.haloqlinic.fajarfotocopy.gudang.tokogudang;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 
 import com.haloqlinic.fajarfotocopy.R;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengirimanGudangBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityReportTokoGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.SimpleDateFormat;
@@ -19,9 +20,9 @@ import java.util.Calendar;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
-public class ReportPengirimanGudangActivity extends AppCompatActivity {
+public class ReportTokoGudangActivity extends AppCompatActivity {
 
-    private ActivityReportPengirimanGudangBinding binding;
+    private ActivityReportTokoGudangBinding binding;
 
     private String[] pilihanItem = {"Hari", "Bulan"};
     private String[] bulanItem = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
@@ -40,11 +41,11 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityReportPengirimanGudangBinding.inflate(getLayoutInflater());
+        binding = ActivityReportTokoGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        PushDownAnim.setPushDownAnimTo(binding.linearBackReportPengirimanGudang)
+        PushDownAnim.setPushDownAnimTo(binding.linearBackReportTokoGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -59,31 +60,31 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterPilihan = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, pilihanItem);
         adapterPilihan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihHariBulanPengiriman.setAdapter(adapterPilihan);
+        binding.spinnerPilihHariBulanPenjualanToko.setAdapter(adapterPilihan);
 
         //init spinner bulan
         ArrayAdapter<String> adapterBulan = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, bulanItem);
         adapterBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihBulanReportPengiriman.setAdapter(adapterBulan);
+        binding.spinnerPilihBulanReportPenjualanToko.setAdapter(adapterBulan);
 
         //init spinner tahun
         ArrayAdapter<String> adapterTahun = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, tahunItem);
         adapterTahun.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihTahunReportPengiriman.setAdapter(adapterTahun);
+        binding.spinnerPilihTahunReportPenjualanToko.setAdapter(adapterTahun);
 
-        binding.spinnerPilihHariBulanPengiriman.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihHariBulanPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pilihan = binding.spinnerPilihHariBulanPengiriman.getSelectedItem().toString();
+                pilihan = binding.spinnerPilihHariBulanPenjualanToko.getSelectedItem().toString();
 
                 if (pilihan.equals("Hari")) {
-                    binding.linearTanggalReportPengiriman.setVisibility(View.VISIBLE);
-                    binding.linearPilihBulanTahunReportPengiriman.setVisibility(View.GONE);
+                    binding.linearTanggalReportPenjualanToko.setVisibility(View.VISIBLE);
+                    binding.linearPilihBulanTahunReportPenjualanToko.setVisibility(View.GONE);
                 } else {
-                    binding.linearTanggalReportPengiriman.setVisibility(View.GONE);
-                    binding.linearPilihBulanTahunReportPengiriman.setVisibility(View.VISIBLE);
+                    binding.linearTanggalReportPenjualanToko.setVisibility(View.GONE);
+                    binding.linearPilihBulanTahunReportPenjualanToko.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -93,10 +94,10 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerPilihBulanReportPengiriman.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihBulanReportPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                bulan = binding.spinnerPilihBulanReportPengiriman.getSelectedItem().toString();
+                bulan = binding.spinnerPilihBulanReportPenjualanToko.getSelectedItem().toString();
             }
 
             @Override
@@ -105,10 +106,10 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerPilihTahunReportPengiriman.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihTahunReportPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tahun = binding.spinnerPilihTahunReportPengiriman.getSelectedItem().toString();
+                tahun = binding.spinnerPilihTahunReportPenjualanToko.getSelectedItem().toString();
             }
 
             @Override
@@ -117,7 +118,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(binding.btnPilihTanggalReportPengiriman)
+        PushDownAnim.setPushDownAnimTo(binding.btnPilihTanggalReportPenjualanToko)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -126,7 +127,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(binding.btnLihatLaporanPengiriman)
+        PushDownAnim.setPushDownAnimTo(binding.btnLihatLaporanPenjualanToko)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -139,7 +140,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
 
     private void lihatLaporan() {
 
-        Intent intent = new Intent(ReportPengirimanGudangActivity.this, WebViewReportPengirimanActivity.class);
+        Intent intent = new Intent(ReportTokoGudangActivity.this, WebViewReportPenjualanTokoActivity.class);
         intent.putExtra("bulan_tahun", bulan + " " + tahun);
         intent.putExtra("tanggal", date);
         intent.putExtra("pilihan", pilihan);
@@ -151,7 +152,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
 
         Calendar newCalendar = Calendar.getInstance();
 
-        datePickerDialog = new DatePickerDialog(ReportPengirimanGudangActivity.this, new DatePickerDialog.OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(ReportTokoGudangActivity.this, new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -160,7 +161,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
                 newDate.set(year, monthOfYear, dayOfMonth);
 
                 date = dateFormatter.format(newDate.getTime());
-                binding.textTanggalReportPengiriman.setText(date);
+                binding.textTanggalReportPenjualanToko.setText(date);
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -168,35 +169,4 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
         datePickerDialog.show();
 
     }
-
-//    private void loadRecycler() {
-//
-//        ProgressDialog progressDialog = new ProgressDialog(ReportPengirimanGudangActivity.this);
-//        progressDialog.setMessage("Memuat Data");
-//        progressDialog.show();
-//
-//        ConfigRetrofit.service.statusPengiriman().enqueue(new Callback<ResponseDataStatusPengiriman>() {
-//            @Override
-//            public void onResponse(Call<ResponseDataStatusPengiriman> call, Response<ResponseDataStatusPengiriman> response) {
-//                if (response.isSuccessful()){
-//
-//                    progressDialog.dismiss();
-//                    List<DataStatusPengirimanItem> dataPengiriman = response.body().getDataStatusPengiriman();
-//                    ReportPengirimanAdapter adapter = new ReportPengirimanAdapter(ReportPengirimanGudangActivity.this, dataPengiriman);
-//                    binding.rvReportPengiriman.setAdapter(adapter);
-//
-//                }else{
-//                    progressDialog.dismiss();
-//                    Toast.makeText(ReportPengirimanGudangActivity.this, "Gagal memuat data", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseDataStatusPengiriman> call, Throwable t) {
-//                progressDialog.dismiss();
-//                Toast.makeText(ReportPengirimanGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//    }
 }

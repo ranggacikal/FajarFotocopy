@@ -56,6 +56,15 @@ public class TokoGudangActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.linearReportTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TokoGudangActivity.this, ReportTokoGudangActivity.class));
+                    }
+                });
+
         PushDownAnim.setPushDownAnimTo(binding.linearBackTokoGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

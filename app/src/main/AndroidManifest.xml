@@ -15,8 +15,10 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".gudang.tokogudang.WebViewReportPenjualanTokoActivity"></activity>
+        <activity android:name=".gudang.tokogudang.ReportTokoGudangActivity" />
         <activity
-            android:name=".gudang.report.WebViewReportPengirimanActivity"
+            android:name=".gudang.kirimbaranggudang.WebViewReportPengirimanActivity"
             android:exported="true" />
         <activity
             android:name=".gudang.suppliergudang.TransaksiBerhasilGudangActivity"
@@ -107,7 +109,7 @@
         <activity android:name=".gudang.tokogudang.CekStockPertokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.CekStockTokoGudangActivity" />
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
-        <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity"/>
+        <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.usergudang.UpdatePasswordActivity"/>
         <activity android:name=".gudang.MainActivity" />

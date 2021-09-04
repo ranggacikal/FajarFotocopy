@@ -6,30 +6,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.haloqlinic.fajarfotocopy.R;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengirimanGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportTransaksiKetoBinding;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahInformasiGudangBinding;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
-import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ReportPengirimanGudangActivity;
-import com.haloqlinic.fajarfotocopy.gudang.report.WebViewReportPengirimanActivity;
-import com.haloqlinic.fajarfotocopy.kasir.InvoiceLaporanKasirActivity;
-import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.InvoiceKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.kasirketo.InvoiceKetoActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
