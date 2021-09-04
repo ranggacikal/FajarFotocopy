@@ -25,72 +25,26 @@
             android:layout_height="wrap_content"
             android:text="Nama Barang"
             android:layout_marginTop="10dp"
-            android:textSize="17sp"
+            android:textSize="19sp"
             android:layout_marginHorizontal="10dp"
             android:textAlignment="center"
             android:fontFamily="@font/sairabold"
             android:textColor="@color/black"
             android:layout_gravity="center_horizontal"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/text_item_dari_outlet_minta_barang_gudang"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stock PCS : "
-                android:layout_marginTop="10dp"
-                android:textSize="17sp"
-                android:fontFamily="@font/sairareguler"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:id="@+id/text_item_dari_stock_pcs_minta_barang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00"
-                android:layout_marginTop="10dp"
-                android:textSize="17sp"
-                android:fontFamily="@font/sairabold"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
+            android:text="Nama Outlet"
             android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stock Pack : "
-                android:layout_marginTop="10dp"
-                android:textSize="17sp"
-                android:fontFamily="@font/sairareguler"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"/>
-
-            <TextView
-                android:id="@+id/text_item_dari_stock_pack_minta_barang"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00"
-                android:layout_marginTop="10dp"
-                android:textSize="17sp"
-                android:fontFamily="@font/sairabold"
-                android:textColor="@color/black"
-                android:layout_gravity="center_horizontal"/>
-
-        </LinearLayout>
+            android:textSize="13sp"
+            android:layout_marginHorizontal="10dp"
+            android:textAlignment="center"
+            android:fontFamily="@font/sairamedium"
+            android:textColor="@color/black"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="center_horizontal"/>
 
         <Button
             android:id="@+id/btn_tambah_dari_minta_barang_keto"

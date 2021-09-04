@@ -38,7 +38,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
     private ActivityKirimBarangGudangBinding binding;
 
-    public String id_toko, id_status_pengiriman;
+    public String id_toko, id_status_pengiriman, fromActivity, nama_barang, id_minta_barang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,9 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
         getLastIdStatusPengiriman();
 
         id_toko = getIntent().getStringExtra("id_toko");
+        fromActivity = getIntent().getStringExtra("fromActivity");
+        nama_barang = getIntent().getStringExtra("nama_barang");
+        id_minta_barang = getIntent().getStringExtra("id_minta_barang");
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackKirimGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -59,13 +62,31 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        binding.searchviewKirimBarangGudang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.searchviewKirimBarangGudang.setQueryHint("Cari Nama Barang");
-                binding.searchviewKirimBarangGudang.setIconified(false);
+        if (fromActivity!=null){
+            if (fromActivity.equals("mintaBarang")){
+
+                if (nama_barang!=null){
+                    binding.searchviewKirimBarangGudang.setIconified(false);
+                    binding.searchviewKirimBarangGudang.setQuery(nama_barang, true);
+//                    binding.searchviewKirimBarangGudang.setQueryHint("Cari Nama Barang");
+                    loadDataCari(nama_barang);
+                }
+
             }
-        });
+        }else {
+
+            binding.searchviewKirimBarangGudang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String test = "Sampoerna";
+                    binding.searchviewKirimBarangGudang.setIconified(false);
+                    binding.searchviewKirimBarangGudang.setQuery(test, true);
+                    binding.searchviewKirimBarangGudang.setQueryHint("Cari Nama Barang");
+                    loadDataCari(test);
+
+                }
+            });
+        }
 
         binding.searchviewKirimBarangGudang.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -76,6 +97,9 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
+//                newText = "Sampoerna";
+
                 loadDataCari(newText);
                 return true;
             }
@@ -153,6 +177,8 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                             binding.rvSearchKirimBarangGudang.setHasFixedSize(true);
                             binding.rvSearchKirimBarangGudang.setLayoutManager(new LinearLayoutManager(KirimBarangGudangActivity.this));
                             binding.rvSearchKirimBarangGudang.setAdapter(adapter);
+
+
 
                         } else {
                             Toast.makeText(KirimBarangGudangActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
