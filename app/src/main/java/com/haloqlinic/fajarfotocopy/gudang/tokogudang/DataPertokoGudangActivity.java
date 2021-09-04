@@ -37,14 +37,12 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         nama_outlet = getIntent().getStringExtra("nama_outlet");
         kota = getIntent().getStringExtra("kota");
         persentase = getIntent().getStringExtra("persentase");
-        gaji = getIntent().getStringExtra("gaji");
         jumlah_anggota = getIntent().getStringExtra("jumlah_anggota");
         alamat = getIntent().getStringExtra("alamat");
 
         binding.edtNamaTokoEditOutlet.setText(nama_outlet);
         binding.edtKotaEditOutlet.setText(kota);
         binding.edtPersentaseEditOutlet.setText(persentase);
-        binding.edtGajiEditOutlet.setText(gaji);
         binding.edtJumlahAnggotaEditOutlet.setText(jumlah_anggota);
         binding.edtAlamatEditOutlet.setText(alamat);
 
@@ -63,7 +61,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         String nama_edit = binding.edtNamaTokoEditOutlet.getText().toString();
         String kota_edit = binding.edtKotaEditOutlet.getText().toString();
         String presentase_edit = binding.edtPersentaseEditOutlet.getText().toString();
-        String gaji_edit = binding.edtGajiEditOutlet.getText().toString();
         String anggot_edit = binding.edtPersentaseEditOutlet.getText().toString();
         String alamat_edit = binding.edtAlamatEditOutlet.getText().toString();
 
@@ -85,11 +82,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (gaji_edit.isEmpty()){
-            binding.edtGajiEditOutlet.setError("gaji Tidak boleh kosong");
-            binding.edtGajiEditOutlet.requestFocus();
-            return;
-        }
 
         if (anggot_edit.isEmpty()){
             binding.edtJumlahAnggotaEditOutlet.setError("Anggota Tidak boleh kosong");

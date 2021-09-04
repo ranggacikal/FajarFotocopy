@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.gudang.report;
+package com.haloqlinic.fajarfotocopy.gudang.tokogudang;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,13 +19,13 @@ import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailStatusPenjualanBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityWebViewReportPengirimanBinding;
-import com.haloqlinic.fajarfotocopy.kasir.InvoiceLaporanKasirActivity;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityWebViewReportPenjualanTokoBinding;
+import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
 
-public class WebViewReportPengirimanActivity extends AppCompatActivity {
+public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
 
-    private ActivityWebViewReportPengirimanBinding binding;
+    private ActivityWebViewReportPenjualanTokoBinding binding;
 
     String bulan_tahun, tanggal, pilihan;
     String link_web;
@@ -37,7 +37,7 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityWebViewReportPengirimanBinding.inflate(getLayoutInflater());
+        binding = ActivityWebViewReportPenjualanTokoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -57,14 +57,14 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
                     "getListPengirimanByHari?hari="+tanggal;
         }
 
-        binding.webViewLaporanPengiriman.setWebViewClient(new myWebclient());
-        binding.webViewLaporanPengiriman.getSettings().setJavaScriptEnabled(true);
-        binding.webViewLaporanPengiriman.getSettings().setBuiltInZoomControls(true);
-        binding.webViewLaporanPengiriman.loadUrl(link_web);
+        binding.webViewLaporanPenjualanToko.setWebViewClient(new myWebclient());
+        binding.webViewLaporanPenjualanToko.getSettings().setJavaScriptEnabled(true);
+        binding.webViewLaporanPenjualanToko.getSettings().setBuiltInZoomControls(true);
+        binding.webViewLaporanPenjualanToko.loadUrl(link_web);
 
         Log.d("linkInvoice", "onCreate: "+link_web);
 
-        binding.savePdfBtnLaporanPengiriman.setOnClickListener(new View.OnClickListener() {
+        binding.savePdfBtnLaporanPenjualanToko.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (printWeb != null) {
@@ -73,15 +73,14 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
                         PrintTheWebPage(printWeb);
                     } else {
                         // Showing Toast message to user
-                        Toast.makeText(WebViewReportPengirimanActivity.this, "Not available for device below Android LOLLIPOP", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WebViewReportPenjualanTokoActivity.this, "Not available for device below Android LOLLIPOP", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Showing Toast message to user
-                    Toast.makeText(WebViewReportPengirimanActivity.this, "WebPage not fully loaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WebViewReportPenjualanTokoActivity.this, "WebPage not fully loaded", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
     PrintJob printJob;
@@ -115,8 +114,8 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            binding.progressInvoiceLaporanPengiriman.setVisibility(View.GONE);
-            printWeb = binding.webViewLaporanPengiriman;
+            binding.progressInvoiceLaporanPenjualanToko.setVisibility(View.GONE);
+            printWeb = binding.webViewLaporanPenjualanToko;
         }
 
         @Override

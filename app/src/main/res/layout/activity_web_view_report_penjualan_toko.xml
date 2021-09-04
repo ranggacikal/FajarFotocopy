@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".gudang.kirimbaranggudang.WebViewReportPengirimanActivity">
+    tools:context=".gudang.tokogudang.WebViewReportPenjualanTokoActivity">
 
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webViewLaporanPengiriman"
-        android:layout_above="@+id/savePdfBtnLaporanPengiriman"
+        android:id="@+id/webViewLaporanPenjualanToko"
+        android:layout_above="@+id/savePdfBtnLaporanPenjualanToko"
         android:layout_marginBottom="10dp"
         />
 
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/progressInvoiceLaporanPengiriman"
+        android:id="@+id/progressInvoiceLaporanPenjualanToko"
         />
 
     <Button
@@ -30,7 +30,7 @@
         android:text="Cetak PDF"
         android:layout_marginHorizontal="15dp"
         android:layout_marginBottom="10dp"
-        android:id="@+id/savePdfBtnLaporanPengiriman"
+        android:id="@+id/savePdfBtnLaporanPenjualanToko"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

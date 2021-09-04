@@ -42,14 +42,6 @@
                     android:textColor="@color/white"
                     android:textSize="24sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Nama Toko"
-                    android:layout_marginStart="5dp"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
 
 
             </LinearLayout>
@@ -70,9 +62,10 @@
             android:id="@+id/edt_nama_toko_edit_outlet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center_horizontal"
             android:inputType="text"
+            android:padding="10dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
@@ -89,8 +82,9 @@
             android:id="@+id/edt_kota_edit_outlet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="text"
+            android:padding="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
@@ -108,31 +102,14 @@
             android:id="@+id/edt_persentase_edit_outlet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="30dp"
             android:inputType="text"
+            android:padding="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Gaji" />
-
-        <EditText
-            android:id="@+id/edt_gaji_edit_outlet"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
-            android:inputType="number"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -146,7 +123,8 @@
             android:id="@+id/edt_jumlah_anggota_edit_outlet"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="30dp"
+            android:padding="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:inputType="number"
@@ -165,10 +143,11 @@
             android:id="@+id/edt_alamat_edit_outlet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="15dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="5dp"
             android:gravity="top|left"
+            android:padding="10dp"
             android:inputType="textMultiLine"
             android:lines="12"
             android:maxLines="11"
@@ -178,26 +157,27 @@
 
         <Button
             android:id="@+id/btn_edit_data_toko_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/btn_black"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Edit"
             android:textSize="20sp"
-            android:paddingHorizontal="5dp"
+            android:layout_marginHorizontal="30dp"
             android:textColor="@color/white"
             android:fontFamily="@font/sairamedium"/>
 
         <Button
             android:id="@+id/btn_hapus_data_toko_gudang"
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/btn_merah"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:text="Hapus"
-            android:paddingHorizontal="5dp"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:fontFamily="@font/sairamedium"/>
