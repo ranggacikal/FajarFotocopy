@@ -14,6 +14,7 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDataPertokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.model.editOutlet.ResponseEditOutlet;
+import com.haloqlinic.fajarfotocopy.model.hapusOutlet.ResponseHapusOutlet;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import retrofit2.Call;
@@ -44,7 +45,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         binding.edtNamaTokoEditOutlet.setText(nama_outlet);
         binding.edtKotaEditOutlet.setText(kota);
         binding.edtPersentaseEditOutlet.setText(persentase);
-        binding.edtGajiEditOutlet.setText(gaji);
         binding.edtJumlahAnggotaEditOutlet.setText(jumlah_anggota);
         binding.edtAlamatEditOutlet.setText(alamat);
 
@@ -56,6 +56,59 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
                         editToko();
                     }
                 });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnHapusDataTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        hapusToko();
+                    }
+                });
+    }
+
+    private void hapusToko() {
+
+        ProgressDialog progressDialog = new ProgressDialog(DataPertokoGudangActivity.this);
+        progressDialog.setMessage("Menghapus Data Outlet");
+        progressDialog.show();
+
+        ConfigRetrofit.service.hapusOutlet(id_outlet).enqueue(new Callback<ResponseHapusOutlet>() {
+            @Override
+            public void onResponse(Call<ResponseHapusOutlet> call, Response<ResponseHapusOutlet> response) {
+                if (response.isSuccessful()){
+
+                    progressDialog.dismiss();
+
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        Toast.makeText(DataPertokoGudangActivity.this,
+                                "Hapus Outlet Berhasil", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }else{
+                        Toast.makeText(DataPertokoGudangActivity.this,
+                                "Hapus Toko Gagal, Silahkan Coba lagi", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(DataPertokoGudangActivity.this,
+                            "Response Dari Server Gagal, silahkan coba lagi nanti",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseHapusOutlet> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(DataPertokoGudangActivity.this, "Koneksi Internet Error",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void editToko() {
@@ -63,7 +116,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         String nama_edit = binding.edtNamaTokoEditOutlet.getText().toString();
         String kota_edit = binding.edtKotaEditOutlet.getText().toString();
         String presentase_edit = binding.edtPersentaseEditOutlet.getText().toString();
-        String gaji_edit = binding.edtGajiEditOutlet.getText().toString();
         String anggot_edit = binding.edtPersentaseEditOutlet.getText().toString();
         String alamat_edit = binding.edtAlamatEditOutlet.getText().toString();
 
@@ -82,12 +134,6 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
         if (presentase_edit.isEmpty()){
             binding.edtPersentaseEditOutlet.setError("Persentase Tidak boleh kosong");
             binding.edtPersentaseEditOutlet.requestFocus();
-            return;
-        }
-
-        if (gaji_edit.isEmpty()){
-            binding.edtGajiEditOutlet.setError("gaji Tidak boleh kosong");
-            binding.edtGajiEditOutlet.requestFocus();
             return;
         }
 

@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
@@ -45,8 +46,9 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
     SimpleDateFormat dateFormat;
     Calendar calendar;
     String id_barang = "";
+    String id_barang_minta, id_outlet_minta;
 
-
+    private SharedPreferencedConfig preferencedConfig;
 
     public MintaBarangAdapter(Context context, List<SearchBarangOutletByNamaItem> dataBarang,
                               TambahBarangKetoActivity tambahBarangKetoActivity) {
@@ -65,6 +67,11 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
     @Override
     public void onBindViewHolder(@NonNull MintaBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String img = dataBarang.get(position).getImageBarang();
+
+        preferencedConfig = new SharedPreferencedConfig(context);
+
+        id_outlet_minta = preferencedConfig.getPreferenceIdOutlet();
+        id_barang_minta = dataBarang.get(position).getIdBarang();
 
         Glide.with(context)
                 .load(img)
@@ -90,7 +97,7 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        id_barang = dataBarang.get(position).getNamaBarang();
+                        id_barang = dataBarang.get(position).getIdBarang();
                         int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
                         int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
                         tampilDialog(stockPack, stockPcs);
@@ -138,7 +145,8 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
         progressDialog.setMessage("Menambahkan Barang Ke Permintaan Barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.mintaBarang(id_barang, "Dalam Proses", date, nama_toko).enqueue(new Callback<ResponseMintaBarang>() {
+        ConfigRetrofit.service.mintaBarang("Dalam Proses", date, id_barang,
+                id_outlet_minta).enqueue(new Callback<ResponseMintaBarang>() {
             @Override
             public void onResponse(Call<ResponseMintaBarang> call, Response<ResponseMintaBarang> response) {
                 if (response.isSuccessful()) {

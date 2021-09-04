@@ -86,6 +86,7 @@
         <entry key="app/src/main/res/layout/activity_cek_stock_barang_gudang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_data_pertoko_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_detail_data_user_gudang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
@@ -102,6 +103,7 @@
         <entry key="app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_minta_barang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.14" />
         <entry key="app/src/main/res/layout/item_cek_stock.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/item_data_barang.xml" value="0.12" />

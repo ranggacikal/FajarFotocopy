@@ -7,6 +7,7 @@ import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
 import com.haloqlinic.fajarfotocopy.model.countBarangTransfer.ResponseCountBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.dataKategoriDesc.ResponseDataKategoriDesc;
+import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.ResponseDataPermintaanBarang;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.dataUser.ResponseDataUser;
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLevel;
@@ -35,6 +36,7 @@ import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLast
 import com.haloqlinic.fajarfotocopy.model.hapusBarangToko.ResponseHapusBarangToko;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangTransfer.ResponseHapusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusKategori.ResponseHapusKategori;
+import com.haloqlinic.fajarfotocopy.model.hapusOutlet.ResponseHapusOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanByIdStatus.ResponseHapusPenjualanGudangByIdStatus;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
@@ -414,10 +416,10 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("tambahPermintaanBarang")
-    Call<ResponseMintaBarang> mintaBarang(@Field("nama_barang") String nama_barang,
-                                          @Field("status_permintaan_barang") String status_permintaan_barang,
+    Call<ResponseMintaBarang> mintaBarang(@Field("status_permintaan_barang") String status_permintaan_barang,
                                           @Field("tanggal_permintaan_barang") String tanggal_permintaan_barang,
-                                          @Field("nama_toko") String nama_toko);
+                                          @Field("id_barang") String id_barang,
+                                          @Field("id_outlet") String id_outlet);
 
     @FormUrlEncoded
     @POST("hapusBarangTransfer")
@@ -522,5 +524,12 @@ public interface ApiService {
     @POST("editPassword")
     Call<ResponsePassword> updatePassword(@Field("id_user") String id_user,
                                           @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("hapusOutlet")
+    Call<ResponseHapusOutlet> hapusOutlet(@Field("id_outlet") String id_outlet);
+
+    @GET("getPermintaanBarang")
+    Call<ResponseDataPermintaanBarang> dataPermintaanBarang();
 
 }

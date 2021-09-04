@@ -109,6 +109,7 @@
         <activity android:name=".gudang.tokogudang.TokoGudangActivity" />
         <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity"/>
         <activity android:name=".LoginActivity" />
+        <activity android:name=".gudang.usergudang.UpdatePasswordActivity"/>
         <activity android:name=".gudang.MainActivity" />
         <activity
             android:name=".scan.Capture"
