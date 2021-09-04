@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity">
-
+    tools:context=".gudang.reportgudang.ReportPenjualanGudangActivity">
 
     <LinearLayout
-        android:id="@+id/linear_back_report_pengiriman_gudang"
+        android:id="@+id/linear_back_report_gudang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
@@ -24,21 +23,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sairamedium"
-            android:text="Report Pengiriman"
+            android:text="Report Gudang"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
     </LinearLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linear_back_report_pengiriman_gudang"
+        android:layout_below="@+id/linear_back_report_gudang"
         android:layout_marginTop="20dp"
         android:background="@drawable/background_green_2">
 
         <Button
-            android:id="@+id/btn_lihat_laporan_pengiriman"
+            android:id="@+id/btn_lihat_laporan_report_gudang"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
@@ -52,7 +52,7 @@
             android:textColor="@color/white" />
 
         <LinearLayout
-            android:id="@+id/linear_pilihan_bulan_hari_pengiriman"
+            android:id="@+id/linear_pilihan_bulan_hari_report_gudang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -68,7 +68,7 @@
                 android:textColor="@color/black" />
 
             <Spinner
-                android:id="@+id/spinner_pilih_hari_bulan_pengiriman"
+                android:id="@+id/spinner_pilih_hari_bulan_report_gudang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_rectangle" />
@@ -76,10 +76,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_tanggal_report_pengiriman"
+            android:id="@+id/linear_tanggal_report_report_gudang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linear_pilihan_bulan_hari_pengiriman"
+            android:layout_below="@+id/linear_pilihan_bulan_hari_report_gudang"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical"
@@ -95,7 +95,7 @@
                 android:text="Pilih Tanggal" />
 
             <TextView
-                android:id="@+id/text_tanggal_report_pengiriman"
+                android:id="@+id/text_tanggal_report_gudang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -106,7 +106,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/btn_pilih_tanggal_report_pengiriman"
+                android:id="@+id/btn_pilih_tanggal_report_gudang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
@@ -121,10 +121,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_pilih_bulan_tahun_report_pengiriman"
+            android:id="@+id/linear_pilih_bulan_tahun_report_gudang"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linear_pilihan_bulan_hari_pengiriman"
+            android:layout_below="@+id/linear_pilihan_bulan_hari_report_gudang"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="15dp"
             android:orientation="vertical"
@@ -139,7 +139,7 @@
                 android:textColor="@color/black" />
 
             <Spinner
-                android:id="@+id/spinner_pilih_bulan_report_pengiriman"
+                android:id="@+id/spinner_pilih_bulan_report_gudang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_rectangle" />
@@ -154,7 +154,7 @@
                 android:textColor="@color/black" />
 
             <Spinner
-                android:id="@+id/spinner_pilih_tahun_report_pengiriman"
+                android:id="@+id/spinner_pilih_tahun_report_gudang"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@drawable/bg_rectangle" />
@@ -162,6 +162,5 @@
         </LinearLayout>
 
     </RelativeLayout>
-
 
 </RelativeLayout>
