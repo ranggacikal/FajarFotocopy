@@ -53,9 +53,29 @@
 
         <Spinner
             android:id="@+id/spinner_pilih_toko_status_pengiriman"
-            android:layout_width="364dp"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textCapWords" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Pilih Driver" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_driver_status_pengiriman"
+            android:layout_width="match_parent"
             android:layout_height="58dp"
             android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:background="@drawable/bg_rectangle"
             android:fontFamily="@font/sairamedium"

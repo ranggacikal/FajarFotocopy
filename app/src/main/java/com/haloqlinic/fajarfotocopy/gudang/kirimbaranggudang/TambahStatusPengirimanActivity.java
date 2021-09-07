@@ -17,6 +17,8 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahStatusPengirimanBinding;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
+import com.haloqlinic.fajarfotocopy.model.getDriver.DataDriverItem;
+import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -38,12 +40,13 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 public class TambahStatusPengirimanActivity extends AppCompatActivity {
 
     List<DataTokoItem> dataTokoItems;
+    List<DataDriverItem> dataDriverItems;
     private ActivityTambahStatusPengirimanBinding binding;
 
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
 
-    String tanggal, id_toko;
+    String tanggal, id_toko, id_driver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,7 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
         setContentView(view);
 
         initSpinner();
+        initSpinnerDriver();
         dateFormatter = new SimpleDateFormat("dd MMMM yyyy");
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackStatusPengiriman)
@@ -85,6 +89,18 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
             }
         });
 
+        binding.spinnerPilihDriverStatusPengiriman.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                id_driver = dataDriverItems.get(position).getIdUser();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         PushDownAnim.setPushDownAnimTo(binding.btnTambahStatusPengiriman)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
@@ -95,6 +111,57 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                 });
     }
 
+    private void initSpinnerDriver() {
+
+        ProgressDialog progressDialog = new ProgressDialog(TambahStatusPengirimanActivity.this);
+        progressDialog.setMessage("Memuat Data Driver");
+        progressDialog.show();
+
+        ConfigRetrofit.service.getDriver().enqueue(new Callback<ResponseDataDriver>() {
+            @Override
+            public void onResponse(Call<ResponseDataDriver> call, Response<ResponseDataDriver> response) {
+                if (response.isSuccessful()){
+                    progressDialog.dismiss();
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        dataDriverItems = response.body().getDataDriver();
+                        List<String> listSpinnerDriver = new ArrayList<String>();
+                        for (int i = 0; i < dataDriverItems.size(); i++) {
+
+                            listSpinnerDriver.add(dataDriverItems.get(i).getNamaLengkap());
+
+                        }
+
+                        ArrayAdapter<String> adapterDriver = new ArrayAdapter<String>(TambahStatusPengirimanActivity.this,
+                                R.layout.spinner_item, listSpinnerDriver);
+
+                        adapterDriver.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        binding.spinnerPilihDriverStatusPengiriman.setAdapter(adapterDriver);
+
+                    }else{
+                        Toast.makeText(TambahStatusPengirimanActivity.this,
+                                "Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(TambahStatusPengirimanActivity.this,
+                            "Terjadi Kesalahan Di server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDataDriver> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(TambahStatusPengirimanActivity.this,
+                        "Koneksi Internet Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     private void tambahStatusPengiriman() {
 
         String status_pengiriman = "pending";
@@ -103,7 +170,7 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
         progressStatus.setMessage("Membuat pengiriman barang");
         progressStatus.show();
 
-        ConfigRetrofit.service.tambahStatusPengiriman(status_pengiriman, tanggal, id_toko).enqueue(new Callback<ResponseTambahStatusPengiriman>() {
+        ConfigRetrofit.service.tambahStatusPengiriman(status_pengiriman, tanggal, id_toko, id_driver).enqueue(new Callback<ResponseTambahStatusPengiriman>() {
             @Override
             public void onResponse(Call<ResponseTambahStatusPengiriman> call, Response<ResponseTambahStatusPengiriman> response) {
                 if (response.isSuccessful()){

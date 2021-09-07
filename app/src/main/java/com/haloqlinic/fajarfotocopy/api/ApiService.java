@@ -30,6 +30,7 @@ import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
 import com.haloqlinic.fajarfotocopy.model.editUser.ResponseEditUser;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
@@ -178,7 +179,8 @@ public interface ApiService {
     @POST("tambahStatusPengiriman")
     Call<ResponseTambahStatusPengiriman> tambahStatusPengiriman(@Field("status_pengiriman") String status,
                                                                 @Field("tanggal_pengiriman") String tanggal,
-                                                                @Field("id_outlet") String id_outlet);
+                                                                @Field("id_outlet") String id_outlet,
+                                                                @Field("driver_id") String driver_id);
 
     @GET("getIdStatusPengiriman")
     Call<ResponseLastIdStatusPengiriamn> lastIdStatusPengiriman();
@@ -536,5 +538,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("hapusPermintaanBarang")
     Call<ResponseHapusMintaBarang> hapusMintaBarang(@Field("id_minta_barang") String hapus_minta_barang);
+
+    @GET("getUserDriver")
+    Call<ResponseDataDriver> getDriver();
 
 }

@@ -45,6 +45,7 @@ public class TransaksiBerhasilGudangActivity extends AppCompatActivity {
                         if (from_gudang!=null){
                             intent.putExtra("from_gudang", from_gudang);
                         }
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                         finish();
                     }
