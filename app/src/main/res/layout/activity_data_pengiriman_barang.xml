@@ -68,7 +68,7 @@
                     android:fontFamily="@font/sairareguler"
                     android:text="Tanggal Pengiriman : "
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/text_tanggal_data_pengiriman"
@@ -79,7 +79,7 @@
                     android:fontFamily="@font/sairabold"
                     android:text="Tanggal"
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
 
             </LinearLayout>
@@ -99,7 +99,7 @@
                     android:fontFamily="@font/sairareguler"
                     android:text="Nama Toko : "
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/text_nama_toko_data_pengiriman"
@@ -109,7 +109,7 @@
                     android:fontFamily="@font/sairabold"
                     android:text="Nama"
                     android:textColor="@color/black"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
