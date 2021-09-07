@@ -65,6 +65,15 @@ public class DataPertokoGudangActivity extends AppCompatActivity {
                         hapusToko();
                     }
                 });
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackDetailTokoGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
     }
 
     private void hapusToko() {

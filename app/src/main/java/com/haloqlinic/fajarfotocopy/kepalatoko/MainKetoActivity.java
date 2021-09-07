@@ -16,6 +16,7 @@ import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.InformasiKetoFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ProfileKetoFragment;
+import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ReportPengirimanKetoFragment;
 
 public class MainKetoActivity extends AppCompatActivity {
 
@@ -23,6 +24,7 @@ public class MainKetoActivity extends AppCompatActivity {
 
     private HomeKetoFragment homeKetoFragment;
 //    private InformasiKetoFragment informasiKetoFragment;
+    private ReportPengirimanKetoFragment reportPengirimanKetoFragment;
     private ProfileKetoFragment profileKetoFragment;
 
     @Override
@@ -63,7 +65,11 @@ public class MainKetoActivity extends AppCompatActivity {
 //            case 1 :
 //                replaceFragment(informasiKetoFragment);
 //                break;
+
             case 1 :
+                replaceFragment(reportPengirimanKetoFragment);
+                break;
+            case 2 :
                 replaceFragment(profileKetoFragment);
                 break;
         }
@@ -84,9 +90,11 @@ public class MainKetoActivity extends AppCompatActivity {
         homeKetoFragment = new HomeKetoFragment();
 //        informasiKetoFragment = new InformasiKetoFragment();
         profileKetoFragment = new ProfileKetoFragment();
+        reportPengirimanKetoFragment = new ReportPengirimanKetoFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
 //        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
+        tabLayout.addTab(tabLayout.newTab().setText("Minta Barang").setIcon(R.drawable.ic_minta_barang_gudang));
         tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
     }

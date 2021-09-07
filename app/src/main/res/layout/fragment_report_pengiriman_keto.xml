@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".kasir.fragmentkasir.RiwayatTransaksiKasirFragment">
+    tools:context=".kepalatoko.fragmentketo.ReportPengirimanKetoFragment">
 
     <RelativeLayout
-        android:id="@+id/headerkeranjang"
+        android:id="@+id/header_report_minta_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@drawable/background_header_green">
@@ -18,7 +18,7 @@
             android:layout_marginStart="75dp"
             android:layout_marginTop="38dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Riwayat Transaksi"
+            android:text="Report Minta Barang"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -26,7 +26,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btn_lihat_laporan_kasir"
+        android:id="@+id/btn_lihat_laporan_minta_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -36,14 +36,14 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/btn_gold"
         android:fontFamily="@font/sairabold"
-        android:text="Lihat Laporan Kasir"
+        android:text="Lihat Laporan Minta Barang"
         android:textColor="@color/white" />
 
     <LinearLayout
-        android:id="@+id/linear_pilihan_bulan_hari"
+        android:id="@+id/linear_pilihan_bulan_hari_minta_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/headerkeranjang"
+        android:layout_below="@+id/header_report_minta_barang_keto"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
@@ -57,7 +57,7 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_hari_bulan"
+            android:id="@+id/spinner_pilih_hari_bulan_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rectangle"/>
@@ -65,10 +65,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_tanggal_report_kasir"
+        android:id="@+id/linear_tanggal_report_minta_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_pilihan_bulan_hari"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_minta_barang_keto"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
@@ -84,7 +84,7 @@
             android:text="Pilih Tanggal" />
 
         <TextView
-            android:id="@+id/text_tanggal_report_kasir"
+            android:id="@+id/text_tanggal_report_minta_barang_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -95,7 +95,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btn_pilih_tanggal_report_kasir"
+            android:id="@+id/btn_pilih_tanggal_report_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
@@ -110,10 +110,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_pilih_bulan_tahun_report_kasir"
+        android:id="@+id/linear_pilih_bulan_tahun_report_minta_barang_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_pilihan_bulan_hari"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_minta_barang_keto"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"
         android:visibility="gone"
@@ -128,7 +128,7 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_bulan_report_kasir"
+            android:id="@+id/spinner_pilih_bulan_report_minta_barang_keto"
             android:layout_width="match_parent"
             android:background="@drawable/bg_rectangle"
             android:layout_height="50dp" />
@@ -143,12 +143,13 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_tahun_report_kasir"
+            android:id="@+id/spinner_pilih_tahun_report_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rectangle"/>
 
     </LinearLayout>
+
 
 
 </RelativeLayout>
