@@ -133,15 +133,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(binding.searchviewSupplierKasir)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.searchviewSupplierKasir.setQueryHint("Masukan Nama Barang");
-                        binding.searchviewSupplierKasir.setIconified(false);
-                    }
-                });
 
         PushDownAnim.setPushDownAnimTo(binding.btnBarcodeSupplierKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -159,6 +150,14 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         intentIntegrator.initiateScan();
                     }
                 });
+
+        binding.searchviewSupplierKasir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.searchviewSupplierKasir.setQueryHint("Masukan Nama Barang");
+                binding.searchviewSupplierKasir.setIconified(false);
+            }
+        });
 
         binding.searchviewSupplierKasir.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
