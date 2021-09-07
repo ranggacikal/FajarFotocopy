@@ -78,11 +78,8 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
             binding.searchviewKirimBarangGudang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String test = "Sampoerna";
                     binding.searchviewKirimBarangGudang.setIconified(false);
-                    binding.searchviewKirimBarangGudang.setQuery(test, true);
                     binding.searchviewKirimBarangGudang.setQueryHint("Cari Nama Barang");
-                    loadDataCari(test);
 
                 }
             });
