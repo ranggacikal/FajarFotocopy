@@ -84,7 +84,7 @@ public class MainDriverActivity extends AppCompatActivity {
         profileDriverFragment = new ProfileDriverFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.informasi_ic));
+        tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.ic_history_baru));
         tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
     }
 

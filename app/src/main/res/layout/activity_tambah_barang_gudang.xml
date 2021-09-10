@@ -46,14 +46,19 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairabold"
-            android:text="Tambah Kategori"
-            android:textColor="@color/black"/>
+            android:fontFamily="@font/sairamedium"
+            android:text="Tambah Kategori"/>
 
         <Button
             android:id="@+id/btn_tambah_kategori_barang"
@@ -62,7 +67,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginHorizontal="10dp"
-            android:text="Tambah KAtegori"
+            android:text="Tambah Kategori"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:background="@drawable/btn_black"
@@ -77,10 +82,7 @@
             android:fontFamily="@font/sairamedium"
             android:text="Barcode" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/btn_barcode_tambah_stockpcs_gudang"
                 android:layout_width="match_parent"
@@ -96,7 +98,6 @@
                 android:layout_marginTop="5dp" />
 
 
-        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -488,9 +489,9 @@
         <ImageView
             android:id="@+id/image_tamba_barang_gudang"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="250dp"
             android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="30dp"
             android:src="@drawable/ic_profile" />
 
         <Button

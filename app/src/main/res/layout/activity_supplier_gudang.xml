@@ -44,40 +44,11 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:gravity="center"
-            android:orientation="horizontal">
 
-
-            <Button
-                android:id="@+id/btn_jasa_supplier"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:background="@drawable/btn_black"
-                android:fontFamily="@font/sairamedium"
-                android:text="Jasa"
-                android:textColor="@color/white"
-                android:textSize="15sp" />
-
-            <Button
-                android:id="@+id/btn_barang_supplier"
-                android:layout_width="120dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:background="@drawable/btn_merah"
-                android:fontFamily="@font/sairamedium"
-                android:text="Barang"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
