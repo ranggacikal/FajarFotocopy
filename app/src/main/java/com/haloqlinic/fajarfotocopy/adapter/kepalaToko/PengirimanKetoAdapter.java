@@ -48,6 +48,7 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
         String tanggal = dataPengiriman.get(position).getTanggalPengiriman();
 
         holder.txtTanggal.setText(tanggal);
+        holder.txtNamaDriver.setText(dataPengiriman.get(position).getNamaLengkap());
 
         PushDownAnim.setPushDownAnimTo(holder.itemView)
                 .setScale(MODE_SCALE, 0.89f)
@@ -88,13 +89,14 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
 
     public class PengirimanKetoViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtTanggal;
+        TextView txtTanggal, txtNamaDriver;
         Button btnDetail;
 
         public PengirimanKetoViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             txtTanggal = itemView.findViewById(R.id.text_tanggal_pengiriman_keto);
             btnDetail = itemView.findViewById(R.id.btn_detail_pengiriman_keto);
+            txtNamaDriver = itemView.findViewById(R.id.text_driver_pengiriman_keto);
         }
     }
 }
