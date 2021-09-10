@@ -49,12 +49,14 @@ import com.haloqlinic.fajarfotocopy.model.hapusTransferCancel.ResponseHapusTrans
 import com.haloqlinic.fajarfotocopy.model.hapusUser.ResponseHapusUser;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.listStatusPengirimanDriver.ResponsePengirimanByIdUser;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.mintaBarang.ResponseMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusPenjualanByBulan;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
@@ -75,6 +77,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahTransferBarang.ResponseTambahTra
 import com.haloqlinic.fajarfotocopy.model.transaksiByBulan.ResponseTransaksiByBulan;
 import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHari;
 import com.haloqlinic.fajarfotocopy.model.updatePassword.ResponsePassword;
+import com.haloqlinic.fajarfotocopy.model.updateStatusPengiriman.ResponseUpdateStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 
 import retrofit2.Call;
@@ -541,5 +544,18 @@ public interface ApiService {
 
     @GET("getUserDriver")
     Call<ResponseDataDriver> getDriver();
+
+    @FormUrlEncoded
+    @POST("getStatusPengirimanByIdUser")
+    Call<ResponseStatusPengirimanByIdUser> statusPengirimanByIdUser(@Field("id_user") String id_user);
+
+    @FormUrlEncoded
+    @POST("getListPengirimanByIdStatus")
+    Call<ResponsePengirimanByIdUser> pengirimanByIdUser(@Field("id_status_pengiriman") String id_status_pengiriman);
+
+    @FormUrlEncoded
+    @POST("updateStatusPengiriman")
+    Call<ResponseUpdateStatusPengiriman> updateStatusPengiriman(@Field("id_status_pengiriman") String id_status_pengiriman,
+                                                                @Field("status_pengiriman") String status_pengiriman);
 
 }

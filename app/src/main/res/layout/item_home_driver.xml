@@ -26,6 +26,20 @@
             android:textSize="15sp" />
 
         <TextView
+            android:id="@+id/txt_status_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/btn_gold"
+            android:padding="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Data Pengiriman"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
+        <TextView
             android:id="@+id/txt_dari_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,6 +53,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/txt_pengirim_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_tanggal_driver"
@@ -65,6 +80,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:id="@+id/txt_penerima_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_dari_driver"
@@ -81,8 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_pengiriman"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="2dp"
+            android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/txt_tanggal2_driver"
             android:fontFamily="@font/sairamedium"
             android:text="Tanggal"

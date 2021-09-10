@@ -68,21 +68,36 @@
         android:id="@+id/linear_footer_detail_driver"
         android:layout_width="match_parent"
         android:layout_height="83dp"
+        android:gravity="center"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_rubah_status_driver"
-            android:layout_width="match_parent"
+            android:id="@+id/btn_dalam_pengiriman_driver"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="30dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_marginVertical="15dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairamedium"
             android:padding="11dp"
-            android:text="Rubah Status Pengiriman"
+            android:text="Dalam Pengiriman"
             android:textAlignment="center"
             android:textColor="@color/white"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btn_selesai_driver"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="15dp"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/sairamedium"
+            android:padding="11dp"
+            android:text="Pengiriman Selesai"
+            android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="12sp" />
 
     </LinearLayout>
