@@ -32,5 +32,6 @@ public class DataInformasiGudangActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         finish();
                     }
-                });    }
+                });
+    }
 }

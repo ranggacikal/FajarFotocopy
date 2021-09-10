@@ -109,29 +109,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         nameActivity = getIntent().getStringExtra("namaActivity");
         id_status_penjualan = preferencedConfig.getPreferenceIdStatusPenjualan();
 
-        PushDownAnim.setPushDownAnimTo(binding.btnJasaKasir)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.btnJasaKasir.setBackgroundResource(R.drawable.btn_black);
-                        binding.btnJasaKasir.setTextColor(Color.parseColor("#FFFFFF"));
-                        binding.btnBarangKasir.setBackgroundResource(R.drawable.btn_merah);
-                        binding.btnBarangKasir.setTextColor(Color.parseColor("#000000"));
-                    }
-                });
 
-        PushDownAnim.setPushDownAnimTo(binding.btnBarangKasir)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        binding.btnJasaKasir.setBackgroundResource(R.drawable.btn_merah);
-                        binding.btnJasaKasir.setTextColor(Color.parseColor("#000000"));
-                        binding.btnBarangKasir.setBackgroundResource(R.drawable.btn_black);
-                        binding.btnBarangKasir.setTextColor(Color.parseColor("#FFFFFF"));
-                    }
-                });
 
 
         PushDownAnim.setPushDownAnimTo(binding.btnBarcodeSupplierKasir)

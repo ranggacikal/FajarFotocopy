@@ -153,7 +153,7 @@
         <ImageView
             android:id="@+id/image_tambah_user_gudang"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_marginHorizontal="30dp"
             android:padding="10dp"
             android:layout_gravity="center_horizontal"
