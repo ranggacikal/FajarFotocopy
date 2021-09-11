@@ -1,11 +1,14 @@
 package com.haloqlinic.fajarfotocopy.driver.fragmentdriver;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,14 +21,23 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPengirimanDriverAdapter;
+import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeDriverFragment extends Fragment {
 
@@ -51,6 +63,7 @@ public class HomeDriverFragment extends Fragment {
     private SimpleDateFormat dateFormat;
     private String date;
     CardView cardHomeDriver;
+    RecyclerView rvStatusPengiriman;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,7 +74,13 @@ public class HomeDriverFragment extends Fragment {
         txtNama = rootView.findViewById(R.id.text_nama_home_driver);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_driver);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_driver);
+        rvStatusPengiriman = rootView.findViewById(R.id.recycler_home_driver);
         preferencedConfig = new SharedPreferencedConfig(getActivity());
+
+        rvStatusPengiriman.setHasFixedSize(true);
+        rvStatusPengiriman.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        loadDataStatusPengiriman();
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
 
@@ -71,9 +90,6 @@ public class HomeDriverFragment extends Fragment {
         date = dateFormat.format(calendar.getTime());
 
         txtTanggal.setText(date);
-
-       
-
 
         PushDownAnim.setPushDownAnimTo(btnKeluar)
                 .setScale(MODE_SCALE, 0.89f)
@@ -102,6 +118,45 @@ public class HomeDriverFragment extends Fragment {
         return rootView;
     }
 
+    private void loadDataStatusPengiriman() {
+
+        ProgressDialog progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Memuat data");
+        progressDialog.show();
+
+        ConfigRetrofit.service.statusPengirimanByIdUser(preferencedConfig.getPreferenceIdUser()).enqueue(new Callback<ResponseStatusPengirimanByIdUser>() {
+            @Override
+            public void onResponse(Call<ResponseStatusPengirimanByIdUser> call, Response<ResponseStatusPengirimanByIdUser> response) {
+                if (response.isSuccessful()){
+
+                    progressDialog.dismiss();
+
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        List<GetStatusPengirimanByIdUserItem> dataStatus = response.body().getGetStatusPengirimanByIdUser();
+                        StatusPengirimanDriverAdapter adapter = new StatusPengirimanDriverAdapter(getActivity(), dataStatus);
+                        rvStatusPengiriman.setAdapter(adapter);
+
+                    }else{
+                        Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(getActivity(), "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStatusPengirimanByIdUser> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(getActivity(), "Koneksi Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
 
     private void keluarAkun() {
@@ -111,5 +166,11 @@ public class HomeDriverFragment extends Fragment {
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadDataStatusPengiriman();
     }
 }
