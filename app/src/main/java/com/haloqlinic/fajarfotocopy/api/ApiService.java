@@ -14,6 +14,7 @@ import com.haloqlinic.fajarfotocopy.model.dataUserByLevel.ResponseDataUserByLeve
 import com.haloqlinic.fajarfotocopy.model.dataUserByLevelOutlet.ResponseDataUserByOutletLevel;
 import com.haloqlinic.fajarfotocopy.model.dataUserByNama.ResponseDataUserByNama;
 import com.haloqlinic.fajarfotocopy.model.dataUserByToko.ResponseDataUserByOutlet;
+import com.haloqlinic.fajarfotocopy.model.detailPenjualanGudang.ResponseDetailPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.ResponseDetailStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.detailTransferBarang.ResponseDetailTransferBarang;
 import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
@@ -52,6 +53,7 @@ import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatu
 import com.haloqlinic.fajarfotocopy.model.listStatusPengirimanDriver.ResponsePengirimanByIdUser;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.mintaBarang.ResponseMintaBarang;
+import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.ResponsePengirimanSelesai;
 import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
@@ -557,5 +559,11 @@ public interface ApiService {
     @POST("updateStatusPengiriman")
     Call<ResponseUpdateStatusPengiriman> updateStatusPengiriman(@Field("id_status_pengiriman") String id_status_pengiriman,
                                                                 @Field("status_pengiriman") String status_pengiriman);
+    @FormUrlEncoded
+    @POST("getStatusPengirimanSelesai")
+    Call<ResponsePengirimanSelesai> pengirimanSelesai(@Field("id_user") String id_user);
 
+    @FormUrlEncoded
+    @POST("detailPenjualanGudang")
+    Call<ResponseDetailPenjualanGudang> detailPenjualanGudang(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang);
 }

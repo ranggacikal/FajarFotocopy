@@ -56,6 +56,9 @@ public class DetailDriverActivity extends AppCompatActivity {
 
         if (status_pengiriman_intent.equals("dalam pengiriman")){
             binding.btnDalamPengirimanDriver.setVisibility(View.GONE);
+        }else if (status_pengiriman_intent.equals("pengiriman selesai")){
+            binding.btnDalamPengirimanDriver.setVisibility(View.GONE);
+            binding.btnSelesaiDriver.setVisibility(View.GONE);
         }
 
         PushDownAnim.setPushDownAnimTo(binding.btnDalamPengirimanDriver)

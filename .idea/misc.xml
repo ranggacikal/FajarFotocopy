@@ -5,28 +5,17 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13518518518518519" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_barang_gudang.xml" value="0.20471014492753623" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_data_pengiriman_barang.xml" value="0.25" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_data_pertoko_gudang.xml" value="0.21" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_invoice_keto.xml" value="0.20471014492753623" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_keranjang_supplier_gudang.xml" value="0.12771739130434784" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_list_pengiriman_keto.xml" value="0.19701086956521738" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_report_gudang.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_report_pengiriman_gudang.xml" value="0.20471014492753623" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_report_penjualan.xml" value="0.19701086956521738" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_report_penjualan_gudang.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_report_supplier.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_supplier_gudang.xml" value="0.12771739130434784" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.12771739130434784" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_web_view_report_minta_barang_keto.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_web_view_report_pengiriman.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/activity_web_view_report_penjualan_gudang.xml" value="0.20471014492753623" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/fragment_report_pengiriman_keto.xml" value="0.20471014492753623" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.22" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/item_barang_outlet.xml" value="0.19701086956521738" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/item_dari_minta_barang_gudang.xml" value="0.12771739130434784" />
-        <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/item_list_pengiriman_keto.xml" value="0.22" />
         <entry key="..\:/FEG/FajarFotocopy/app/src/main/res/layout/item_minta_barang.xml" value="0.19" />
         <entry key="..\:/FEG/app/src/main/res/drawable/bg_gold.xml" value="0.21614583333333334" />
         <entry key="..\:/FEG/app/src/main/res/drawable/bg_gold_tua.xml" value="0.21614583333333334" />
@@ -110,7 +99,9 @@
         <entry key="app/src/main/res/layout/activity_cek_stock_barang_gudang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_detail_barang_stock_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_detail_data_user_gudang.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_detail_driver.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
         <entry key="app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.11875" />
@@ -126,17 +117,21 @@
         <entry key="app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_home_driver.xml" value="0.12881944444444443" />
+        <entry key="app/src/main/res/layout/fragment_riwayat_driver.xml" value="0.12773224043715847" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.14" />
         <entry key="app/src/main/res/layout/item_cek_stock.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/item_data_barang.xml" value="0.12" />
         <entry key="app/src/main/res/layout/item_data_user.xml" value="0.12881944444444443" />
+        <entry key="app/src/main/res/layout/item_detail_driver.xml" value="0.12881944444444443" />
+        <entry key="app/src/main/res/layout/item_home_driver.xml" value="0.2" />
         <entry key="app/src/main/res/layout/item_list_pembayaran.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notification.xml" value="0.1284153005464481" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
