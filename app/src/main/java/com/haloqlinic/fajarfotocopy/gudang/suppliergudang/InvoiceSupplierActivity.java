@@ -11,6 +11,7 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -38,9 +39,12 @@ public class InvoiceSupplierActivity extends AppCompatActivity {
 
         id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
 
+        Log.d("cekIdStatusInvoice", "onCreate: "+id_status_penjualan);
+
         binding.webViewSupplier.setWebViewClient(new myWebclient());
         binding.webViewSupplier.getSettings().setJavaScriptEnabled(true);
-        binding.webViewSupplier.loadUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_invoice/getinvoice?id_status_penjualan="+id_status_penjualan);
+        binding.webViewSupplier.getSettings().setBuiltInZoomControls(true);
+        binding.webViewSupplier.loadUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/detailStatusSupplier?id_status_penjualan_gudang="+id_status_penjualan);
 
         binding.savePdfBtnSupplier.setOnClickListener(new View.OnClickListener() {
             @Override
