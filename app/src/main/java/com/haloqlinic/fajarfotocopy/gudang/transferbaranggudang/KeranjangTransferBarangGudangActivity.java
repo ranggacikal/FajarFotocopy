@@ -82,6 +82,7 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
                             int status = response.body().getStatus();
                             if (status == 1){
                                 editStatusBarang();
+                                editDataBarangToko();
                             }else{
                                 Toast.makeText(KeranjangTransferBarangGudangActivity.this,
                                         "Gagal Check Out.", Toast.LENGTH_SHORT).show();
@@ -100,6 +101,12 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
                                 "Koneksi Error", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+    }
+
+    private void editDataBarangToko() {
+
+
 
     }
 

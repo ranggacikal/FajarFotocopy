@@ -15,6 +15,7 @@ import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.InformasiKetoFragment;
+import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ListTransferFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ProfileKetoFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ReportPengirimanKetoFragment;
 
@@ -26,6 +27,7 @@ public class MainKetoActivity extends AppCompatActivity {
 //    private InformasiKetoFragment informasiKetoFragment;
     private ReportPengirimanKetoFragment reportPengirimanKetoFragment;
     private ProfileKetoFragment profileKetoFragment;
+    private ListTransferFragment listTransferFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,9 @@ public class MainKetoActivity extends AppCompatActivity {
                 replaceFragment(reportPengirimanKetoFragment);
                 break;
             case 2 :
+                replaceFragment(listTransferFragment);
+                break;
+            case 3 :
                 replaceFragment(profileKetoFragment);
                 break;
         }
@@ -91,10 +96,12 @@ public class MainKetoActivity extends AppCompatActivity {
 //        informasiKetoFragment = new InformasiKetoFragment();
         profileKetoFragment = new ProfileKetoFragment();
         reportPengirimanKetoFragment = new ReportPengirimanKetoFragment();
+        listTransferFragment = new ListTransferFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
 //        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
         tabLayout.addTab(tabLayout.newTab().setText("Minta Barang").setIcon(R.drawable.ic_minta_barang_gudang));
+        tabLayout.addTab(tabLayout.newTab().setText("List Transfer").setIcon(R.drawable.ic_list_transfer));
         tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
     }
