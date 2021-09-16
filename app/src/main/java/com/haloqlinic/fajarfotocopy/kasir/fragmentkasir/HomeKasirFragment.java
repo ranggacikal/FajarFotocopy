@@ -78,7 +78,7 @@ public class HomeKasirFragment extends Fragment {
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
-        txtNamaKasir.setText(preferencedConfig.getPreferenceIdOutlet());
+        txtNamaKasir.setText(preferencedConfig.getPreferenceNamaToko());
         Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
 

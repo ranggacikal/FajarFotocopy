@@ -88,7 +88,7 @@ public class HomeKetoFragment extends Fragment {
 
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
-        txtNamaToko.setText(preferencedConfig.getPreferenceIdOutlet());
+        txtNamaToko.setText(preferencedConfig.getPreferenceNamaToko());
         Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
         calendar = Calendar.getInstance();

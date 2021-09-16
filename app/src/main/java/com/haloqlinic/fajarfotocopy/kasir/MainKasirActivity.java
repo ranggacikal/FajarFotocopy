@@ -19,7 +19,7 @@ public class MainKasirActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     private HomeKasirFragment homeKasirFragment;
-    private InformasiKasirFragment informasiKasirFragment;
+//    private InformasiKasirFragment informasiKasirFragment;
     private RiwayatTransaksiKasirFragment riwayatTransaksiKasirFragment;
 
 
@@ -57,10 +57,10 @@ public class MainKasirActivity extends AppCompatActivity {
             case 0 :
                 replaceFragment(homeKasirFragment);
                 break;
+//            case 1 :
+//                replaceFragment(informasiKasirFragment);
+//                break;
             case 1 :
-                replaceFragment(informasiKasirFragment);
-                break;
-            case 2 :
                 replaceFragment(riwayatTransaksiKasirFragment);
                 break;
 
@@ -79,11 +79,11 @@ public class MainKasirActivity extends AppCompatActivity {
     private void setupTabLayout() {
 
         homeKasirFragment = new HomeKasirFragment();
-        informasiKasirFragment = new InformasiKasirFragment();
+//        informasiKasirFragment = new InformasiKasirFragment();
         riwayatTransaksiKasirFragment = new RiwayatTransaksiKasirFragment();
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
-        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
+//        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
         tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.ic_riwayat_transaksi));
 
     }
