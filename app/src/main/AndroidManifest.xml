@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kepalatoko.listtransferketo.DetailListTransferKetoActivity"
+            android:exported="true" />
+        <activity
             android:name=".gudang.suppliergudang.InvoiceSupplierActivity"
             android:exported="true" />
         <activity

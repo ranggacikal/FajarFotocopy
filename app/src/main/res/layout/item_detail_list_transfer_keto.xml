@@ -44,7 +44,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/text_nama_barang_pengiriman_keto"
+                        android:id="@+id/text_nama_barang_detail_list_transfer_keto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="5dp"
@@ -67,7 +67,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/text_jumlah_pcs_barang_pengiriman_keto"
+                        android:id="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sairabold"
@@ -89,7 +89,7 @@
                         android:textColor="@color/black" />
 
                     <TextView
-                        android:id="@+id/text_jumlah_pack_barang_pengiriman_keto"
+                        android:id="@+id/text_jumlah_pack_barang_detail_list_transfer_keto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/sairabold"
@@ -103,7 +103,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_tolak_terima_pengiriman"
+            android:id="@+id/linear_tolak_terima_detail_list_transfer_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -113,7 +113,7 @@
             android:layout_marginEnd="15dp">
 
             <Button
-                android:id="@+id/btn_tolak_barang_pengiriman_keto"
+                android:id="@+id/btn_tolak_barang_detail_list_transfer_keto"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
@@ -125,7 +125,7 @@
                 android:fontFamily="@font/sairabold"/>
 
             <Button
-                android:id="@+id/btn_terima_barang_pengiriman_keto"
+                android:id="@+id/btn_terima_barang_detail_list_transfer_keto"
                 android:layout_width="70dp"
                 android:layout_height="30dp"
                 android:layout_marginBottom="5dp"
@@ -138,7 +138,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_text_tolak_terima_pengiriman"
+            android:id="@+id/linear_text_tolak_terima_detail_list_transfer_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -148,7 +148,7 @@
             android:layout_marginEnd="15dp">
 
             <TextView
-                android:id="@+id/text_pengiriman_ditolak"
+                android:id="@+id/text_detail_list_transfer_ditolak_keto"
                 android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 android:fontFamily="@font/sairabold"/>
 
             <TextView
-                android:id="@+id/text_pengiriman_diterima"
+                android:id="@+id/text_detail_list_transfer_diterima_keto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
