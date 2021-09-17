@@ -62,15 +62,6 @@
                 android:background="@drawable/bg_rectangle"
                 android:padding="10dp" />
 
-            <ProgressBar
-                android:id="@+id/progressBar_cek_stok_toko_gudang"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:visibility="gone"
-                android:layout_above="@+id/linear_recycler_cek_stok_gudang"/>
-
 
         </LinearLayout>
 
@@ -98,6 +89,13 @@
                 android:layout_marginEnd="39dp"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/bg_rectangle"/>
+
+            <ProgressBar
+                android:id="@+id/progressBar_cek_stok_toko_gudang"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_cek_stock_tokogudang"

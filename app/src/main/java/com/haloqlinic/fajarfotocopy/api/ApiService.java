@@ -4,6 +4,7 @@ import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
+import com.haloqlinic.fajarfotocopy.model.cekBarangToko.ResponseCekBarangToko;
 import com.haloqlinic.fajarfotocopy.model.countBarangTransfer.ResponseCountBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.dataKategoriDesc.ResponseDataKategoriDesc;
@@ -27,7 +28,9 @@ import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.editStatusBarangTransfer.ResponseEditStatusBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.editStatusTransfer.ResponseEditStatusTransfer;
+import com.haloqlinic.fajarfotocopy.model.editStatusTransferBarang.ResponseEditStatusTransferBarang;
 import com.haloqlinic.fajarfotocopy.model.editStock.ResponseEditStock;
+import com.haloqlinic.fajarfotocopy.model.editStockBarangOutlet.ResponseEditStockBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editUser.ResponseEditUser;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
@@ -51,6 +54,8 @@ import com.haloqlinic.fajarfotocopy.model.hapusUser.ResponseHapusUser;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengiriman.ResponseDataStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listStatusPengirimanDriver.ResponsePengirimanByIdUser;
+import com.haloqlinic.fajarfotocopy.model.listStatusTransfer.ResponseListStatusTransfer;
+import com.haloqlinic.fajarfotocopy.model.listTransfer.ResponseListTransfer;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.haloqlinic.fajarfotocopy.model.mintaBarang.ResponseMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.ResponsePengirimanSelesai;
@@ -499,7 +504,8 @@ public interface ApiService {
             @Field("total_harga") String total_harga,
             @Field("jumlah_bayar") String jumlah_bayar,
             @Field("jumlah_kurang") String jumlah_kurang,
-            @Field("image_bukti_tf") String image_bukti_tf
+            @Field("image_bukti_tf") String image_bukti_tf,
+            @Field("pilihan_kirim") String pilihan_kirim
     );
 
     @FormUrlEncoded
@@ -566,4 +572,31 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("detailPenjualanGudang")
     Call<ResponseDetailPenjualanGudang> detailPenjualanGudang(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang);
+
+    @FormUrlEncoded
+    @POST("listStatusTransfer")
+    Call<ResponseListStatusTransfer> listStatusTransfer(@Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("getListTransfer")
+    Call<ResponseListTransfer> listTransfer(@Field("id_status_transfer") String id_status_transfer);
+
+    @FormUrlEncoded
+    @POST("cekBarangToko")
+    Call<ResponseCekBarangToko> cekBarangToko(@Field("id_barang") String id_barang,
+                                              @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("editStockBarangOutlet")
+    Call<ResponseEditStockBarangOutlet> editStockBarangOutlet(@Field("id_barang") String id_barang,
+                                                              @Field("id_outlet") String id_outlet,
+                                                              @Field("stock") String stock,
+                                                              @Field("jumlah_pack") String jumlah_pack);
+
+    @FormUrlEncoded
+    @POST("editStatusTransferBarang")
+    Call<ResponseEditStatusTransferBarang> editStatusTransferBarang(@Field("id_transfer_barang") String id_transfer_barang,
+                                                                    @Field("status_barang") String status_barang);
+
+
 }

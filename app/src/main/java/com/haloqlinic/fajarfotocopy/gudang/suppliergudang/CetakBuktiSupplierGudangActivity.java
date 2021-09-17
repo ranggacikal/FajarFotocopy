@@ -83,6 +83,18 @@ public class CetakBuktiSupplierGudangActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.btnBackHomeCetakBuktiGudang)
+                .setScale( MODE_SCALE, 0.89f  )
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(CetakBuktiSupplierGudangActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
         loadData();
 
     }

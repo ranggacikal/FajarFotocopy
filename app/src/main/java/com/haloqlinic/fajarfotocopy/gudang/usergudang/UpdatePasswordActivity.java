@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -118,6 +119,9 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(UpdatePasswordActivity.this);
         progressDialog.setMessage("Mengubah Password");
         progressDialog.show();
+
+        Log.d("paramUpdatePassword", "id_user: "+id_user);
+        Log.d("paramUpdatePassword", "password: "+password2);
 
         ConfigRetrofit.service.updatePassword(id_user, password2).enqueue(new Callback<ResponsePassword>() {
             @Override
