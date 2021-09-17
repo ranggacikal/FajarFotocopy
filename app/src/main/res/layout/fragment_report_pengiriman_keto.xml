@@ -18,7 +18,7 @@
             android:layout_marginStart="75dp"
             android:layout_marginTop="38dp"
             android:fontFamily="@font/sairamedium"
-            android:text="Report Minta Barang"
+            android:text="Report Barang"
             android:textColor="@color/white"
             android:textSize="24sp" />
 
@@ -60,7 +60,7 @@
             android:id="@+id/spinner_pilih_hari_bulan_minta_barang_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@drawable/bg_rectangle"/>
+            android:background="@drawable/bg_rectangle" />
 
     </LinearLayout>
 
