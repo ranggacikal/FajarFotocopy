@@ -87,12 +87,18 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Memuat data outlet");
         progressDialog.show();
 
-        searchCekStock.setQueryHint("Cari Barang");
-        searchCekStock.setIconified(false);
+        searchCekStock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchCekStock.setQueryHint("Cari Barang");
+                searchCekStock.setIconified(false);
+            }
+        });
 
         searchCekStock.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
+
                 return false;
             }
 
@@ -123,8 +129,8 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
                 String nama_toko = dataToko.get(position).getNamaOutlet();
                 id_outlet = dataToko.get(position).getIdOutlet();
 
-                loadDataStock(id_outlet);
-                progressBar.setVisibility(View.VISIBLE);
+//                loadDataStock(id_outlet);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -137,41 +143,49 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
 
     private void loadDataSearch(String newText) {
 
-        ConfigRetrofit.service.searchStokTokoGudang(id_outlet, newText).enqueue(new Callback<ResponseSearchStockTokoGudang>() {
-            @Override
-            public void onResponse(Call<ResponseSearchStockTokoGudang> call, Response<ResponseSearchStockTokoGudang> response) {
-                if (response.isSuccessful()){
+        if (newText.equals("")){
+            rvCekStockGudang.setVisibility(View.GONE);
+        }else {
 
-                    progressBar.setVisibility(View.GONE);
-                    linearCekStockGudang.setVisibility(View.VISIBLE);
+            ConfigRetrofit.service.searchStokTokoGudang(id_outlet, newText).enqueue(new Callback<ResponseSearchStockTokoGudang>() {
+                @Override
+                public void onResponse(Call<ResponseSearchStockTokoGudang> call, Response<ResponseSearchStockTokoGudang> response) {
+                    if (response.isSuccessful()) {
 
-                    int status = response.body().getStatus();
+                        progressBar.setVisibility(View.GONE);
+                        linearCekStockGudang.setVisibility(View.VISIBLE);
+                        rvCekStockGudang.setVisibility(View.VISIBLE);
 
-                    if (status==1) {
+                        int status = response.body().getStatus();
 
-                        List<SearchStockByTokoItem> dataSearch = response.body().getSearchStockByToko();
-                        SearchCekStockTokoAdapter adapterSearch = new SearchCekStockTokoAdapter(CekStockTokoGudangActivity.this, dataSearch);
-                        rvCekStockGudang.setAdapter(adapterSearch);
+                        if (status == 1) {
 
-                    }else{
+                            List<SearchStockByTokoItem> dataSearch = response.body().getSearchStockByToko();
+                            SearchCekStockTokoAdapter adapterSearch = new SearchCekStockTokoAdapter(CekStockTokoGudangActivity.this, dataSearch);
+                            rvCekStockGudang.setAdapter(adapterSearch);
+
+                        } else {
+                            linearCekStockGudang.setVisibility(View.GONE);
+                            rvCekStockGudang.setVisibility(View.GONE);
+                            Toast.makeText(CekStockTokoGudangActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                        }
+
+                    } else {
+                        progressBar.setVisibility(View.GONE);
                         linearCekStockGudang.setVisibility(View.GONE);
-                        Toast.makeText(CekStockTokoGudangActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CekStockTokoGudangActivity.this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
                     }
+                }
 
-                }else{
+                @Override
+                public void onFailure(Call<ResponseSearchStockTokoGudang> call, Throwable t) {
                     progressBar.setVisibility(View.GONE);
                     linearCekStockGudang.setVisibility(View.GONE);
-                    Toast.makeText(CekStockTokoGudangActivity.this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CekStockTokoGudangActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }
+            });
 
-            @Override
-            public void onFailure(Call<ResponseSearchStockTokoGudang> call, Throwable t) {
-                progressBar.setVisibility(View.GONE);
-                linearCekStockGudang.setVisibility(View.GONE);
-                Toast.makeText(CekStockTokoGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        }
 
     }
 
@@ -271,7 +285,7 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadDataStock(id_outlet);
-        loadDataSearch(search_barang);
+//        loadDataStock(id_outlet);
+//        loadDataSearch(search_barang);
     }
 }

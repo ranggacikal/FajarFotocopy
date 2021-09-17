@@ -65,10 +65,11 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
     List<BarangPenjualanGudangItem> dataBarang;
 
-    String metode_bayar;
+    String metode_bayar, metode_pengambilan;
 
     private String[] metodeBayarItem = {"Cash", "Debit"};
     private String[] jenisBayarItem = {"Lunas", "Tempo"};
+    private String[] metodePengambilanItem = {"Ambil Ditempat", "Dikirim Kurir"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,23 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                 R.layout.spinner_item, jenisBayarItem);
         adapterMetode.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerJenisBayarSupplier.setAdapter(adapterJenis);
+
+        ArrayAdapter<String> adapterPengambilan = new ArrayAdapter<String>(KeranjangSupplierGudangActivity.this,
+                R.layout.spinner_item, metodePengambilanItem);
+        adapterPengambilan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.spinnerMetodeKirimSupplier.setAdapter(adapterPengambilan);
+
+        binding.spinnerMetodeKirimSupplier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                metode_pengambilan = binding.spinnerMetodeKirimSupplier.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         binding.spinnerMetodeBayarSupplier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -225,7 +243,8 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.editStatusPenjualanGudang(id_status_penjualan_gudang, "Selesai",
                 metode_bayar, String.valueOf(total), String.valueOf(jumlahBayar), String.valueOf(jumlahKurang),
-                image).enqueue(new Callback<ResponseEditStatusPenjualanGudang>() {
+                image, metode_pengambilan)
+                .enqueue(new Callback<ResponseEditStatusPenjualanGudang>() {
             @Override
             public void onResponse(Call<ResponseEditStatusPenjualanGudang> call, Response<ResponseEditStatusPenjualanGudang> response) {
                 if (response.isSuccessful()){

@@ -61,7 +61,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/text_list_transfer_keto"
+                android:id="@+id/text_toko_list_transfer_keto"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/linear_txt_tanggal"

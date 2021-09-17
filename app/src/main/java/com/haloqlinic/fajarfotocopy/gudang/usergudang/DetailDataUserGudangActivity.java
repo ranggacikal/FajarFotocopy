@@ -116,7 +116,7 @@ public class DetailDataUserGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(DetailDataUserGudangActivity.this, UpdatePasswordActivity.class);
-                        intent.putExtra("idl_user", id_user);
+                        intent.putExtra("id_user", id_user);
                         startActivity(intent);
                     }
                 });
