@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -31,7 +32,6 @@ public class DetailDriverActivity extends AppCompatActivity {
     private ActivityDetailDriverBinding binding;
 
     String id_status_pengiriman;
-
     String status_pengiriman, status_pengiriman_intent;
 
 
@@ -51,6 +51,17 @@ public class DetailDriverActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         finish();
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnSuratJalan)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(DetailDriverActivity.this, WebViewSuratJalanActivity.class);
+                        intent.putExtra("id_status_pengiriman", id_status_pengiriman);
+                        startActivity(intent);
                     }
                 });
 

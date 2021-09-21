@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".driver.WebViewSuratJalanActivity"
+            android:exported="true" />
+        <activity
             android:name=".kepalatoko.listtransferketo.DetailListTransferKetoActivity"
             android:exported="true" />
         <activity
@@ -33,9 +36,7 @@
         <activity
             android:name=".gudang.reportgudang.ReportGudangActivity"
             android:exported="true" />
-        <activity
-            android:name=".gudang.reportgudang.ReportSupplierActivity"
-            android:exported="true" />
+
         <activity android:name=".gudang.tokogudang.WebViewReportPenjualanTokoActivity" />
         <activity android:name=".gudang.tokogudang.ReportTokoGudangActivity" />
         <activity
@@ -67,23 +68,17 @@
         <activity android:name=".kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity" />
         <activity android:name=".kepalatoko.listpengirimanketo.ListPengirimanKetoActivity" />
         <activity android:name=".gudang.kirimbaranggudang.ReportPengirimanGudangActivity" />
-        <activity android:name=".adapter.kirimBarang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.DataPengirimanBarangActivity" />
         <activity android:name=".gudang.kirimbaranggudang.TambahStatusPengirimanActivity" />
         <activity android:name=".kasir.transaksikasir.CetakBuktiKasirActivity" />
         <activity android:name=".kasir.transaksikasir.PembayaranKasirActivity" />
         <activity android:name=".kasir.MainKasirActivity" />
-        <activity android:name=".kepalatoko.keranjangketo.KeranjangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.CetakBuktiMintaBarangKetoActivity" />
-        <activity android:name=".kepalatoko.mintabarangketo.KeranjangMintaBarangKetoActivity" />
         <activity android:name=".kepalatoko.mintabarangketo.TambahBarangKetoActivity" />
-        <activity android:name=".kepalatoko.mintabarangketo.MintaBarangKetoActivity" />
         <activity android:name=".kepalatoko.reporttransaksiketo.CetakBuktiReportKetoActivity" />
         <activity android:name=".kepalatoko.kasirketo.CetakBuktiKasirKetoActivity" />
-        <activity android:name=".kepalatoko.keranjangketo.PembayaranKetoActivity" />
         <activity android:name=".kepalatoko.kasirketo.KasirKetoActivity" />
         <activity android:name=".kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity" />
-        <activity android:name=".kepalatoko.HomeKetoActivity" />
         <activity android:name=".gudang.informasigudang.DataInformasiGudangActivity" />
         <activity android:name=".gudang.informasigudang.TambahInformasiGudangActivity" />
         <activity android:name=".gudang.notifikasigudang.DetailNotifikasiGudangActivity" />
@@ -94,7 +89,6 @@
         <activity
             android:name=".gudang.kirimbaranggudang.KirimBarangGudangActivity"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
-        <activity android:name=".gudang.ReportPengirimanGudangActivity" />
         <activity android:name=".gudang.transferbaranggudang.KeranjangTransferBarangGudangActivity" />
         <activity
             android:name=".gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity"
