@@ -39,6 +39,7 @@ public class InvoiceKasirActivity extends AppCompatActivity {
 
         binding.webViewKasir.setWebViewClient(new myWebclient());
         binding.webViewKasir.getSettings().setJavaScriptEnabled(true);
+        binding.webViewKasir.getSettings().setBuiltInZoomControls(true);
         binding.webViewKasir.loadUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_invoice/getinvoice?id_status_penjualan="+id_status_penjualan);
 
         binding.savePdfBtn.setOnClickListener(new View.OnClickListener() {

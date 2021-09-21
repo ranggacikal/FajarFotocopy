@@ -128,6 +128,7 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String nama_toko = dataToko.get(position).getNamaOutlet();
                 id_outlet = dataToko.get(position).getIdOutlet();
+                searchCekStock.setVisibility(View.VISIBLE);
 
 //                loadDataStock(id_outlet);
                 progressBar.setVisibility(View.GONE);
@@ -145,6 +146,7 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
 
         if (newText.equals("")){
             rvCekStockGudang.setVisibility(View.GONE);
+            binding.txtDataKosong.setVisibility(View.GONE);
         }else {
 
             ConfigRetrofit.service.searchStokTokoGudang(id_outlet, newText).enqueue(new Callback<ResponseSearchStockTokoGudang>() {
@@ -163,11 +165,11 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
                             List<SearchStockByTokoItem> dataSearch = response.body().getSearchStockByToko();
                             SearchCekStockTokoAdapter adapterSearch = new SearchCekStockTokoAdapter(CekStockTokoGudangActivity.this, dataSearch);
                             rvCekStockGudang.setAdapter(adapterSearch);
+                            binding.txtDataKosong.setVisibility(View.GONE);
 
                         } else {
-                            linearCekStockGudang.setVisibility(View.GONE);
                             rvCekStockGudang.setVisibility(View.GONE);
-                            Toast.makeText(CekStockTokoGudangActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                            binding.txtDataKosong.setVisibility(View.VISIBLE);
                         }
 
                     } else {
