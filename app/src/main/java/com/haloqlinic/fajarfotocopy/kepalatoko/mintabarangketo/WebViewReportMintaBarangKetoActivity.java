@@ -64,6 +64,8 @@ public class WebViewReportMintaBarangKetoActivity extends AppCompatActivity {
 
         binding.webViewReportMintaBarangKeto.setWebViewClient(new myWebclient());
         binding.webViewReportMintaBarangKeto.getSettings().setJavaScriptEnabled(true);
+        binding.webViewReportMintaBarangKeto.getSettings().setBuiltInZoomControls(true);
+
         binding.webViewReportMintaBarangKeto.loadUrl(link_web);
 
         Log.d("linkInvoice", "onCreate: "+link_web);

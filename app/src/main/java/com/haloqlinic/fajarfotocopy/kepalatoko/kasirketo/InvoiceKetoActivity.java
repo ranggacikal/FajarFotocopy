@@ -63,6 +63,8 @@ public class InvoiceKetoActivity extends AppCompatActivity {
 
         binding.webViewKeto.setWebViewClient(new myWebclient());
         binding.webViewKeto.getSettings().setJavaScriptEnabled(true);
+        binding.webViewKeto.getSettings().setBuiltInZoomControls(true);
+
         binding.webViewKeto.loadUrl(link_web);
 
         Log.d("linkInvoice", "onCreate: "+link_web);
