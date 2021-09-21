@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -57,14 +58,26 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        Log.d("from_keto", "onClick: "+from_keto);
+
                         if (from_keto!=null){
                             if (from_keto.equals("kepala_toko")){
-                                startActivity(new Intent(CetakBuktiKasirActivity.this, MainKetoActivity.class));
+                                Intent intent = new Intent(CetakBuktiKasirActivity.this, MainKetoActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                Intent intent2 = new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class);
+                                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent2);
                                 finish();
                             }
                         }else {
 
-                            startActivity(new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class));
+                            Intent intent3 = new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class);
+                            intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent3);
                             finish();
 
                         }

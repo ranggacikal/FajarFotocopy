@@ -70,6 +70,8 @@ import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPe
 import com.haloqlinic.fajarfotocopy.model.statusTransferByBulan.ResponseStatusTransferByBulan;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
 import com.haloqlinic.fajarfotocopy.model.sumPenjualanGudang.ResponseSumPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.sumTransaksiBulan.ResponseSumTransaksiBulan;
+import com.haloqlinic.fajarfotocopy.model.sumTransaksiHari.ResponseSumTransaksiHari;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
@@ -92,6 +94,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -597,6 +600,14 @@ public interface ApiService {
     @POST("editStatusTransferBarang")
     Call<ResponseEditStatusTransferBarang> editStatusTransferBarang(@Field("id_transfer_barang") String id_transfer_barang,
                                                                     @Field("status_barang") String status_barang);
+
+    @GET("sumTransaksiByBulan")
+    Call<ResponseSumTransaksiBulan> sumTransaksiBulan(@Query("bulan") String bulan,
+                                                      @Query("id_outlet") String id_outlet);
+
+    @GET("sumTransaksiByHari")
+    Call<ResponseSumTransaksiHari> sumTransaksiHari(@Query("hari") String hari,
+                                                    @Query("id_outlet") String id_outlet);
 
 
 }
