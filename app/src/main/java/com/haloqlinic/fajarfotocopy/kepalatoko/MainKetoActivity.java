@@ -100,7 +100,7 @@ public class MainKetoActivity extends AppCompatActivity {
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
 //        tabLayout.addTab(tabLayout.newTab().setText("Informasi").setIcon(R.drawable.informasi_ic));
-        tabLayout.addTab(tabLayout.newTab().setText("Minta Barang").setIcon(R.drawable.ic_minta_barang_gudang));
+        tabLayout.addTab(tabLayout.newTab().setText("Report Barang").setIcon(R.drawable.ic_minta_barang_gudang));
         tabLayout.addTab(tabLayout.newTab().setText("List Transfer").setIcon(R.drawable.ic_list_transfer));
         tabLayout.addTab(tabLayout.newTab().setText("Profile").setIcon(R.drawable.ic_profile));
 
