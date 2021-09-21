@@ -103,8 +103,13 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         binding.recyclerBarangOutletBarcode.setHasFixedSize(true);
         binding.recyclerBarangOutletBarcode.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
 
-        binding.searchviewBarangOutletBarcode.setQueryHint("ID Barang");
-        binding.searchviewBarangOutletBarcode.setIconified(false);
+        binding.searchviewBarangOutletBarcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.searchviewBarangOutletBarcode.setQueryHint("ID Barang");
+                binding.searchviewBarangOutletBarcode.setIconified(false);
+            }
+        });
 
         nameActivity = getIntent().getStringExtra("namaActivity");
         id_status_penjualan = preferencedConfig.getPreferenceIdStatusPenjualan();
@@ -170,7 +175,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(TransaksiKasirActivity.this, PembayaranKasirActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
-                        intent.putExtra("from_keto", "kepala_toko");
+                        intent.putExtra("from_keto", "kasir");
                         startActivity(intent);
                         finish();
 

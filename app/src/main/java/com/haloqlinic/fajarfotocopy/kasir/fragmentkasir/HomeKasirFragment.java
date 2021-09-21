@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.kasir.fragmentkasir;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +28,12 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
+import com.haloqlinic.fajarfotocopy.model.sumTransaksiBulan.ResponseSumTransaksiBulan;
+import com.haloqlinic.fajarfotocopy.model.sumTransaksiHari.ResponseSumTransaksiHari;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
@@ -51,15 +56,17 @@ public class HomeKasirFragment extends Fragment {
     }
 
     private SharedPreferencedConfig preferencedConfig;
-    TextView txtNama, txtTanggal, txtNamaKasir;
+    TextView txtNama, txtTanggal, txtNamaKasir, txtTotalHari, txtTotalBulan;
     Button btnKeluar;
     ImageView imageView;
 
 
-    private Calendar calendar;
-    private SimpleDateFormat dateFormat;
-    private String date;
+    private Calendar calendar, calendarHari, calendarBulan;
+    private SimpleDateFormat dateFormat, dateFormatHari, dateFormatBulan;
+    private String date, hari, bulan;
     CardView cardToko;
+
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -72,10 +79,18 @@ public class HomeKasirFragment extends Fragment {
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_kasir);
         cardToko = rootView.findViewById(R.id.card_transaksi_kasir);
         txtNamaKasir = rootView.findViewById(R.id.text_nama_toko_kasir);
+        txtTotalHari = rootView.findViewById(R.id.text_total_penjualan_harian_kasir);
+        txtTotalBulan = rootView.findViewById(R.id.text_penjualan_bulanan_kasir);
 
         btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
 
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Memuat Data Penjualan");
+        progressDialog.show();
         preferencedConfig = new SharedPreferencedConfig(getActivity());
+
+        loadHari();
+        loadBulan();
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
         txtNamaKasir.setText(preferencedConfig.getPreferenceNamaToko());
@@ -86,6 +101,18 @@ public class HomeKasirFragment extends Fragment {
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         date = dateFormat.format(calendar.getTime());
+
+        calendarHari = Calendar.getInstance();
+        dateFormatHari = new SimpleDateFormat("dd MMMM yyyy");
+
+        hari = dateFormatHari.format(calendarHari.getTime());
+
+        calendarBulan = Calendar.getInstance();
+        dateFormatBulan = new SimpleDateFormat("MMMM yyyy");
+
+        bulan = dateFormatBulan.format(calendarBulan.getTime());
+
+        Log.d("cekDate", "onCreateView: "+hari+" Bulan : "+bulan);
 
         txtTanggal.setText(date);
 
@@ -124,6 +151,77 @@ public class HomeKasirFragment extends Fragment {
                 });
         return rootView;
 
+
+    }
+
+    private void loadBulan() {
+
+        ConfigRetrofit.service.sumTransaksiBulan(bulan, preferencedConfig.getPreferenceIdOutlet())
+                .enqueue(new Callback<ResponseSumTransaksiBulan>() {
+                    @Override
+                    public void onResponse(Call<ResponseSumTransaksiBulan> call, Response<ResponseSumTransaksiBulan> response) {
+                        if (response.isSuccessful()){
+
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                int totalBulan = Integer.parseInt(response.body()
+                                        .getSumTransaksiByBulan().get(0).getTotal());
+                                txtTotalBulan.setText("Rp" + NumberFormat.getInstance()
+                                        .format(totalBulan));
+                            }else{
+                                Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getActivity(), "Terjadi kesalahan diserver",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseSumTransaksiBulan> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getActivity(), "Error Koneksi", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void loadHari() {
+
+        ConfigRetrofit.service.sumTransaksiHari(hari, preferencedConfig.getPreferenceIdOutlet())
+                .enqueue(new Callback<ResponseSumTransaksiHari>() {
+                    @Override
+                    public void onResponse(Call<ResponseSumTransaksiHari> call, Response<ResponseSumTransaksiHari> response) {
+                        if (response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                int totalHari = Integer.parseInt(response.body().getSumTransaksiByHari()
+                                        .get(0).getTotal());
+                                txtTotalHari.setText("Rp" + NumberFormat.getInstance().format(totalHari));
+
+                            }else{
+                                Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(getActivity(), "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseSumTransaksiHari> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Error Koneksi", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
