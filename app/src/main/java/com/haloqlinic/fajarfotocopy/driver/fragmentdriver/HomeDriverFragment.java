@@ -81,10 +81,10 @@ public class HomeDriverFragment extends Fragment {
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
-        rvStatusPengiriman.setHasFixedSize(true);
-        rvStatusPengiriman.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        rvStatusPengiriman.setHasFixedSize(true);
+//        rvStatusPengiriman.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        loadDataStatusPengiriman();
+//        loadDataStatusPengiriman();
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
 
@@ -100,7 +100,11 @@ public class HomeDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), PengirimanDriverActivity.class));
+
+                        Intent intent = new Intent(getActivity(), PengirimanDriverActivity.class);
+                        intent.putExtra("jenisPengiriman", "toko");
+                        startActivity(intent);
+
                     }
                 });
         PushDownAnim.setPushDownAnimTo(cardPengirimanSupplierDriver)
@@ -108,7 +112,9 @@ public class HomeDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), PengirimanDriverActivity.class));
+                        Intent intent2 = new Intent(getActivity(), PengirimanDriverActivity.class);
+                        intent2.putExtra("jenisPengiriman", "supplier");
+                        startActivity(intent2);
                     }
                 });
 
@@ -192,6 +198,6 @@ public class HomeDriverFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        loadDataStatusPengiriman();
+//        loadDataStatusPengiriman();
     }
 }

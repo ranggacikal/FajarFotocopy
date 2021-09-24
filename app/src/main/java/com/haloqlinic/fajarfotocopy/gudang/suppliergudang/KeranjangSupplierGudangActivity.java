@@ -33,11 +33,14 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityKeranjangSupplierGudangBinding;
 import com.haloqlinic.fajarfotocopy.formatNumber.NumberTextWatcher;
+import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiBerhasilActivity;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.BarangPenjualanGudangItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.getDriver.DataDriverItem;
+import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.sumPenjualanGudang.ResponseSumPenjualanGudang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -45,6 +48,7 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -64,8 +68,9 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
     private Bitmap bitmap;
 
     List<BarangPenjualanGudangItem> dataBarang;
+    List<DataDriverItem> dataDriverItems;
 
-    String metode_bayar, metode_pengambilan;
+    String metode_bayar, metode_pengambilan, id_driver;
 
     private String[] metodeBayarItem = {"Cash", "Debit"};
     private String[] jenisBayarItem = {"Lunas", "Tempo"};
@@ -106,6 +111,13 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 metode_pengambilan = binding.spinnerMetodeKirimSupplier.getSelectedItem().toString();
+
+                if(metode_pengambilan.equals("Dikirim Kurir")){
+                    binding.linearLayoutKurir.setVisibility(View.VISIBLE);
+                    initSpinnerPilihDriver();
+                }else{
+                    binding.linearLayoutKurir.setVisibility(View.GONE);
+                }
             }
 
             @Override
@@ -149,6 +161,18 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.spinnerDriverSupplier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                id_driver = dataDriverItems.get(i).getIdUser();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
@@ -227,7 +251,73 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
     }
 
+    private void initSpinnerPilihDriver() {
+
+        ProgressDialog progressDialog = new ProgressDialog(KeranjangSupplierGudangActivity.this);
+        progressDialog.setMessage("Memuat Data Driver");
+        progressDialog.show();
+
+        ConfigRetrofit.service.getDriver().enqueue(new Callback<ResponseDataDriver>() {
+            @Override
+            public void onResponse(Call<ResponseDataDriver> call, Response<ResponseDataDriver> response) {
+                if (response.isSuccessful()){
+                    progressDialog.dismiss();
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        dataDriverItems = response.body().getDataDriver();
+                        List<String> listSpinnerDriver = new ArrayList<String>();
+                        for (int i = 0; i < dataDriverItems.size(); i++) {
+
+                            listSpinnerDriver.add(dataDriverItems.get(i).getNamaLengkap());
+
+                        }
+
+                        ArrayAdapter<String> adapterDriver = new ArrayAdapter<String>(KeranjangSupplierGudangActivity.this,
+                                R.layout.spinner_item, listSpinnerDriver);
+
+                        adapterDriver.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        binding.spinnerDriverSupplier.setAdapter(adapterDriver);
+
+                    }else{
+                        Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                "Data Kosong", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(KeranjangSupplierGudangActivity.this,
+                            "Terjadi Kesalahan Di server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDataDriver> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(KeranjangSupplierGudangActivity.this,
+                        "Koneksi Internet Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
     private void bayar() {
+
+        String alamat = "";
+
+        if (metode_pengambilan.equals("Dikirim Kurir")){
+            alamat = binding.edtAlamatSupplier.getText().toString();
+
+            if (alamat.isEmpty()){
+
+                binding.edtAlamatSupplier.setError("Alamat Tujuan tidak boleh kosong");
+                binding.edtAlamatSupplier.requestFocus();
+                return;
+
+            }
+
+        }
 
         ProgressDialog progressDialog = new ProgressDialog(KeranjangSupplierGudangActivity.this);
         progressDialog.setMessage("Melakukan Checkout");
@@ -243,7 +333,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.editStatusPenjualanGudang(id_status_penjualan_gudang, "Selesai",
                 metode_bayar, String.valueOf(total), String.valueOf(jumlahBayar), String.valueOf(jumlahKurang),
-                image, metode_pengambilan)
+                image, metode_pengambilan, id_driver, alamat, "pending")
                 .enqueue(new Callback<ResponseEditStatusPenjualanGudang>() {
             @Override
             public void onResponse(Call<ResponseEditStatusPenjualanGudang> call, Response<ResponseEditStatusPenjualanGudang> response) {

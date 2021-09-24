@@ -128,11 +128,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Metode Pengambilan Barang"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/sairabold"/>
+            android:fontFamily="@font/sairabold"
+            android:text="Metode Pengambilan Barang"
+            android:textColor="@color/black" />
 
         <Spinner
             android:id="@+id/spinner_metode_kirim_supplier"
@@ -142,6 +142,57 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_rectangle" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_kurir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Pilih Driver"
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_driver_supplier"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_rectangle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Alamat Tujuan"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/edt_alamat_supplier"
+                android:hint="Alamat Tujuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                android:background="@drawable/bg_rectangle"
+                android:gravity="top|left"
+                android:inputType="textMultiLine"
+                android:lines="12"
+                android:maxLines="11"
+                android:minLines="4" />
+
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/spinner_metode_bayar_supplier"
@@ -164,25 +215,25 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="15dp">
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="10dp">
 
             <EditText
                 android:id="@+id/edt_jumlah_bayar_supplier"
                 android:layout_width="230dp"
                 android:layout_height="50dp"
-                android:hint="Jumlah Bayar"
                 android:layout_centerVertical="true"
+                android:hint="Jumlah Bayar"
                 android:inputType="number" />
 
             <Button
                 android:id="@+id/btn_hitung_keranjang_supplier"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
-                android:background="@drawable/btn_gold"
-                android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:text="HITUNG"/>
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_gold"
+                android:text="HITUNG" />
 
         </RelativeLayout>
 
@@ -190,11 +241,10 @@
             android:id="@+id/img_bukti_tf_supplier"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginVertical="10dp"
             android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
             android:src="@drawable/icon_bukti_tf"
-            android:visibility="gone"/>
-
+            android:visibility="gone" />
 
 
         <RelativeLayout
