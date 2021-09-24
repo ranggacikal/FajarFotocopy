@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".driver.pengirimandriver.PengirimanDriverActivity"
+            android:exported="true" />
+        <activity
             android:name=".driver.WebViewSuratJalanActivity"
             android:exported="true" />
         <activity
@@ -36,7 +39,6 @@
         <activity
             android:name=".gudang.reportgudang.ReportGudangActivity"
             android:exported="true" />
-
         <activity android:name=".gudang.tokogudang.WebViewReportPenjualanTokoActivity" />
         <activity android:name=".gudang.tokogudang.ReportTokoGudangActivity" />
         <activity

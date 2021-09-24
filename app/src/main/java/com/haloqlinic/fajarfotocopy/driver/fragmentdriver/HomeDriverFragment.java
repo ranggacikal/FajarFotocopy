@@ -24,7 +24,9 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPengirimanDriverAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
+import com.haloqlinic.fajarfotocopy.driver.pengirimandriver.PengirimanDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -62,7 +64,7 @@ public class HomeDriverFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    CardView cardHomeDriver;
+    CardView cardPengirimanTokoDriver, cardPengirimanSupplierDriver;
     RecyclerView rvStatusPengiriman;
 
     @Override
@@ -74,7 +76,9 @@ public class HomeDriverFragment extends Fragment {
         txtNama = rootView.findViewById(R.id.text_nama_home_driver);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_driver);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_driver);
-        rvStatusPengiriman = rootView.findViewById(R.id.recycler_home_driver);
+        cardPengirimanTokoDriver = rootView.findViewById(R.id.card_pengiriman_toko_keto_driver);
+        cardPengirimanSupplierDriver = rootView.findViewById(R.id.card_pengiriman_supplier_driver);
+
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         rvStatusPengiriman.setHasFixedSize(true);
@@ -90,6 +94,23 @@ public class HomeDriverFragment extends Fragment {
         date = dateFormat.format(calendar.getTime());
 
         txtTanggal.setText(date);
+
+        PushDownAnim.setPushDownAnimTo(cardPengirimanTokoDriver)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), PengirimanDriverActivity.class));
+                    }
+                });
+        PushDownAnim.setPushDownAnimTo(cardPengirimanSupplierDriver)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), PengirimanDriverActivity.class));
+                    }
+                });
 
         PushDownAnim.setPushDownAnimTo(btnKeluar)
                 .setScale(MODE_SCALE, 0.89f)
