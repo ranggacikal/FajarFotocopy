@@ -51,9 +51,34 @@
             android:textColor="@color/white" />
 
         <LinearLayout
+            android:id="@+id/linear_pilih_outlet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Pilih Outlet : "
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_outlet_penjualan_toko"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_rectangle" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/linear_pilihan_bulan_hari_penjualan_toko"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_pilih_outlet"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:orientation="vertical">
