@@ -78,6 +78,7 @@ import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahKategori.ResponseTambahKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahOutlet.ResponseTambahOutlet;
+import com.haloqlinic.fajarfotocopy.model.tambahPengeluaranOutlet.ResponseTambahPengeluaranOutlet;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
@@ -631,6 +632,11 @@ public interface ApiService {
     Call<ResponseUpdateStatusPenjualanGudang> updateStatusPenjualanGudang(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang,
                                                                           @Field("status_pengiriman") String status_pengiriman);
 
-
+    @FormUrlEncoded
+    @POST("tambahPengeluaranOutlet")
+    Call<ResponseTambahPengeluaranOutlet> tambahPengeluaranOutlet(@Field("jumlah_pengeluaran") String jumlah_pengeluaran,
+                                                                  @Field("keterangan") String keterangan,
+                                                                  @Field("tanggal_pengeluaran") String tanggal_pengeluaran,
+                                                                  @Field("id_outlet") String id_outlet);
 
 }

@@ -101,9 +101,6 @@ public class HomeKasirFragment extends Fragment {
         progressDialog.show();
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
-        loadHari();
-        loadBulan();
-
         txtNama.setText(preferencedConfig.getPreferenceNama());
         txtNamaKasir.setText(preferencedConfig.getPreferenceNamaToko());
         Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
@@ -127,6 +124,9 @@ public class HomeKasirFragment extends Fragment {
         Log.d("cekDate", "onCreateView: "+hari+" Bulan : "+bulan);
 
         txtTanggal.setText(date);
+
+        loadHari();
+        loadBulan();
 
         PushDownAnim.setPushDownAnimTo(cardToko)
                 .setScale(MODE_SCALE, 0.89f)
