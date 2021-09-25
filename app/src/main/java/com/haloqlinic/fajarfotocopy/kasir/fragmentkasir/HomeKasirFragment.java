@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import retrofit2.Call;
@@ -84,6 +86,16 @@ public class HomeKasirFragment extends Fragment {
 
         btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
 
+
+        return rootView;
+
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Memuat Data Penjualan");
         progressDialog.show();
@@ -149,9 +161,6 @@ public class HomeKasirFragment extends Fragment {
                                 .show();
                     }
                 });
-        return rootView;
-
-
     }
 
     private void loadBulan() {
@@ -168,8 +177,15 @@ public class HomeKasirFragment extends Fragment {
 
                             if (status==1){
 
-                                int totalBulan = Integer.parseInt(response.body()
-                                        .getSumTransaksiByBulan().get(0).getTotal());
+                                String totalBulanStr = response.body()
+                                        .getSumTransaksiByBulan().get(0).getTotal();
+
+                                int totalBulan = 0;
+
+                                if (totalBulanStr!=null){
+
+                                    totalBulan = Integer.parseInt(totalBulanStr);
+                                }
                                 txtTotalBulan.setText("Rp" + NumberFormat.getInstance()
                                         .format(totalBulan));
                             }else{
@@ -194,6 +210,10 @@ public class HomeKasirFragment extends Fragment {
 
     private void loadHari() {
 
+        Log.d("cekParamLoadhari", "hari: "+hari);
+        Log.d("cekParamLoadhari", "id_outler: "+preferencedConfig.getPreferenceIdOutlet());
+
+
         ConfigRetrofit.service.sumTransaksiHari(hari, preferencedConfig.getPreferenceIdOutlet())
                 .enqueue(new Callback<ResponseSumTransaksiHari>() {
                     @Override
@@ -204,8 +224,14 @@ public class HomeKasirFragment extends Fragment {
 
                             if (status==1){
 
-                                int totalHari = Integer.parseInt(response.body().getSumTransaksiByHari()
-                                        .get(0).getTotal());
+                                String totalHariStr = response.body().getSumTransaksiByHari()
+                                        .get(0).getTotal();
+                                int totalHari = 0;
+
+                                if (totalHariStr!=null) {
+                                    totalHari = Integer.parseInt(totalHariStr);
+                                }
+
                                 txtTotalHari.setText("Rp" + NumberFormat.getInstance().format(totalHari));
 
                             }else{
