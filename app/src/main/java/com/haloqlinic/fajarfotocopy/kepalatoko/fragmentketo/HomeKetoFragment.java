@@ -30,6 +30,7 @@ import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.ListPengirimanKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.pengeluaranketo.PengeluaranKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -65,7 +66,7 @@ public class HomeKetoFragment extends Fragment {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
-    LinearLayout linearKasirKeto, linearReportTransaksiKeto, linearMintaBarangKeto, linearListPengiriman;
+    LinearLayout linearKasirKeto, linearReportTransaksiKeto, linearMintaBarangKeto, linearListPengiriman, linearPengeluaranKeto ;
 
 
     @Override
@@ -82,6 +83,7 @@ public class HomeKetoFragment extends Fragment {
         linearReportTransaksiKeto = rootView.findViewById(R.id.linear_report_transaksi_keto);
         linearMintaBarangKeto = rootView.findViewById(R.id.linear_minta_barang_keto);
         linearListPengiriman = rootView.findViewById(R.id.linear_list_pengiriman);
+        linearPengeluaranKeto = rootView.findViewById(R.id.linear_pengeluaran_keto);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_keto);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
@@ -130,6 +132,15 @@ public class HomeKetoFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         startActivity(new Intent(getActivity(), ListPengirimanKetoActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(linearPengeluaranKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), PengeluaranKetoActivity.class));
                     }
                 });
 

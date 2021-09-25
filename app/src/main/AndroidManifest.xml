@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kepalatoko.pengeluaranketo.PengeluaranKetoActivity"
+            android:exported="true" />
+        <activity
             android:name=".driver.pengirimandriver.PengirimanDriverActivity"
             android:exported="true" />
         <activity
