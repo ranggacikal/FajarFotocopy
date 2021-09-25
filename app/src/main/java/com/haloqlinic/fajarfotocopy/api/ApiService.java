@@ -90,6 +90,7 @@ import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHar
 import com.haloqlinic.fajarfotocopy.model.updatePassword.ResponsePassword;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPengiriman.ResponseUpdateStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanGudang.ResponseUpdateStatusPenjualanGudang;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -624,6 +625,11 @@ public interface ApiService {
     @POST("getListPenjualanGudangByIdStatus")
     Call<ResponseListPenjualanGudangByIdStatus> penjualanGudangByIdStatus(@Field("id_status_penjualan_gudang")
                                                                                   String id_status_penjualan_gudang);
+
+    @FormUrlEncoded
+    @POST("updateStatusPenjualanGudang")
+    Call<ResponseUpdateStatusPenjualanGudang> updateStatusPenjualanGudang(@Field("id_status_penjualan_gudang") String id_status_penjualan_gudang,
+                                                                          @Field("status_pengiriman") String status_pengiriman);
 
 
 

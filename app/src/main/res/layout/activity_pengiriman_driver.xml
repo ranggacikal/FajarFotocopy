@@ -50,6 +50,17 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_data_pengiriman_supplier_driver"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linear_header_pengiriman_driver"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 
 
 </RelativeLayout>

@@ -16,46 +16,46 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
-import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangByIdUser.StatusPenjualanGudangByIdUserItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
-public class StatusPengirimanDriverAdapter extends RecyclerView.Adapter<StatusPengirimanDriverAdapter.StatusPengirimanViewHolder> {
+public class StatusPenjualanGudangAdapter extends RecyclerView.Adapter<StatusPenjualanGudangAdapter
+        .StatusPenjualanGudangViewHolder> {
 
     Context context;
-    List<GetStatusPengirimanByIdUserItem> dataStatus;
+    List<StatusPenjualanGudangByIdUserItem> dataPenjualan;
 
-    public StatusPengirimanDriverAdapter(Context context, List<GetStatusPengirimanByIdUserItem> dataStatus) {
+    public StatusPenjualanGudangAdapter(Context context, List<StatusPenjualanGudangByIdUserItem> dataPenjualan) {
         this.context = context;
-        this.dataStatus = dataStatus;
+        this.dataPenjualan = dataPenjualan;
     }
 
     @NonNull
     @Override
-    public StatusPengirimanViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public StatusPenjualanGudangViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_driver, parent, false);
-        return new StatusPengirimanViewHolder(view);
+        return new StatusPenjualanGudangViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StatusPengirimanViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull StatusPenjualanGudangViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.txtTanggal.setText(dataStatus.get(position).getTanggalPengiriman());
-        holder.txtPenerima.setText(dataStatus.get(position).getNamaOutlet());
-        holder.txtStatus.setText(dataStatus.get(position).getStatusPengiriman());
+        holder.txtTanggal.setText(dataPenjualan.get(position).getTanggalPenjualan());
+        holder.txtPenerima.setText(dataPenjualan.get(position).getAlamatTujuan());
+        holder.txtStatus.setText(dataPenjualan.get(position).getStatusPengiriman());
 
         PushDownAnim.setPushDownAnimTo(holder.btnDetail)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id_status_pengiriman = dataStatus.get(position).getIdStatusPengiriman();
+                        String id_status_penjualan_gudang = dataPenjualan.get(position).getIdStatusPenjualanGudang();
                         Intent intent = new Intent(context, DetailDriverActivity.class);
-                        intent.putExtra("id_status_pengiriman", id_status_pengiriman);
-                        intent.putExtra("status_pengiriman", dataStatus.get(position).getStatusPengiriman());
-                        intent.putExtra("jenis_pengiriman", "toko");
+                        intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
+                        intent.putExtra("status_pengiriman", dataPenjualan.get(position).getStatusPengiriman());
+                        intent.putExtra("jenis_pengiriman", "supplier");
                         context.startActivity(intent);
                     }
                 });
@@ -64,15 +64,15 @@ public class StatusPengirimanDriverAdapter extends RecyclerView.Adapter<StatusPe
 
     @Override
     public int getItemCount() {
-        return dataStatus.size();
+        return dataPenjualan.size();
     }
 
-    public class StatusPengirimanViewHolder extends RecyclerView.ViewHolder {
+    public class StatusPenjualanGudangViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtTanggal, txtPenerima, txtStatus;
         Button btnDetail;
 
-        public StatusPengirimanViewHolder(@NonNull View itemView) {
+        public StatusPenjualanGudangViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTanggal = itemView.findViewById(R.id.txt_tanggal_driver);
             txtPenerima = itemView.findViewById(R.id.txt_penerima_driver);

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -71,6 +72,8 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
         progresStatusTransfer.setMessage("Memproses Checkout Anda ...");
         progresStatusTransfer.show();
 
+        Log.d("idEditStatusTransfer", "editStatusTransfer: "+id_status_transfer);
+
 
         ConfigRetrofit.service.editStatusTransfer(id_status_transfer, "dalam proses")
                 .enqueue(new Callback<ResponseEditStatusTransfer>() {
@@ -90,7 +93,7 @@ public class KeranjangTransferBarangGudangActivity extends AppCompatActivity {
                         }else{
                             progresStatusTransfer.dismiss();
                             Toast.makeText(KeranjangTransferBarangGudangActivity.this,
-                                    "Gagal mengambil data dari server", Toast.LENGTH_SHORT).show();
+                                    "Gagal mengambil data dari server (Status Transfer)", Toast.LENGTH_SHORT).show();
                         }
                     }
 

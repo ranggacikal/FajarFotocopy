@@ -7,17 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPengirimanDriverAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPenjualanGudangAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPengirimanDriverBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportTransaksiKetoBinding;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangByIdUser.ResponseStatusPenjualanGudangByIdUser;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangByIdUser.StatusPenjualanGudangByIdUserItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -57,13 +61,70 @@ public class PengirimanDriverActivity extends AppCompatActivity {
 
         if (jenis_pengiriman.equals("toko")) {
 
+            binding.recyclerDataPengirimanSupplierDriver.setVisibility(View.GONE);
+            binding.recyclerDataPengirimanDriver.setVisibility(View.VISIBLE);
+
             binding.recyclerDataPengirimanDriver.setHasFixedSize(true);
             binding.recyclerDataPengirimanDriver.setLayoutManager(new LinearLayoutManager(PengirimanDriverActivity.this));
 
             loadDataToko();
 
+        }else{
+            binding.recyclerDataPengirimanSupplierDriver.setVisibility(View.VISIBLE);
+            binding.recyclerDataPengirimanDriver.setVisibility(View.GONE);
+
+            binding.recyclerDataPengirimanSupplierDriver.setHasFixedSize(true);
+            binding.recyclerDataPengirimanSupplierDriver.setLayoutManager(new LinearLayoutManager(PengirimanDriverActivity.this));
+            loadDataSupplier();
         }
         
+
+
+    }
+
+
+    private void loadDataSupplier(){
+
+        Log.d("cekIdDriver", "loadDataSupplier: "+preferencedConfig.getPreferenceIdUser());
+
+        ProgressDialog progressDialog = new ProgressDialog(PengirimanDriverActivity.this);
+        progressDialog.setMessage("Memuat Data");
+        progressDialog.show();
+
+        ConfigRetrofit.service.statusPenjualanGudangByIdUser(preferencedConfig.getPreferenceIdUser())
+                .enqueue(new Callback<ResponseStatusPenjualanGudangByIdUser>() {
+                    @Override
+                    public void onResponse(Call<ResponseStatusPenjualanGudangByIdUser> call, Response<ResponseStatusPenjualanGudangByIdUser> response) {
+                        if (response.isSuccessful()){
+
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                Toast.makeText(PengirimanDriverActivity.this, "Berhasil Ambil Data", Toast.LENGTH_SHORT).show();
+
+                                List<StatusPenjualanGudangByIdUserItem> dataPenjualan = response.body().getStatusPenjualanGudangByIdUser();
+                                StatusPenjualanGudangAdapter adapter = new StatusPenjualanGudangAdapter(PengirimanDriverActivity.this, dataPenjualan);
+                                binding.recyclerDataPengirimanSupplierDriver.setAdapter(adapter);
+
+                            }else{
+                                Toast.makeText(PengirimanDriverActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(PengirimanDriverActivity.this, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseStatusPenjualanGudangByIdUser> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(PengirimanDriverActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
 
     }
@@ -110,6 +171,18 @@ public class PengirimanDriverActivity extends AppCompatActivity {
                                 Toast.LENGTH_SHORT).show();
                     }
                 });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (jenis_pengiriman.equals("toko")){
+            loadDataToko();
+        }else{
+            loadDataSupplier();
+        }
 
     }
 }

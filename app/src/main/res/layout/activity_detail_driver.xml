@@ -64,6 +64,17 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_detail_pengiriman_supplier_driver"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_surat_jalan"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     <LinearLayout
         android:id="@+id/linear_footer_detail_driver"
         android:layout_width="match_parent"
