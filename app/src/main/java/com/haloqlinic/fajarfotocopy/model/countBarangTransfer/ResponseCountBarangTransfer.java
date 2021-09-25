@@ -1,15 +1,24 @@
 package com.haloqlinic.fajarfotocopy.model.countBarangTransfer;
 
+import java.util.List;
+import com.google.gson.annotations.SerializedName;
+
 public class ResponseCountBarangTransfer{
-	private int countBarangTransfer;
+
+	@SerializedName("countBarangTransfer")
+	private List<CountBarangTransferItem> countBarangTransfer;
+
+	@SerializedName("pesan")
 	private String pesan;
+
+	@SerializedName("status")
 	private int status;
 
-	public void setCountBarangTransfer(int countBarangTransfer){
+	public void setCountBarangTransfer(List<CountBarangTransferItem> countBarangTransfer){
 		this.countBarangTransfer = countBarangTransfer;
 	}
 
-	public int getCountBarangTransfer(){
+	public List<CountBarangTransferItem> getCountBarangTransfer(){
 		return countBarangTransfer;
 	}
 

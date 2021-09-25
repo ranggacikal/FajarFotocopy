@@ -163,6 +163,8 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     public void getCount() {
 
+        Log.d("idStatusTfCek", "onCreate: "+id_status_transfer);
+
         ProgressDialog progressDialog = new ProgressDialog(HasilPencarianTransferBarangGudangActivity.this);
         progressDialog.setMessage("Memuat Jumlah Barang");
         progressDialog.show();
@@ -170,39 +172,36 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         ConfigRetrofit.service.countTransferBarang(id_status_transfer).enqueue(new Callback<ResponseCountBarangTransfer>() {
             @Override
             public void onResponse(Call<ResponseCountBarangTransfer> call, Response<ResponseCountBarangTransfer> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful()){
 
                     progressDialog.dismiss();
 
                     int status = response.body().getStatus();
-                    Log.d("checkCount", "onResponse: "+count_keranjang);
 
-                    if (status == 1) {
+                    if (status==1){
 
-                        count_keranjang = String.valueOf(response.body().getCountBarangTransfer());
-                        binding.transferTotalGudang.setText(count_keranjang);
+                        String jumlah = response.body().getCountBarangTransfer().get(0).getJumlah();
+                        binding.transferTotalGudang.setText(jumlah);
 
-                    } else {
-                        binding.transferTotalGudang.setText("0");
+                    }else{
                         Toast.makeText(HasilPencarianTransferBarangGudangActivity.this,
-                                "Response Error", Toast.LENGTH_SHORT).show();
+                                "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
 
-                } else {
+                }else{
                     progressDialog.dismiss();
-                    Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Gagal memuat Jumlah data",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HasilPencarianTransferBarangGudangActivity.this,
+                            "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseCountBarangTransfer> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Error: " + t.getMessage(),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(HasilPencarianTransferBarangGudangActivity.this,
+                        "Koneksi Error", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override

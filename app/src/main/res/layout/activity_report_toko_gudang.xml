@@ -47,7 +47,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/btn_black"
             android:fontFamily="@font/sairabold"
-            android:text="Lihat Laporan Pengiriman"
+            android:text="Lihat Laporan Penjualan Toko"
             android:textColor="@color/white" />
 
         <LinearLayout
