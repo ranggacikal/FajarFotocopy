@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.api;
 
+import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -21,6 +22,7 @@ import com.haloqlinic.fajarfotocopy.model.detailTransferBarang.ResponseDetailTra
 import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editBarangToko.ResponseEditBarangToko;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
+import com.haloqlinic.fajarfotocopy.model.editFirebaseToken.ResponseEditFirebaseToken;
 import com.haloqlinic.fajarfotocopy.model.editImageUser.ResponseEditImageUser;
 import com.haloqlinic.fajarfotocopy.model.editKategori.ResponseEditKategori;
 import com.haloqlinic.fajarfotocopy.model.editOutlet.ResponseEditOutlet;
@@ -638,5 +640,13 @@ public interface ApiService {
                                                                   @Field("keterangan") String keterangan,
                                                                   @Field("tanggal_pengeluaran") String tanggal_pengeluaran,
                                                                   @Field("id_outlet") String id_outlet);
+
+    @FormUrlEncoded
+    @POST("editFirebaseToken")
+    Call<ResponseEditFirebaseToken> editFirebaseToken(@Field("id_user") String id_user,
+                                                      @Field("firebase_token") String firebase_token);
+
+    @GET("getDataBarang")
+    Call<ResponseDataBarang> dataBarang();
 
 }

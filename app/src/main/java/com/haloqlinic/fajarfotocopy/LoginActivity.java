@@ -25,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
+import com.haloqlinic.fajarfotocopy.model.editFirebaseToken.ResponseEditFirebaseToken;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -58,8 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         edtUsername = findViewById(R.id.edt_username_login_gudang);
         edtPassword = findViewById(R.id.edt_password_login_gudang);
         btnLogin = findViewById(R.id.btn_login_gudang);
-
-
 
         PushDownAnim.setPushDownAnimTo(binding.btnLoginGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -103,8 +102,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     int status = response.body().getStatus();
 
-
-
                     FirebaseMessaging.getInstance().getToken()
                             .addOnCompleteListener(new OnCompleteListener<String>() {
                                 @Override
@@ -138,16 +135,18 @@ public class LoginActivity extends AppCompatActivity {
 
                     Log.d("checkTokenLocal", "login: "+tokenLocal);
 
+
                     if (status==1){
                         progressDialog.dismiss();
 
-                        String id_user = response.body().getDataLogin().getIdUser();
+
                         String nama = response.body().getDataLogin().getNamaLengkap();
                         String username = response.body().getDataLogin().getUsername();
                         String level = response.body().getDataLogin().getLevel();
                         String id_outlet = response.body().getDataLogin().getIdOutlet();
                         String img = response.body().getDataLogin().getFoto();
                         String nama_toko = response.body().getDataLogin().getNamaOutlet();
+                        String id_user = response.body().getDataLogin().getIdUser();
 
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_ID_USER, id_user);
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_NAMA, nama);
@@ -159,15 +158,19 @@ public class LoginActivity extends AppCompatActivity {
                         preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, true);
 
                         if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
+                            tambahTokenFirebase(id_user, tokenLocal);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
                         }else if (level.equals("Kepala Toko")){
+                            tambahTokenFirebase(id_user, tokenLocal);
                             startActivity(new Intent(LoginActivity.this, MainKetoActivity.class));
                             finish();
                         }else if (level.equals("Karyawan Toko")){
+                            tambahTokenFirebase(id_user, tokenLocal);
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
                             finish();
                         } else if (level.equals("Driver")){
+                            tambahTokenFirebase(id_user, tokenLocal);
                             startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
                             finish();
                         }
@@ -191,6 +194,62 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this, "Terjadi kesalahan : "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    private void tambahTokenFirebase(String id_user, String token) {
+
+        Log.d("paramTokenFire", "id_user: "+id_user);
+        Log.d("paramTokenFire", "token: "+token);
+
+        String addToken = "";
+
+        if (tokenLocal.equals("")){
+
+            addToken = token;
+
+        }else{
+            addToken = tokenLocal;
+        }
+
+
+        ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setMessage("Generate Token");
+        progressDialog.show();
+
+
+        Log.d("cekParamToken", "onResponse: "+addToken);
+
+        ConfigRetrofit.service.editFirebaseToken(id_user, addToken)
+                .enqueue(new Callback<ResponseEditFirebaseToken>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditFirebaseToken> call, Response<ResponseEditFirebaseToken> response) {
+                        if (response.isSuccessful()){
+
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+
+                            if(status==1){
+
+                                Toast.makeText(LoginActivity.this, "Token Berhasil Ditambah", Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                Toast.makeText(LoginActivity.this, "Token Gagal ditambah", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditFirebaseToken> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(LoginActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 

@@ -9,14 +9,19 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 import com.haloqlinic.fajarfotocopy.Constants;
 import com.haloqlinic.fajarfotocopy.MyNotificationManager;
+import com.haloqlinic.fajarfotocopy.MyService;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment;
@@ -34,11 +39,33 @@ public class MainActivity extends AppCompatActivity {
     private MintaBarangFragment mintaBarangFragment;
 
 
+    private SharedPreferencedConfig preferencedConfig;
+
+    private Handler handler = new Handler();
+
+    // Define the code block to be executed
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            startService(new Intent(MainActivity.this, MyService.class));
+
+            // Repeat every 2 seconds
+            handler.postDelayed(runnable, 300000);
+        }
+    };
+
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        handler.post(runnable);
+
+        preferencedConfig = new SharedPreferencedConfig(MainActivity.this);
+
+        Log.d("cekTokenMain", "onCreate: "+preferencedConfig.getPreferenceTokenFcm());
 
 //        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
 //            NotificationManager mNotificationManager =
