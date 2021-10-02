@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity">
+    tools:context=".kepalatoko.reporttransaksiketo.ReportPengeluaranKetoActivity">
 
     <RelativeLayout
         android:id="@+id/headerkeranjang"
@@ -14,7 +14,7 @@
         android:background="@drawable/background_header_green">
 
         <LinearLayout
-            android:id="@+id/linear_back_report_transaksi_keto"
+            android:id="@+id/linear_back_report_pengeluaran_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="38dp"
@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sairamedium"
-                android:text="Report Transaksi"
+                android:text="Report Pengeluaran"
                 android:textColor="@color/white"
                 android:textSize="24sp" />
 
@@ -40,7 +40,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/btn_lihat_laporan_keto"
+        android:id="@+id/btn_lihat_pengeluaran_keto"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
@@ -54,7 +54,7 @@
         android:textColor="@color/white" />
 
     <LinearLayout
-        android:id="@+id/linear_pilihan_bulan_hari_keto"
+        android:id="@+id/linear_pilihan_bulan_hari_pengeluaran_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/headerkeranjang"
@@ -71,7 +71,7 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_hari_bulan_keto"
+            android:id="@+id/spinner_pilih_hari_bulan_pengeluaran_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rectangle"/>
@@ -79,10 +79,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_tanggal_report_keto"
+        android:id="@+id/linear_tanggal_report_pengeluaran_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_pilihan_bulan_hari_keto"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_pengeluaran_keto"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
@@ -98,7 +98,7 @@
             android:text="Pilih Tanggal" />
 
         <TextView
-            android:id="@+id/text_tanggal_report_keto"
+            android:id="@+id/text_tanggal_report_pengeluaran_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -109,7 +109,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/btn_pilih_tanggal_report_keto"
+            android:id="@+id/btn_pilih_tanggal_report_pengeluaran_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="30dp"
@@ -124,10 +124,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_pilih_bulan_tahun_report_keto"
+        android:id="@+id/linear_pilih_bulan_tahun_report_pengeluaran_keto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_pilihan_bulan_hari_keto"
+        android:layout_below="@+id/linear_pilihan_bulan_hari_pengeluaran_keto"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="15dp"
         android:visibility="gone"
@@ -142,7 +142,7 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_bulan_report_keto"
+            android:id="@+id/spinner_pilih_bulan_report_pengeluaran_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rectangle"/>
@@ -157,7 +157,7 @@
             android:textColor="@color/black" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_tahun_report_keto"
+            android:id="@+id/spinner_pilih_tahun_report_pengeluaran_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@drawable/bg_rectangle"/>

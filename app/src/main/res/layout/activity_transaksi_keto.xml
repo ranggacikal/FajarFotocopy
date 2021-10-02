@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".kepalatoko.reporttransaksiketo.TransaksiKetoActivity">
+
+    <LinearLayout
+        android:id="@+id/header_report_gudang"
+        android:layout_width="match_parent"
+        android:layout_height="121dp"
+        android:background="@drawable/background_header_green">
+
+        <LinearLayout
+            android:id="@+id/linear_back_transaksi_keto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="38dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_back_atas" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sairamedium"
+                android:text="Report Transaksi"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_transaksi_keto"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/header_report_gudang"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/btn_gold">
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_report_gudang" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Report Transaksi"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_pengeluaran_keto"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/linear_transaksi_keto"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/btn_gold">
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_report_gudang" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Report Pengeluaran"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

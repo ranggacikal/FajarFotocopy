@@ -82,7 +82,7 @@ public class HomeKasirFragment extends Fragment {
         cardToko = rootView.findViewById(R.id.card_transaksi_kasir);
         txtNamaKasir = rootView.findViewById(R.id.text_nama_toko_kasir);
         txtTotalHari = rootView.findViewById(R.id.text_total_penjualan_harian_kasir);
-        txtTotalBulan = rootView.findViewById(R.id.text_penjualan_bulanan_kasir);
+//        txtTotalBulan = rootView.findViewById(R.id.text_penjualan_bulanan_kasir);
 
         btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
 

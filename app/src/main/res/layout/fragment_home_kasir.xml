@@ -111,8 +111,8 @@
                         android:fontFamily="@font/sairabold"
                         android:text="Keluar"
                         android:textAlignment="center"
-                        android:textSize="9sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
 
 
                 </RelativeLayout>
@@ -121,13 +121,13 @@
             </RelativeLayout>
 
             <androidx.cardview.widget.CardView
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp"
                 android:layout_width="360dp"
                 android:layout_height="147dp"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="140dp">
+                android:layout_marginTop="140dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -136,8 +136,8 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="10dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:orientation="vertical">
 
                         <TextView
@@ -145,76 +145,31 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_marginTop="15dp"
                             android:fontFamily="@font/sairamedium"
                             android:text="Rp. 500.0000"
                             android:textColor="@color/gold"
-                            android:textSize="14sp" />
+                            android:textSize="25sp" />
+
+                        <View
+                            android:id="@+id/garis"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="40dp"
+                            android:layout_marginVertical="10dp"
+                            android:background="#C4C4C4" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/sairamedium"
-                            android:text="Total Penjualan Harian"
-                            android:textColor="#959494" />
+                            android:text="Total Transaksi Harian"
+                            android:textColor="#959494"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
-                    <View
-                        android:id="@+id/garis"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        android:background="#C4C4C4" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="70dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/text_penjualan_bulanan_kasir"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="15dp"
-                            android:fontFamily="@font/sairamedium"
-                            android:text="Rp. 500.0000"
-                            android:textColor="@color/gold"
-                            android:textSize="14sp" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:orientation="horizontal">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/sairamedium"
-                                android:text="Total Penjualan"
-                                android:textColor="#959494" />
-
-                            <TextView
-                                android:id="@+id/bulan_total_penjualan_keto"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="3dp"
-                                android:fontFamily="@font/sairamedium"
-                                android:text="Bulan"
-                                android:textColor="#959494" />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -225,12 +180,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card_transaksi_kasir"
-            app:cardBackgroundColor="@color/gold"
-            app:cardCornerRadius="10dp"
             android:layout_width="match_parent"
             android:layout_height="109dp"
             android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            app:cardBackgroundColor="@color/gold"
+            app:cardCornerRadius="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"

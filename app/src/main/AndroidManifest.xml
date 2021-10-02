@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kepalatoko.reporttransaksiketo.InvoicePengeluaranKetoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".kepalatoko.reporttransaksiketo.ReportPengeluaranKetoActivity"
+            android:exported="true" />
+        <activity
+            android:name=".kepalatoko.reporttransaksiketo.TransaksiKetoActivity"
+            android:exported="true" />
+        <activity
             android:name=".kepalatoko.pengeluaranketo.PengeluaranKetoActivity"
             android:exported="true" />
         <activity

@@ -34,6 +34,7 @@ import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.ListPengiriman
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.pengeluaranketo.PengeluaranKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.reporttransaksiketo.ReportTransaksiKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.reporttransaksiketo.TransaksiKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.sumTransaksiBulan.ResponseSumTransaksiBulan;
 import com.haloqlinic.fajarfotocopy.model.sumTransaksiHari.ResponseSumTransaksiHari;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
@@ -63,11 +64,10 @@ public class HomeKetoFragment extends Fragment {
     }
 
     private SharedPreferencedConfig preferencedConfig;
-    TextView txtNama, txtTanggal, txtNamaToko;
+    TextView txtNama, txtTanggal, txtNamaToko, txtTotalHarian, txtTotalBulanan;
     Button btnKeluar;
     ImageView imageView;
 
-    TextView txtTotalHarian, txtTotalBulanan;
 
     ProgressDialog progressDialog;
 
@@ -94,7 +94,7 @@ public class HomeKetoFragment extends Fragment {
         linearPengeluaranKeto = rootView.findViewById(R.id.linear_pengeluaran_keto);
         btnKeluar = rootView.findViewById(R.id.btn_keluar_keto);
         txtTotalHarian = rootView.findViewById(R.id.text_total_penjualan_harian_keto);
-        txtTotalBulanan = rootView.findViewById(R.id.text_penjualan_bulanan_keto);
+        txtTotalBulanan = rootView.findViewById(R.id.text_total_penjualan_bulanan_keto);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
@@ -125,7 +125,7 @@ public class HomeKetoFragment extends Fragment {
         bulan = dateFormatBulan.format(calendarBulan.getTime());
 
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Memuat Data Pemasukan");
+        progressDialog.setMessage("Memuat Data Penjualan");
         progressDialog.show();
 
         PushDownAnim.setPushDownAnimTo(linearKasirKeto)
@@ -142,7 +142,7 @@ public class HomeKetoFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(), ReportTransaksiKetoActivity.class));
+                        startActivity(new Intent(getActivity(), TransaksiKetoActivity.class));
                     }
                 });
 
