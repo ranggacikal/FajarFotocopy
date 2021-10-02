@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".gudang.tokogudang.WebViewReportPengeluaranTokoGudangActivity"
+            android:exported="true" />
+        <activity
+            android:name=".gudang.tokogudang.ReportPengeluaranTokoGudangActivity"
+            android:exported="true" />
+        <activity
+            android:name=".gudang.tokogudang.ReportAllTokoGudangActivity"
+            android:exported="true" />
+        <activity
             android:name=".kepalatoko.reporttransaksiketo.InvoicePengeluaranKetoActivity"
             android:exported="true" />
         <activity
@@ -155,10 +164,9 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-        <service android:enabled="true" android:name=".MyService">
-        </service>
-
+        <service
+            android:name=".MyService"
+            android:enabled="true" />
     </application>
 
 </manifest>

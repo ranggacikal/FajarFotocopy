@@ -61,7 +61,7 @@ public class TokoGudangActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(TokoGudangActivity.this, ReportTokoGudangActivity.class));
+                        startActivity(new Intent(TokoGudangActivity.this, ReportAllTokoGudangActivity.class));
                     }
                 });
 

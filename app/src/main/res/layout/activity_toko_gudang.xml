@@ -152,12 +152,12 @@
                     android:layout_height="48dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginStart="28dp"
-                    android:src="@drawable/ic_history_baru"/>
+                    android:src="@drawable/ic_report_gudang"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Report Penjualan Toko"
+                    android:text="Report Toko"
                     android:fontFamily="@font/sairamedium"
                     android:textSize="18sp"
                     android:layout_marginStart="17dp"

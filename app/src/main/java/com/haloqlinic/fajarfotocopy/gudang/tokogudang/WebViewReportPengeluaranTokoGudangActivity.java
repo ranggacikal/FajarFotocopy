@@ -11,7 +11,6 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -19,13 +18,12 @@ import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityWebViewReportPengirimanBinding;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityWebViewReportPengeluaranTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityWebViewReportPenjualanTokoBinding;
-import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
 
-public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
+public class WebViewReportPengeluaranTokoGudangActivity extends AppCompatActivity {
 
-    private ActivityWebViewReportPenjualanTokoBinding binding;
+    private ActivityWebViewReportPengeluaranTokoGudangBinding binding;
 
     String bulan_tahun, tanggal, pilihan, id_outlet;
     String link_web;
@@ -37,7 +35,7 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityWebViewReportPenjualanTokoBinding.inflate(getLayoutInflater());
+        binding = ActivityWebViewReportPengeluaranTokoGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
@@ -59,15 +57,12 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
                     "&tanggal_pengeluaran="+bulan_tahun;
         }
 
+        binding.webViewLaporanPengeluaranGudang.setWebViewClient(new myWebclient());
+        binding.webViewLaporanPengeluaranGudang.getSettings().setJavaScriptEnabled(true);
+        binding.webViewLaporanPengeluaranGudang.getSettings().setBuiltInZoomControls(true);
+        binding.webViewLaporanPengeluaranGudang.loadUrl(link_web);
 
-        binding.webViewLaporanPenjualanToko.setWebViewClient(new myWebclient());
-        binding.webViewLaporanPenjualanToko.getSettings().setJavaScriptEnabled(true);
-        binding.webViewLaporanPenjualanToko.getSettings().setBuiltInZoomControls(true);
-        binding.webViewLaporanPenjualanToko.loadUrl(link_web);
-
-        Log.d("linkInvoice", "onCreate: "+link_web);
-
-        binding.savePdfBtnLaporanPenjualanToko.setOnClickListener(new View.OnClickListener() {
+        binding.savePdfBtnLaporanPengeluaranGudang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (printWeb != null) {
@@ -76,14 +71,15 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
                         PrintTheWebPage(printWeb);
                     } else {
                         // Showing Toast message to user
-                        Toast.makeText(WebViewReportPenjualanTokoActivity.this, "Not available for device below Android LOLLIPOP", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(WebViewReportPengeluaranTokoGudangActivity.this, "Not available for device below Android LOLLIPOP", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // Showing Toast message to user
-                    Toast.makeText(WebViewReportPenjualanTokoActivity.this, "WebPage not fully loaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(WebViewReportPengeluaranTokoGudangActivity.this, "WebPage not fully loaded", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
     PrintJob printJob;
@@ -117,8 +113,8 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            binding.progressInvoiceLaporanPenjualanToko.setVisibility(View.GONE);
-            printWeb = binding.webViewLaporanPenjualanToko;
+            binding.progressInvoiceLaporanPengeluaranGudang.setVisibility(View.GONE);
+            printWeb = binding.webViewLaporanPengeluaranGudang;
         }
 
         @Override

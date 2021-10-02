@@ -1,5 +1,7 @@
 package com.haloqlinic.fajarfotocopy.gudang.tokogudang;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
@@ -14,9 +16,8 @@ import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.databinding.ActivityReportPengeluaranTokoGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityReportTokoGudangBinding;
-import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
-import com.haloqlinic.fajarfotocopy.gudang.usergudang.DetailDataUserGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -26,15 +27,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ReportTokoGudangActivity extends AppCompatActivity {
+public class ReportPengeluaranTokoGudangActivity extends AppCompatActivity {
 
-    private ActivityReportTokoGudangBinding binding;
+
+    private ActivityReportPengeluaranTokoGudangBinding binding;
 
     private String[] pilihanItem = {"Hari", "Bulan"};
     private String[] bulanItem = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
@@ -56,11 +56,11 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityReportTokoGudangBinding.inflate(getLayoutInflater());
+        binding = ActivityReportPengeluaranTokoGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
-        PushDownAnim.setPushDownAnimTo(binding.linearBackReportTokoGudang)
+        PushDownAnim.setPushDownAnimTo(binding.linearBackReportPengeluaranTokoGudang)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -75,23 +75,23 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterPilihan = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, pilihanItem);
         adapterPilihan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihHariBulanPenjualanToko.setAdapter(adapterPilihan);
+        binding.spinnerPilihHariBulanPengeluaranToko.setAdapter(adapterPilihan);
 
         //init spinner bulan
         ArrayAdapter<String> adapterBulan = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, bulanItem);
         adapterBulan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihBulanReportPenjualanToko.setAdapter(adapterBulan);
+        binding.spinnerPilihBulanReportPengeluaranToko.setAdapter(adapterBulan);
 
         //init spinner tahun
         ArrayAdapter<String> adapterTahun = new ArrayAdapter<String>(this,
                 R.layout.spinner_item, tahunItem);
         adapterTahun.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.spinnerPilihTahunReportPenjualanToko.setAdapter(adapterTahun);
+        binding.spinnerPilihTahunReportPengeluaranToko.setAdapter(adapterTahun);
 
         initSpinnerToko();
 
-        binding.spinnerPilihOutletPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihOutletPengeluaranToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 id_outlet = dataToko.get(i).getIdOutlet();
@@ -103,17 +103,17 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerPilihHariBulanPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihHariBulanPengeluaranToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                pilihan = binding.spinnerPilihHariBulanPenjualanToko.getSelectedItem().toString();
+                pilihan = binding.spinnerPilihHariBulanPengeluaranToko.getSelectedItem().toString();
 
                 if (pilihan.equals("Hari")) {
                     binding.linearTanggalReportPenjualanToko.setVisibility(View.VISIBLE);
-                    binding.linearPilihBulanTahunReportPenjualanToko.setVisibility(View.GONE);
+                    binding.linearPilihBulanTahunReportPengeluaranToko.setVisibility(View.GONE);
                 } else {
                     binding.linearTanggalReportPenjualanToko.setVisibility(View.GONE);
-                    binding.linearPilihBulanTahunReportPenjualanToko.setVisibility(View.VISIBLE);
+                    binding.linearPilihBulanTahunReportPengeluaranToko.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -123,10 +123,10 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerPilihBulanReportPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihBulanReportPengeluaranToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                bulan = binding.spinnerPilihBulanReportPenjualanToko.getSelectedItem().toString();
+                bulan = binding.spinnerPilihBulanReportPengeluaranToko.getSelectedItem().toString();
             }
 
             @Override
@@ -135,10 +135,10 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             }
         });
 
-        binding.spinnerPilihTahunReportPenjualanToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        binding.spinnerPilihTahunReportPengeluaranToko.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tahun = binding.spinnerPilihTahunReportPenjualanToko.getSelectedItem().toString();
+                tahun = binding.spinnerPilihTahunReportPengeluaranToko.getSelectedItem().toString();
             }
 
             @Override
@@ -147,7 +147,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(binding.btnPilihTanggalReportPenjualanToko)
+        PushDownAnim.setPushDownAnimTo(binding.btnPilihTanggalReportPengeluaranToko)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -156,7 +156,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(binding.btnLihatLaporanPenjualanToko)
+        PushDownAnim.setPushDownAnimTo(binding.btnLihatLaporanPengeluaranToko)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -165,24 +165,22 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
                     }
                 });
 
+
     }
 
     private void lihatLaporan() {
-
-        Intent intent = new Intent(ReportTokoGudangActivity.this, WebViewReportPengeluaranTokoGudangActivity.class);
+        Intent intent = new Intent(ReportPengeluaranTokoGudangActivity.this, WebViewReportPengeluaranTokoGudangActivity.class);
         intent.putExtra("bulan_tahun", bulan + " " + tahun);
         intent.putExtra("tanggal", date);
         intent.putExtra("pilihan", pilihan);
         intent.putExtra("id_outlet", id_outlet);
         startActivity(intent);
-
     }
 
     private void showDateDialog() {
-
         Calendar newCalendar = Calendar.getInstance();
 
-        datePickerDialog = new DatePickerDialog(ReportTokoGudangActivity.this, new DatePickerDialog.OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(ReportPengeluaranTokoGudangActivity.this, new DatePickerDialog.OnDateSetListener() {
 
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -191,7 +189,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
                 newDate.set(year, monthOfYear, dayOfMonth);
 
                 date = dateFormatter.format(newDate.getTime());
-                binding.textTanggalReportPenjualanToko.setText(date);
+                binding.textTanggalReportPengeluaranToko.setText(date);
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -201,8 +199,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
     }
 
     private void initSpinnerToko() {
-
-        ProgressDialog progressDialog = new ProgressDialog(ReportTokoGudangActivity.this);
+        ProgressDialog progressDialog = new ProgressDialog(ReportPengeluaranTokoGudangActivity.this);
         progressDialog.setMessage("Memuat Data Toko");
         progressDialog.show();
 
@@ -224,19 +221,19 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
 
                         }
 
-                        ArrayAdapter<String> adapterToko = new ArrayAdapter<String>(ReportTokoGudangActivity.this,
+                        ArrayAdapter<String> adapterToko = new ArrayAdapter<String>(ReportPengeluaranTokoGudangActivity.this,
                                 R.layout.spinner_item, listSpinnerToko);
 
                         adapterToko.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        binding.spinnerPilihOutletPenjualanToko.setAdapter(adapterToko);
+                        binding.spinnerPilihOutletPengeluaranToko.setAdapter(adapterToko);
                     } else {
-                        Toast.makeText(ReportTokoGudangActivity.this, "Data Toko Kosong",
+                        Toast.makeText(ReportPengeluaranTokoGudangActivity.this, "Data Toko Kosong",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                 } else {
                     progressDialog.dismiss();
-                    Toast.makeText(ReportTokoGudangActivity.this, "Response Gagal",
+                    Toast.makeText(ReportPengeluaranTokoGudangActivity.this, "Response Gagal",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -244,10 +241,9 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseDataToko> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ReportTokoGudangActivity.this, "Koneksi Error",
+                Toast.makeText(ReportPengeluaranTokoGudangActivity.this, "Koneksi Error",
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
