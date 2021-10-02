@@ -77,13 +77,13 @@ public class LoginActivity extends AppCompatActivity {
         String username = edtUsername.getText().toString();
         String password = edtPassword.getText().toString();
 
-        if (username.isEmpty()){
+        if (username.isEmpty()) {
             edtUsername.setError("Username Tidak Boleh Kosong");
             edtUsername.requestFocus();
             return;
         }
 
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             edtPassword.setError("Password Tidak Boleh Kosong");
             edtPassword.requestFocus();
             return;
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseLogin> call, Response<ResponseLogin> response) {
 
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     progressDialog.dismiss();
 
                     int status = response.body().getStatus();
@@ -111,32 +111,15 @@ public class LoginActivity extends AppCompatActivity {
                                         return;
                                     }
 
-                                    // Get new FCM registration token
+                                    token = task.getResult();
 
-
-
-                                    tokenLocal = preferencedConfig.getPreferenceTokenFcm();
-
-                                    if(tokenLocal.equals("")){
-                                        token = task.getResult();
-                                        preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_TOKEN_FCM, token);
-
-                                    }else{
-                                        token = tokenLocal;
-                                        preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_TOKEN_FCM, token);
-                                    }
-
-                                    // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
                                     Log.d("statusGetToken", token);
                                     Toast.makeText(LoginActivity.this, "berhasil get Token", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
-                    Log.d("checkTokenLocal", "login: "+tokenLocal);
 
-
-                    if (status==1){
+                    if (status == 1) {
                         progressDialog.dismiss();
 
 
@@ -157,31 +140,31 @@ public class LoginActivity extends AppCompatActivity {
                         preferencedConfig.savePrefString(SharedPreferencedConfig.PREFERENCE_IMG, img);
                         preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, true);
 
-                        if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
-                            tambahTokenFirebase(id_user, tokenLocal);
+                        if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")) {
+                            tambahTokenFirebase(id_user, token);
                             startActivity(new Intent(LoginActivity.this, MainActivity.class));
                             finish();
-                        }else if (level.equals("Kepala Toko")){
-                            tambahTokenFirebase(id_user, tokenLocal);
+                        } else if (level.equals("Kepala Toko")) {
+                            tambahTokenFirebase(id_user, token);
                             startActivity(new Intent(LoginActivity.this, MainKetoActivity.class));
                             finish();
-                        }else if (level.equals("Karyawan Toko")){
-                            tambahTokenFirebase(id_user, tokenLocal);
+                        } else if (level.equals("Karyawan Toko")) {
+                            tambahTokenFirebase(id_user, token);
                             startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
                             finish();
-                        } else if (level.equals("Driver")){
-                            tambahTokenFirebase(id_user, tokenLocal);
+                        } else if (level.equals("Driver")) {
+                            tambahTokenFirebase(id_user, token);
                             startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
                             finish();
                         }
 
-                    }else{
+                    } else {
                         progressDialog.dismiss();
                         Toast.makeText(LoginActivity.this, "Username/Password Salah", Toast.LENGTH_SHORT).show();
                     }
 
 
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(LoginActivity.this, "Username/Password Salah", Toast.LENGTH_SHORT).show();
                 }
@@ -191,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseLogin> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(LoginActivity.this, "Terjadi kesalahan : "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Terjadi kesalahan : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -199,46 +182,33 @@ public class LoginActivity extends AppCompatActivity {
 
     private void tambahTokenFirebase(String id_user, String token) {
 
-        Log.d("paramTokenFire", "id_user: "+id_user);
-        Log.d("paramTokenFire", "token: "+token);
-
-        String addToken = "";
-
-        if (tokenLocal.equals("")){
-
-            addToken = token;
-
-        }else{
-            addToken = tokenLocal;
-        }
-
 
         ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setMessage("Generate Token");
         progressDialog.show();
 
 
-        Log.d("cekParamToken", "onResponse: "+addToken);
+        Log.d("cekParamToken", "onResponse: " + token);
 
-        ConfigRetrofit.service.editFirebaseToken(id_user, addToken)
+        ConfigRetrofit.service.editFirebaseToken(id_user, token)
                 .enqueue(new Callback<ResponseEditFirebaseToken>() {
                     @Override
                     public void onResponse(Call<ResponseEditFirebaseToken> call, Response<ResponseEditFirebaseToken> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             progressDialog.dismiss();
 
                             int status = response.body().getStatus();
 
-                            if(status==1){
+                            if (status == 1) {
 
                                 Toast.makeText(LoginActivity.this, "Token Berhasil Ditambah", Toast.LENGTH_SHORT).show();
 
-                            }else{
+                            } else {
                                 Toast.makeText(LoginActivity.this, "Token Gagal ditambah", Toast.LENGTH_SHORT).show();
                             }
 
-                        }else{
+                        } else {
                             progressDialog.dismiss();
                             Toast.makeText(LoginActivity.this, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                         }
@@ -251,26 +221,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-    }
-
-    private void getToken() {
-        FirebaseMessaging.getInstance().getToken()
-                .addOnCompleteListener(new OnCompleteListener<String>() {
-                    @Override
-                    public void onComplete(@NonNull Task<String> task) {
-                        if (!task.isSuccessful()) {
-                            Log.w("statusGetToken", "Fetching FCM registration token failed", task.getException());
-                            return;
-                        }
-
-                        // Get new FCM registration token
-                        token = task.getResult();
-
-                        // Log and toast
-//                        String msg = getString(R.string.msg_token_fmt, token);
-                        Log.d("statusGetToken", token);
-                        Toast.makeText(LoginActivity.this, "berhasil get Token", Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
 }
