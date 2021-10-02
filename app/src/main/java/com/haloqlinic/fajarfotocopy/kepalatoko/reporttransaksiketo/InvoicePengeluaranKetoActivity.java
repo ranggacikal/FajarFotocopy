@@ -53,18 +53,21 @@ public class InvoicePengeluaranKetoActivity extends AppCompatActivity {
 
         if (pilihan.equals("Hari") || pilihan.equals("hari")){
 
-//            link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-//                    "getTransaksiByHari?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
-//                    "&hari="+tanggal;
+
+
+            link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
+                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
+                    "&tanggal_pengeluaran="+tanggal;
 
         }else if (pilihan.equals("bulan") || pilihan.equals("Bulan")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getSumPengeluaranOutlet?bulan="+bulan_tahun+
-                    "&id_outlet="+preferencedConfig.getPreferenceIdOutlet();
+                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
+                    "&tanggal_pengeluaran="+bulan_tahun;
         }
 
         binding.webViewPengeluaranKeto.setWebViewClient(new myWebclient());
         binding.webViewPengeluaranKeto.getSettings().setJavaScriptEnabled(true);
+        binding.webViewPengeluaranKeto.getSettings().setSupportZoom(true);
         binding.webViewPengeluaranKeto.getSettings().setBuiltInZoomControls(true);
 
         binding.webViewPengeluaranKeto.loadUrl(link_web);
