@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
     private ActivityDetailPengirimanKetoBinding binding;
-    String id_status, tanggal;
+    public String id_status, tanggal, status_pengiriman;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,9 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
         id_status = getIntent().getStringExtra("id_status_pengiriman");
         tanggal = getIntent().getStringExtra("tanggal");
+        status_pengiriman = getIntent().getStringExtra("status_pengiriman");
+
+        Log.d("cekStatusPengirimanIntent", "onCreate: "+status_pengiriman);
 
         binding.recyclerDetailPengirimanKeto.setHasFixedSize(true);
         binding.recyclerDetailPengirimanKeto.setLayoutManager(new LinearLayoutManager(DetailPengirimanKetoActivity.this));

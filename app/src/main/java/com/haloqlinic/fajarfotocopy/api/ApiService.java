@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.api;
 
 import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
+import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
@@ -448,7 +449,7 @@ public interface ApiService {
     Call<ResponseHapusBarangTransfer> hapusBarangTransfer(@Field("id_transfer_barang") String id_transfer_barang);
 
     @FormUrlEncoded
-    @POST("editStatusTransfer")
+    @POST("editStatusTransferBarang")
     Call<ResponseEditStatusTransfer> editStatusTransfer(@Field("id_status_transfer") String id_status_transfer,
                                                         @Field("status_transfer") String status_transfer);
 
@@ -648,5 +649,10 @@ public interface ApiService {
 
     @GET("getDataBarang")
     Call<ResponseDataBarang> dataBarang();
+
+    @FormUrlEncoded
+    @POST("getSumPenjualanKaryawanToko")
+    Call<ResponsePenjualanKaryawanToko> penjualanKaryawanToko(@Field("nama_kasir") String nama_kasir,
+                                                              @Field("hari") String hari);
 
 }

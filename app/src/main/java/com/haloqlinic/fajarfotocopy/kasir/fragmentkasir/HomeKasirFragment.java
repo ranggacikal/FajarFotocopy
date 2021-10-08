@@ -30,6 +30,7 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
+import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
 import com.haloqlinic.fajarfotocopy.model.sumTransaksiBulan.ResponseSumTransaksiBulan;
 import com.haloqlinic.fajarfotocopy.model.sumTransaksiHari.ResponseSumTransaksiHari;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahStatusPenjualan;
@@ -58,7 +59,7 @@ public class HomeKasirFragment extends Fragment {
     }
 
     private SharedPreferencedConfig preferencedConfig;
-    TextView txtNama, txtTanggal, txtNamaKasir, txtTotalHari, txtTotalBulan;
+    TextView txtNama, txtTanggal, txtNamaKasir, txtTotalHari, txtTotalBulan, txtPenjualanKaryawan;
     Button btnKeluar;
     ImageView imageView;
 
@@ -82,6 +83,7 @@ public class HomeKasirFragment extends Fragment {
         cardToko = rootView.findViewById(R.id.card_transaksi_kasir);
         txtNamaKasir = rootView.findViewById(R.id.text_nama_toko_kasir);
         txtTotalHari = rootView.findViewById(R.id.text_total_penjualan_harian_kasir);
+        txtPenjualanKaryawan = rootView.findViewById(R.id.text_total_penjualan_karyawan_kasir);
 //        txtTotalBulan = rootView.findViewById(R.id.text_penjualan_bulanan_kasir);
 
         btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
@@ -125,8 +127,9 @@ public class HomeKasirFragment extends Fragment {
 
         txtTanggal.setText(date);
 
+        loadPenjualanKaryawan();
         loadHari();
-        loadBulan();
+//        loadBulan();
 
         PushDownAnim.setPushDownAnimTo(cardToko)
                 .setScale(MODE_SCALE, 0.89f)
@@ -163,6 +166,49 @@ public class HomeKasirFragment extends Fragment {
                 });
     }
 
+    private void loadPenjualanKaryawan() {
+
+        ConfigRetrofit.service.penjualanKaryawanToko(preferencedConfig.getPreferenceNama(), hari)
+                .enqueue(new Callback<ResponsePenjualanKaryawanToko>() {
+                    @Override
+                    public void onResponse(Call<ResponsePenjualanKaryawanToko> call, Response<ResponsePenjualanKaryawanToko> response) {
+                        if (response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                String totalHariStr = response.body().getDataPenjualanKaryawanToko()
+                                        .get(0).getTotal();
+                                int totalHari = 0;
+
+                                if (totalHariStr!=null) {
+                                    totalHari = Integer.parseInt(totalHariStr);
+                                }
+
+                                Log.d("totalPenjualanKaryawan", "onResponse: "+totalHari);
+
+                                txtPenjualanKaryawan.setText("Rp" + NumberFormat.getInstance().format(totalHari));
+
+                            }else{
+                                Toast.makeText(getActivity(), "Gagal Mengambil Data Penjualan Karyawan",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(getActivity(), "Response Data Penjualan Gudang Error",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponsePenjualanKaryawanToko> call, Throwable t) {
+                        Toast.makeText(getActivity(), "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
     private void loadBulan() {
 
         ConfigRetrofit.service.sumTransaksiBulan(bulan, preferencedConfig.getPreferenceIdOutlet())
@@ -186,8 +232,15 @@ public class HomeKasirFragment extends Fragment {
 
                                     totalBulan = Integer.parseInt(totalBulanStr);
                                 }
-                                txtTotalBulan.setText("Rp" + NumberFormat.getInstance()
-                                        .format(totalBulan));
+
+                                if (totalBulanStr!=null) {
+                                    txtTotalBulan.setText("Rp" + NumberFormat.getInstance()
+                                            .format(totalBulan));
+
+                                }else{
+                                    txtTotalBulan.setText("Rp" + NumberFormat.getInstance()
+                                            .format(0));
+                                }
                             }else{
                                 Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
                             }
@@ -220,6 +273,8 @@ public class HomeKasirFragment extends Fragment {
                     public void onResponse(Call<ResponseSumTransaksiHari> call, Response<ResponseSumTransaksiHari> response) {
                         if (response.isSuccessful()){
 
+                            progressDialog.dismiss();
+
                             int status = response.body().getStatus();
 
                             if (status==1){
@@ -239,12 +294,14 @@ public class HomeKasirFragment extends Fragment {
                             }
 
                         }else{
+                            progressDialog.dismiss();
                             Toast.makeText(getActivity(), "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseSumTransaksiHari> call, Throwable t) {
+                        progressDialog.dismiss();
                         Toast.makeText(getActivity(), "Error Koneksi", Toast.LENGTH_SHORT).show();
                     }
                 });

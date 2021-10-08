@@ -50,13 +50,13 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
 
         if (pilihan.equals("Hari") || pilihan.equals("hari")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
-                    "&tanggal_pengeluaran="+tanggal;
+                    "getTransaksiByHari?hari="+tanggal+
+                    "&id_outlet="+id_outlet;
 
         }else if (pilihan.equals("bulan") || pilihan.equals("Bulan")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
-                    "&tanggal_pengeluaran="+bulan_tahun;
+                    "getTransaksiByBulan?bulan="+bulan_tahun+
+                    "&id_outlet="+id_outlet;
         }
 
 

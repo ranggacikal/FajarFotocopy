@@ -169,7 +169,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
 
     private void lihatLaporan() {
 
-        Intent intent = new Intent(ReportTokoGudangActivity.this, WebViewReportPengeluaranTokoGudangActivity.class);
+        Intent intent = new Intent(ReportTokoGudangActivity.this, WebViewReportPenjualanTokoActivity.class);
         intent.putExtra("bulan_tahun", bulan + " " + tahun);
         intent.putExtra("tanggal", date);
         intent.putExtra("pilihan", pilihan);
