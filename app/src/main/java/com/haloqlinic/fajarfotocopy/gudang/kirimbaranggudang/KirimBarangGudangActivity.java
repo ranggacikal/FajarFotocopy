@@ -13,16 +13,19 @@ import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.google.zxing.integration.android.IntentIntegrator;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.adapter.kirimBarang.CariKirimBarangAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDataBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityKirimBarangGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
+import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.ArrayList;
@@ -37,6 +40,11 @@ import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 public class KirimBarangGudangActivity extends AppCompatActivity {
 
     private ActivityKirimBarangGudangBinding binding;
+    boolean searchId = false;
+    boolean searchName = false;
+
+    String textId = "";
+    String textName = "";
 
     public String id_toko, id_status_pengiriman, fromActivity, nama_barang, id_minta_barang;
 
@@ -59,6 +67,23 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         finish();
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnBarcodeKirimBarangGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+                                KirimBarangGudangActivity.this
+                        );
+
+                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+                        intentIntegrator.setBeepEnabled(true);
+                        intentIntegrator.setOrientationLocked(true);
+                        intentIntegrator.setCaptureActivity(Capture.class);
+                        intentIntegrator.initiateScan();
                     }
                 });
 
@@ -200,4 +225,21 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
         }
 
     }
+
+    private void loadSearchById(String textId) {
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (searchId = true){
+            loadSearchById(textId);
+        }else if (searchName = true){
+            loadDataCari(textName);
+        }
+
+    }
+
+
 }
