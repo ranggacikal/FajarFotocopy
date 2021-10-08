@@ -93,7 +93,10 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
 
-        if (status_barang.equals("diterima")){
+        if (!detailPengirimanKetoActivity.status_pengiriman.equals("pengiriman selesai")){
+            holder.linearBtnTolakTerima.setVisibility(View.GONE);
+
+        }else if (status_barang.equals("diterima")){
 
             holder.linearBtnTolakTerima.setVisibility(View.GONE);
             holder.linearTextTolakTerima.setVisibility(View.VISIBLE);

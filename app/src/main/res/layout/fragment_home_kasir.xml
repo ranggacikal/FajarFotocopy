@@ -122,10 +122,10 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="360dp"
-                android:layout_height="147dp"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
-                android:layout_marginTop="140dp"
+                android:layout_marginTop="120dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
 
@@ -139,6 +139,16 @@
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/sairamedium"
+                            android:text="Total Transaksi Harian"
+                            android:textColor="#959494"
+                            android:textSize="18sp" />
 
                         <TextView
                             android:id="@+id/text_total_penjualan_harian_kasir"
@@ -164,9 +174,20 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:fontFamily="@font/sairamedium"
-                            android:text="Total Transaksi Harian"
+                            android:text="Total Transaksi Anda Hari Ini"
                             android:textColor="#959494"
                             android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/text_total_penjualan_karyawan_kasir"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/sairamedium"
+                            android:text="Rp. 500.0000"
+                            android:layout_marginBottom="7dp"
+                            android:textColor="@color/gold"
+                            android:textSize="25sp" />
 
                     </LinearLayout>
 

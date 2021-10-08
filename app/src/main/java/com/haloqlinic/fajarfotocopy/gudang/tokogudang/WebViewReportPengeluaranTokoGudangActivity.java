@@ -11,6 +11,7 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -46,14 +47,19 @@ public class WebViewReportPengeluaranTokoGudangActivity extends AppCompatActivit
         tanggal = getIntent().getStringExtra("tanggal");
         id_outlet = getIntent().getStringExtra("id_outlet");
 
+        Log.d("cekIntentData", "pilihan: "+pilihan);
+        Log.d("cekIntentData", "bulan_tahun: "+bulan_tahun);
+        Log.d("cekIntentData", "tanggal: "+tanggal);
+        Log.d("cekIntentData", "id_outlet: "+id_outlet);
+
         if (pilihan.equals("Hari") || pilihan.equals("hari")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
+                    "getSumPengeluaranOutlet?id_outlet="+id_outlet+
                     "&tanggal_pengeluaran="+tanggal;
 
         }else if (pilihan.equals("bulan") || pilihan.equals("Bulan")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getSumPengeluaranOutlet?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
+                    "getSumPengeluaranOutlet?id_outlet="+id_outlet+
                     "&tanggal_pengeluaran="+bulan_tahun;
         }
 

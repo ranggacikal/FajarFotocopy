@@ -59,8 +59,10 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
                         Intent intent = new Intent(context, DetailPengirimanKetoActivity.class);
                         intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                         intent.putExtra("tanggal", tanggal);
+                        intent.putExtra("status_pengiriman", dataPengiriman.get(position).getStatusPengiriman());
                         Log.d("cekListPengiriman", "id: "+id_status_pengiriman);
                         Log.d("cekListPengiriman", "tanggal: "+tanggal);
+                        Log.d("cekListPengiriman", "statusPengiriman: "+dataPengiriman.get(position).getStatusPengiriman());
                         context.startActivity(intent);
 
                     }
@@ -75,6 +77,7 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
                         Intent intent = new Intent(context, DetailPengirimanKetoActivity.class);
                         intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                         intent.putExtra("tanggal", tanggal);
+                        intent.putExtra("status_pengiriman", dataPengiriman.get(position).getStatusPengiriman());
                         context.startActivity(intent);
 
                     }
