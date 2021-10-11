@@ -29,12 +29,15 @@ import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.IdBarangOutletItem;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
+import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.GetStockByIdBarangItem;
+import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.ResponseStockByIdBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -302,7 +305,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 //                                    return;
 //                                }
 
-                                terimaBarang();
+                                validasiStock();
                                 dialogInterface.dismiss();
                             }
                         })
@@ -324,6 +327,61 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+            }
+        });
+
+    }
+
+    private void validasiStock() {
+
+        ConfigRetrofit.service.stockIdBarang(id_barang).enqueue(new Callback<ResponseStockByIdBarang>() {
+            @Override
+            public void onResponse(Call<ResponseStockByIdBarang> call, Response<ResponseStockByIdBarang> response) {
+                if (response.isSuccessful()){
+
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+
+                        List<GetStockByIdBarangItem> dataBarang = response.body().getGetStockByIdBarang();
+
+                        Log.d("cekStockStr", "onResponse: "+dataBarang);
+
+                        String stockStr = "";
+
+                        for (int a = 0; a<dataBarang.size(); a++){
+
+                            stockStr = dataBarang.get(a).getStock();
+                        }
+
+                        Log.d("cekStockStr", "onResponse: "+stockStr);
+
+                        if (Integer.parseInt(stockStr) == 0){
+
+                            Toast.makeText(context, "Stock barang di gudang sudah habis, " +
+                                    "silahkan hubungi karyawan/kepala gudang", Toast.LENGTH_SHORT).show();
+
+                        }else if (Integer.parseInt(jumlah_pcs)<=Integer.parseInt(stockStr)){
+
+                            terimaBarang();
+                        }else{
+                            Toast.makeText(context, "Stock barang di gudang sudah habis, " +
+                                    "silahkan hubungi karyawan/kepala gudang", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }else{
+                        Toast.makeText(context, "Barang tidak ditemukan", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(context, "Terjadi kesalahan dalam validasi stock ke gudang",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseStockByIdBarang> call, Throwable t) {
+                Toast.makeText(context, "Koneksi validasi stock ke gudang error", Toast.LENGTH_SHORT).show();
             }
         });
 
