@@ -64,7 +64,7 @@
             android:fontFamily="@font/sairabold"
             android:text="Report Transaksi"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -94,7 +94,37 @@
             android:fontFamily="@font/sairabold"
             android:text="Report Pengeluaran"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_transaksi_karyawan_gudang"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/linear_pengeluaran_gudang"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="21dp"
+        android:background="@drawable/btn_gold">
+
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/ic_report_gudang" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="42dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Report Transaksi Karyawan"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

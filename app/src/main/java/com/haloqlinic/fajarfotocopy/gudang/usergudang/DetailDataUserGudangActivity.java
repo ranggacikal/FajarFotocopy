@@ -86,6 +86,15 @@ public class DetailDataUserGudangActivity extends AppCompatActivity {
 
         initSpinnerToko();
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackUserGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                     finish();
+                    }
+                });
+
         PushDownAnim.setPushDownAnimTo(binding.btnGantiLevelDetailUser)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

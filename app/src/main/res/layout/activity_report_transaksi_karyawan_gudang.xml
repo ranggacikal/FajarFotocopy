@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".gudang.tokogudang.ReportTransaksiKaryawanGudangActivity">
+
+    <LinearLayout
+        android:id="@+id/linear_back_report_transaksi_karyawan_gudang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="38dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_atas_black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairamedium"
+            android:text="Report Transaksi Karyawan"
+            android:textColor="@color/black"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linear_back_report_transaksi_karyawan_gudang"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_green_2"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/linear_pilih_outlet_report_transaksi_karyawan_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Pilih Outlet : "
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_outlet_report_transaksi_karyawan_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_rectangle" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linear_pilih_karyawan_report_transaksi_karyawan_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Pilih Karyawan : "
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_karyawan_report_transaksi_karyawan_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_rectangle" />
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_lihat_laporan_transaksi_karyawan_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_black"
+            android:fontFamily="@font/sairabold"
+            android:text="Lihat Laporan"
+            android:textColor="@color/white" />
+
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/linear_pilihan_bulan_hari_report_transaksi_karyawan_gudang"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_below="@+id/linear_pilih_karyawan_report_transaksi_karyawan_gudang"-->
+        <!--            android:layout_marginHorizontal="20dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:orientation="vertical">-->
+
+        <!--            <TextView-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginBottom="7dp"-->
+        <!--                android:fontFamily="@font/sairabold"-->
+        <!--                android:text="Pilih Report Transaksi Karyawan Berdasarkan : "-->
+        <!--                android:textColor="@color/black" />-->
+
+        <!--            <Spinner-->
+        <!--                android:id="@+id/spinner_pilih_hari_bulan_report_transaksi_karyawan_gudang"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="50dp"-->
+        <!--                android:background="@drawable/bg_rectangle" />-->
+
+        <!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/linear_tanggal_report_transaksi_karyawan_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_pilihan_bulan_hari_report_transaksi_karyawan_gudang"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sairamedium"
+                android:text="Pilih Tanggal" />
+
+            <TextView
+                android:id="@+id/text_tanggal_report_transaksi_karyawan_gudang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sairabold"
+                android:text="00 - 00 - 0000"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_pilih_tanggal_report_transaksi_karyawan_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairabold"
+                android:text="Pilih Tanggal"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_pilih_bulan_tahun_report_transaksi_karyawan_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linear_pilihan_bulan_hari_report_transaksi_karyawan_gudang"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Bulan : "
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_bulan_tahun_report_transaksi_karyawan_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_rectangle" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="7dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Tahun : "
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_tahun_report_transaksi_karyawan_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_rectangle" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
