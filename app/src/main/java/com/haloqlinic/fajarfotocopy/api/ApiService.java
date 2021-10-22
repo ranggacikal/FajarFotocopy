@@ -72,6 +72,7 @@ import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusP
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusPenjualanByBulan;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangByIdUser.ResponseStatusPenjualanGudangByIdUser;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangSelesai.ResponseStatusPenjualanGudangSelesai;
 import com.haloqlinic.fajarfotocopy.model.statusTransferByBulan.ResponseStatusTransferByBulan;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.ResponseStockByIdBarang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
@@ -659,5 +660,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getStockByIdBarang")
     Call<ResponseStockByIdBarang> stockIdBarang(@Field("id_barang") String id_barang);
+
+    @FormUrlEncoded
+    @POST("getStatusPenjualanGudangSelesai")
+    Call<ResponseStatusPenjualanGudangSelesai> statusPenjualanGudanSelesai(@Field("id_user") String id_user);
 
 }

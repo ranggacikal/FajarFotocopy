@@ -2,9 +2,13 @@ package com.haloqlinic.fajarfotocopy;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.haloqlinic.fajarfotocopy.R;
@@ -103,21 +108,29 @@ public class LoginActivity extends AppCompatActivity{
 
                     int status = response.body().getStatus();
 
+
                     FirebaseMessaging.getInstance().getToken()
                             .addOnCompleteListener(new OnCompleteListener<String>() {
                                 @Override
                                 public void onComplete(@NonNull Task<String> task) {
                                     if (!task.isSuccessful()) {
-                                        Log.w("statusGetToken", "Fetching FCM registration token failed", task.getException());
+                                        Log.w("statusGetToken",
+                                                "Fetching FCM registration token failed",
+                                                task.getException());
                                         return;
                                     }
 
                                     token = task.getResult();
 
                                     Log.d("statusGetToken", token);
-                                    Toast.makeText(LoginActivity.this, "berhasil get Token", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(LoginActivity.this, "berhasil get Token",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             });
+
+
+
+
 
 
                     if (status == 1) {
@@ -223,4 +236,19 @@ public class LoginActivity extends AppCompatActivity{
                 });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LocalBroadcastManager.getInstance(this).registerReceiver((mMessageReceiver), new IntentFilter("MyData"));
+    }
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Log.d("testBroadcastToken", "onReceive: "+intent.getExtras().getString("token"));
+
+        }
+    };
 }

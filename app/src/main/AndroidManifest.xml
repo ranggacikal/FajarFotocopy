@@ -15,7 +15,13 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
-        <activity android:name=".gudang.tokogudang.ReportTransaksiKaryawanGudangActivity"></activity>
+        <activity
+            android:name=".driver.riwayatPengiriman.RiwayatPengirimanSupplierActivity"
+            android:exported="false" />
+        <activity
+            android:name=".driver.riwayatPengiriman.RiwayatPengirimanTokoActivity"
+            android:exported="false" />
+        <activity android:name=".gudang.tokogudang.ReportTransaksiKaryawanGudangActivity" />
         <activity
             android:name=".gudang.tokogudang.WebViewReportPengeluaranTokoGudangActivity"
             android:exported="true" />

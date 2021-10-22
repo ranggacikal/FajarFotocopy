@@ -67,6 +67,26 @@
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="5dp"
             android:fontFamily="@font/sairamedium"
+            android:text="Kode Barcode" />
+
+        <EditText
+            android:id="@+id/edt_kode_barcode_barang_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginVertical="5dp"
+            android:padding="7dp"
+            android:layout_marginHorizontal="30dp"
+            android:inputType="textCapWords"
+            android:fontFamily="@font/sairamedium" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="5dp"
+            android:fontFamily="@font/sairamedium"
             android:text="Stock Barang" />
 
         <LinearLayout

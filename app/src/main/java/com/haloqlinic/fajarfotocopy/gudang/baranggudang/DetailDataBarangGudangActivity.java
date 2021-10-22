@@ -81,6 +81,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         binding.edtAsalBarangGudang.setText(asal_barang);
         binding.edtDiskonBarangPackGudang.setText(diskon);
         binding.edtDiskonBarangPcsGudang.setText(diskon_pack);
+        binding.edtKodeBarcodeBarangGudang.setText(id_barang);
 
         Glide.with(DetailDataBarangGudangActivity.this)
                 .load(image)
