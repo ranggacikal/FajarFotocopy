@@ -21,14 +21,14 @@
             android:layout_marginHorizontal="20dp">
 
             <TextView
-                android:id="@+id/text_id_status_pengiriman_item_report"
+                android:id="@+id/text_tanggal_pengiriman_item_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/sairabold"
-                android:textSize="12sp"
+                android:text="Tanggal Pengiriman"
                 android:textColor="@color/black"
-                android:text="Id Status Pengiriman" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/text_status_pengiriman_item_report"
@@ -47,14 +47,14 @@
 
 
         <TextView
-            android:id="@+id/text_tanggal_pengiriman_item_report"
+            android:id="@+id/text_id_status_pengiriman_item_report"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/sairamedium"
             android:textSize="10sp"
             android:textColor="@color/black"
-            android:text="Tanggal pengiriman" />
+            android:text="id" />
 
         <View
             android:layout_width="match_parent"

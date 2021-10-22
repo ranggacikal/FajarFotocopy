@@ -139,7 +139,7 @@ public class ReportPengirimanGudangActivity extends AppCompatActivity {
 
     private void lihatLaporan() {
 
-        Intent intent = new Intent(ReportPengirimanGudangActivity.this, WebViewReportPengirimanActivity.class);
+        Intent intent = new Intent(ReportPengirimanGudangActivity.this, ListStatusPengirimanActivity.class);
         intent.putExtra("bulan_tahun", bulan + " " + tahun);
         intent.putExtra("tanggal", date);
         intent.putExtra("pilihan", pilihan);

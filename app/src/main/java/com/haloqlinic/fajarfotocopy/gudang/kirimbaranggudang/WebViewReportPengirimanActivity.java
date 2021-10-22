@@ -25,7 +25,7 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
 
     private ActivityWebViewReportPengirimanBinding binding;
 
-    String bulan_tahun, tanggal, pilihan;
+    String bulan_tahun, tanggal, pilihan, id_status_pengiriman;
     String link_web;
 
     private SharedPreferencedConfig preferencedConfig;
@@ -44,20 +44,23 @@ public class WebViewReportPengirimanActivity extends AppCompatActivity {
         pilihan = getIntent().getStringExtra("pilihan");
         bulan_tahun = getIntent().getStringExtra("bulan_tahun");
         tanggal = getIntent().getStringExtra("tanggal");
+        id_status_pengiriman = getIntent().getStringExtra("id_status_pengiriman");
 
         if (pilihan.equals("Bulan")){
 
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getListPengirimanByBulan?bulan="+bulan_tahun;
+                    "getListPengirimanByBulan?bulan="+bulan_tahun+"&id_status_pengiriman="+id_status_pengiriman;
 
         }else{
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getListPengirimanByHari?hari="+tanggal;
+                    "getListPengirimanByHari?hari="+tanggal+"&id_status_pengiriman="+id_status_pengiriman;
         }
 
         binding.webViewLaporanPengiriman.setWebViewClient(new myWebclient());
         binding.webViewLaporanPengiriman.getSettings().setJavaScriptEnabled(true);
         binding.webViewLaporanPengiriman.getSettings().setBuiltInZoomControls(true);
+        binding.webViewLaporanPengiriman.getSettings().setSupportZoom(true);
+        binding.webViewLaporanPengiriman.getSettings().setDisplayZoomControls(true);
         binding.webViewLaporanPengiriman.loadUrl(link_web);
 
         Log.d("linkInvoice", "onCreate: "+link_web);

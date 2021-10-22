@@ -67,7 +67,9 @@ import com.haloqlinic.fajarfotocopy.model.register.ResponseRegister;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchStockTokoGudang.ResponseSearchStockTokoGudang;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByBulan.ResponseStatusPengirimanByBulan;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
+import com.haloqlinic.fajarfotocopy.model.statusPengirimanByTanggal.ResponseStatusPengirimanByTanggal;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByToko.ResponseStatusPengirimanByToko;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusPenjualanByBulan;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
@@ -664,5 +666,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getStatusPenjualanGudangSelesai")
     Call<ResponseStatusPenjualanGudangSelesai> statusPenjualanGudanSelesai(@Field("id_user") String id_user);
+
+    @FormUrlEncoded
+    @POST("getStatusPengirimanByBulan")
+    Call<ResponseStatusPengirimanByBulan> statusPengirimanByBulan(@Field("bulan") String bulan);
+
+    @FormUrlEncoded
+    @POST("getStatusPengirimanByTanggal")
+    Call<ResponseStatusPengirimanByTanggal> statusPengirimanByTanggal(@Field("tanggal") String tanggal);
 
 }

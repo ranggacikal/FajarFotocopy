@@ -7,15 +7,15 @@ public class ConfigRetrofit {
 
     private static ConfigRetrofit mInstance;
 
-//    public static Retrofit retrofit = new Retrofit.Builder()
-//            .baseUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build();
-
     public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://dev-api.fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/")
+            .baseUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
+
+//    public static Retrofit retrofit = new Retrofit.Builder()
+//            .baseUrl("http://dev-api.fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build();
 
     public static ApiService service = retrofit.create(ApiService.class);
 
