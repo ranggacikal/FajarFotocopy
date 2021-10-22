@@ -45,7 +45,6 @@ public class InvoiceSupplierActivity extends AppCompatActivity {
         binding.webViewSupplier.getSettings().setJavaScriptEnabled(true);
         binding.webViewSupplier.getSettings().setBuiltInZoomControls(true);
         binding.webViewSupplier.loadUrl("http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/detailStatusSupplier?id_status_penjualan_gudang="+id_status_penjualan);
-
         binding.savePdfBtnSupplier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -107,6 +107,15 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
         adapterPengambilan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerMetodeKirimSupplier.setAdapter(adapterPengambilan);
 
+        PushDownAnim.setPushDownAnimTo(binding.linearBackKeranjangSupplierGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
         binding.spinnerMetodeKirimSupplier.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
