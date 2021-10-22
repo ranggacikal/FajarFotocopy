@@ -52,6 +52,8 @@ public class DetailDriverActivity extends AppCompatActivity {
         status_pengiriman_intent = getIntent().getStringExtra("status_pengiriman");
         jenis_pengiriman = getIntent().getStringExtra("jenis_pengiriman");
 
+        Log.d("cekJenisPengiriman", "onCreate: "+jenis_pengiriman);
+
         PushDownAnim.setPushDownAnimTo(binding.linearBackDetailDriver)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

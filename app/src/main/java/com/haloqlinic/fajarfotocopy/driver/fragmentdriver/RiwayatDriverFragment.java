@@ -1,8 +1,12 @@
 package com.haloqlinic.fajarfotocopy.driver.fragmentdriver;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,8 +20,11 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.driver.PengirimanSelesaiAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.RiwayatPengirimanSupplierActivity;
+import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.RiwayatPengirimanTokoActivity;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.ResponsePengirimanSelesai;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.StatusPengirimanSelesaiItem;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
@@ -40,62 +47,37 @@ public class RiwayatDriverFragment extends Fragment {
 
     private SharedPreferencedConfig preferencedConfig;
 
+    CardView cardPengirimanKeToko, cardPengirimanKeSupplier;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_riwayat_driver, container, false);
 
-        preferencedConfig = new SharedPreferencedConfig(getActivity());
+        cardPengirimanKeToko = view.findViewById(R.id.card_pengiriman_ke_toko);
+        cardPengirimanKeSupplier = view.findViewById(R.id.card_pengiriman_ke_supplier);
 
-        rvSelesai = view.findViewById(R.id.rv_selesai_driver);
-        rvSelesai.setHasFixedSize(true);
-        rvSelesai.setLayoutManager(new LinearLayoutManager(getActivity()));
+        PushDownAnim.setPushDownAnimTo(cardPengirimanKeToko)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(),
+                                RiwayatPengirimanTokoActivity.class));
+                    }
+                });
 
-        loadData();
+        PushDownAnim.setPushDownAnimTo(cardPengirimanKeSupplier)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(),
+                                RiwayatPengirimanSupplierActivity.class));
+                    }
+                });
 
         return view;
-    }
-
-    private void loadData() {
-
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Memuat Data");
-        progressDialog.show();
-
-        ConfigRetrofit.service.pengirimanSelesai(preferencedConfig.getPreferenceIdUser()).enqueue(new Callback<ResponsePengirimanSelesai>() {
-            @Override
-            public void onResponse(Call<ResponsePengirimanSelesai> call, Response<ResponsePengirimanSelesai> response) {
-                if (response.isSuccessful()){
-
-                    progressDialog.dismiss();
-
-                    int status = response.body().getStatus();
-
-                    if (status==1){
-
-                        List<StatusPengirimanSelesaiItem> dataSelesai = response.body().getStatusPengirimanSelesai();
-                        PengirimanSelesaiAdapter adapter = new PengirimanSelesaiAdapter(getActivity(), dataSelesai);
-                        rvSelesai.setAdapter(adapter);
-
-                    }else{
-                        Toast.makeText(getActivity(),
-                                "Data Tidak Ada", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else{
-                    progressDialog.dismiss();
-                    Toast.makeText(getActivity(), "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponsePengirimanSelesai> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getActivity(),
-                        "Koneksi Error", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 }

@@ -16,33 +16,33 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
-import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.StatusPengirimanSelesaiItem;
+import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangSelesai.StatusPenjualanGudangSelesaiItem;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
-public class PengirimanSelesaiAdapter extends RecyclerView.Adapter<PengirimanSelesaiAdapter.PengirimanSelesaiViewHolder> {
+public class PengirimanSupplierSelesaiAdapter extends RecyclerView.Adapter<PengirimanSupplierSelesaiAdapter.PengirimanSelesaiSupplierViewHolder> {
 
     Context context;
-    List<StatusPengirimanSelesaiItem> dataSelesai;
+    List<StatusPenjualanGudangSelesaiItem> dataSelesai;
 
-    public PengirimanSelesaiAdapter(Context context, List<StatusPengirimanSelesaiItem> dataSelesai) {
+    public PengirimanSupplierSelesaiAdapter(Context context, List<StatusPenjualanGudangSelesaiItem> dataSelesai) {
         this.context = context;
         this.dataSelesai = dataSelesai;
     }
 
     @NonNull
     @Override
-    public PengirimanSelesaiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PengirimanSelesaiSupplierViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_home_driver, parent, false);
-        return new PengirimanSelesaiViewHolder(view);
+        return new PengirimanSelesaiSupplierViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PengirimanSelesaiViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull PengirimanSelesaiSupplierViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.txtTanggal.setText(dataSelesai.get(position).getTanggalPengiriman());
-        holder.txtPenerima.setText(dataSelesai.get(position).getNamaOutlet());
+        holder.txtTanggal.setText(dataSelesai.get(position).getTanggalPenjualan());
+        holder.txtPenerima.setText(dataSelesai.get(position).getAlamatTujuan());
         holder.txtStatus.setText(dataSelesai.get(position).getStatusPengiriman());
 
         PushDownAnim.setPushDownAnimTo(holder.btnDetail)
@@ -50,11 +50,11 @@ public class PengirimanSelesaiAdapter extends RecyclerView.Adapter<PengirimanSel
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id_status_pengiriman = dataSelesai.get(position).getIdStatusPengiriman();
+                        String id_status_pengiriman = dataSelesai.get(position).getIdStatusPenjualanGudang();
                         Intent intent = new Intent(context, DetailDriverActivity.class);
                         intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                         intent.putExtra("status_pengiriman", dataSelesai.get(position).getStatusPengiriman());
-                        intent.putExtra("jenis_pengiriman", "toko");
+                        intent.putExtra("jenis_pengiriman", "supplier");
                         context.startActivity(intent);
                     }
                 });
@@ -66,10 +66,11 @@ public class PengirimanSelesaiAdapter extends RecyclerView.Adapter<PengirimanSel
         return dataSelesai.size();
     }
 
-    public class PengirimanSelesaiViewHolder extends RecyclerView.ViewHolder {
+    public class PengirimanSelesaiSupplierViewHolder extends RecyclerView.ViewHolder {
         TextView txtTanggal, txtPenerima, txtStatus;
         Button btnDetail;
-        public PengirimanSelesaiViewHolder(@NonNull View itemView) {
+
+        public PengirimanSelesaiSupplierViewHolder(@NonNull View itemView) {
             super(itemView);
             txtTanggal = itemView.findViewById(R.id.txt_tanggal_driver);
             txtPenerima = itemView.findViewById(R.id.txt_penerima_driver);

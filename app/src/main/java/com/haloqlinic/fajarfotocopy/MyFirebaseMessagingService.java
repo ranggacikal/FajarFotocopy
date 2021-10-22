@@ -12,12 +12,21 @@ import android.widget.RemoteViews;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    private LocalBroadcastManager broadcaster;
+
+    String token = "";
+
+    @Override
+    public void onCreate() {
+        broadcaster = LocalBroadcastManager.getInstance(this);
+    }
 
     @Override
     public void
@@ -44,6 +53,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                     remoteMessage.getNotification().getTitle(),
                     remoteMessage.getNotification().getBody());
         }
+
+        Intent intent = new Intent("MyData");
+        intent.putExtra("token", remoteMessage.getData().get(token));
+        broadcaster.sendBroadcast(intent);
     }
 
     // Method to get the custom Design for the display of
@@ -133,6 +146,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(@NonNull String s) {
+        token = s;
         Log.d("RefreshToken", "onNewToken: "+s);
     }
+
+
 }
