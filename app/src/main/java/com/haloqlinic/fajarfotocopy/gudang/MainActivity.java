@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
 
     private HomeFragment homeFragment;
-//    private InformasiGudangFragment informasiGudangFragment;
+    //    private InformasiGudangFragment informasiGudangFragment;
     private KirimBarangFragment kirimBarangFragment;
     private ProfileFragment profileFragment;
     private MintaBarangFragment mintaBarangFragment;
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
         preferencedConfig = new SharedPreferencedConfig(MainActivity.this);
 
-        Log.d("cekTokenMain", "onCreate: "+preferencedConfig.getPreferenceTokenFcm());
+        Log.d("cekTokenMain", "onCreate: " + preferencedConfig.getPreferenceTokenFcm());
 
         getToken();
 
@@ -180,9 +180,11 @@ public class MainActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 setCurrentTabFragment(tab.getPosition());
             }
+
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
             }
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
             }
@@ -192,21 +194,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void setCurrentTabFragment(int position) {
 
-        switch (position)
-        {
-            case 0 :
+        switch (position) {
+            case 0:
                 replaceFragment(homeFragment);
                 break;
 //            case 1 :
 //                replaceFragment(informasiGudangFragment);
 //                break;
-            case 1 :
+            case 1:
                 replaceFragment(kirimBarangFragment);
                 break;
-            case 2 :
+            case 2:
                 replaceFragment(mintaBarangFragment);
                 break;
-            case 3 :
+            case 3:
                 replaceFragment(profileFragment);
                 break;
         }
@@ -242,8 +243,6 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout_gudang);
     }
-
-
 
 
 }

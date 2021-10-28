@@ -143,8 +143,8 @@ public interface ApiService {
                                                 @Field("harga_jual_pack") String harga_jual_pack,
                                                 @Field("stock") String stock,
                                                 @Field("jumlah_pack") String jumlah_pack,
-                                                @Field("diskon") String diskon,
-                                                @Field("diskon_pack") String diskon_pack,
+//                                                @Field("diskon") String diskon,
+//                                                @Field("diskon_pack") String diskon_pack,
                                                 @Field("id_outlet") String id_outlet);
 
     @FormUrlEncoded
