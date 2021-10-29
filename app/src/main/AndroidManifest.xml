@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".gudang.reportgudang.ListTransaksiSupplierActivity"
+            android:exported="false" />
+        <activity
             android:name=".gudang.kirimbaranggudang.ListStatusPengirimanActivity"
             android:exported="false" />
         <activity

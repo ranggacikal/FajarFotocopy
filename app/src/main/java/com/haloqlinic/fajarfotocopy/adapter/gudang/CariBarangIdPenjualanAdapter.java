@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
@@ -56,7 +57,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CariBarangIdPenjualanViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CariBarangIdPenjualanViewHolder holder, @SuppressLint("RecyclerView") int position) {
         int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
         int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaModalTokoPack());
 
@@ -64,8 +65,6 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
         holder.edtJumlahPack.setVisibility(View.VISIBLE);
-
-        String jumlah_pack = holder.edtJumlahPack.getText().toString();
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
@@ -109,8 +108,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                             }
 
                         }
-
-
+                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
                         String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
                         String id_barang = dataBarang.get(position).getIdBarang();
                         tambahPenjualanGudang(id_status_penjualan, id_barang, jumlah_pack);
@@ -120,6 +118,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
     }
 
     private void tambahPenjualanGudang(String id_status_penjualan, String id_barang, String jumlah_pack) {
+        Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
 
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Menambahkan Barang");

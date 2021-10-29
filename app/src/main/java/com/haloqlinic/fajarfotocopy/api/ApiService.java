@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.api;
 import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
+import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariToko.ResponseCariToko;
@@ -75,6 +76,7 @@ import com.haloqlinic.fajarfotocopy.model.statusPenjualanByBulan.ResponseStatusP
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanByHari.ResponseStatusPenjualanByHari;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangByIdUser.ResponseStatusPenjualanGudangByIdUser;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangSelesai.ResponseStatusPenjualanGudangSelesai;
+import com.haloqlinic.fajarfotocopy.model.statusSupplierTanggal.ResponseStatusSupplierTanggal;
 import com.haloqlinic.fajarfotocopy.model.statusTransferByBulan.ResponseStatusTransferByBulan;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.ResponseStockByIdBarang;
 import com.haloqlinic.fajarfotocopy.model.stockToko.ResponseDataStockToko;
@@ -674,5 +676,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getStatusPengirimanByTanggal")
     Call<ResponseStatusPengirimanByTanggal> statusPengirimanByTanggal(@Field("tanggal") String tanggal);
+
+    @FormUrlEncoded
+    @POST("getStatusPenjualanGudangByBulan")
+    Call<ResponseStatusSupplierByBulan> statusSupplierByBulan(@Field("bulan") String bulan);
+
+    @FormUrlEncoded
+    @POST("getStatusPenjualanGudangByTanggal")
+    Call<ResponseStatusSupplierTanggal> statusSupplierByTanggal(@Field("tanggal") String tanggal);
 
 }

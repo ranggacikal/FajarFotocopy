@@ -28,7 +28,7 @@ public class WebViewReportPenjualanGudangActivity extends AppCompatActivity {
 
     private ActivityWebViewReportPenjualanGudangBinding binding;
 
-    String bulan_tahun, tanggal, pilihan;
+    String bulan_tahun, tanggal, pilihan, id_status_penjualan_gudang;
     String link_web;
 
     private SharedPreferencedConfig preferencedConfig;
@@ -47,15 +47,18 @@ public class WebViewReportPenjualanGudangActivity extends AppCompatActivity {
         pilihan = getIntent().getStringExtra("pilihan");
         bulan_tahun = getIntent().getStringExtra("bulan_tahun");
         tanggal = getIntent().getStringExtra("tanggal");
+        id_status_penjualan_gudang = getIntent().getStringExtra("id_status_penjualan_gudang");
 
         if (pilihan.equals("Bulan")){
 
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "detailStatusSupplierByBulan?bulan="+bulan_tahun;
+                    "detailStatusSupplierByBulan?bulan="+bulan_tahun+
+                    "&id_status_penjualan_gudang="+id_status_penjualan_gudang;
 
         }else{
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "detailStatusSupplierByTanggal?tanggal="+tanggal;
+                    "detailStatusSupplierByTanggal?tanggal="+tanggal+
+                    "&id_status_penjualan_gudang="+id_status_penjualan_gudang;;
         }
 
         binding.webViewReportGudang.setWebViewClient(new myWebclient());
