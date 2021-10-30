@@ -56,6 +56,7 @@ public class WebViewReportPenjualanGudangActivity extends AppCompatActivity {
                     "&id_status_penjualan_gudang="+id_status_penjualan_gudang;
 
         }else{
+            Log.d("cekTanggalSupplier", "onCreate: "+tanggal);
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
                     "detailStatusSupplierByTanggal?tanggal="+tanggal+
                     "&id_status_penjualan_gudang="+id_status_penjualan_gudang;;
