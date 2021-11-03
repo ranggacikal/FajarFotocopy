@@ -22,6 +22,7 @@ import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
@@ -53,12 +54,16 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     String nameActivity = "";
 
+    ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTransaksiKasirBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        progressDialog = new ProgressDialog(this);
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackTransaksiKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -76,7 +81,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
                                         TransaksiKasirActivity.super.onBackPressed();
 
-                                        hapusStatusPenjualan();
+                                        hapusPenjualan();
                                         dialogInterface.dismiss();
                                     }
                                 })
@@ -325,7 +330,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
                         TransaksiKasirActivity.super.onBackPressed();
 
-                        hapusStatusPenjualan();
+                        hapusPenjualan();
                         dialogInterface.dismiss();
                     }
                 })
@@ -342,16 +347,52 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     }
 
+    private void hapusPenjualan(){
+
+        ConfigRetrofit.service.hapusPenjualan(id_status_penjualan)
+                .enqueue(new Callback<ResponseHapusPenjualan>() {
+                    @Override
+                    public void onResponse(Call<ResponseHapusPenjualan> call, Response<ResponseHapusPenjualan> response) {
+                        if (response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if(status == 1){
+
+                                hapusStatusPenjualan();
+
+                            }else{
+                                Toast.makeText(TransaksiKasirActivity.this,
+                                        "Hapus Data Penjualan Gagal", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(TransaksiKasirActivity.this,
+                                    "Response Hapus Penjualan Error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseHapusPenjualan> call, Throwable t) {
+                        Toast.makeText(TransaksiKasirActivity.this,
+                                "Koneksi error On hapus penjualan", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
 
     private void hapusStatusPenjualan() {
-        ProgressDialog progressDialog = new ProgressDialog(TransaksiKasirActivity.this);
-        progressDialog.setMessage("Membatalkan Transaksi");
-        progressDialog.show();
+//        showProgressDialogWithTitle("Membatalkan Transaksi");
+//        ProgressDialog progressDialog = new ProgressDialog(TransaksiKasirActivity.this);
+//        progressDialog.setMessage("Membatalkan Transaksi");
+//        progressDialog.show();
         ConfigRetrofit.service.hapusStatusPenjualan(id_status_penjualan).enqueue(new Callback<ResponseHapusStatusPenjualan>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusPenjualan> call, Response<ResponseHapusStatusPenjualan> response) {
                 if (response.isSuccessful()) {
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
+//                    hideProgressDialogWithTitle();
                     int status = response.body().getStatus();
                     if (status == 1) {
 
@@ -372,17 +413,34 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         Toast.makeText(TransaksiKasirActivity.this, "Gagal Membatalkan Transaksi", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    progressDialog.dismiss();
+//                    progressDialog.dismiss();
+//                    hideProgressDialogWithTitle();
                     Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseHapusStatusPenjualan> call, Throwable t) {
-                progressDialog.dismiss();
+//                progressDialog.dismiss();
+//                hideProgressDialogWithTitle();
                 Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }
         });
+    }
+
+    // Method to show Progress bar
+    private void showProgressDialogWithTitle(String substring) {
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        //Without this user can hide loader by tapping outside screen
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage(substring);
+        progressDialog.show();
+    }
+
+    // Method to hide/ dismiss Progress bar
+    private void hideProgressDialogWithTitle() {
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.dismiss();
     }
 }

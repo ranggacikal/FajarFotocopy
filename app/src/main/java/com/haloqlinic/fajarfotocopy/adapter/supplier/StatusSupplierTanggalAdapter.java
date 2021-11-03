@@ -72,7 +72,7 @@ public class StatusSupplierTanggalAdapter extends RecyclerView.Adapter<StatusSup
                         intent.putExtra("tanggal", listTransaksiSupplierActivity.tanggal);
                         intent.putExtra("id_status_penjualan_gudang",
                                 dataPenjualan.get(position).getIdStatusPenjualanGudang());
-                        intent.putExtra("pilihan", "Bulan");
+                        intent.putExtra("pilihan", "Hari");
                         context.startActivity(intent);
                     }
                 });

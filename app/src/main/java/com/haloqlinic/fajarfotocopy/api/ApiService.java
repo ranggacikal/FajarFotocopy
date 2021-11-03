@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.api;
 import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
+import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -684,5 +685,9 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getStatusPenjualanGudangByTanggal")
     Call<ResponseStatusSupplierTanggal> statusSupplierByTanggal(@Field("tanggal") String tanggal);
+
+    @FormUrlEncoded
+    @POST("hapusPenjualan")
+    Call<ResponseHapusPenjualan> hapusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
 
 }

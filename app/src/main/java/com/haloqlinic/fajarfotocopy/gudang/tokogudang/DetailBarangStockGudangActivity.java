@@ -169,8 +169,6 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
         String harga_jual_pack = binding.edtHargaJualDetailBarangPackGudang.getText().toString();
         String stock = binding.edtStockBarangPcsGudang.getText().toString();
         String stock_pack = binding.edtStockBarangPackGudang.getText().toString();
-        String diskon = binding.edtDiskonBarangPcsGudang.getText().toString();
-        String diskon_pack = binding.edtDiskonBarangPackGudang.getText().toString();
         String id_outlet = getIntent().getStringExtra("id_outlet");
 
         if (harga_jual.isEmpty()){
@@ -197,24 +195,12 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (diskon.isEmpty()){
-            binding.edtDiskonBarangPcsGudang.setError("Field tidak boleh kosong");
-            binding.edtDiskonBarangPcsGudang.requestFocus();
-            return;
-        }
-
-        if (diskon_pack.isEmpty()){
-            binding.edtDiskonBarangPackGudang.setError("Field tidak boleh kosong");
-            binding.edtDiskonBarangPackGudang.requestFocus();
-            return;
-        }
-
         ProgressDialog progressDialog = new ProgressDialog(DetailBarangStockGudangActivity.this);
         progressDialog.setMessage("Memproses Edit Data");
         progressDialog.show();
 
         ConfigRetrofit.service.editBarangToko(id_barang_outlet, id_barang, harga_jual, harga_jual_pack, stock,
-                stock_pack, diskon, diskon_pack, id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
+                stock_pack, "0", "0", id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
             @Override
             public void onResponse(Call<ResponseEditBarangToko> call, Response<ResponseEditBarangToko> response) {
                 if (response.isSuccessful()){

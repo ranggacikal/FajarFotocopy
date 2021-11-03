@@ -278,16 +278,11 @@ public class CekStockTokoGudangActivity extends AppCompatActivity {
 
     }
 
-    private void cariData() {
-
-
-
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
-//        loadDataStock(id_outlet);
-//        loadDataSearch(search_barang);
+        if (search_barang!=null){
+            loadDataSearch(search_barang);
+        }
     }
 }
