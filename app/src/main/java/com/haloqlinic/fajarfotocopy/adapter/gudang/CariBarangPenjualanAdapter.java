@@ -75,8 +75,6 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
         holder.edtJumlahPack.setVisibility(View.VISIBLE);
 
-        String jumlah_pack = holder.edtJumlahPack.getText().toString();
-
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +117,9 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
                             }
 
                         }
+                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
 
+                        Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
 
                         String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
                         String id_barang = dataBarang.get(position).getIdBarang();

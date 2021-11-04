@@ -316,6 +316,8 @@ public class HomeKasirFragment extends Fragment {
         String id_status_penjualan = "SPN"+randomId;
         String status_penjualan = "pending";
 
+        Log.d("idStatusPenjualanKasir", "tambahStatusPenjualan: "+id_status_penjualan);
+
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 
