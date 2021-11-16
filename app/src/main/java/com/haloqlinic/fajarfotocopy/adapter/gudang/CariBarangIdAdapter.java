@@ -60,6 +60,7 @@ public class CariBarangIdAdapter extends RecyclerView.Adapter<CariBarangIdAdapte
         String diskon_pack = dataBarang.get(position).getDiskonPack();
         String image = dataBarang.get(position).getImageBarang();
         String id_kategori = dataBarang.get(position).getIdKategoriBarang();
+        String number_of_pack = dataBarang.get(position).getNumberOfPack();
 
         Glide.with(context)
                 .load(image)
@@ -91,6 +92,7 @@ public class CariBarangIdAdapter extends RecyclerView.Adapter<CariBarangIdAdapte
                         intent.putExtra("jumlah_pack", stock_pack);
                         intent.putExtra("diskon", diskon);
                         intent.putExtra("diskon_pack", diskon_pack);
+                        intent.putExtra("number_of_pack", number_of_pack);
                         intent.putExtra("image", image);
                         intent.putExtra("id_kategori", id_kategori);
                         context.startActivity(intent);

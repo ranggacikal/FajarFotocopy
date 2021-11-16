@@ -113,6 +113,7 @@
         <entry key="app/src/main/res/layout/activity_cetak_bukti_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_cetak_bukti_supplier_gudang.xml" value="0.10280054644808743" />
         <entry key="app/src/main/res/layout/activity_data_barang_gudang.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_detail_barang_stock_gudang.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/activity_detail_data_barang_gudang.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/activity_detail_data_user_gudang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/activity_detail_driver.xml" value="0.19882246376811594" />
@@ -130,13 +131,14 @@
         <entry key="app/src/main/res/layout/activity_report_penjualan.xml" value="0.12192622950819672" />
         <entry key="app/src/main/res/layout/activity_riwayat_pengiriman_supplier.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/activity_riwayat_pengiriman_toko.xml" value="0.21195652173913043" />
+        <entry key="app/src/main/res/layout/activity_tambah_barang_gudang.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_tambah_informasi_gudang.xml" value="0.12192622950819672" />
         <entry key="app/src/main/res/layout/activity_tambah_status_pengiriman.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/activity_tambah_toko_gudang.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_web_view_report_pengiriman.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.15" />
-        <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.12881944444444443" />
+        <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.39776249523583423" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_driver.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/fragment_list_transfer.xml" value="0.11133879781420765" />

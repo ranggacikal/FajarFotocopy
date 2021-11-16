@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -45,6 +47,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
     private Bitmap bitmap;
 
     String id_kategori;
+    String number_of_pack;
+    int jumlah_pcs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +72,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String diskon = getIntent().getStringExtra("diskon");
         String diskon_pack = getIntent().getStringExtra("diskon_pack");
         String image = getIntent().getStringExtra("image");
+        String number_of_pack_intent = getIntent().getStringExtra("number_of_pack");
 
         binding.edtNamaBarangGudang.setText(nama_barang);
         binding.edtStockBarangPcsGudang.setText(stock);
@@ -82,6 +87,34 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         binding.edtDiskonBarangPackGudang.setText(diskon);
         binding.edtDiskonBarangPcsGudang.setText(diskon_pack);
         binding.edtKodeBarcodeBarangGudang.setText(id_barang);
+        binding.edtStockNumberOfPackGudang.setText(number_of_pack_intent);
+        binding.edtStockBarangPcsGudang.setEnabled(false);
+
+        binding.edtStockBarangPackGudang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String jml_pack = binding.edtStockBarangPackGudang.getText().toString();
+                number_of_pack = binding.edtStockNumberOfPackGudang.getText().toString();
+
+                if (jml_pack.equals("")){
+                    binding.edtStockBarangPcsGudang.setText("0");
+                }else {
+                    jumlah_pcs = Integer.parseInt(jml_pack) * Integer.parseInt(number_of_pack);
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         Glide.with(DetailDataBarangGudangActivity.this)
                 .load(image)
@@ -262,6 +295,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String jumlah_pack = binding.edtStockBarangPackGudang.getText().toString();
         String diskon = binding.edtDiskonBarangPcsGudang.getText().toString();
         String diskon_pack = binding.edtDiskonBarangPackGudang.getText().toString();
+        number_of_pack = binding.edtStockNumberOfPackGudang.getText().toString();
         String image_barang = "";
 
         if (nama_barang.isEmpty()){
@@ -324,6 +358,12 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
             return;
         }
 
+        if (number_of_pack.isEmpty()){
+            binding.edtStockNumberOfPackGudang.setError("Field Tidak Boleh Kosong");
+            binding.edtStockNumberOfPackGudang.requestFocus();
+            return;
+        }
+
 //        if (diskon.isEmpty()){
 //            binding.edtDiskonBarangPcsGudang.setError("Field tidak boleh kosong");
 //            binding.edtDiskonBarangPcsGudang.requestFocus();
@@ -348,7 +388,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.editBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
+                jumlah_pack, number_of_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
             @Override
             public void onResponse(Call<ResponseEditBarang> call, Response<ResponseEditBarang> response) {
                 if (response.isSuccessful()){

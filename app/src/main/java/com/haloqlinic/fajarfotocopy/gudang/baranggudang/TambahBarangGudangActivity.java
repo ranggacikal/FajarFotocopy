@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -52,6 +54,9 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
     String id_kategori;
 
+    String jumlah_pack, number_of_pack;
+    int jumlah_pcs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +70,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
         binding.edtTambahHargaModalGudangPack.addTextChangedListener(new NumberTextWatcher(binding.edtTambahHargaModalGudangPack));
         binding.edtTambahHargaModalTokoPack.addTextChangedListener(new NumberTextWatcher(binding.edtTambahHargaModalTokoPack));
         binding.edtTambahHargaJualTokoPack.addTextChangedListener(new NumberTextWatcher(binding.edtTambahHargaJualTokoPack));
+
 
         PushDownAnim.setPushDownAnimTo(binding.btnBarcodeTambahStockpcsGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -82,6 +88,36 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
                         intentIntegrator.initiateScan();
                     }
                 });
+
+
+        binding.tambahStockBarangPcsGudang.setEnabled(false);
+        binding.tambahNumberOfPackBarangGudang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String jml_pack = binding.tambahStockBarangPackGudang.getText().toString();
+                number_of_pack = binding.tambahNumberOfPackBarangGudang.getText().toString();
+                Log.d("cekTextChanged", "numberOfPack: "+number_of_pack);
+                Log.d("cekTextChanged", "jml_pack: "+jml_pack);
+
+                if (number_of_pack.equals("")){
+                    binding.tambahStockBarangPcsGudang.setText("0");
+                }else {
+
+                    jumlah_pcs = Integer.parseInt(jml_pack) * Integer.parseInt(number_of_pack);
+                    binding.tambahStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         PushDownAnim.setPushDownAnimTo(binding.btnTambahBarangGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -285,8 +321,9 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
             return;
         }
 
-        if (stock.isEmpty()) {
-            binding.tambahStockBarangPcsGudang.setError("Field tidak boleh kosong");
+        if (stock.equals("0")) {
+            binding.tambahStockBarangPcsGudang.setError("Silahkan masukan jumlah satuan dalam " +
+                    "satu pack");
             binding.tambahStockBarangPcsGudang.requestFocus();
             return;
         }
@@ -339,6 +376,13 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
             return;
         }
 
+        if(number_of_pack.isEmpty()){
+            binding.tambahNumberOfPackBarangGudang.setError("Satuan dalam satu pack " +
+                    "tidak boleh kosong");
+            binding.tambahNumberOfPackBarangGudang.requestFocus();
+            return;
+        }
+
 //        if (diskon.isEmpty()){
 //            binding.edtTambahDiskonBarangGudang.setError("Field tidak boleh kosong");
 //            binding.edtTambahDiskonBarangGudang.requestFocus();
@@ -357,7 +401,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
         ConfigRetrofit.service.tambahBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, image_barang, id_kategori).enqueue(new Callback<ResponseTambahBarang>() {
+                jumlah_pack, number_of_pack, image_barang, id_kategori).enqueue(new Callback<ResponseTambahBarang>() {
             @Override
             public void onResponse(Call<ResponseTambahBarang> call, Response<ResponseTambahBarang> response) {
                 if (response.isSuccessful()) {
@@ -381,6 +425,7 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
                         binding.edtTambahAsalBarangGudang.setText("");
                         binding.edtTambahDiskonBarangGudang.setText("");
                         binding.edtTambahDiskonpackBarangGudang.setText("");
+                        binding.tambahNumberOfPackBarangGudang.setText("");
                         binding.imageTambaBarangGudang.setImageResource(R.drawable.ic_profile);
                     } else {
                         Toast.makeText(TambahBarangGudangActivity.this, "Gagal Tambah Data, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
