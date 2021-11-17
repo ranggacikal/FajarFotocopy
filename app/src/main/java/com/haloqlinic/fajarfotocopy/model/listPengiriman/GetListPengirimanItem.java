@@ -31,6 +31,9 @@ public class GetListPengirimanItem{
 	@SerializedName("harga_jual_toko_pack")
 	private String hargaJualTokoPack;
 
+	@SerializedName("number_of_pack")
+	private String numberOfPack;
+
 	@SerializedName("id_outlet")
 	private String idOutlet;
 
@@ -118,6 +121,14 @@ public class GetListPengirimanItem{
 		return hargaJualTokoPack;
 	}
 
+	public void setNumberOfPack(String numberOfPack){
+		this.numberOfPack = numberOfPack;
+	}
+
+	public String getNumberOfPack(){
+		return numberOfPack;
+	}
+
 	public void setIdOutlet(String idOutlet){
 		this.idOutlet = idOutlet;
 	}
@@ -171,6 +182,7 @@ public class GetListPengirimanItem{
 			",id_barang = '" + idBarang + '\'' + 
 			",status_pengiriman = '" + statusPengiriman + '\'' + 
 			",harga_jual_toko_pack = '" + hargaJualTokoPack + '\'' + 
+			",number_of_pack = '" + numberOfPack + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",status_barang = '" + statusBarang + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 

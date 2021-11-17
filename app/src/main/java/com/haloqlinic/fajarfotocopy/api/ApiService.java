@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.api;
 import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
+import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
@@ -219,6 +220,7 @@ public interface ApiService {
     Call<ResponseTambahPengiriman> tambahPengiriman(@Field("id_barang") String id_barang,
                                                     @Field("jumlah") String jumlah,
                                                     @Field("jumlah_pack") String jumlah_pack,
+                                                    @Field("number_of_pack") String number_of_pack,
                                                     @Field("id_outlet") String id_outlet,
                                                     @Field("id_status_pengiriman") String id_status_pengiriman,
                                                     @Field("status_barang") String status_barang);
@@ -292,6 +294,7 @@ public interface ApiService {
                                                         @Field("harga_jual_pack") String harga_jual_pack,
                                                         @Field("stock") String stock,
                                                         @Field("jumlah_pack") String jumlah_pack,
+                                                        @Field("number_of_pack") String number_of_pack,
                                                         @Field("diskon") String diskon,
                                                         @Field("diskon_pack") String diskon_pack,
                                                         @Field("id_outlet") String id_outlet);
@@ -691,5 +694,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("hapusPenjualan")
     Call<ResponseHapusPenjualan> hapusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("editPackBarangOutlet")
+    Call<ResponseEditJumlahPackOutlet> editPackOutlet(@Field("id_barang_outlet") String id_barang_outlet,
+                                                      @Field("jumlah_pack") String jumlah_pack);
 
 }

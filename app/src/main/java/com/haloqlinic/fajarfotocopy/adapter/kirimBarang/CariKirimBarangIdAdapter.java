@@ -1,8 +1,11 @@
 package com.haloqlinic.fajarfotocopy.adapter.kirimBarang;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +47,7 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
 
     String id_barang = "";
     Dialog dialog;
+    int number_of_pack;
 
     public CariKirimBarangIdAdapter(Context context, List<SearchBarangByIdItem> dataCariBarang, KirimBarangGudangActivity kirimBarangGudangActivity) {
         this.context = context;
@@ -59,7 +63,7 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
         return new CariKirimBarangIdAdapter.CariKirimBarangIdViewHolder(view);    }
 
     @Override
-    public void onBindViewHolder(@NonNull CariKirimBarangIdViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CariKirimBarangIdViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         String img = dataCariBarang.get(position).getImageBarang();
         String nama_barang = dataCariBarang.get(position).getNamaBarang();
@@ -78,7 +82,8 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
                 id_barang = dataCariBarang.get(position).getIdBarang();
                 int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
                 int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
-                tampilDialog(stockPack, stockPcs);
+                number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
+                tampilDialog(stockPack, stockPcs, number_of_pack);
             }
         });
 
@@ -90,13 +95,14 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
                         id_barang = dataCariBarang.get(position).getIdBarang();
                         int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
                         int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
-                        tampilDialog(stockPack, stockPcs);
+                        int number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
+                        tampilDialog(stockPack, stockPcs, number_of_pack);
                     }
                 });
 
     }
 
-    private void tampilDialog(int stockPack, int stockPcs) {
+    private void tampilDialog(int stockPack, int stockPcs, int number_of_pack) {
 
         dialog = new Dialog(context);
 
@@ -107,6 +113,32 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
         final EditText edtPack = dialog.findViewById(R.id.edt_dialog_qty_pack);
         final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang);
         final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang);
+
+        edtQty.setEnabled(false);
+
+        edtPack.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String jumlah_pack = edtPack.getText().toString();
+
+                if (jumlah_pack.equals("")){
+                    edtQty.setText("");
+                }else{
+                    int total_qty = Integer.parseInt(jumlah_pack) * number_of_pack;
+                    edtQty.setText(String.valueOf(total_qty));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         dialog.show();
 
@@ -148,7 +180,8 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
         progressDialog.setMessage("Menambahkan Barang Ke Pengiriman barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, id_toko, id_status, "pending")
+        ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, String.valueOf(number_of_pack),
+                id_toko, id_status, "pending")
                 .enqueue(new Callback<ResponseTambahPengiriman>() {
                     @Override
                     public void onResponse(Call<ResponseTambahPengiriman> call, Response<ResponseTambahPengiriman> response) {

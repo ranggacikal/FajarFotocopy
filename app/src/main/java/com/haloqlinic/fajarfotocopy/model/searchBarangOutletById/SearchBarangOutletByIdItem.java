@@ -22,6 +22,9 @@ public class SearchBarangOutletByIdItem{
 	@SerializedName("id_barang")
 	private String idBarang;
 
+	@SerializedName("number_of_pack")
+	private String numberOfPack;
+
 	@SerializedName("id_outlet")
 	private String idOutlet;
 
@@ -91,6 +94,14 @@ public class SearchBarangOutletByIdItem{
 		return idBarang;
 	}
 
+	public void setNumberOfPack(String numberOfPack){
+		this.numberOfPack = numberOfPack;
+	}
+
+	public String getNumberOfPack(){
+		return numberOfPack;
+	}
+
 	public void setIdOutlet(String idOutlet){
 		this.idOutlet = idOutlet;
 	}
@@ -157,6 +168,7 @@ public class SearchBarangOutletByIdItem{
 			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
 			",diskon_pack = '" + diskonPack + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
+			",number_of_pack = '" + numberOfPack + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 

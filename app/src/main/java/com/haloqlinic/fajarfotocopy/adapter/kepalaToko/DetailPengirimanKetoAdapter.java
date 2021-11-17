@@ -56,7 +56,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
     DetailPengirimanKetoActivity detailPengirimanKetoActivity;
 
     String id_pengiriman, id_barang, id_outlet, jumlah_pcs, jumlah_pack, img_barang, hargaPcs,
-            hargaPack, diskon, diskonPack, id_status_pengiriman, status_barang;
+            hargaPack, diskon, diskonPack, id_status_pengiriman, status_barang, number_of_pack;
     Dialog dialog;
 
     public DetailPengirimanKetoAdapter(Context context, List<GetListPengirimanItem> listPengiriman, DetailPengirimanKetoActivity detailPengirimanKetoActivity) {
@@ -135,7 +135,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         id_pengiriman = listPengiriman.get(position).getIdPengiriman();
                         id_status_pengiriman = listPengiriman.get(position).getIdStatusPengiriman();
                         status_barang = listPengiriman.get(position).getStatusBarang();
-
+                        number_of_pack = listPengiriman.get(position).getNumberOfPack();
                         hargaPcs = listPengiriman.get(position).getHargaJualToko();
                         hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
                         tampilDialog();
@@ -376,6 +376,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 }else{
                     Toast.makeText(context, "Terjadi kesalahan dalam validasi stock ke gudang",
                             Toast.LENGTH_SHORT).show();
+                    Log.d("TraceError", "validasi: "+response.errorBody());
                 }
             }
 
@@ -401,7 +402,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
         progressDialog.show();
 
         ConfigRetrofit.service.tambahBarangOutlet(id_barang_outlet, id_barang, hargaPcs, hargaPack,
-                jumlah_pcs, jumlah_pack, "0", "0", id_outlet)
+                jumlah_pcs, jumlah_pack, number_of_pack, "0", "0", id_outlet)
                 .enqueue(new Callback<ResponseTambahBarangOutlet>() {
                     @Override
                     public void onResponse(Call<ResponseTambahBarangOutlet> call, Response<ResponseTambahBarangOutlet> response) {
@@ -424,6 +425,8 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         }else{
                             progressDialog.dismiss();
                             Toast.makeText(context, "Terjadi kesalahan diserver", Toast.LENGTH_SHORT).show();
+                            Log.d("TraceError", "tambahBarangOutlet: "+response.errorBody());
+                            Log.d("TraceError", "numberOfPack: "+number_of_pack);
                         }
                     }
 
