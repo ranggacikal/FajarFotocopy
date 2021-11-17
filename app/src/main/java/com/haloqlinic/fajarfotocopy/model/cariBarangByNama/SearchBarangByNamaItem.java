@@ -37,6 +37,9 @@ public class SearchBarangByNamaItem{
 	@SerializedName("harga_jual_toko_pack")
 	private String hargaJualTokoPack;
 
+	@SerializedName("number_of_pack")
+	private String numberOfPack;
+
 	@SerializedName("nama_barang")
 	private String namaBarang;
 
@@ -140,6 +143,14 @@ public class SearchBarangByNamaItem{
 		return hargaJualTokoPack;
 	}
 
+	public void setNumberOfPack(String numberOfPack){
+		this.numberOfPack = numberOfPack;
+	}
+
+	public String getNumberOfPack(){
+		return numberOfPack;
+	}
+
 	public void setNamaBarang(String namaBarang){
 		this.namaBarang = namaBarang;
 	}
@@ -195,6 +206,7 @@ public class SearchBarangByNamaItem{
 			",diskon_pack = '" + diskonPack + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
 			",harga_jual_toko_pack = '" + hargaJualTokoPack + '\'' + 
+			",number_of_pack = '" + numberOfPack + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
 			",stock = '" + stock + '\'' + 
 			",harga_jual_toko = '" + hargaJualToko + '\'' + 

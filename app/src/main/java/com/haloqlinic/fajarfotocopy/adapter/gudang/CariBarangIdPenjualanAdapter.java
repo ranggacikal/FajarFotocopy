@@ -177,7 +177,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
             numberPicker = itemView.findViewById(R.id.elegant_nb_item_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
-            edtJumlahPack = itemView.findViewById(R.id.edt_jumlah_pack_item_barang);
+            edtJumlahPack = itemView.findViewById(R.id.edt_jumlah_pcs_item_barang);
         }
     }
 }

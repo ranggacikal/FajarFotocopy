@@ -20,7 +20,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
-import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
+import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -78,6 +78,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         holder.txtNama.setText(cariBarangOutlet.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
+        holder.lblJumlahPack.setVisibility(View.GONE);
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
@@ -122,17 +123,26 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
                         }
 
+                        String number_of_pack = cariBarangOutlet.get(position).getNumberOfPack();
+                        String stock = cariBarangOutlet.get(position).getStock();
+
+                        int kurangi_stock = Integer.parseInt(stock) - Integer.parseInt(number);
+                        int jumlah_pack_sisa = kurangi_stock / Integer.parseInt(number_of_pack);
+
                         String id_barang_outlet = cariBarangOutlet.get(position).getIdBarangOutlet();
                         String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
                         String id_barang = cariBarangOutlet.get(position).getIdBarang();
-                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang);
+
+                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
+                                String.valueOf(jumlah_pack_sisa));
 
                     }
                 });
 
     }
 
-    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan, String id_barang) {
+    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan,
+                                 String id_barang, String jumlah_pack_sisa) {
 
         preferencedConfig = new SharedPreferencedConfig(context);
 
@@ -163,6 +173,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
                     if (status == 1){
                         Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
+                        editJumlahPack(jumlah_pack_sisa, id_barang_outlet);
                     }else{
                         Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();
                     }
@@ -189,6 +200,38 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
     }
 
+    private void editJumlahPack(String jumlah_pack_sisa, String id_barang_outlet) {
+
+
+        ConfigRetrofit.service.editPackOutlet(id_barang_outlet, jumlah_pack_sisa)
+                .enqueue(new Callback<ResponseEditJumlahPackOutlet>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditJumlahPackOutlet> call, Response<ResponseEditJumlahPackOutlet> response) {
+                        if (response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+
+                                Toast.makeText(context, "Berhasil Edit Pack", Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                Toast.makeText(context, "Gagal Edit Pack", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(context, "Terjadi Kesalahan di server", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditJumlahPackOutlet> call, Throwable t) {
+                        Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
     @Override
     public int getItemCount() {
         return cariBarangOutlet.size();
@@ -197,7 +240,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     public class CariBarangOutletViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBarang;
-        TextView txtNama, txtHargaPcs, txtHargaPack;
+        TextView txtNama, txtHargaPcs, txtHargaPack, lblJumlahPack;
         ElegantNumberButton numberPicker;
         Button btnTambahPesanan;
 
@@ -209,6 +252,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
             numberPicker = itemView.findViewById(R.id.elegant_nb_item_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
+            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 }

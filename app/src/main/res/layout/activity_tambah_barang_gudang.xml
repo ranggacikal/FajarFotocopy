@@ -142,52 +142,74 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/sairamedium"
+            android:text="Jumlah Pack" />
+
+        <EditText
+            android:id="@+id/tambah_stock_barang_pack_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:padding="7dp"
+            android:background="@drawable/bg_rectangle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Jumlah Satuan dalam satu pack" />
+
+        <EditText
+            android:id="@+id/tambah_number_of_pack_barang_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:inputType="number"
+            android:fontFamily="@font/sairamedium"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:padding="7dp"
+            android:background="@drawable/bg_rectangle"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:fontFamily="@font/sairamedium"
             android:text="Stock Barang" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Pcs" />
+
+        <EditText
+            android:id="@+id/tambah_stock_barang_pcs_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="5dp"
+            android:inputType="number"
+            android:padding="7dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pcs" />
-
-            <EditText
-                android:id="@+id/tambah_stock_barang_pcs_gudang"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="10dp"
-                android:inputType="number"
-                android:padding="7dp"
-                android:background="@drawable/bg_rectangle"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginTop="10dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:fontFamily="@font/sairamedium"
-                android:text="Pack" />
-
-            <EditText
-                android:id="@+id/tambah_stock_barang_pack_gudang"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:inputType="number"
-                android:fontFamily="@font/sairamedium"
-                android:layout_marginStart="10dp"
-                android:padding="7dp"
-                android:background="@drawable/bg_rectangle"
-                android:layout_marginTop="10dp" />
 
         </LinearLayout>
 

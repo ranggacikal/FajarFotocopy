@@ -6,6 +6,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,13 +77,14 @@ public class CekStockAdapter extends RecyclerView.Adapter<CekStockAdapter.CekSto
                         String id_barang = dataBarang.get(position).getIdBarang();
                         String stock = dataBarang.get(position).getStock();
                         String jumlah_pack = dataBarang.get(position).getJumlahPack();
-                        tampilDialog(id_barang, stock, jumlah_pack);
+                        String number_of_pack = dataBarang.get(position).getNumberOfPack();
+                        tampilDialog(id_barang, stock, jumlah_pack, number_of_pack);
                     }
                 });
 
     }
 
-    private void tampilDialog(String id_barang, String stock, String jumlah_pack) {
+    private void tampilDialog(String id_barang, String stock, String jumlah_pack, String number_of_pack) {
 
         dialog = new Dialog(context);
 
@@ -91,6 +95,40 @@ public class CekStockAdapter extends RecyclerView.Adapter<CekStockAdapter.CekSto
         final EditText edtPack = dialog.findViewById(R.id.edt_dialog_pack_edit_stock);
         final TextView txtEdit = dialog.findViewById(R.id.text_dialog_edit_stock);
         final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_edit_stock);
+
+        edtPcs.setEnabled(false);
+
+        edtPack.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String jumlah_pack = edtPack.getText().toString();
+
+                Log.d("cekDataEditStock", "jumlah_pack: "+jumlah_pack);
+                Log.d("cekDataEditStock", "number_of_pack: "+number_of_pack);
+
+                if (jumlah_pack.equals("")){
+                    edtPcs.setText("0");
+                }else{
+                    int total_satuan = Integer.parseInt(number_of_pack) * Integer.parseInt(jumlah_pack);
+
+                    Log.d("cekDataEditStock", "total: "+total_satuan);
+                    edtPcs.setText(String.valueOf(total_satuan));
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 
         dialog.show();
