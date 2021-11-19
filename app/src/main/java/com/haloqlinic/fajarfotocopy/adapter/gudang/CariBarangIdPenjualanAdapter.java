@@ -23,6 +23,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
+import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
@@ -41,7 +42,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
     SupplierGudangActivity supplierGudangActivity;
 
     String number;
-    int total;
+    int total, edit_pack, jumlah_qty;
 
     public CariBarangIdPenjualanAdapter(Context context, List<SearchBarangByIdItem> dataBarang, SupplierGudangActivity supplierGudangActivity) {
         this.context = context;
@@ -65,11 +66,15 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
         holder.edtJumlahPack.setVisibility(View.VISIBLE);
+        holder.edtJumlahPack.setEnabled(false);
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 number = holder.numberPicker.getNumber();
+                int number_of_pack = Integer.parseInt(dataBarang.get(position).getNumberOfPack());
+                int stock_db = Integer.parseInt(dataBarang.get(position).getStock());
+                int jumlah_kurang = 0;
                 int stock = Integer.parseInt(dataBarang.get(position).getStock());
                 if (number.equals("0")){
                     Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
@@ -78,7 +83,11 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
                 }else{
-                    total = Integer.parseInt(number) * Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+                    jumlah_qty = Integer.parseInt(number) * number_of_pack;
+                    holder.edtJumlahPack.setText(String.valueOf(jumlah_qty));
+                    total = jumlah_qty * Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+                    jumlah_kurang = stock_db - jumlah_qty;
+                    edit_pack = jumlah_kurang/number_of_pack;
                     Log.d("testTotal", "number: "+number+" harga: "+dataBarang.get(position).getHargaModalToko()+" total: "+total);
                 }
 
@@ -109,9 +118,12 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
                         }
                         String jumlah_pack = holder.edtJumlahPack.getText().toString();
+
+                        Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
+
                         String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
                         String id_barang = dataBarang.get(position).getIdBarang();
-                        tambahPenjualanGudang(id_status_penjualan, id_barang, jumlah_pack);
+                        tambahPenjualanGudang(id_status_penjualan, id_barang, number);
 
                     }
                 });
@@ -138,6 +150,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
                                 Toast.makeText(context, "Berhasil Menambahkan Barang",
                                         Toast.LENGTH_SHORT).show();
+                                editPack(id_barang);
 
                             }else{
                                 Toast.makeText(context, "Gagal Menambahkan, Silahkan coba lagi",
@@ -153,6 +166,35 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                     public void onFailure(Call<ResponseTambahPenjualan> call, Throwable t) {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void editPack(String id_barang) {
+
+        ConfigRetrofit.service.editPackBarang(id_barang, String.valueOf(edit_pack))
+                .enqueue(new Callback<ResponseEditPackBarang>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditPackBarang> call, Response<ResponseEditPackBarang> response) {
+                        if (response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+                                Toast.makeText(context, "Berhasil Edit Pack", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(context, "Gagal Edit Pack", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(context, "Response error", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditPackBarang> call, Throwable t) {
+                        Toast.makeText(context, "koneksi error", Toast.LENGTH_SHORT).show();
                     }
                 });
 
