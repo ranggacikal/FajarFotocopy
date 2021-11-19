@@ -69,8 +69,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String harga_jual_toko_pack = getIntent().getStringExtra("harga_jual_toko_pack");
         String asal_barang = getIntent().getStringExtra("asal_barang");
         String jumlah_pack = getIntent().getStringExtra("jumlah_pack");
-        String diskon = getIntent().getStringExtra("diskon");
-        String diskon_pack = getIntent().getStringExtra("diskon_pack");
+//        String diskon = getIntent().getStringExtra("diskon");
+//        String diskon_pack = getIntent().getStringExtra("diskon_pack");
         String image = getIntent().getStringExtra("image");
         String number_of_pack_intent = getIntent().getStringExtra("number_of_pack");
 
@@ -84,8 +84,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         binding.edtHargaModalTokoPackEdit.setText(harga_modal_toko_pack);
         binding.edtHargaJualTokoPackEdit.setText(harga_jual_toko_pack);
         binding.edtAsalBarangGudang.setText(asal_barang);
-        binding.edtDiskonBarangPackGudang.setText(diskon);
-        binding.edtDiskonBarangPcsGudang.setText(diskon_pack);
+//        binding.edtDiskonBarangPackGudang.setText(diskon);
+//        binding.edtDiskonBarangPcsGudang.setText(diskon_pack);
         binding.edtKodeBarcodeBarangGudang.setText(id_barang);
         binding.edtStockNumberOfPackGudang.setText(number_of_pack_intent);
         binding.edtStockBarangPcsGudang.setEnabled(false);
@@ -145,6 +145,15 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         pilihGambar();
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackDetailBarangStockGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
                     }
                 });
 
