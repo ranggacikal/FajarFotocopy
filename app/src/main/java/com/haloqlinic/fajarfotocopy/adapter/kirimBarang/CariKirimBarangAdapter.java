@@ -116,6 +116,13 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang);
         final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang);
 
+        if (number_of_pack==0){
+            Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
+                    "data terlebih dahulu", Toast.LENGTH_LONG).show();
+            edtQty.setEnabled(false);
+            edtPack.setEnabled(false);
+        }
+
         edtQty.setEnabled(false);
 
         edtPack.addTextChangedListener(new TextWatcher() {

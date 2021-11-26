@@ -200,7 +200,7 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
         progressDialog.show();
 
         ConfigRetrofit.service.editBarangToko(id_barang_outlet, id_barang, harga_jual, harga_jual_pack, stock,
-                stock_pack, "0", "0", id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
+                stock_pack, id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
             @Override
             public void onResponse(Call<ResponseEditBarangToko> call, Response<ResponseEditBarangToko> response) {
                 if (response.isSuccessful()){

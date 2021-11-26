@@ -103,6 +103,8 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
                         Toast.makeText(context, "Jumlah satuan dalam pack barang ini 0," +
                                         " Silahkan edit data kembali",
                                 Toast.LENGTH_SHORT).show();
+                        holder.numberPicker.setNumber("0");
+
                     }
                     Log.d("testJumlah", "jumlah kurang: "+jumlah_kurang);
                     Log.d("testJumlah", "stock_db: "+stock_db);

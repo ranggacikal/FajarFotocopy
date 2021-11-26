@@ -77,8 +77,8 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                 int jumlah_kurang = 0;
                 int stock = Integer.parseInt(dataBarang.get(position).getStock());
                 if (number.equals("0")){
-                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-                    holder.numberPicker.setNumber("1");
+//                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
+                    holder.numberPicker.setNumber("0");
                 }else if (Integer.parseInt(number) > stock ){
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
@@ -87,7 +87,15 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                     holder.edtJumlahPack.setText(String.valueOf(jumlah_qty));
                     total = jumlah_qty * Integer.parseInt(dataBarang.get(position).getHargaModalToko());
                     jumlah_kurang = stock_db - jumlah_qty;
-                    edit_pack = jumlah_kurang/number_of_pack;
+                    if(number_of_pack!=0) {
+                        edit_pack = jumlah_kurang / number_of_pack;
+                    }else{
+                        Toast.makeText(context, "Jumlah satuan dalam pack barang ini 0," +
+                                        " Silahkan edit data kembali",
+                                Toast.LENGTH_SHORT).show();
+                        holder.numberPicker.setNumber("0");
+
+                    }
                     Log.d("testTotal", "number: "+number+" harga: "+dataBarang.get(position).getHargaModalToko()+" total: "+total);
                 }
 
