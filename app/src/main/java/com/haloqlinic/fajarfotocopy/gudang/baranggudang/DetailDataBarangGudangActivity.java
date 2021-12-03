@@ -116,6 +116,31 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
             }
         });
 
+        binding.edtStockNumberOfPackGudang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String jml_pack = binding.edtStockBarangPackGudang.getText().toString();
+                number_of_pack = binding.edtStockNumberOfPackGudang.getText().toString();
+
+                if (number_of_pack.equals("")){
+                    binding.edtStockBarangPcsGudang.setText("0");
+                }else {
+                    jumlah_pcs = Integer.parseInt(jml_pack) * Integer.parseInt(number_of_pack);
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         Glide.with(DetailDataBarangGudangActivity.this)
                 .load(image)
                 .error(R.drawable.icon_img_error)
