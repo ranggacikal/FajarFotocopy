@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="tosca">#5DE1E6</color>
     <color name="blue">#3051FF</color>
-    <color name="red">#FF0000</color>
-    <color name="blue2">#00C2FF</color>
+    <color name="red">#FF4040</color>
+    <color name="blue2">#4F6BFF</color>
     <color name="gold">#D4B44E</color>
 
 </resources>
