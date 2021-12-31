@@ -259,43 +259,32 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
             return;
         }
 
-        ProgressDialog progressDialog = new ProgressDialog(DetailBarangStockGudangActivity.this);
-        progressDialog.setMessage("Memproses Edit Data");
-        progressDialog.show();
-
         ConfigRetrofit.service.editBarangToko(id_barang_outlet, id_barang, harga_jual, harga_jual_pack, stock,
                 stock_pack, number_of_pack, id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
             @Override
             public void onResponse(Call<ResponseEditBarangToko> call, Response<ResponseEditBarangToko> response) {
                 if (response.isSuccessful()){
 
-                    progressDialog.dismiss();
-
                     int status = response.body().getStatus();
 
                     if (status==1){
 
-                        progressDialog.dismiss();
                         Toast.makeText(DetailBarangStockGudangActivity.this, "Berhasil edit data", Toast.LENGTH_SHORT).show();
                         finish();
 
                     }else{
-
-                        progressDialog.dismiss();
                         Toast.makeText(DetailBarangStockGudangActivity.this, "Gagal edit data", Toast.LENGTH_SHORT).show();
 
 
                     }
 
                 }else{
-                    progressDialog.dismiss();
                     Toast.makeText(DetailBarangStockGudangActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseEditBarangToko> call, Throwable t) {
-                progressDialog.dismiss();
                 Toast.makeText(DetailBarangStockGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
