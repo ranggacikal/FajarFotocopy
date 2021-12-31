@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -50,6 +52,7 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
         binding.edtHargaJualDetailBarangPackGudang.setText(getIntent().getStringExtra("harga_jual_pack"));
         binding.edtDiskonBarangPcsGudang.setText(getIntent().getStringExtra("diskon"));
         binding.edtDiskonBarangPackGudang.setText(getIntent().getStringExtra("diskon_pack"));
+        binding.edtNumberOfPackStockBarangTokoGudang.setText(getIntent().getStringExtra("number_of_pack"));
 
         PushDownAnim.setPushDownAnimTo(binding.btnEditBarangGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -68,6 +71,60 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
                         tampilDialog();
                     }
                 });
+
+        binding.edtNumberOfPackStockBarangTokoGudang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String number_of_pack = binding.edtNumberOfPackStockBarangTokoGudang.getText().toString();
+                int jumlah_pack = Integer.parseInt(getIntent().getStringExtra("jumlah_pack"));
+                int jumlah_pcs = 0;
+                if (number_of_pack.equals("")) {
+                    jumlah_pcs = jumlah_pack * 0;
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }else{
+                    jumlah_pcs = jumlah_pack * Integer.parseInt(number_of_pack);
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        binding.edtStockBarangPackGudang.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String jumlah_pack = binding.edtStockBarangPackGudang.getText().toString();
+                int number_of_pack = Integer.parseInt(getIntent().getStringExtra("number_of_pack"));
+                int jumlah_pcs = 0;
+
+                if (jumlah_pack.equals("")){
+                    jumlah_pcs = number_of_pack * 0;
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }else{
+                    jumlah_pcs = number_of_pack * Integer.parseInt(jumlah_pack);
+                    binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -169,6 +226,7 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
         String harga_jual_pack = binding.edtHargaJualDetailBarangPackGudang.getText().toString();
         String stock = binding.edtStockBarangPcsGudang.getText().toString();
         String stock_pack = binding.edtStockBarangPackGudang.getText().toString();
+        String number_of_pack = binding.edtNumberOfPackStockBarangTokoGudang.getText().toString();
         String id_outlet = getIntent().getStringExtra("id_outlet");
 
         if (harga_jual.isEmpty()){
@@ -195,12 +253,18 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
             return;
         }
 
+        if (number_of_pack.isEmpty()){
+            binding.edtNumberOfPackStockBarangTokoGudang.setError("Field Tidak Boleh Kosong");
+            binding.edtNumberOfPackStockBarangTokoGudang.requestFocus();
+            return;
+        }
+
         ProgressDialog progressDialog = new ProgressDialog(DetailBarangStockGudangActivity.this);
         progressDialog.setMessage("Memproses Edit Data");
         progressDialog.show();
 
         ConfigRetrofit.service.editBarangToko(id_barang_outlet, id_barang, harga_jual, harga_jual_pack, stock,
-                stock_pack, id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
+                stock_pack, number_of_pack, id_outlet).enqueue(new Callback<ResponseEditBarangToko>() {
             @Override
             public void onResponse(Call<ResponseEditBarangToko> call, Response<ResponseEditBarangToko> response) {
                 if (response.isSuccessful()){

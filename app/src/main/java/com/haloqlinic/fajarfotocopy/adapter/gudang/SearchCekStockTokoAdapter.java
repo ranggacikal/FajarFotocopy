@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -43,7 +44,8 @@ public class SearchCekStockTokoAdapter extends RecyclerView.Adapter<SearchCekSto
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull SearchCekStokTokoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull SearchCekStokTokoViewHolder holder,
+                                 @SuppressLint("RecyclerView") int position) {
 
         String urlImage = dataSearchStock.get(position).getImageBarang();
 
@@ -79,6 +81,7 @@ public class SearchCekStockTokoAdapter extends RecyclerView.Adapter<SearchCekSto
                         intent.putExtra("harga_jual_pack", dataSearchStock.get(position).getHargaJualPack());
                         intent.putExtra("diskon", dataSearchStock.get(position).getDiskon());
                         intent.putExtra("diskon_pack", dataSearchStock.get(position).getDiskonPack());
+                        intent.putExtra("number_of_pack", dataSearchStock.get(position).getNumberOfPack());
                         context.startActivity(intent);
                     }
                 });

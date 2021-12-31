@@ -98,7 +98,13 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
                         int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
                         int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
                         number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
-                        tampilDialog(stockPack, stockPcs, number_of_pack);
+
+                        if (number_of_pack==0){
+                            Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
+                                    "data terlebih dahulu", Toast.LENGTH_LONG).show();
+                        }else {
+                            tampilDialog(stockPack, stockPcs, number_of_pack);
+                        }
                     }
                 });
 
@@ -115,13 +121,6 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         final EditText edtPack = dialog.findViewById(R.id.edt_dialog_qty_pack);
         final TextView txtTambahBarang = dialog.findViewById(R.id.text_dialog_tambah_barang);
         final TextView txtCancel = dialog.findViewById(R.id.text_dialog_cancel_tambah_barang);
-
-        if (number_of_pack==0){
-            Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
-                    "data terlebih dahulu", Toast.LENGTH_LONG).show();
-            edtQty.setEnabled(false);
-            edtPack.setEnabled(false);
-        }
 
         edtQty.setEnabled(false);
 

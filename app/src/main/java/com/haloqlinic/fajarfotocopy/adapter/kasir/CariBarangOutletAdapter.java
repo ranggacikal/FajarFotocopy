@@ -79,21 +79,32 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
         holder.lblJumlahPack.setVisibility(View.GONE);
+        holder.btnTambahPesanan.setEnabled(false);
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
             public void onClick(View view) {
                 number = holder.numberPicker.getNumber();
                 int stock = Integer.parseInt(cariBarangOutlet.get(position).getStock());
-                if (number.equals("0")){
+                int jumlah_satuan_pack = Integer.parseInt(cariBarangOutlet.get(position).getNumberOfPack());
+
+                if (jumlah_satuan_pack == 0 || jumlah_satuan_pack<0){
+                    Toast.makeText(context, "Jumlah satuan dalam pack di data ini adalah 0, " +
+                                    "silahkan hubungi bagian gudang untuk edit Data ini",
+                            Toast.LENGTH_LONG).show();
+                    holder.numberPicker.setNumber("0");
+                }else if (number.equals("0")){
 //                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber("0");
                 }else if (Integer.parseInt(number) > stock ){
                     Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
                     holder.numberPicker.setNumber(String.valueOf(stock));
                 }else{
-                    total = Integer.parseInt(number) * Integer.parseInt(cariBarangOutlet.get(position).getHargaJual());
-                    Log.d("testTotal", "number: "+number+" harga: "+cariBarangOutlet.get(position).getHargaJual()+" total: "+total);
+                    total = Integer.parseInt(number) * Integer.parseInt(cariBarangOutlet
+                            .get(position).getHargaJual());
+                    holder.btnTambahPesanan.setEnabled(true);
+                    Log.d("testTotal", "number: "+number+" harga: "+cariBarangOutlet
+                            .get(position).getHargaJual()+" total: "+total);
                 }
 
             }
@@ -117,7 +128,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                         if (number!=null) {
 
                             if (number.equals("0")) {
-                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0",
+                                        Toast.LENGTH_SHORT).show();
                                 return;
                             }
 

@@ -28,6 +28,9 @@ public class SearchStockByTokoItem{
 	@SerializedName("id_barang")
 	private String idBarang;
 
+	@SerializedName("number_of_pack")
+	private String numberOfPack;
+
 	@SerializedName("id_outlet")
 	private String idOutlet;
 
@@ -113,6 +116,14 @@ public class SearchStockByTokoItem{
 		return idBarang;
 	}
 
+	public void setNumberOfPack(String numberOfPack){
+		this.numberOfPack = numberOfPack;
+	}
+
+	public String getNumberOfPack(){
+		return numberOfPack;
+	}
+
 	public void setIdOutlet(String idOutlet){
 		this.idOutlet = idOutlet;
 	}
@@ -181,6 +192,7 @@ public class SearchStockByTokoItem{
 			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",diskon_pack = '" + diskonPack + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
+			",number_of_pack = '" + numberOfPack + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 
