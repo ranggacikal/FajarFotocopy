@@ -13,6 +13,9 @@ public class IdBarangOutletItem{
 	@SerializedName("harga_jual_pack")
 	private String hargaJualPack;
 
+	@SerializedName("number_of_pack")
+	private String numberOfPack;
+
 	@SerializedName("id_outlet")
 	private String idOutlet;
 
@@ -53,6 +56,14 @@ public class IdBarangOutletItem{
 
 	public String getHargaJualPack(){
 		return hargaJualPack;
+	}
+
+	public void setNumberOfPack(String numberOfPack){
+		this.numberOfPack = numberOfPack;
+	}
+
+	public String getNumberOfPack(){
+		return numberOfPack;
 	}
 
 	public void setIdOutlet(String idOutlet){
@@ -110,6 +121,7 @@ public class IdBarangOutletItem{
 			"diskon_pack = '" + diskonPack + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
 			",harga_jual_pack = '" + hargaJualPack + '\'' + 
+			",number_of_pack = '" + numberOfPack + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 
 			",stock = '" + stock + '\'' + 
