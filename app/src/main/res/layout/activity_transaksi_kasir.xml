@@ -106,6 +106,19 @@
             android:textSize="10sp"
             android:visibility="gone"/>
 
+        <TextView
+            android:id="@+id/txt_data_kosong_kasir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DATA KOSONG"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:layout_marginHorizontal="10dp"
+            android:fontFamily="@font/sairabold"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

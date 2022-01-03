@@ -256,6 +256,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
         if (textCari.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
+            binding.txtDataKosongKasir.setVisibility(View.GONE);
         }else {
             binding.recyclerBarangOutletBarcode.setVisibility(View.GONE);
             binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
@@ -268,13 +269,19 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                                 int status = response.body().getStatus();
 
                                 if (status==1) {
+                                    binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
                                     List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
 
                                     CariBarangOutletAdapter adapterNama = new CariBarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
                                     binding.recyclerBarangOutlet.setAdapter(adapterNama);
+                                    binding.txtDataKosongKasir.setVisibility(View.GONE);
                                 }else{
-                                    Toast.makeText(TransaksiKasirActivity.this, "Kosong", Toast.LENGTH_SHORT).show();
+                                    binding.txtDataKosongKasir.setVisibility(View.VISIBLE);
+                                    binding.txtDataKosongKasir.setText("Data pencarian dengan nama" +
+                                            " '"+textCari+"' "+"tidak ditemukan atau\ntidak ada " +
+                                            "dalam data toko ini");
+                                    binding.recyclerBarangOutlet.setVisibility(View.GONE);
                                 }
 
                             } else {

@@ -194,14 +194,9 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
     }
 
 
-    private void loadDataCari(String newText) {
-
-        ProgressDialog progressDialogBarang = new ProgressDialog(KirimBarangGudangActivity.this);
-        progressDialogBarang.setMessage("Mencari data barang");
-        progressDialogBarang.show();
+    public void loadDataCari(String newText) {
 
         if (newText.equals("")){
-            progressDialogBarang.dismiss();
             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
         }else {
 
@@ -209,8 +204,6 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<ResponseCariBarangByNama> call, Response<ResponseCariBarangByNama> response) {
                     if (response.isSuccessful()) {
-
-                        progressDialogBarang.dismiss();
 
                         int status = response.body().getStatus();
                         List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
@@ -231,7 +224,6 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                         }
 
                     } else {
-                        progressDialogBarang.dismiss();
                         Toast.makeText(KirimBarangGudangActivity.this, "Terjadi kesalahan diserver", Toast.LENGTH_SHORT).show();
                         binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
                     }
@@ -239,7 +231,6 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<ResponseCariBarangByNama> call, Throwable t) {
-                    progressDialogBarang.dismiss();
                     Toast.makeText(KirimBarangGudangActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
                     binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
                 }

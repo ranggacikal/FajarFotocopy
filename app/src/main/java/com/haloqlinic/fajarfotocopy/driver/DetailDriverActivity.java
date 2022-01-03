@@ -74,8 +74,9 @@ public class DetailDriverActivity extends AppCompatActivity {
                             intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(DetailDriverActivity.this, "Surat jalan Supplier masih dalam tahap pembuatan",
-                                    Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(DetailDriverActivity.this, WebViewSuratJalanActivity.class);
+                            intent.putExtra("id_status_pengiriman", id_status_pengiriman);
+                            startActivity(intent);
                         }
                     }
                 });

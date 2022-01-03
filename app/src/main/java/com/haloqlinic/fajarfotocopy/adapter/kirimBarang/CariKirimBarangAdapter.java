@@ -1,12 +1,9 @@
 package com.haloqlinic.fajarfotocopy.adapter.kirimBarang;
 
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.media.Image;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -29,16 +26,18 @@ import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangAc
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.hapusMintaBarang.ResponseHapusMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
+import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarangAdapter.CariKirimBarangViewHolder> {
 
@@ -84,8 +83,14 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
                 id_barang = dataCariBarang.get(position).getIdBarang();
                 int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
                 int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
-                int number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
-                tampilDialog(stockPack, stockPcs, number_of_pack);
+                number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
+
+                if (number_of_pack==0){
+                    Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
+                            "data terlebih dahulu", Toast.LENGTH_LONG).show();
+                }else {
+                    tampilDialog(stockPack, stockPcs, number_of_pack);
+                }
             }
         });
 
@@ -189,6 +194,8 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
         progressDialog.setMessage("Menambahkan Barang Ke Pengiriman barang");
         progressDialog.show();
 
+        Log.d("cekNumberOPPengiriman", "tambahPengiriman: "+number_of_pack);
+
         ConfigRetrofit.service.tambahPengiriman(id_barang, qty, pack, String.valueOf(number_of_pack),
                 id_toko, id_status, "pending")
                 .enqueue(new Callback<ResponseTambahPengiriman>() {
@@ -200,11 +207,15 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
 
                             if (status == 1) {
                                 Toast.makeText(context, "Berhasil Menambahkan data", Toast.LENGTH_SHORT).show();
+                                kurangiStock(id_barang, qty, pack, stockPack, stockPcs);
                                 String id_minta_barang = kirimBarangGudangActivity.id_minta_barang;
                                 if (id_minta_barang!=null) {
                                     hapusMintaBarang(id_minta_barang);
                                 }
                                 dialog.dismiss();
+                                CariKirimBarangAdapter adapter = new CariKirimBarangAdapter(context,
+                                        dataCariBarang, kirimBarangGudangActivity);
+                                adapter.notifyDataSetChanged();
                             } else {
                                 Toast.makeText(context, "Gagal Menambahkan Data", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
@@ -230,12 +241,44 @@ public class CariKirimBarangAdapter extends RecyclerView.Adapter<CariKirimBarang
 
     }
 
+    private void kurangiStock(String id_barang, String qty, String pack, int stockPack, int stockPcs) {
+
+        int updateStock = stockPcs - Integer.parseInt(qty) ;
+        int updatePack =  stockPack - Integer.parseInt(pack);
+
+        ConfigRetrofit.service.updateStockPengiriman(id_barang, String.valueOf(updateStock), String.valueOf(updatePack))
+                .enqueue(new Callback<ResponseUpdateStockPengiriman>() {
+                    @Override
+                    public void onResponse(Call<ResponseUpdateStockPengiriman> call, Response<ResponseUpdateStockPengiriman> response) {
+                        if (response.isSuccessful()) {
+
+                            int status = response.body().getStatus();
+                            if (status == 1) {
+                                Log.d("SuksesUpdateStock", "onResponse: Update Stock Berhasil");
+                                CariKirimBarangAdapter adapter = new CariKirimBarangAdapter(context, dataCariBarang, kirimBarangGudangActivity);
+                                adapter.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(context, "Gagal update stock", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            Toast.makeText(context, "Terjadi kesalahan saat update stock", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseUpdateStockPengiriman> call, Throwable t) {
+                        Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void hapusMintaBarang(String id_minta_barang) {
 
         ConfigRetrofit.service.hapusMintaBarang(id_minta_barang).enqueue(new Callback<ResponseHapusMintaBarang>() {
             @Override
             public void onResponse(Call<ResponseHapusMintaBarang> call, Response<ResponseHapusMintaBarang> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
 

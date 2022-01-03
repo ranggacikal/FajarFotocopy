@@ -23,6 +23,8 @@ import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity;
+import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
+import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.editBarangOutlet.ResponseEditBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPengiriman.ResponseEditPengiriman;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.IdBarangOutletItem;
@@ -32,6 +34,7 @@ import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.GetStockByIdBarangItem;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.ResponseStockByIdBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
+import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
@@ -138,6 +141,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         number_of_pack = listPengiriman.get(position).getNumberOfPack();
                         hargaPcs = listPengiriman.get(position).getHargaJualToko();
                         hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
+                        Log.d("cekNumberOfpack", "clickTerima: "+number_of_pack);
                         tampilDialog();
                     }
                 });
@@ -242,6 +246,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             String pesan = response.body().getPesan();
 
                             if (status==1){
+                                updateStockTolak(id_barang, jumlah_pcs, jumlah_pack);
                                 Log.d("editHapusPengiriman", "onResponse: "+"berhasil");
                                 Toast.makeText(context, "Berhasil menolak barang", Toast.LENGTH_SHORT).show();
                                 detailPengirimanKetoActivity.loadDetailPengiriman();
@@ -266,6 +271,77 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     }
                 });
 
+
+    }
+
+    private void updateStockTolak(String id_barang, String jumlah_pcs, String jumlah_pack) {
+
+        ConfigRetrofit.service.cariBarangById(id_barang).enqueue(new Callback<ResponseCariBarangById>() {
+            @Override
+            public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
+                if (response.isSuccessful()){
+
+                    int status = response.body().getStatus();
+                    String stockAwal = "", packAwal = "";
+
+                    if(status==1){
+
+                        List<SearchBarangByIdItem> dataCari = response.body().getSearchBarangById();
+                        for (int i = 0; i<dataCari.size(); i++){
+                            stockAwal = dataCari.get(i).getStock();
+                            packAwal = dataCari.get(i).getJumlahPack();
+                        }
+
+                        tambahStockAwal(id_barang, jumlah_pcs, jumlah_pack, stockAwal, packAwal);
+
+                    }else{
+                        Toast.makeText(context, "Gagal Get Detail Barang", Toast.LENGTH_SHORT).show();
+                    }
+
+                }else{
+                    Toast.makeText(context, "Terjadi Kesalahan ketika get detail barang", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseCariBarangById> call, Throwable t) {
+                Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    private void tambahStockAwal(String id_barang, String jumlah_pcs, String jumlah_pack,
+                                 String stockAwal, String packAwal){
+
+        int stockUpdate = Integer.parseInt(stockAwal) + Integer.parseInt(jumlah_pcs);
+        int packUpdate = Integer.parseInt(packAwal) + Integer.parseInt(jumlah_pack);
+
+        ConfigRetrofit.service.updateStockPengiriman(id_barang, String.valueOf(stockUpdate), String.valueOf(packUpdate))
+                .enqueue(new Callback<ResponseUpdateStockPengiriman>() {
+                    @Override
+                    public void onResponse(Call<ResponseUpdateStockPengiriman> call, Response<ResponseUpdateStockPengiriman> response) {
+                        if (response.isSuccessful()){
+                            int status = response.body().getStatus();
+
+                            if (status==1){
+                                Toast.makeText(context, "Berhasil Update data ke gudang",
+                                        Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(context, "Gagal Update data ke gudang", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(context, "Terjadi kesalahan saat update data ke gudang",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseUpdateStockPengiriman> call, Throwable t) {
+                        Toast.makeText(context, "Koneksi error saat update data ke gudang",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -305,7 +381,8 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 //                                    return;
 //                                }
 
-                                validasiStock();
+//                                validasiStock();
+                                terimaBarang();
                                 dialogInterface.dismiss();
                             }
                         })
@@ -457,15 +534,20 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         String id_barang_outlet = "";
                         String stock_pcs = "";
                         String stock_pack = "";
+                        String number_of_pack_outlet = "";
                         for (int a = 0; a<dataBarang.size(); a++){
 
                             id_barang_outlet = dataBarang.get(a).getIdBarangOutlet();
                             stock_pcs = dataBarang.get(a).getStock();
                             stock_pack = dataBarang.get(a).getJumlahPack();
+                            number_of_pack_outlet = dataBarang.get(a).getNumberOfPack();
 
                         }
 
-                        editStock(id_barang_outlet, stock_pcs, stock_pack);
+
+                        Log.d("cekNumberOfpack", "forGetId: "+number_of_pack_outlet);
+
+                        editStock(id_barang_outlet, stock_pcs, stock_pack, number_of_pack_outlet);
 
                     }else{
                         progressGetId.dismiss();
@@ -487,7 +569,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     }
 
-    private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack) {
+    private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack, String number_of_pack_outlet) {
 
 //        ProgressDialog progressEdit = new ProgressDialog(context);
 //        progressEdit.setMessage("Edit Stock");
@@ -496,9 +578,12 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
         int jumlah_stock_pcs = Integer.parseInt(stock_pcs) + Integer.parseInt(jumlah_pcs);
         int jumlah_stock_pack = Integer.parseInt(stock_pack) + Integer.parseInt(jumlah_pack);
 
+        Log.d("cekNumberOfpack", "editStock: outlet: "+number_of_pack_outlet+" fromList: "+number_of_pack);
+        int number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
+
         ConfigRetrofit.service.editBarangOutlet(id_barang_outlet_edit, id_barang, hargaPcs, hargaPack,
                 String.valueOf(jumlah_stock_pcs), String.valueOf(jumlah_stock_pack), diskon, diskonPack,
-                id_outlet).enqueue(new Callback<ResponseEditBarangOutlet>() {
+                id_outlet, String.valueOf(number_of_stock_update)).enqueue(new Callback<ResponseEditBarangOutlet>() {
                     @Override
                     public void onResponse(Call<ResponseEditBarangOutlet> call, Response<ResponseEditBarangOutlet> response) {
                         if (response.isSuccessful()){

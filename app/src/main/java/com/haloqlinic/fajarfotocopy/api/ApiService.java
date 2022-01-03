@@ -104,6 +104,7 @@ import com.haloqlinic.fajarfotocopy.model.updatePassword.ResponsePassword;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPengiriman.ResponseUpdateStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanGudang.ResponseUpdateStatusPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -149,9 +150,7 @@ public interface ApiService {
                                                 @Field("stock") String stock,
                                                 @Field("jumlah_pack") String jumlah_pack,
                                                 @Field("number_of_pack") String number_of_pack,
-//                                                @Field("diskon") String diskon,
-//                                                @Field("diskon_pack") String diskon_pack,
-                                                @Field("id_outlet") String id_outlet);
+                                                @Field("diskon") String diskon);
 
     @FormUrlEncoded
     @POST("hapusBarangToko")
@@ -402,7 +401,8 @@ public interface ApiService {
                                                     @Field("jumlah_pack") String jumlah_pack,
                                                     @Field("diskon") String diskon,
                                                     @Field("diskon_pack") String diskon_pack,
-                                                    @Field("id_outlet") String id_outlet);
+                                                    @Field("id_outlet") String id_outlet,
+                                                    @Field("number_of_pack") String number_of_pack);
 
     @FormUrlEncoded
     @POST("tambahStatusTransfer")
@@ -706,5 +706,11 @@ public interface ApiService {
     @POST("editPackBarang")
     Call<ResponseEditPackBarang> editPackBarang(@Field("id_barang") String id_barang,
                                                 @Field("jumlah_pack") String jumlah_pack);
+
+    @FormUrlEncoded
+    @POST("updateStockForPengiriman")
+    Call<ResponseUpdateStockPengiriman> updateStockPengiriman(@Field("id_barang") String id_barang,
+                                                              @Field("stock") String stock,
+                                                              @Field("jumlah_pack") String jumlah_pack);
 
 }

@@ -50,9 +50,12 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
         id_status = getIntent().getStringExtra("id_status_pengiriman");
         tanggal = getIntent().getStringExtra("tanggal");
+
+        Log.d("cekDataPengiriman", "status: "+id_status);
+        Log.d("cekDataPengiriman", "tanggal: "+tanggal);
         status_pengiriman = getIntent().getStringExtra("status_pengiriman");
 
-        Log.d("cekStatusPengirimanIntent", "onCreate: "+status_pengiriman);
+//        Log.d("cekStatusPengirimanIntent", "onCreate: "+status_pengiriman);
 
         binding.recyclerDetailPengirimanKeto.setHasFixedSize(true);
         binding.recyclerDetailPengirimanKeto.setLayoutManager(new LinearLayoutManager(DetailPengirimanKetoActivity.this));

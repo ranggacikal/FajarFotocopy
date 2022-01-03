@@ -24,9 +24,9 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
-import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.model.hapusMintaBarang.ResponseHapusMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
+import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
@@ -196,6 +196,7 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
 
                             if (status == 1) {
                                 Toast.makeText(context, "Berhasil Menambahkan data", Toast.LENGTH_SHORT).show();
+                                kurangiStock(id_barang, qty, pack, stockPack, stockPcs);
                                 String id_minta_barang = kirimBarangGudangActivity.id_minta_barang;
                                 if (id_minta_barang!=null) {
                                     hapusMintaBarang(id_minta_barang);
@@ -226,15 +227,45 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
 
     }
 
+    private void kurangiStock(String id_barang, String qty, String pack, int stockPack, int stockPcs) {
+
+        int updateStock = stockPcs - Integer.parseInt(qty);
+        int updatePack = stockPack - Integer.parseInt(pack);
+
+        ConfigRetrofit.service.updateStockPengiriman(id_barang, String.valueOf(updateStock), String.valueOf(updatePack))
+                .enqueue(new Callback<ResponseUpdateStockPengiriman>() {
+                    @Override
+                    public void onResponse(Call<ResponseUpdateStockPengiriman> call, Response<ResponseUpdateStockPengiriman> response) {
+                        if (response.isSuccessful()) {
+
+                            int status = response.body().getStatus();
+                            if (status == 1) {
+                                Log.d("SuksesUpdateStock", "onResponse: Update Stock Berhasil");
+                            } else {
+                                Toast.makeText(context, "Gagal update stock", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            Toast.makeText(context, "Terjadi kesalahan saat update stock", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseUpdateStockPengiriman> call, Throwable t) {
+                        Toast.makeText(context, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void hapusMintaBarang(String id_minta_barang) {
         ConfigRetrofit.service.hapusMintaBarang(id_minta_barang).enqueue(new Callback<ResponseHapusMintaBarang>() {
             @Override
             public void onResponse(Call<ResponseHapusMintaBarang> call, Response<ResponseHapusMintaBarang> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         Toast.makeText(context, "Berhasil Update Minta Barang", Toast.LENGTH_SHORT).show();
 
