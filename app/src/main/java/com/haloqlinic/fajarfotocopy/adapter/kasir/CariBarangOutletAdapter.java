@@ -262,7 +262,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
             txtNama = itemView.findViewById(R.id.text_item_nama_barang_outlet);
             txtHargaPcs = itemView.findViewById(R.id.text_item_harga_pcs_barang_outlet);
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
-            numberPicker = itemView.findViewById(R.id.elegant_nb_item_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
             lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }

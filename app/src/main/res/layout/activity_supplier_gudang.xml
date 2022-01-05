@@ -90,14 +90,28 @@
         </LinearLayout>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txt_data_kosong_supplier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DATA KOSONG"
+        android:layout_marginTop="30dp"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="10dp"
+        android:fontFamily="@font/sairabold"
+        android:textColor="@color/black"
+        android:layout_above="@+id/linear_footer_barang_gudang"
+        android:layout_below="@id/linear_header_barang_gudang"
+        android:textAlignment="center"
+        android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_barang_gudang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
         android:layout_above="@+id/linear_footer_barang_gudang"
         android:layout_below="@id/linear_header_barang_gudang"
-        android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>

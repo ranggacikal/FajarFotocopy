@@ -198,6 +198,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
         if (newText.equals("")){
             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
+            binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
         }else {
 
             ConfigRetrofit.service.cariBarang(newText).enqueue(new Callback<ResponseCariBarangByNama>() {
@@ -211,6 +212,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                         if (status == 1) {
 
                             binding.rvSearchKirimBarangGudang.setVisibility(View.VISIBLE);
+                            binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
                             CariKirimBarangAdapter adapter = new CariKirimBarangAdapter(KirimBarangGudangActivity.this, dataBarang, KirimBarangGudangActivity.this);
                             binding.rvSearchKirimBarangGudang.setHasFixedSize(true);
                             binding.rvSearchKirimBarangGudang.setLayoutManager(new LinearLayoutManager(KirimBarangGudangActivity.this));
@@ -219,7 +221,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
 
                         } else {
-                            Toast.makeText(KirimBarangGudangActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
+                            binding.txtDataKosongKirimBarangGudang.setVisibility(View.VISIBLE);
                             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
                         }
 
@@ -248,6 +250,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
         if (newText.equals("")){
             progressDialogBarang.dismiss();
             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
+            binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
         }else {
 
             ConfigRetrofit.service.cariBarangById(newText).enqueue(new Callback<ResponseCariBarangById>() {
@@ -263,6 +266,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                         if (status == 1) {
 
                             binding.rvSearchKirimBarangGudang.setVisibility(View.VISIBLE);
+                            binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
                             CariKirimBarangIdAdapter adapter = new CariKirimBarangIdAdapter(KirimBarangGudangActivity.this, dataBarang, KirimBarangGudangActivity.this);
                             binding.rvSearchKirimBarangGudang.setHasFixedSize(true);
                             binding.rvSearchKirimBarangGudang.setLayoutManager(new LinearLayoutManager(KirimBarangGudangActivity.this));
@@ -271,7 +275,10 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
 
                         } else {
-                            Toast.makeText(KirimBarangGudangActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
+                            binding.txtDataKosongKirimBarangGudang.setText("Data pencarian dengan nama" +
+                                    " '"+newText+"' "+"tidak ditemukan atau\ntidak ada " +
+                                    "dalam data toko ini");
+                            binding.txtDataKosongKirimBarangGudang.setVisibility(View.VISIBLE);
                             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
                         }
 

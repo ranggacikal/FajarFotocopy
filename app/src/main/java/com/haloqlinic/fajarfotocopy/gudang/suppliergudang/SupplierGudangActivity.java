@@ -51,7 +51,7 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
     private SharedPreferencedConfig preferencedConfig;
 
-    public SupplierGudangActivity(){
+    public SupplierGudangActivity() {
 
     }
 
@@ -111,7 +111,7 @@ public class SupplierGudangActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(SupplierGudangActivity.this, KeranjangSupplierGudangActivity.class);
                         intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
-                        Log.d("cekSupplier", "id: "+id_status_penjualan_gudang);
+                        Log.d("cekSupplier", "id: " + id_status_penjualan_gudang);
                         startActivity(intent);
                     }
                 });
@@ -123,23 +123,23 @@ public class SupplierGudangActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         BottomSheetMaterialDialog mBottomSheetDialog =
                                 new BottomSheetMaterialDialog.Builder(SupplierGudangActivity.this)
-                                .setTitle("Keluar Dari Halaman Supplier?")
-                                .setMessage("Apakah anda yakin ingin keluar dari halaman supplier?")
-                                .setCancelable(false)
-                                .setPositiveButton("Hapus", new BottomSheetMaterialDialog.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int which) {
-                                        hapusStatusPenjualanBarang();
-                                        dialogInterface.dismiss();
-                                    }
-                                })
-                                .setNegativeButton("Batal", new BottomSheetMaterialDialog.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int which) {
-                                        dialogInterface.dismiss();
-                                    }
-                                })
-                                .build();
+                                        .setTitle("Keluar Dari Halaman Supplier?")
+                                        .setMessage("Apakah anda yakin ingin keluar dari halaman supplier?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("Hapus", new BottomSheetMaterialDialog.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int which) {
+                                                hapusStatusPenjualanBarang();
+                                                dialogInterface.dismiss();
+                                            }
+                                        })
+                                        .setNegativeButton("Batal", new BottomSheetMaterialDialog.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int which) {
+                                                dialogInterface.dismiss();
+                                            }
+                                        })
+                                        .build();
 
                         // Show Dialog
                         mBottomSheetDialog.show();
@@ -168,11 +168,11 @@ public class SupplierGudangActivity extends AppCompatActivity {
         ConfigRetrofit.service.cariBarangById(id_barcode).enqueue(new Callback<ResponseCariBarangById>() {
             @Override
             public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         List<SearchBarangByIdItem> dataBarang = response.body().getSearchBarangById();
                         CariBarangIdPenjualanAdapter adapterId = new CariBarangIdPenjualanAdapter(
@@ -185,12 +185,12 @@ public class SupplierGudangActivity extends AppCompatActivity {
                         binding.recyclerBarangGudang.setLayoutManager(manager);
                         binding.recyclerBarangGudang.setAdapter(adapterId);
 
-                    }else{
+                    } else {
                         Toast.makeText(SupplierGudangActivity.this, "Data Kosong",
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(SupplierGudangActivity.this, "Response Gagal",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -207,38 +207,54 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
     private void searchBarangNama(String query) {
 
-        ConfigRetrofit.service.cariBarang(query).enqueue(new Callback<ResponseCariBarangByNama>() {
-            @Override
-            public void onResponse(Call<ResponseCariBarangByNama> call, Response<ResponseCariBarangByNama> response) {
-                if (response.isSuccessful()){
+        if (query.equals("")) {
+            binding.recyclerBarangGudang.setVisibility(View.GONE);
+            binding.txtDataKosongSupplier.setVisibility(View.GONE);
+        } else {
 
-                    int status = response.body().getStatus();
+            ConfigRetrofit.service.cariBarang(query).enqueue(new Callback<ResponseCariBarangByNama>() {
+                @Override
+                public void onResponse(Call<ResponseCariBarangByNama> call, Response<ResponseCariBarangByNama> response) {
+                    if (response.isSuccessful()) {
 
-                    if (status==1){
+                        int status = response.body().getStatus();
 
-                        List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
-                        CariBarangPenjualanAdapter adapter = new CariBarangPenjualanAdapter(SupplierGudangActivity.this,
-                                dataBarang, SupplierGudangActivity.this);
-                        binding.recyclerBarangGudang.setHasFixedSize(true);
-                        GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
-                                2, GridLayoutManager.VERTICAL, false);
-                        binding.recyclerBarangGudang.setLayoutManager(manager);
-                        binding.recyclerBarangGudang.setAdapter(adapter);
+                        if (status == 1) {
+                            binding.recyclerBarangGudang.setVisibility(View.VISIBLE);
+                            binding.txtDataKosongSupplier.setVisibility(View.GONE);
 
-                    }else{
-                        Toast.makeText(SupplierGudangActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                            List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
+                            CariBarangPenjualanAdapter adapter = new CariBarangPenjualanAdapter(SupplierGudangActivity.this,
+                                    dataBarang, SupplierGudangActivity.this);
+                            binding.recyclerBarangGudang.setHasFixedSize(true);
+                            GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
+                                    2, GridLayoutManager.VERTICAL, false);
+                            binding.recyclerBarangGudang.setLayoutManager(manager);
+                            binding.recyclerBarangGudang.setAdapter(adapter);
+
+                        } else {
+                            binding.txtDataKosongSupplier.setText("Data pencarian dengan nama" +
+                                    " '"+query+"' "+"tidak ditemukan atau\ntidak ada " +
+                                    "dalam data toko ini");
+                            binding.txtDataKosongSupplier.setVisibility(View.VISIBLE);
+                            binding.recyclerBarangGudang.setVisibility(View.GONE);
+                        }
+
+                    } else {
+                        binding.recyclerBarangGudang.setVisibility(View.GONE);
+                        binding.txtDataKosongSupplier.setVisibility(View.GONE);
+                        Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                     }
-
-                }else{
-                    Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
-            }
 
-            @Override
-            public void onFailure(Call<ResponseCariBarangByNama> call, Throwable t) {
-                Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<ResponseCariBarangByNama> call, Throwable t) {
+                    binding.recyclerBarangGudang.setVisibility(View.GONE);
+                    Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
 
     }
 
@@ -274,21 +290,21 @@ public class SupplierGudangActivity extends AppCompatActivity {
         ConfigRetrofit.service.hapusPenjualanIdStatus(id_status_penjualan_gudang).enqueue(new Callback<ResponseHapusPenjualanGudangByIdStatus>() {
             @Override
             public void onResponse(Call<ResponseHapusPenjualanGudangByIdStatus> call, Response<ResponseHapusPenjualanGudangByIdStatus> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         Toast.makeText(SupplierGudangActivity.this, "Berhasil menghapus semua data",
                                 Toast.LENGTH_SHORT).show();
                         hapusStatusPenjualanBarang();
-                    }else{
+                    } else {
                         Toast.makeText(SupplierGudangActivity.this, "Gagal hapus semua data",
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -306,20 +322,20 @@ public class SupplierGudangActivity extends AppCompatActivity {
         ConfigRetrofit.service.hapusStatusPenjualanGudang(id_status_penjualan_gudang).enqueue(new Callback<ResponseHapusStatusPenjualanGudang>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusPenjualanGudang> call, Response<ResponseHapusStatusPenjualanGudang> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         finish();
 
-                    }else{
+                    } else {
                         Toast.makeText(SupplierGudangActivity.this, "Gagal Menyelesaikan transaksi",
                                 Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
             }
