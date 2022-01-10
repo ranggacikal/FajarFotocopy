@@ -5,6 +5,7 @@ import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
+import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
@@ -344,11 +345,13 @@ public interface ApiService {
                                                   @Field("id_barang_outlet") String id_barang_outlet,
                                                   @Field("id_barang") String id_barang,
                                                   @Field("jumlah_barang") String jumlah_barang,
+                                                  @Field("jumlah_pack") String jumlah_pack,
                                                   @Field("total") String total,
                                                   @Field("tanggal_penjualan") String tanggal_penjualan,
                                                   @Field("nama_kasir") String nama_kasir,
                                                   @Field("id_status_penjualan") String id_status_penjualan,
-                                                  @Field("jenis_satuan") String jenis_satuan);
+                                                  @Field("jenis_satuan") String jenis_satuan,
+                                                  @Field("status_penjualan_barang") String status_penjualan_barang);
 
     @FormUrlEncoded
     @POST("getBarangPenjualan")
@@ -713,5 +716,10 @@ public interface ApiService {
     Call<ResponseUpdateStockPengiriman> updateStockPengiriman(@Field("id_barang") String id_barang,
                                                               @Field("stock") String stock,
                                                               @Field("jumlah_pack") String jumlah_pack);
+
+    @FormUrlEncoded
+    @POST("editStatusPenjualanBarang")
+    Call<ResponseEditStatusPenjualanBarang> editStatusPenjualanBarang(@Field("id_status_penjualan") String id_status_penjualan,
+                                                                      @Field("status_penjualan_barang") String status_penjualan_barang);
 
 }

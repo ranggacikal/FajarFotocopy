@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -35,6 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
@@ -56,6 +58,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
 
+    public ArrayList<String> dataBarangoutlet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         setContentView(view);
 
         progressDialog = new ProgressDialog(this);
+
+        dataBarangoutlet = new ArrayList<>();
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackTransaksiKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -118,8 +124,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
         nameActivity = getIntent().getStringExtra("namaActivity");
         id_status_penjualan = preferencedConfig.getPreferenceIdStatusPenjualan();
-
-
 
 
         PushDownAnim.setPushDownAnimTo(binding.btnBarcodeSupplierKasir)
@@ -180,6 +184,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(TransaksiKasirActivity.this, PembayaranKasirActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        Log.d("cekStatusPenjualan", "onClick: "+id_status_penjualan);
                         intent.putExtra("from_keto", nameActivity);
                         startActivity(intent);
                         finish();
@@ -406,11 +411,13 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         if (!nameActivity.equals("")){
 
                             if (nameActivity.equals("HomeKeto")){
-                                startActivity(new Intent(TransaksiKasirActivity.this, MainKetoActivity.class));
-                                finish();
+                                Intent intent = new Intent(TransaksiKasirActivity.this, MainKetoActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
                             }else if (nameActivity.equals("HomeKasir")){
-                                startActivity(new Intent(TransaksiKasirActivity.this, MainKasirActivity.class));
-                                finish();
+                                Intent intent = new Intent(TransaksiKasirActivity.this, MainKasirActivity.class);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
                             }
 
                         }

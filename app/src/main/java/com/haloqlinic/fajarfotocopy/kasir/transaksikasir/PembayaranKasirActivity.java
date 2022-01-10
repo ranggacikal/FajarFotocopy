@@ -27,6 +27,7 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityHomeKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPembayaranKasirBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
@@ -256,6 +257,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                                 if (from_keto!=null){
                                     intent.putExtra("from_keto", from_keto);
                                 }
+                                editStatusPenjualanBarang();
                                 startActivity(intent);
                                 finish();
                             }else{
@@ -273,6 +275,42 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     public void onFailure(Call<ResponseUpdateStatusPenjualan> call, Throwable t) {
                         progressDialog.dismiss();
                         Toast.makeText(PembayaranKasirActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void editStatusPenjualanBarang() {
+
+        ConfigRetrofit.service.editStatusPenjualanBarang(id_status_penjualan, "selesai")
+                .enqueue(new Callback<ResponseEditStatusPenjualanBarang>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditStatusPenjualanBarang> call,
+                                           Response<ResponseEditStatusPenjualanBarang> response) {
+                        if(response.isSuccessful()){
+
+                            int status = response.body().getStatus();
+
+                            if(status==1){
+
+                                Toast.makeText(PembayaranKasirActivity.this,
+                                        "Berhasil Set Data Pembayaran", Toast.LENGTH_SHORT).show();
+
+                            }else{
+                                Toast.makeText(PembayaranKasirActivity.this,
+                                        "Gagal Set Data Pembayaran", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(PembayaranKasirActivity.this,
+                                    "Response ERROR", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditStatusPenjualanBarang> call, Throwable t) {
+                        Toast.makeText(PembayaranKasirActivity.this,
+                                "Koneksi error", Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -338,6 +376,8 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        startActivity(new Intent(PembayaranKasirActivity.this, TransaksiKasirActivity.class));
+        Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiKasirActivity.class);
+        intent.putExtra("namaActivity", from_keto);
+        startActivity(intent);
     }
 }
