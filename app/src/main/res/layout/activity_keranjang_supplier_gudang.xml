@@ -52,7 +52,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
-            android:layout_marginTop="11dp"
             android:background="#C4C4C4"
             android:orientation="horizontal">
 
@@ -119,7 +118,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             tools:listitem="@layout/item_keranjang_supplier">
 
@@ -194,14 +192,32 @@
 
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Metode Pembayaran"
+            android:textColor="@color/black" />
+
         <Spinner
             android:id="@+id/spinner_metode_bayar_supplier"
             android:layout_width="match_parent"
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_rectangle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Jenis Pembayaran"
+            android:textColor="@color/black" />
 
         <Spinner
             android:id="@+id/spinner_jenis_bayar_supplier"
@@ -209,7 +225,7 @@
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/bg_rectangle" />
 
         <RelativeLayout
