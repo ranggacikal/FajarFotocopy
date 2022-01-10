@@ -114,64 +114,64 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                         String id_barang_outlet = dataCari.get(position).getIdBarangOutlet();
                         String id_barang = dataCari.get(position).getIdBarang();
                         String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
-                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
-                                String.valueOf(jumlah_pack_sisa));
+//                        tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
+//                                String.valueOf(jumlah_pack_sisa));
 
                     }
                 });
 
     }
 
-    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan,
-                                 String id_barang, String jumlah_pack) {
-
-        preferencedConfig = new SharedPreferencedConfig(context);
-
-        Random rnd = new Random();
-        int numberRnd = rnd.nextInt(999999);
-
-        String randomId = String.format("%06d", numberRnd);
-        String id_penjualan = "FEG"+randomId;
-
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-
-        date = dateFormat.format(calendar.getTime());
-        String tanggal = date;
-
-        ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Menambahkan barang");
-        progressDialog.show();
-
-        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, id_barang, number, String.valueOf(total),
-                tanggal, preferencedConfig.getPreferenceNama(), id_status_penjualan).enqueue(new Callback<ResponseTambahPenjualan>() {
-            @Override
-            public void onResponse(Call<ResponseTambahPenjualan> call, Response<ResponseTambahPenjualan> response) {
-                if (response.isSuccessful()){
-                    progressDialog.dismiss();
-
-                    int status = response.body().getStatus();
-
-                    if (status == 1){
-                        Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
-                        editJumlahPack(jumlah_pack, id_barang_outlet);
-                    }else{
-                        Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    progressDialog.dismiss();
-                    Toast.makeText(context, "Gagal Saat menambahkan barang", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseTambahPenjualan> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
+//    private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan,
+//                                 String id_barang, String jumlah_pack) {
+//
+//        preferencedConfig = new SharedPreferencedConfig(context);
+//
+//        Random rnd = new Random();
+//        int numberRnd = rnd.nextInt(999999);
+//
+//        String randomId = String.format("%06d", numberRnd);
+//        String id_penjualan = "FEG"+randomId;
+//
+//        calendar = Calendar.getInstance();
+//        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+//
+//        date = dateFormat.format(calendar.getTime());
+//        String tanggal = date;
+//
+//        ProgressDialog progressDialog = new ProgressDialog(context);
+//        progressDialog.setMessage("Menambahkan barang");
+//        progressDialog.show();
+//
+//        ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, id_barang, number, String.valueOf(total),
+//                tanggal, preferencedConfig.getPreferenceNama(), id_status_penjualan).enqueue(new Callback<ResponseTambahPenjualan>() {
+//            @Override
+//            public void onResponse(Call<ResponseTambahPenjualan> call, Response<ResponseTambahPenjualan> response) {
+//                if (response.isSuccessful()){
+//                    progressDialog.dismiss();
+//
+//                    int status = response.body().getStatus();
+//
+//                    if (status == 1){
+//                        Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
+//                        editJumlahPack(jumlah_pack, id_barang_outlet);
+//                    }else{
+//                        Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();
+//                    }
+//                }else{
+//                    progressDialog.dismiss();
+//                    Toast.makeText(context, "Gagal Saat menambahkan barang", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseTambahPenjualan> call, Throwable t) {
+//                progressDialog.dismiss();
+//                Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//    }
 
     private void editJumlahPack(String jumlah_pack, String id_barang_outlet) {
 

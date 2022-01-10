@@ -62,7 +62,7 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
                         Log.d("from_keto", "onClick: "+from_keto);
 
                         if (from_keto!=null){
-                            if (from_keto.equals("kepala_toko")){
+                            if (from_keto.equals("HomeKeto")){
                                 Intent intent = new Intent(CetakBuktiKasirActivity.this, MainKetoActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);

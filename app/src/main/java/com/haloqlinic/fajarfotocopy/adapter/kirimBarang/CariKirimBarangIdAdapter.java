@@ -46,7 +46,7 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
     KirimBarangGudangActivity kirimBarangGudangActivity;
 
     String id_barang = "";
-    Dialog dialog;
+    Dialog dialog, dialogDataKosong;
     int number_of_pack;
 
     public CariKirimBarangIdAdapter(Context context, List<SearchBarangByIdItem> dataCariBarang, KirimBarangGudangActivity kirimBarangGudangActivity) {
@@ -82,8 +82,17 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
                 id_barang = dataCariBarang.get(position).getIdBarang();
                 int stockPcs = Integer.parseInt(dataCariBarang.get(position).getStock());
                 int stockPack = Integer.parseInt(dataCariBarang.get(position).getJumlahPack());
-                number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
-                tampilDialog(stockPack, stockPcs, number_of_pack);
+                int number_of_pack = Integer.parseInt(dataCariBarang.get(position).getNumberOfPack());
+                if (number_of_pack==0){
+                    Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
+                            "data terlebih dahulu", Toast.LENGTH_LONG).show();
+                }else if (stockPcs==0 || stockPcs<0) {
+
+                    tampilDialogKosong();
+
+                }else {
+                    tampilDialog(stockPack, stockPcs, number_of_pack);
+                }
             }
         });
 
@@ -99,11 +108,35 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
                         if (number_of_pack==0){
                             Toast.makeText(context, "Jumlah barang dalam pack adalah 0, silahkan edit " +
                                     "data terlebih dahulu", Toast.LENGTH_LONG).show();
+                        }else if (stockPcs==0 || stockPcs<0) {
+
+                            tampilDialogKosong();
+
                         }else {
                             tampilDialog(stockPack, stockPcs, number_of_pack);
                         }
                     }
                 });
+
+    }
+
+    private void tampilDialogKosong() {
+
+        dialogDataKosong = new Dialog(context);
+
+        dialogDataKosong.setContentView(R.layout.dialog_data_kosong);
+        dialogDataKosong.setCancelable(false);
+
+        final TextView txtTutup = dialogDataKosong.findViewById(R.id.text_tutup_dialog_data_kosong);
+
+        dialogDataKosong.show();
+
+        txtTutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogDataKosong.dismiss();
+            }
+        });
 
     }
 

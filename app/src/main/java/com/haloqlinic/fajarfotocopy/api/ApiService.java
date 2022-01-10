@@ -347,7 +347,8 @@ public interface ApiService {
                                                   @Field("total") String total,
                                                   @Field("tanggal_penjualan") String tanggal_penjualan,
                                                   @Field("nama_kasir") String nama_kasir,
-                                                  @Field("id_status_penjualan") String id_status_penjualan);
+                                                  @Field("id_status_penjualan") String id_status_penjualan,
+                                                  @Field("jenis_satuan") String jenis_satuan);
 
     @FormUrlEncoded
     @POST("getBarangPenjualan")
