@@ -67,7 +67,7 @@
             android:fontFamily="@font/sairabold"
             android:text="Tambah Jenis Barang"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="19sp" />
 
     </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:fontFamily="@font/sairabold"
             android:text="Data Barang"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -127,7 +127,7 @@
             android:fontFamily="@font/sairabold"
             android:text="Cek Stock"
             android:textColor="@color/white"
-            android:textSize="22sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

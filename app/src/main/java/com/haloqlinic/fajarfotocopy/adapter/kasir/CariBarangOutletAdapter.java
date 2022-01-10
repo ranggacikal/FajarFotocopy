@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.adapter.kasir;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,9 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.KeranjangSupplierGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
@@ -59,6 +63,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
     int total;
     String number;
+    public String id_status_penjualan_outlet;
+
 
     @NonNull
     @NotNull
@@ -152,6 +158,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                 });
 
     }
+
+
 
     private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan,
                                  String id_barang, String jumlah_pack_sisa) {
