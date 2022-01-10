@@ -180,7 +180,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(TransaksiKasirActivity.this, PembayaranKasirActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
-                        intent.putExtra("from_keto", "kasir");
+                        intent.putExtra("from_keto", nameActivity);
                         startActivity(intent);
                         finish();
 

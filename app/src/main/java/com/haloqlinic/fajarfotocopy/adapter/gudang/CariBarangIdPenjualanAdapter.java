@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.adapter.gudang;
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.util.Log;
@@ -25,6 +26,9 @@ import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
+import com.mcdev.quantitizerlibrary.AnimationStyle;
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
+import com.mcdev.quantitizerlibrary.QuantitizerListener;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.NumberFormat;
@@ -43,6 +47,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
     String number;
     int total, edit_pack, jumlah_qty;
+    Dialog dialog, dialogDataKosong;
 
     public CariBarangIdPenjualanAdapter(Context context, List<SearchBarangByIdItem> dataBarang, SupplierGudangActivity supplierGudangActivity) {
         this.context = context;
@@ -67,6 +72,27 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
         holder.edtJumlahPack.setVisibility(View.VISIBLE);
         holder.edtJumlahPack.setEnabled(false);
+
+        holder.txtJmlPack.setVisibility(View.GONE);
+        holder.btnTambahPesanan.setVisibility(View.GONE);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String stockFromDb = dataBarang.get(position).getStock();
+                Log.d("cekStockDb", "onClick: "+stockFromDb);
+                if (Integer.parseInt(stockFromDb) == 0 || Integer.parseInt(stockFromDb) < 0){
+                    tampilDialogDataKosong();
+                }else {
+                    int number_of_pack = Integer.parseInt(dataBarang.get(position).getNumberOfPack());
+                    int stock_db = Integer.parseInt(dataBarang.get(position).getStock());
+                    int hargaModalToko = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+                    String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
+                    String id_barang = dataBarang.get(position).getIdBarang();
+                    tampilDialog(number_of_pack, stock_db, hargaModalToko, id_status_penjualan, id_barang);
+                }
+            }
+        });
 
         holder.numberPicker.setOnClickListener(new ElegantNumberButton.OnClickListener() {
             @Override
@@ -137,6 +163,122 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                 });
     }
 
+    private void tampilDialogDataKosong() {
+
+        dialogDataKosong = new Dialog(context);
+
+        dialogDataKosong.setContentView(R.layout.dialog_data_kosong);
+        dialogDataKosong.setCancelable(false);
+
+        final TextView txtTutup = dialogDataKosong.findViewById(R.id.text_tutup_dialog_data_kosong);
+
+        dialogDataKosong.show();
+
+        txtTutup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogDataKosong.dismiss();
+            }
+        });
+
+    }
+
+    private void tampilDialog(int number_of_pack, int stock_db, int hargaModalToko,
+                              String id_status_penjualan, String id_barang) {
+
+        dialog = new Dialog(context);
+
+        dialog.setContentView(R.layout.dialog_qty_penjualan);
+        dialog.setCancelable(false);
+
+        final HorizontalQuantitizer numberPicker = dialog.findViewById(R.id.number_picker_dialog_qty_penjualan);
+        final EditText edtJumlahPcs = dialog.findViewById(R.id.edt_pcs_dialog_qty_penjualan);
+        final TextView txtTambah = dialog.findViewById(R.id.text_tambah_barang_dialog_penjualan_qty);
+        final TextView txtCancel = dialog.findViewById(R.id.text_cancel_dialog_penjualan_qty);
+
+        dialog.show();
+        txtCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        tambahPenjualanFromDialog(number_of_pack, stock_db, numberPicker, edtJumlahPcs, txtTambah,
+                txtCancel, hargaModalToko, id_status_penjualan, id_barang);
+
+    }
+
+    private void tambahPenjualanFromDialog(int number_of_pack, int stock_db,
+                                           HorizontalQuantitizer numberPicker, EditText edtJumlahPcs,
+                                           TextView txtTambah, TextView txtCancel, int hargaModalToko,
+                                           String id_status_penjualan, String id_barang) {
+
+        numberPicker.setTextAnimationStyle(AnimationStyle.FALL_IN);
+        numberPicker.setQuantitizerListener(new QuantitizerListener() {
+            @Override
+            public void onIncrease() {
+                String value = String.valueOf(numberPicker.getValue());
+                edtJumlahPcs.setEnabled(false);
+                int jumlah_kurang = 0;
+                if (Integer.parseInt(value) > stock_db) {
+                    Toast.makeText(context, "Stock Tidak mencukupi untuk quantity ini", Toast.LENGTH_SHORT).show();
+                    numberPicker.setValue(stock_db);
+                } else {
+                    jumlah_qty = Integer.parseInt(value) * number_of_pack;
+
+                    edtJumlahPcs.setText(String.valueOf(jumlah_qty));
+                    total = jumlah_qty * hargaModalToko;
+                    jumlah_kurang = stock_db - jumlah_qty;
+                    if (number_of_pack != 0) {
+                        edit_pack = jumlah_kurang / number_of_pack;
+                    } else {
+                        Toast.makeText(context, "Jumlah satuan dalam pack barang ini 0," +
+                                        " Silahkan edit data kembali",
+                                Toast.LENGTH_SHORT).show();
+                        numberPicker.setValue(0);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onDecrease() {
+                edtJumlahPcs.setEnabled(false);
+                String value = String.valueOf(numberPicker.getValue());
+                int jumlah_kurang = 0;
+                if (Integer.parseInt(value) < 0) {
+                    Toast.makeText(context, "Quantity tidak boleh kurang dari 1", Toast.LENGTH_SHORT).show();
+                    numberPicker.setValue(0);
+                } else if (value.equals("0")) {
+                    edtJumlahPcs.setText("Jumlah Pcs");
+                } else {
+                    jumlah_qty = Integer.parseInt(value) * number_of_pack;
+                    edtJumlahPcs.setText(String.valueOf(jumlah_qty));
+                    total = jumlah_qty * hargaModalToko;
+                    jumlah_kurang = stock_db - jumlah_qty;
+                    if (number_of_pack != 0) {
+                        edit_pack = jumlah_kurang / number_of_pack;
+                    } else {
+                        Toast.makeText(context, "Jumlah satuan dalam pack barang ini 0," +
+                                        " Silahkan edit data kembali",
+                                Toast.LENGTH_SHORT).show();
+                        numberPicker.setValue(0);
+
+                    }
+                }
+            }
+        });
+
+        txtTambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tambahPenjualanGudang(id_status_penjualan, id_barang, String.valueOf(jumlah_qty));
+            }
+        });
+
+    }
+
     private void tambahPenjualanGudang(String id_status_penjualan, String id_barang, String jumlah_pack) {
         Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
 
@@ -159,6 +301,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                                 Toast.makeText(context, "Berhasil Menambahkan Barang",
                                         Toast.LENGTH_SHORT).show();
                                 editPack(id_barang);
+                                dialog.dismiss();
 
                             }else{
                                 Toast.makeText(context, "Gagal Menambahkan, Silahkan coba lagi",
@@ -215,7 +358,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
     public class CariBarangIdPenjualanViewHolder extends RecyclerView.ViewHolder {
         ImageView imgBarang;
-        TextView txtNama, txtHargaPcs, txtHargaPack;
+        TextView txtNama, txtHargaPcs, txtHargaPack, txtJmlPack;
         ElegantNumberButton numberPicker;
         Button btnTambahPesanan;
         EditText edtJumlahPack;
@@ -228,6 +371,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
             numberPicker = itemView.findViewById(R.id.elegant_nb_item_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
             edtJumlahPack = itemView.findViewById(R.id.edt_jumlah_pcs_item_barang);
+            txtJmlPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 }
