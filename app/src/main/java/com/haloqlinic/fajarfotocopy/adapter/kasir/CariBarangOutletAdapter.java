@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,10 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.KeranjangSupplierGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.usergudang.DataUserGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
@@ -315,7 +319,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         btnTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//
+
                 if (number == 0) {
                     Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0",
                             Toast.LENGTH_SHORT).show();
@@ -333,6 +337,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
                 tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
                         String.valueOf(jumlah_pack_sisa), jenis_satuan);
+
+
             }
         });
 

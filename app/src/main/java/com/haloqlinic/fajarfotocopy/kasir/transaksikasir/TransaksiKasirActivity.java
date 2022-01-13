@@ -201,7 +201,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
             binding.searchviewBarangOutletBarcode.setVisibility(View.GONE);
             binding.searchviewSupplierKasir.setVisibility(View.VISIBLE);
-            binding.btnCariDenganNamaBarangOutlet.setVisibility(View.GONE);
         }else{
 
             binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
@@ -246,7 +245,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         if (intentResult.getContents() != null) {
 
             binding.searchviewSupplierKasir.setVisibility(View.GONE);
-            binding.btnCariDenganNamaBarangOutlet.setVisibility(View.VISIBLE);
             binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
             binding.searchviewBarangOutletBarcode.setQuery(intentResult.getContents(), false);
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
@@ -402,6 +400,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         ConfigRetrofit.service.hapusStatusPenjualan(id_status_penjualan).enqueue(new Callback<ResponseHapusStatusPenjualan>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusPenjualan> call, Response<ResponseHapusStatusPenjualan> response) {
+                
                 if (response.isSuccessful()) {
 //                    progressDialog.dismiss();
 //                    hideProgressDialogWithTitle();
