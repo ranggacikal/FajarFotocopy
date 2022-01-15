@@ -1,10 +1,5 @@
 package com.haloqlinic.fajarfotocopy.gudang.suppliergudang;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,17 +8,17 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangIdPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivitySupplierGudangBinding;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityTransferBarangGudangBinding;
-import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
-import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -33,8 +28,6 @@ import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualanGudang.ResponseHap
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
-
 import java.util.List;
 
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
@@ -43,11 +36,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 public class SupplierGudangActivity extends AppCompatActivity {
 
     private ActivitySupplierGudangBinding binding;
 
     public String id_status_penjualan_gudang, nama_user;
+
+    boolean searchId = false;
+    boolean searchName = false;
+
+    String textId = "";
+    String textName = "";
 
     private SharedPreferencedConfig preferencedConfig;
 
@@ -68,20 +69,32 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
         id_status_penjualan_gudang = getIntent().getStringExtra("id_status_penjualan_gudang");
 
-        binding.btnBarcodeSupplierGudang.setOnClickListener(new View.OnClickListener() {
+
+        binding.searchviewSupplierBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(
-                        SupplierGudangActivity.this
-                );
-
-                intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                intentIntegrator.setBeepEnabled(true);
-                intentIntegrator.setOrientationLocked(true);
-                intentIntegrator.setCaptureActivity(Capture.class);
-                intentIntegrator.initiateScan();
+                binding.searchviewSupplierBarcode.setQueryHint("ID Barang");
+                binding.searchviewSupplierBarcode.setIconified(false);
             }
         });
+
+        PushDownAnim.setPushDownAnimTo(binding.btnBarcodeSupplierGudang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+                                SupplierGudangActivity.this
+                        );
+
+                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+                        intentIntegrator.setBeepEnabled(true);
+                        intentIntegrator.setOrientationLocked(true);
+                        intentIntegrator.setCaptureActivity(Capture.class);
+                        intentIntegrator.initiateScan();
+            }
+        });
+
 
         binding.searchviewSupplierGudang.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +113,19 @@ public class SupplierGudangActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchBarangNama(newText);
+                return true;
+            }
+        });
+
+        binding.searchviewSupplierBarcode.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String textCariId) {
+                loadDataById(textCariId);
                 return true;
             }
         });
@@ -147,6 +173,69 @@ public class SupplierGudangActivity extends AppCompatActivity {
                 });
     }
 
+
+
+    private void loadDataById(String id_barcode) {
+        if (id_barcode.equals("")) {
+            binding.recyclerBarangGudangScanner.setVisibility(View.GONE);
+            binding.recyclerBarangGudang.setVisibility(View.GONE);
+            binding.txtDataKosongSupplier.setVisibility(View.GONE);
+        } else {
+            ProgressDialog progressDialog = new ProgressDialog(SupplierGudangActivity.this);
+            progressDialog.setMessage("Mencari Data");
+            progressDialog.show();
+
+            ConfigRetrofit.service.cariBarangById(id_barcode).enqueue(new Callback<ResponseCariBarangById>() {
+                @Override
+                public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
+                    if (response.isSuccessful()) {
+                        progressDialog.dismiss();
+
+                        int status = response.body().getStatus();
+
+                        if (status == 1) {
+                            binding.recyclerBarangGudangScanner.setVisibility(View.VISIBLE);
+                            binding.txtDataKosongSupplier.setVisibility(View.GONE);
+
+                            List<SearchBarangByIdItem> dataBarangScanner = response.body().getSearchBarangById();
+                            CariBarangIdPenjualanAdapter adapterId = new CariBarangIdPenjualanAdapter(
+                                    SupplierGudangActivity.this, dataBarangScanner,
+                                    SupplierGudangActivity.this
+                            );
+                            binding.recyclerBarangGudangScanner.setHasFixedSize(true);
+                            GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
+                                    2, GridLayoutManager.VERTICAL, false);
+                            binding.recyclerBarangGudangScanner.setLayoutManager(manager);
+                            binding.recyclerBarangGudangScanner.setAdapter(adapterId);
+                            binding.recyclerBarangGudangScanner.setVisibility(View.VISIBLE);
+                            binding.recyclerBarangGudang.setVisibility(View.GONE);
+
+                        } else {
+                            binding.txtDataKosongSupplier.setText("Data pencarian dengan nama" +
+                                    " '" + id_barcode + "' " + "tidak ditemukan atau\ntidak ada " +
+                                    "dalam data toko ini");
+                            binding.txtDataKosongSupplier.setVisibility(View.VISIBLE);
+                            binding.recyclerBarangGudangScanner.setVisibility(View.GONE);
+                        }
+
+                    } else {
+                        binding.recyclerBarangGudangScanner.setVisibility(View.GONE);
+                        binding.txtDataKosongSupplier.setVisibility(View.GONE);
+                        Toast.makeText(SupplierGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseCariBarangById> call, Throwable t) {
+                    binding.recyclerBarangGudangScanner.setVisibility(View.GONE);
+                    Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+        }
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -156,53 +245,11 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
         if (intentResult.getContents() != null) {
 
-            String id_barcode = intentResult.getContents();
-            loadDataById(id_barcode);
-            Log.d("requestCodeScan", "onActivityResult: " + requestCode);
+            loadDataById(intentResult.getContents());
 
+        } else {
+            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void loadDataById(String id_barcode) {
-
-        ConfigRetrofit.service.cariBarangById(id_barcode).enqueue(new Callback<ResponseCariBarangById>() {
-            @Override
-            public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
-                if (response.isSuccessful()) {
-
-                    int status = response.body().getStatus();
-
-                    if (status == 1) {
-
-                        List<SearchBarangByIdItem> dataBarang = response.body().getSearchBarangById();
-                        CariBarangIdPenjualanAdapter adapterId = new CariBarangIdPenjualanAdapter(
-                                SupplierGudangActivity.this, dataBarang,
-                                SupplierGudangActivity.this
-                        );
-                        binding.recyclerBarangGudang.setHasFixedSize(true);
-                        GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
-                                2, GridLayoutManager.VERTICAL, false);
-                        binding.recyclerBarangGudang.setLayoutManager(manager);
-                        binding.recyclerBarangGudang.setAdapter(adapterId);
-
-                    } else {
-                        Toast.makeText(SupplierGudangActivity.this, "Data Kosong",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                } else {
-                    Toast.makeText(SupplierGudangActivity.this, "Response Gagal",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseCariBarangById> call, Throwable t) {
-                Toast.makeText(SupplierGudangActivity.this, "Koneksi Error",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
     private void searchBarangNama(String query) {
@@ -345,6 +392,18 @@ public class SupplierGudangActivity extends AppCompatActivity {
                 Toast.makeText(SupplierGudangActivity.this, "Koneksi Error", Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (searchId = true) {
+            loadDataById(textId);
+        } else if (searchName = true) {
+            searchBarangNama(textName);
+        }
 
     }
 }

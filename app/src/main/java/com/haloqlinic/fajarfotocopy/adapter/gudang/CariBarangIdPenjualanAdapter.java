@@ -20,6 +20,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
@@ -43,7 +44,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         CariBarangIdPenjualanAdapter.CariBarangIdPenjualanViewHolder> {
 
     Context context;
-    List<SearchBarangByIdItem> dataBarang;
+    List<SearchBarangByIdItem> idBarang;
     SupplierGudangActivity supplierGudangActivity;
 
     String number;
@@ -52,7 +53,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
     public CariBarangIdPenjualanAdapter(Context context, List<SearchBarangByIdItem> dataBarang, SupplierGudangActivity supplierGudangActivity) {
         this.context = context;
-        this.dataBarang = dataBarang;
+        this.idBarang = dataBarang;
         this.supplierGudangActivity = supplierGudangActivity;
     }
 
@@ -65,14 +66,21 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull CariBarangIdPenjualanViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
-        int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaModalTokoPack());
 
-        holder.txtNama.setText(dataBarang.get(position).getNamaBarang());
+        int hargaPcs = Integer.parseInt(idBarang.get(position).getHargaModalToko());
+        int hargaPack = Integer.parseInt(idBarang.get(position).getHargaModalTokoPack());
+
+        String image = idBarang.get(position).getImageBarang();
+
+
+        Glide.with(context)
+                .load(image)
+                .error(R.drawable.ic_gift)
+                .into(holder.imgBarang);
+
+        holder.txtNama.setText(idBarang.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.edtJumlahPack.setVisibility(View.VISIBLE);
-        holder.edtJumlahPack.setEnabled(false);
 
         holder.txtJmlPack.setVisibility(View.GONE);
         holder.btnTambahPesanan.setVisibility(View.GONE);
@@ -80,16 +88,16 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String stockFromDb = dataBarang.get(position).getStock();
+                String stockFromDb = idBarang.get(position).getStock();
                 Log.d("cekStockDb", "onClick: "+stockFromDb);
                 if (Integer.parseInt(stockFromDb) == 0 || Integer.parseInt(stockFromDb) < 0){
                     tampilDialogDataKosong();
                 }else {
-                    int number_of_pack = Integer.parseInt(dataBarang.get(position).getNumberOfPack());
-                    int stock_db = Integer.parseInt(dataBarang.get(position).getStock());
-                    int hargaModalToko = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
+                    int number_of_pack = Integer.parseInt(idBarang.get(position).getNumberOfPack());
+                    int stock_db = Integer.parseInt(idBarang.get(position).getStock());
+                    int hargaModalToko = Integer.parseInt(idBarang.get(position).getHargaModalToko());
                     String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
-                    String id_barang = dataBarang.get(position).getIdBarang();
+                    String id_barang = idBarang.get(position).getIdBarang();
                     tampilDialog(number_of_pack, stock_db, hargaModalToko, id_status_penjualan, id_barang);
                 }
             }
@@ -101,7 +109,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                     @Override
                     public void onClick(View v) {
 
-                        if (number!=null) {
+                        if (number != null) {
 
                             if (number.equals("0")) {
                                 Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
@@ -111,10 +119,10 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                         }
                         String jumlah_pack = holder.edtJumlahPack.getText().toString();
 
-                        Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
+                        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
 
                         String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
-                        String id_barang = dataBarang.get(position).getIdBarang();
+                        String id_barang = idBarang.get(position).getIdBarang();
                         tambahPenjualanGudang(id_status_penjualan, id_barang, number);
 
                     }
@@ -311,7 +319,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
 
     @Override
     public int getItemCount() {
-        return dataBarang.size();
+        return idBarang.size();
     }
 
     public class CariBarangIdPenjualanViewHolder extends RecyclerView.ViewHolder {
