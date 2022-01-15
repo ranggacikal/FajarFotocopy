@@ -168,7 +168,8 @@
             android:background="@drawable/btn_gold"
             android:fontFamily="@font/sairabold"
             android:text="Tambah Pesanan"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/btn_tambah_barang_transfer"
