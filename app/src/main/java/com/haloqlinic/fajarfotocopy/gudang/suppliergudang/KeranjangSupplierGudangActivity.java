@@ -230,7 +230,12 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String jumlahBayarStr = binding.edtJumlahBayarSupplier.getText().toString();
-                        String jumlahReplace = jumlahBayarStr.replace(".", "").replace(",", "");
+                        String jumlahReplace = jumlahBayarStr.replace(".", "")
+                                .replace(",", "");
+                        if (jumlahBayarStr.isEmpty()){
+                            binding.edtJumlahBayarSupplier.setError("Jumlah bayar tidak boleh kosong");
+                            return;
+                        }
                         jumlahBayar = Integer.parseInt(jumlahReplace);
                         kembalian = jumlahBayar - total;
                         jumlahKurang = total - jumlahBayar;

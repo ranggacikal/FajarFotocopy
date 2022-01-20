@@ -47,7 +47,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
     List<SearchBarangByIdItem> idBarang;
     SupplierGudangActivity supplierGudangActivity;
 
-    String number;
+    String number, value;
     int total, edit_pack, jumlah_qty;
     Dialog dialog, dialogDataKosong;
 
@@ -103,30 +103,30 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (number != null) {
-
-                            if (number.equals("0")) {
-                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                        }
-                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
-
-                        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
-
-                        String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
-                        String id_barang = idBarang.get(position).getIdBarang();
-                        tambahPenjualanGudang(id_status_penjualan, id_barang, number);
-
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (number != null) {
+//
+//                            if (number.equals("0")) {
+//                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
+//                                return;
+//                            }
+//
+//                        }
+//                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
+//
+//                        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
+//
+//                        String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
+//                        String id_barang = idBarang.get(position).getIdBarang();
+//                        tambahPenjualanGudang(id_status_penjualan, id_barang, number);
+//
+//                    }
+//                });
     }
 
     private void tampilDialogDataKosong() {
@@ -184,7 +184,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         numberPicker.setQuantitizerListener(new QuantitizerListener() {
             @Override
             public void onIncrease() {
-                String value = String.valueOf(numberPicker.getValue());
+                value = String.valueOf(numberPicker.getValue());
                 edtJumlahPcs.setEnabled(false);
                 int jumlah_kurang = 0;
                 if (Integer.parseInt(value) > stock_db) {
@@ -211,7 +211,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
             @Override
             public void onDecrease() {
                 edtJumlahPcs.setEnabled(false);
-                String value = String.valueOf(numberPicker.getValue());
+                value = String.valueOf(numberPicker.getValue());
                 int jumlah_kurang = 0;
                 if (Integer.parseInt(value) < 0) {
                     Toast.makeText(context, "Quantity tidak boleh kurang dari 1", Toast.LENGTH_SHORT).show();
@@ -252,7 +252,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         progressDialog.setMessage("Menambahkan Barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPenjualanGudang(id_barang, number, jumlah_pack, String.valueOf(total),
+        ConfigRetrofit.service.tambahPenjualanGudang(id_barang, String.valueOf(jumlah_qty), value, String.valueOf(total),
                 supplierGudangActivity.nama_user, id_status_penjualan)
                 .enqueue(new Callback<ResponseTambahPenjualan>() {
                     @Override
