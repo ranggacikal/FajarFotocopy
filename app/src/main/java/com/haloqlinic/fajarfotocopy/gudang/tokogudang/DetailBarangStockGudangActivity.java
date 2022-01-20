@@ -116,7 +116,9 @@ public class DetailBarangStockGudangActivity extends AppCompatActivity {
 
                 if (jml_pack.equals("")){
                     binding.edtStockBarangPcsGudang.setText("0");
-                }else {
+                }else if (jml_pack.equals("-")){
+                    binding.edtStockBarangPcsGudang.setText("0");
+                } else {
                     jumlah_pcs = Integer.parseInt(jml_pack) * Integer.parseInt(number_of_pack);
                     binding.edtStockBarangPcsGudang.setText(String.valueOf(jumlah_pcs));
                 }
