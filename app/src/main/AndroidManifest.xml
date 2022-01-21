@@ -15,6 +15,7 @@
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
+        <activity android:name=".driver.WebViewSuratJalanSupplierActivity"></activity>
         <activity
             android:name=".gudang.reportgudang.ListTransaksiSupplierActivity"
             android:exported="false" />
