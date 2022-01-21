@@ -428,16 +428,16 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
                 int kurangi_stock = Integer.parseInt(stock) - number;
                 int jumlah_pack_sisa = 0;
-                int jumlah_hasil_bagi;
+                int jumlah_hasil_bagi = kurangi_stock / Integer.parseInt(numberOfPack);
 
 
 
-                if (Integer.parseInt(stockPack) == 0){
+                if (Integer.parseInt(stockPack) == jumlah_hasil_bagi){
                     jumlah_pack_sisa = 0;
                     
                 }else{
-                    int sisa_stock = Integer.parseInt(stock) - number;
-                    jumlah_pack_sisa = sisa_stock % Integer.parseInt(numberOfPack);
+                    int sisa_stock = Integer.parseInt(stockPack) - jumlah_hasil_bagi;
+                    jumlah_pack_sisa = sisa_stock;
                 }
 
 //                if (kurangi_stock % Integer.parseInt(numberOfPack) == 0) {
