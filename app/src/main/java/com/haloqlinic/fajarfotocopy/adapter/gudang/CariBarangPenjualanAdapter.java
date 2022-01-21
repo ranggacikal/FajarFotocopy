@@ -48,7 +48,7 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
     List<SearchBarangByNamaItem> dataBarang;
     SupplierGudangActivity supplierGudangActivity;
 
-    String number;
+    String number, value;
     int total, jumlah_qty, edit_pack, count = 0;
     Dialog dialog, dialogDataKosong;
 
@@ -104,30 +104,30 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (number != null) {
-
-                            if (number.equals("0")) {
-                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-
-                        }
-                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
-
-                        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
-
-                        String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
-                        String id_barang = dataBarang.get(position).getIdBarang();
-                        tambahPenjualanGudang(id_status_penjualan, id_barang, number);
-
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.btnTambahPesanan)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        if (number != null) {
+//
+//                            if (number.equals("0")) {
+//                                Toast.makeText(context, "Jumlah Barang Harus Lebih dari 0", Toast.LENGTH_SHORT).show();
+//                                return;
+//                            }
+//
+//                        }
+//                        String jumlah_pack = holder.edtJumlahPack.getText().toString();
+//
+//                        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
+//
+//                        String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
+//                        String id_barang = dataBarang.get(position).getIdBarang();
+//                        tambahPenjualanGudang(id_status_penjualan, id_barang, number);
+//
+//                    }
+//                });
 
     }
 
@@ -186,7 +186,7 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
         numberPicker.setQuantitizerListener(new QuantitizerListener() {
             @Override
             public void onIncrease() {
-                String value = String.valueOf(numberPicker.getValue());
+                value = String.valueOf(numberPicker.getValue());
                 edtJumlahPcs.setEnabled(false);
                 int jumlah_kurang = 0;
                 if (Integer.parseInt(value) > stock_db) {
@@ -213,7 +213,7 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
             @Override
             public void onDecrease() {
                 edtJumlahPcs.setEnabled(false);
-                String value = String.valueOf(numberPicker.getValue());
+                value = String.valueOf(numberPicker.getValue());
                 int jumlah_kurang = 0;
                 if (Integer.parseInt(value) < 0) {
                     Toast.makeText(context, "Quantity tidak boleh kurang dari 1", Toast.LENGTH_SHORT).show();
@@ -241,19 +241,19 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
         txtTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tambahPenjualanGudang(id_status_penjualan, id_barang, String.valueOf(jumlah_qty));
+                tambahPenjualanGudang(id_status_penjualan, id_barang, String.valueOf(jumlah_qty), value);
             }
         });
 
     }
 
-    private void tambahPenjualanGudang(String id_status_penjualan, String id_barang, String jumlah_pack) {
+    private void tambahPenjualanGudang(String id_status_penjualan, String id_barang, String jumlah_pack, String jml_pack) {
 
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Menambahkan Barang");
         progressDialog.show();
 
-        ConfigRetrofit.service.tambahPenjualanGudang(id_barang, String.valueOf(jumlah_qty), jumlah_pack,
+        ConfigRetrofit.service.tambahPenjualanGudang(id_barang, String.valueOf(jumlah_qty), jml_pack,
                 String.valueOf(total), supplierGudangActivity.nama_user, id_status_penjualan)
                 .enqueue(new Callback<ResponseTambahPenjualan>() {
                     @Override
