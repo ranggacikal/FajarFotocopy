@@ -1,10 +1,5 @@
 package com.haloqlinic.fajarfotocopy.driver;
 
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,11 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.haloqlinic.fajarfotocopy.R;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.haloqlinic.fajarfotocopy.adapter.driver.PengirimanDriverAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.driver.PengirimanPenjualanGudangAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityDataInformasiGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailDriverBinding;
 import com.haloqlinic.fajarfotocopy.model.listPenjualanGudangByIdStatus.ListPenjualanGudangByIdStatusItem;
 import com.haloqlinic.fajarfotocopy.model.listPenjualanGudangByIdStatus.ResponseListPenjualanGudangByIdStatus;
@@ -32,12 +28,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 public class DetailDriverActivity extends AppCompatActivity {
 
     private ActivityDetailDriverBinding binding;
 
     String id_status_pengiriman, id_status_penjualan_gudang;
-    String status_pengiriman, status_pengiriman_intent;
+    String status_pengiriman, status_pengiriman_intent, status_penjualan_gudang, status_penjualan_gudang_intent;
     String jenis_pengiriman = "";
 
     @Override
@@ -49,6 +47,7 @@ public class DetailDriverActivity extends AppCompatActivity {
 
         id_status_pengiriman = getIntent().getStringExtra("id_status_pengiriman");
         id_status_penjualan_gudang = getIntent().getStringExtra("id_status_penjualan_gudang");
+        status_penjualan_gudang_intent = getIntent().getStringExtra("status_penjualan_gudang");
         status_pengiriman_intent = getIntent().getStringExtra("status_pengiriman");
         jenis_pengiriman = getIntent().getStringExtra("jenis_pengiriman");
 
@@ -68,15 +67,15 @@ public class DetailDriverActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         if (jenis_pengiriman.equals("toko")) {
                             Intent intent = new Intent(DetailDriverActivity.this, WebViewSuratJalanActivity.class);
                             intent.putExtra("id_status_pengiriman", id_status_pengiriman);
                             startActivity(intent);
-                        }else{
-                            Intent intent = new Intent(DetailDriverActivity.this, WebViewSuratJalanActivity.class);
-                            intent.putExtra("id_status_pengiriman", id_status_pengiriman);
+                        } else {
+                            Intent intent = new Intent(DetailDriverActivity.this, WebViewSuratJalanSupplierActivity.class);
+                            intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
                             startActivity(intent);
+
                         }
                     }
                 });
@@ -96,6 +95,7 @@ public class DetailDriverActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         status_pengiriman = "dalam pengiriman";
+                        status_penjualan_gudang = "dalam pengiriman";
 
                         if (jenis_pengiriman.equals("toko")) {
                             updateStatusPengiriman();
@@ -111,6 +111,7 @@ public class DetailDriverActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         status_pengiriman = "pengiriman selesai";
+                        status_penjualan_gudang = "pengiriman selesai";
                         if (jenis_pengiriman.equals("toko")) {
                             updateStatusPengiriman();
                         }else{
@@ -309,4 +310,5 @@ public class DetailDriverActivity extends AppCompatActivity {
         });
 
     }
-}
+
+                }
