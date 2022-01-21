@@ -15,6 +15,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
@@ -22,6 +23,8 @@ import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
+import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
+import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
@@ -36,6 +39,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,8 +59,10 @@ public class TransaksiKasirActivity extends AppCompatActivity {
     private SharedPreferencedConfig preferencedConfig;
 
     String nameActivity = "";
+    public String cariBarang = "";
 
     ProgressDialog progressDialog;
+    public List<BarangPenjualanItem> barangPenjualan;
 
     public ArrayList<String> dataBarangoutlet;
 
@@ -159,7 +165,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String textCari) {
-                loadSearchBarangKasir(textCari);
+                cariBarang = textCari;
+                loadSearchBarangKasir(cariBarang);
                 return true;
             }
         });
@@ -192,7 +199,52 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     }
                 });
 
+        loadDataPembayaran();
+
 //        getStatusPenjualan();
+    }
+
+    public void loadDataPembayaran() {
+
+        ProgressDialog progressDialog = new ProgressDialog(TransaksiKasirActivity.this);
+        progressDialog.setMessage("memuat data pembayaran");
+        progressDialog.show();
+
+        ConfigRetrofit.service.dataBarangPenjualan(id_status_penjualan).enqueue(new Callback<ResponseDataBarangPenjualan>() {
+            @Override
+            public void onResponse(Call<ResponseDataBarangPenjualan> call, Response<ResponseDataBarangPenjualan> response) {
+                if (response.isSuccessful()){
+                    progressDialog.dismiss();
+
+                    int status = response.body().getStatus();
+                    ArrayList<Integer> listTotal = new ArrayList<>();
+
+                    listTotal.clear();
+
+                    if (status == 1){
+
+
+                        barangPenjualan = response.body().getBarangPenjualan();
+
+                        Toast.makeText(TransaksiKasirActivity.this, String.valueOf(barangPenjualan.size()), Toast.LENGTH_SHORT).show();
+
+
+                    }else{
+                        Toast.makeText(TransaksiKasirActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    progressDialog.dismiss();
+                    Toast.makeText(TransaksiKasirActivity.this, "Gagal Memuat data", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDataBarangPenjualan> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(TransaksiKasirActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void loadSearchBarangById(String textCariId) {
@@ -255,7 +307,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         }
     }
 
-    private void loadSearchBarangKasir(String textCari) {
+    public void loadSearchBarangKasir(String textCari) {
 
         if (textCari.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);

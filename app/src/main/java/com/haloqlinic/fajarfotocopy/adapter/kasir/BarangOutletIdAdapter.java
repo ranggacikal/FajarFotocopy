@@ -366,6 +366,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
 
                             if (status == 1) {
                                 Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
 //                                editJumlahPack(jumlah_pack_sisa, id_barang_outlet);
                             } else {
                                 Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();
