@@ -43,8 +43,17 @@ public class TransaksiBerhasilAdapter extends RecyclerView.Adapter<TransaksiBerh
         int total = Integer.parseInt(dataDetail.get(position).getTotal());
         int harga =  total / Integer.parseInt(dataDetail.get(position).getJumlahBarang());
 
+        String jenis = dataDetail.get(position).getJenisSatuan();
+
         holder.txtIdPenjualan.setText(dataDetail.get(position).getIdPenjualan());
-        holder.txtQty.setText(dataDetail.get(position).getJumlahBarang());
+
+        if (jenis.equals("Pack")) {
+            holder.txtQty.setText(dataDetail.get(position).getJumlahPack());
+            holder.txtSatuan.setText("Pack");
+        }else{
+            holder.txtQty.setText(dataDetail.get(position).getJumlahBarang());
+            holder.txtSatuan.setText("Pcs");
+        }
         holder.txtTotal.setText("Rp" + NumberFormat.getInstance().format(total));
         holder.txtNamaBarang.setText(dataDetail.get(position).getNamaBarang());
 
@@ -57,7 +66,7 @@ public class TransaksiBerhasilAdapter extends RecyclerView.Adapter<TransaksiBerh
 
     public class TransaksiBerhasilViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtIdPenjualan, txtQty, txtNamaBarang,txtTotal;
+        TextView txtIdPenjualan, txtQty, txtNamaBarang,txtTotal, txtSatuan;
 
         public TransaksiBerhasilViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -66,6 +75,7 @@ public class TransaksiBerhasilAdapter extends RecyclerView.Adapter<TransaksiBerh
             txtQty = itemView.findViewById(R.id.text_item_qty_cetak_bukti);
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_barang_cetak_bukti);
             txtTotal = itemView.findViewById(R.id.text_item_total_cetak_bukti);
+            txtSatuan = itemView.findViewById(R.id.text_item_satuan_cetak_bukti);
         }
     }
 }

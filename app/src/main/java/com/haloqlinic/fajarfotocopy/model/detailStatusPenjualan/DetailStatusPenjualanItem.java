@@ -16,6 +16,9 @@ public class DetailStatusPenjualanItem{
 	@SerializedName("jumlah_diskon")
 	private String jumlahDiskon;
 
+	@SerializedName("jumlah_pack")
+	private String jumlahPack;
+
 	@SerializedName("id_penjualan")
 	private String idPenjualan;
 
@@ -25,8 +28,14 @@ public class DetailStatusPenjualanItem{
 	@SerializedName("total")
 	private String total;
 
+	@SerializedName("status_penjualan_barang")
+	private String statusPenjualanBarang;
+
 	@SerializedName("status_penjualan")
 	private String statusPenjualan;
+
+	@SerializedName("jenis_satuan")
+	private String jenisSatuan;
 
 	@SerializedName("id_barang")
 	private String idBarang;
@@ -78,6 +87,14 @@ public class DetailStatusPenjualanItem{
 		return jumlahDiskon;
 	}
 
+	public void setJumlahPack(String jumlahPack){
+		this.jumlahPack = jumlahPack;
+	}
+
+	public String getJumlahPack(){
+		return jumlahPack;
+	}
+
 	public void setIdPenjualan(String idPenjualan){
 		this.idPenjualan = idPenjualan;
 	}
@@ -102,12 +119,28 @@ public class DetailStatusPenjualanItem{
 		return total;
 	}
 
+	public void setStatusPenjualanBarang(String statusPenjualanBarang){
+		this.statusPenjualanBarang = statusPenjualanBarang;
+	}
+
+	public String getStatusPenjualanBarang(){
+		return statusPenjualanBarang;
+	}
+
 	public void setStatusPenjualan(String statusPenjualan){
 		this.statusPenjualan = statusPenjualan;
 	}
 
 	public String getStatusPenjualan(){
 		return statusPenjualan;
+	}
+
+	public void setJenisSatuan(String jenisSatuan){
+		this.jenisSatuan = jenisSatuan;
+	}
+
+	public String getJenisSatuan(){
+		return jenisSatuan;
 	}
 
 	public void setIdBarang(String idBarang){
@@ -166,10 +199,13 @@ public class DetailStatusPenjualanItem{
 			",total_harga = '" + totalHarga + '\'' + 
 			",metode_bayar = '" + metodeBayar + '\'' + 
 			",jumlah_diskon = '" + jumlahDiskon + '\'' + 
+			",jumlah_pack = '" + jumlahPack + '\'' + 
 			",id_penjualan = '" + idPenjualan + '\'' + 
 			",tanggal_penjualan = '" + tanggalPenjualan + '\'' + 
 			",total = '" + total + '\'' + 
+			",status_penjualan_barang = '" + statusPenjualanBarang + '\'' + 
 			",status_penjualan = '" + statusPenjualan + '\'' + 
+			",jenis_satuan = '" + jenisSatuan + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
 			",id_status_penjualan = '" + idStatusPenjualan + '\'' + 
 			",jumlah_barang = '" + jumlahBarang + '\'' + 

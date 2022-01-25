@@ -74,19 +74,19 @@ public class InvoiceKasirActivity extends AppCompatActivity {
         printBtnPressed = true;
 
         // Creating  PrintManager instance
-        PrintManager printManager = (PrintManager) this
-                .getSystemService(Context.PRINT_SERVICE);
+        PrintManager printManager = (PrintManager) getSystemService(Context.PRINT_SERVICE);
+        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter();
+        String jobName = getString(R.string.app_name) + " Document";
+        PrintAttributes.Builder builder = new PrintAttributes.Builder();
+        builder.setMediaSize(PrintAttributes.MediaSize.ISO_A5);
+        printJob = printManager.print(jobName, printAdapter, builder.build());
 
-        // setting the name of job
-        String jobName = getString(R.string.app_name) + " webpage" + webView.getUrl();
-
-        // Creating  PrintDocumentAdapter instance
-        PrintDocumentAdapter printAdapter = webView.createPrintDocumentAdapter(jobName);
-
-        // Create a print job with name and adapter instance
-        assert printManager != null;
-        printJob = printManager.print(jobName, printAdapter,
-                new PrintAttributes.Builder().build());
+//        if(printJob.isCompleted()){
+//            Toast.makeText(getApplicationContext(), R.string.print_complete, Toast.LENGTH_LONG).show();
+//        }
+//        else if(printJob.isFailed()){
+//            Toast.makeText(getApplicationContext(), R.string.print_failed, Toast.LENGTH_LONG).show();
+//        }
     }
 
     public class myWebclient extends WebViewClient {

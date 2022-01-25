@@ -333,12 +333,12 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
                 if (jumlahPcs == 0) {
 //                    Toast.makeText(context, "Tidak Boleh kurang dari 1", Toast.LENGTH_SHORT).show();
-                    total = number * Integer.parseInt(hargaJualPack);
+                    total = jumlahPcs * Integer.parseInt(hargaJualPack);
                     edtTotalHarga.setText("Rp" + NumberFormat.getInstance().format(total));
                     btnTambah.setEnabled(false);
                     numberPicker.setValue(0);
                 } else {
-                    total = number * Integer.parseInt(hargaJualPack);
+                    total = jumlahPcs * Integer.parseInt(hargaJualPack);
                     number = jumlahPcs * Integer.parseInt(numberOfPack);
                     edtTotalHarga.setText("Rp" + NumberFormat.getInstance().format(total));
                     btnTambah.setEnabled(true);

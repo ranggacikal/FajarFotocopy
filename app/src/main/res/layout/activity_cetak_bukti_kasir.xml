@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,160 +7,187 @@
     android:background="@color/white"
     tools:context=".kasir.transaksikasir.CetakBuktiKasirActivity">
 
-    <LinearLayout
-        android:id="@+id/linear_header"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="121dp"
-            android:background="@drawable/background_header_green">
-
-            <LinearLayout
-                android:id="@+id/linear_back_cetak_bukti_kasir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Cetak Bukti Pembayaran"
-                    android:textColor="@color/white"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_print_pdf"
+            android:id="@+id/linear_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <LinearLayout
-                android:id="@+id/linear_abu"
                 android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:layout_below="@id/headerkeranjang"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp"
-                android:background="#C4C4C4"
-                android:orientation="horizontal">
+                android:layout_height="121dp"
+                android:background="@drawable/background_header_green">
 
-                <TextView
-                    android:layout_width="120dp"
+                <LinearLayout
+                    android:id="@+id/linear_back_cetak_bukti_kasir"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:text="ID Penjualan"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:layout_marginStart="38dp"
+                    android:layout_marginTop="38dp"
+                    android:orientation="horizontal">
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000000" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_back_atas" />
 
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:text="QTY"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sairamedium"
+                        android:text="Cetak Bukti Pembayaran"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000000" />
 
-                <TextView
-                    android:layout_width="140dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:text="Barang"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000000" />
-
-                <TextView
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/sairamedium"
-                    android:gravity="center"
-                    android:paddingHorizontal="5dp"
-                    android:text="Harga"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
+                </LinearLayout>
 
             </LinearLayout>
 
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_cetak_bukti"
+            <LinearLayout
+                android:id="@+id/linear_print_pdf"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-            </androidx.recyclerview.widget.RecyclerView>
+                <LinearLayout
+                    android:id="@+id/linear_abu"
+                    android:layout_width="match_parent"
+                    android:layout_height="47dp"
+                    android:layout_below="@id/headerkeranjang"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="#C4C4C4"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sairamedium"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="ID Penjualan"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000" />
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sairamedium"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="Satuan"
+                        android:textColor="@color/black"
+                        android:textSize="10sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000" />
+
+                    <TextView
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sairamedium"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="QTY"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000" />
+
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sairamedium"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="Barang"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#000000" />
+
+                    <TextView
+                        android:layout_width="90dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/sairamedium"
+                        android:gravity="center"
+                        android:paddingHorizontal="5dp"
+                        android:text="Harga"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+
+
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_cetak_bukti"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_cetak_bukti_penjualan"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairamedium"
+                android:paddingHorizontal="5dp"
+                android:text="Cetak Bukti"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_back_home_cetak_bukti"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_black"
+                android:fontFamily="@font/sairamedium"
+                android:paddingHorizontal="5dp"
+                android:text="Kembali Ke Home"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_cetak_bukti_penjualan"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairamedium"
-            android:paddingHorizontal="5dp"
-            android:text="Cetak Bukti"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/btn_back_home_cetak_bukti"
-            android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairamedium"
-            android:paddingHorizontal="5dp"
-            android:text="Kembali Ke Home"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</ScrollView>

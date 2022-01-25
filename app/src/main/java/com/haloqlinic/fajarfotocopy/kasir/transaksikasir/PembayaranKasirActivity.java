@@ -70,69 +70,70 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            binding = ActivityPembayaranKasirBinding.inflate(getLayoutInflater());
-            View view = binding.getRoot();
-            setContentView(view);
+        super.onCreate(savedInstanceState);
+        binding = ActivityPembayaranKasirBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-            from_keto = getIntent().getStringExtra("from_keto");
+        from_keto = getIntent().getStringExtra("from_keto");
 
-            preferencedConfig = new SharedPreferencedConfig(this);
+        preferencedConfig = new SharedPreferencedConfig(this);
 
-            calendar = Calendar.getInstance();
-            dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
 
-            date = dateFormat.format(calendar.getTime());
-            tanggal = date;
+        date = dateFormat.format(calendar.getTime());
+        tanggal = date;
 
-            id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
+        id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
+        Log.d("getIdStatusPenjualan", "onCreate: "+id_status_penjualan);
 
-            binding.edtDiskonPembayaran.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        binding.edtDiskonPembayaran.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                value = binding.edtDiskonPembayaran.getText().toString();
+
+                if (value.equals("")) {
+                    totalSeluruh = total - 0;
+                } else {
+                    totalSeluruh = total - Integer.parseInt(value);
                 }
 
-                @Override
-                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                Log.d("checkTotalSeluruh", "onTextChanged: " + "Rp." + totalSeluruh);
+                binding.textTotalBayarPembayaran.setText("Rp" + NumberFormat.getInstance().format(totalSeluruh));
+            }
 
-                    value = binding.edtDiskonPembayaran.getText().toString();
+            @Override
+            public void afterTextChanged(Editable s) {
 
-                    if (value.equals("")){
-                        totalSeluruh = total - 0;
-                    }else{
-                        totalSeluruh = total - Integer.parseInt(value);
-                    }
+            }
+        });
 
-                    Log.d("checkTotalSeluruh", "onTextChanged: "+"Rp."+totalSeluruh);
-                    binding.textTotalBayarPembayaran.setText("Rp" + NumberFormat.getInstance().format(totalSeluruh));
+        binding.spinnerPembayaran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                metode_bayar = binding.spinnerPembayaran.getSelectedItem().toString();
+                Log.d("cekMetodeBayar", "onItemSelected: " + metode_bayar);
+
+                if (metode_bayar.equals("Cash")) {
+                    binding.linearBuktiTfPembayaran.setVisibility(View.GONE);
+                } else {
+                    binding.linearBuktiTfPembayaran.setVisibility(View.VISIBLE);
                 }
 
-                @Override
-                public void afterTextChanged(Editable s) {
+            }
 
-                }
-            });
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
-            binding.spinnerPembayaran.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    metode_bayar = binding.spinnerPembayaran.getSelectedItem().toString();
-                    Log.d("cekMetodeBayar", "onItemSelected: "+metode_bayar);
-
-                    if(metode_bayar.equals("Cash")){
-                        binding.linearBuktiTfPembayaran.setVisibility(View.GONE);
-                    }else{
-                        binding.linearBuktiTfPembayaran.setVisibility(View.VISIBLE);
-                    }
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
-            });
+            }
+        });
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackPembayaranKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -145,7 +146,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 });
 
         PushDownAnim.setPushDownAnimTo(binding.imgBuktiTfPembayaran)
-                .setScale( MODE_SCALE, 0.89f  )
+                .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -153,12 +154,12 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     }
                 });
 
-            binding.idTransaksiPembayaran.setText(id_status_penjualan);
-            binding.textTanggalPembayaran.setText(tanggal);
-            binding.textNamaKasirPembayaran.setText(preferencedConfig.getPreferenceNama());
+        binding.idTransaksiPembayaran.setText(id_status_penjualan);
+        binding.textTanggalPembayaran.setText(tanggal);
+        binding.textNamaKasirPembayaran.setText(preferencedConfig.getPreferenceNama());
 
-            binding.rvListBarangPembayaran.setHasFixedSize(true);
-            binding.rvListBarangPembayaran.setLayoutManager(new LinearLayoutManager(PembayaranKasirActivity.this));
+        binding.rvListBarangPembayaran.setHasFixedSize(true);
+        binding.rvListBarangPembayaran.setLayoutManager(new LinearLayoutManager(PembayaranKasirActivity.this));
 
         PushDownAnim.setPushDownAnimTo(binding.btnBayarPembayaran)
                 .setScale(MODE_SCALE, 0.89f)
@@ -169,7 +170,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     }
                 });
 
-            loadDataPembayaran();
+        loadDataPembayaran();
     }
 
     private void pilihGambar() {
@@ -222,15 +223,15 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         String postTotal = "";
         String postDiskon = "";
 
-        if (totalSeluruh == 0){
+        if (totalSeluruh == 0) {
             postTotal = String.valueOf(total);
-        }else{
+        } else {
             postTotal = String.valueOf(totalSeluruh);
         }
 
-        if (value.equals("")){
+        if (value.equals("")) {
             postDiskon = "0";
-        }else{
+        } else {
             postDiskon = value;
         }
 
@@ -244,28 +245,28 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 .enqueue(new Callback<ResponseUpdateStatusPenjualan>() {
                     @Override
                     public void onResponse(Call<ResponseUpdateStatusPenjualan> call, Response<ResponseUpdateStatusPenjualan> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             progressDialog.dismiss();
 
                             int status = response.body().getStatus();
-                            if (status == 1){
+                            if (status == 1) {
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Pembayaran Berhasil", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiBerhasilActivity.class);
                                 intent.putExtra("id_status_penjualan", id_status_penjualan);
-                                if (from_keto!=null){
+                                if (from_keto != null) {
                                     intent.putExtra("from_keto", from_keto);
                                 }
                                 editStatusPenjualanBarang();
                                 startActivity(intent);
                                 finish();
-                            }else{
+                            } else {
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Pembayaran Gagal", Toast.LENGTH_SHORT).show();
                             }
 
-                        }else{
+                        } else {
                             progressDialog.dismiss();
                             Toast.makeText(PembayaranKasirActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
                         }
@@ -274,7 +275,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<ResponseUpdateStatusPenjualan> call, Throwable t) {
                         progressDialog.dismiss();
-                        Toast.makeText(PembayaranKasirActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PembayaranKasirActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -287,21 +288,21 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<ResponseEditStatusPenjualanBarang> call,
                                            Response<ResponseEditStatusPenjualanBarang> response) {
-                        if(response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             int status = response.body().getStatus();
 
-                            if(status==1){
+                            if (status == 1) {
 
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Berhasil Set Data Pembayaran", Toast.LENGTH_SHORT).show();
 
-                            }else{
+                            } else {
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Gagal Set Data Pembayaran", Toast.LENGTH_SHORT).show();
                             }
 
-                        }else{
+                        } else {
                             Toast.makeText(PembayaranKasirActivity.this,
                                     "Response ERROR", Toast.LENGTH_SHORT).show();
                         }
@@ -325,7 +326,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         ConfigRetrofit.service.dataBarangPenjualan(id_status_penjualan).enqueue(new Callback<ResponseDataBarangPenjualan>() {
             @Override
             public void onResponse(Call<ResponseDataBarangPenjualan> call, Response<ResponseDataBarangPenjualan> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     progressDialog.dismiss();
 
                     int status = response.body().getStatus();
@@ -333,20 +334,20 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
                     listTotal.clear();
 
-                    if (status == 1){
+                    if (status == 1) {
 
 
                         List<BarangPenjualanItem> dataBarang = response.body().getBarangPenjualan();
                         PembayaranAdapter adapter = new PembayaranAdapter(PembayaranKasirActivity.this,
                                 dataBarang);
 
-                        for (int i = 0; i<dataBarang.size(); i++){
+                        for (int i = 0; i < dataBarang.size(); i++) {
                             listTotal.add(Integer.parseInt(dataBarang.get(i).getTotal()));
                             tanggal2 = dataBarang.get(i).getTanggalPenjualan();
                         }
 
                         total = 0;
-                        for (int a = 0; a<listTotal.size(); a++){
+                        for (int a = 0; a < listTotal.size(); a++) {
 
                             total += listTotal.get(a);
 
@@ -355,10 +356,10 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                         binding.rvListBarangPembayaran.setAdapter(adapter);
                         binding.textTotalBayarPembayaran.setText("Rp" + NumberFormat.getInstance().format(total));
 
-                    }else{
+                    } else {
                         Toast.makeText(PembayaranKasirActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(PembayaranKasirActivity.this, "Gagal Memuat data", Toast.LENGTH_SHORT).show();
                 }
@@ -367,7 +368,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseDataBarangPenjualan> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(PembayaranKasirActivity.this, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PembayaranKasirActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 

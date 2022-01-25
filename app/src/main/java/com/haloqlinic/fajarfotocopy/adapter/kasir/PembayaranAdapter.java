@@ -40,12 +40,25 @@ public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.Pe
     @Override
     public void onBindViewHolder(@NonNull @NotNull PembayaranViewHolder holder, int position) {
 
+        String satuan = dataBarang.get(position).getJenisSatuan();
         int total_harga = Integer.parseInt(dataBarang.get(position).getTotal());
-        int jumlah = Integer.parseInt(dataBarang.get(position).getJumlahBarang());
-        int harga_barang = total_harga / jumlah;
+        int jumlah;
+
+        int harga_barang;
 
         holder.txtNamaProduk.setText(dataBarang.get(position).getNamaBarang());
-        holder.txtQty.setText(dataBarang.get(position).getJumlahBarang());
+
+        if (satuan.equals("Pack")){
+            holder.txtQty.setText(dataBarang.get(position).getJumlahPack());
+            holder.txtSatuan.setText("Pack");
+            jumlah = Integer.parseInt(dataBarang.get(position).getJumlahPack());
+            harga_barang = total_harga / jumlah;
+        }else{
+            holder.txtQty.setText(dataBarang.get(position).getJumlahBarang());
+            holder.txtSatuan.setText("Pcs");
+            jumlah = Integer.parseInt(dataBarang.get(position).getJumlahBarang());
+            harga_barang = total_harga / jumlah;
+        }
         holder.txtHarga.setText("Rp" + NumberFormat.getInstance().format(harga_barang));
         holder.txtTotal.setText("Rp" + NumberFormat.getInstance().format(total_harga));
 
@@ -58,15 +71,14 @@ public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.Pe
 
     public class PembayaranViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtNamaProduk, txtQty, txtHarga, txtTotal;
-        LinearLayout imgHapus;
+        TextView txtNamaProduk, txtQty, txtHarga, txtTotal, txtSatuan;
 
         public PembayaranViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             txtNamaProduk = itemView.findViewById(R.id.text_item_nama_pembayaran);
             txtQty = itemView.findViewById(R.id.text_item_qty_pembayaran);
             txtHarga = itemView.findViewById(R.id.text_item_harga_pembayaran);
-            imgHapus = itemView.findViewById(R.id.img_hapus_barang);
+            txtSatuan = itemView.findViewById(R.id.text_item_satuan_pembayaran);
             txtTotal = itemView.findViewById(R.id.text_item_total_pembayaran);
         }
     }

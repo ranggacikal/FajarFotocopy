@@ -12,7 +12,7 @@
 
         <TextView
             android:id="@+id/text_item_id_penjualan_cetak_bukti"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sairabold"
             android:gravity="center"
@@ -31,8 +31,18 @@
             android:textSize="11sp" />
 
         <TextView
+            android:id="@+id/text_item_satuan_cetak_bukti"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sairabold"
+            android:gravity="center"
+            android:text="Satuan"
+            android:textColor="@color/black"
+            android:textSize="11sp" />
+
+        <TextView
             android:id="@+id/text_item_nama_barang_cetak_bukti"
-            android:layout_width="140dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sairabold"
             android:gravity="center"
