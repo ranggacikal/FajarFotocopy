@@ -2,7 +2,6 @@ package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,21 +10,16 @@ import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.LoadingActivity;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
-import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityTambahKategoriBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
-import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
-import com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
-import com.haloqlinic.fajarfotocopy.model.getIdStatusPenjualan.ResponseGetIdStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
@@ -39,7 +33,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +84,10 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int which) {
 
-                                        TransaksiKasirActivity.super.onBackPressed();
+//                                        TransaksiKasirActivity.super.onBackPressed();
+                                        Intent intent = new Intent(TransaksiKasirActivity.this, LoadingActivity.class);
+                                        startActivity(intent);
+                                        finish();
 
                                         hapusPenjualan();
                                         dialogInterface.dismiss();
@@ -390,7 +386,11 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
 
-                        TransaksiKasirActivity.super.onBackPressed();
+//                        TransaksiKasirActivity.super.onBackPressed();
+                        Intent intent = new Intent(TransaksiKasirActivity.this, LoadingActivity.class);
+                        startActivity(intent);
+                        finish();
+
 
                         hapusPenjualan();
                         dialogInterface.dismiss();
