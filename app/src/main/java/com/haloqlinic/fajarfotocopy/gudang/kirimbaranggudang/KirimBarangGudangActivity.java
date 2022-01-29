@@ -9,31 +9,27 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kirimBarang.CariKirimBarangAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kirimBarang.CariKirimBarangIdAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityDataBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityKirimBarangGudangBinding;
-import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
-import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
-import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.haloqlinic.fajarfotocopy.model.getLastIdStatusPengiriman.ResponseLastIdStatusPengiriamn;
+import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
+import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -52,6 +48,9 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
     String textName = "";
 
     public String id_toko, id_status_pengiriman, fromActivity, nama_barang, id_minta_barang;
+    String size;
+
+    private SharedPreferencedConfig preferencedConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +58,7 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
         binding = ActivityKirimBarangGudangBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        preferencedConfig = new SharedPreferencedConfig(this);
         getLastIdStatusPengiriman();
 
         id_toko = getIntent().getStringExtra("id_toko");
@@ -146,6 +146,44 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
     }
 
+    public void loadDataPengiriman() {
+
+        Log.d("cekPrefIdStatusPengiriman", "loadDataPengiriman: "+
+                preferencedConfig.getPreferenceLastIdStatusPengiriman());
+
+        ConfigRetrofit.service.listPengiriman(preferencedConfig.getPreferenceLastIdStatusPengiriman(),
+                getIntent().getStringExtra("tanggal"))
+                .enqueue(new Callback<ResponseListPengiriman>() {
+            @Override
+            public void onResponse(Call<ResponseListPengiriman> call, Response<ResponseListPengiriman> response) {
+                if (response.isSuccessful()){
+
+                    int status = response.body().getStatus();
+
+                    size = String.valueOf(status);
+
+                    List<GetListPengirimanItem> dataPengiriman = response.body().getGetListPengiriman();
+
+                    if (status==1){
+                        Log.d("cekSize", "onResponse: "+size);
+                        Log.d("cekSize", "onResponse: "+dataPengiriman.toString());
+                    }else{
+                        Log.d("LoadDataPengiriman", "onResponse: Status = "+status);
+                    }
+
+                }else{
+                    Log.d("LoadDataPengiriman", "onResponse: Response = False");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseListPengiriman> call, Throwable t) {
+                Log.e("LoadDataPengiriman", "onFailure: "+t.getMessage() );
+            }
+        });
+
+    }
+
     private void getLastIdStatusPengiriman() {
 
         ConfigRetrofit.service.lastIdStatusPengiriman().enqueue(new Callback<ResponseLastIdStatusPengiriamn>() {
@@ -158,7 +196,10 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                     if (status==1){
 
                         id_status_pengiriman = response.body().getDataIdStatusPengiriman().getIdStatusPengiriman();
-
+                        preferencedConfig.savePrefString(SharedPreferencedConfig
+                                .PREFERENCE_LAST_ID_STATUS_PENGIRIMAN, id_status_pengiriman);
+                        loadDataPengiriman();
+                        Log.d("cekIdStatusPengiriman", "onResponse: "+id_status_pengiriman);
                     }else{
                         Log.e("lastIdStatusPengiriman", "onResponse: Data Kosong");
                     }
@@ -196,6 +237,8 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
     public void loadDataCari(String newText) {
 
+        Log.d("cekNewText", "loadDataCari: "+newText);
+
         if (newText.equals("")){
             binding.rvSearchKirimBarangGudang.setVisibility(View.GONE);
             binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
@@ -210,10 +253,13 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
                         List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
 
                         if (status == 1) {
+                            Log.d("cekDataBarangKirim", "onResponse: "+dataBarang.toString());
 
                             binding.rvSearchKirimBarangGudang.setVisibility(View.VISIBLE);
                             binding.txtDataKosongKirimBarangGudang.setVisibility(View.GONE);
-                            CariKirimBarangAdapter adapter = new CariKirimBarangAdapter(KirimBarangGudangActivity.this, dataBarang, KirimBarangGudangActivity.this);
+                            CariKirimBarangAdapter adapter = new
+                                    CariKirimBarangAdapter(KirimBarangGudangActivity.this,
+                                    dataBarang, KirimBarangGudangActivity.this);
                             binding.rvSearchKirimBarangGudang.setHasFixedSize(true);
                             binding.rvSearchKirimBarangGudang.setLayoutManager(new LinearLayoutManager(KirimBarangGudangActivity.this));
                             binding.rvSearchKirimBarangGudang.setAdapter(adapter);
@@ -306,11 +352,56 @@ public class KirimBarangGudangActivity extends AppCompatActivity {
 
         if (searchId = true){
             loadSearchById(textId);
-        }else if (searchName = true){
+        }
+        else if (searchName = true){
             loadDataCari(textName);
         }
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+        if (size != null){
+            if (size.equals("0")){
+                deleteStatusPengiriman();
+            }
+        }
+    }
+
+    private void deleteStatusPengiriman() {
+
+        binding.progresKirimBarang.setVisibility(View.VISIBLE);
+
+        ConfigRetrofit.service.hapusStatusPengiriman(id_status_pengiriman)
+                .enqueue(new Callback<ResponseHapusStatusPengiriman>() {
+            @Override
+            public void onResponse(Call<ResponseHapusStatusPengiriman> call,
+                                   Response<ResponseHapusStatusPengiriman> response) {
+                if (response.isSuccessful()){
+                    int status = response.body().getStatus();
+
+                    if (status==1){
+                        binding.progresKirimBarang.setVisibility(View.GONE);
+                        finish();
+                    }else{
+                        binding.progresKirimBarang.setVisibility(View.GONE);
+                        Toast.makeText(KirimBarangGudangActivity.this, "Gagal Membatalkan Pengiriman",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    binding.progresKirimBarang.setVisibility(View.GONE);
+                    Toast.makeText(KirimBarangGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseHapusStatusPengiriman> call, Throwable t) {
+                binding.progresKirimBarang.setVisibility(View.GONE);
+                Toast.makeText(KirimBarangGudangActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 }

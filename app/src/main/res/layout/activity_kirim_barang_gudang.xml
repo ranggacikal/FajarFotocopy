@@ -7,6 +7,14 @@
     android:background="@color/white"
     tools:context=".gudang.kirimbaranggudang.KirimBarangGudangActivity">
 
+    <ProgressBar
+        android:id="@+id/progres_kirim_barang"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

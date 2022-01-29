@@ -18,6 +18,7 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
+import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
@@ -56,6 +57,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     ProgressDialog progressDialog;
     public List<BarangPenjualanItem> barangPenjualan;
+    public int status;
 
     public ArrayList<String> dataBarangoutlet;
 
@@ -89,7 +91,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                                         startActivity(intent);
                                         finish();
 
-                                        hapusPenjualan();
+                                        editStatusPenjualanBarang();
                                         dialogInterface.dismiss();
                                     }
                                 })
@@ -212,7 +214,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                 if (response.isSuccessful()){
                     progressDialog.dismiss();
 
-                    int status = response.body().getStatus();
+                    status = response.body().getStatus();
                     ArrayList<Integer> listTotal = new ArrayList<>();
 
                     listTotal.clear();
@@ -391,8 +393,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
 
-
-                        hapusPenjualan();
+                        editStatusPenjualanBarang();
                         dialogInterface.dismiss();
                     }
                 })
@@ -406,6 +407,43 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
         // Show Dialog
         mBottomSheetDialog.show();
+
+    }
+
+    private void editStatusPenjualanBarang() {
+
+        ConfigRetrofit.service.editStatusPenjualanBarang(id_status_penjualan, "cancel")
+                .enqueue(new Callback<ResponseEditStatusPenjualanBarang>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditStatusPenjualanBarang> call,
+                                           Response<ResponseEditStatusPenjualanBarang> response) {
+                        if (response.isSuccessful()) {
+
+                            int status = response.body().getStatus();
+
+                            if (status == 1) {
+
+                                Toast.makeText(TransaksiKasirActivity.this,
+                                        "Berhasil batalkan transaksi", Toast.LENGTH_SHORT).show();
+                                hapusPenjualan();
+
+                            } else {
+                                Toast.makeText(TransaksiKasirActivity.this,
+                                        "Gagal batalkan transaksi", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            Toast.makeText(TransaksiKasirActivity.this,
+                                    "Response ERROR", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditStatusPenjualanBarang> call, Throwable t) {
+                        Toast.makeText(TransaksiKasirActivity.this,
+                                "Koneksi error", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 

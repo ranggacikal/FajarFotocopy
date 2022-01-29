@@ -50,6 +50,8 @@ public class PengirimanDriverActivity extends AppCompatActivity {
 
         preferencedConfig = new SharedPreferencedConfig(PengirimanDriverActivity.this);
 
+        Log.d("cekIdDriver", "loadDataSupplier: "+preferencedConfig.getPreferenceIdUser());
+
         PushDownAnim.setPushDownAnimTo(binding.linearBackPengirimanDriver)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
@@ -84,8 +86,6 @@ public class PengirimanDriverActivity extends AppCompatActivity {
 
 
     private void loadDataSupplier(){
-
-        Log.d("cekIdDriver", "loadDataSupplier: "+preferencedConfig.getPreferenceIdUser());
 
         ProgressDialog progressDialog = new ProgressDialog(PengirimanDriverActivity.this);
         progressDialog.setMessage("Memuat Data");
@@ -134,6 +134,8 @@ public class PengirimanDriverActivity extends AppCompatActivity {
         ProgressDialog progressDialog = new ProgressDialog(PengirimanDriverActivity.this);
         progressDialog.setMessage("Memuat Data");
         progressDialog.show();
+
+        Log.d("cekIdUser", "loadDataToko: "+preferencedConfig.getPreferenceIdUser());
 
         ConfigRetrofit.service.statusPengirimanByIdUser(preferencedConfig.getPreferenceIdUser())
                 .enqueue(new Callback<ResponseStatusPengirimanByIdUser>() {

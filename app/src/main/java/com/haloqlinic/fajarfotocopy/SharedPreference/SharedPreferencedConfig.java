@@ -16,6 +16,8 @@ public class SharedPreferencedConfig {
     public static final String PREFERENCE_IMG = "prefImg";
     public static final String PREFERENCE_TOKEN_FCM = "prefTokenFcm";
     public static final String PREFERENCE_IS_LOGIN = "prefIsLogin";
+    public static final String PREFERENCE_LAST_ID_STATUS_PENGIRIMAN = "prefLatIdStatusPengiriman";
+    public static final int PREFERENCE_STOCK_PACK_SISA = 0;
 
     SharedPreferences preferences;
     SharedPreferences.Editor preferencesEditor;
@@ -79,5 +81,13 @@ public class SharedPreferencedConfig {
 
     public Boolean getPreferenceIsLogin(){
         return preferences.getBoolean(PREFERENCE_IS_LOGIN, false);
+    }
+
+    public String getPreferenceLastIdStatusPengiriman(){
+        return preferences.getString(PREFERENCE_LAST_ID_STATUS_PENGIRIMAN, "");
+    }
+
+    public int getPreferenceStockPackSisa(){
+        return preferences.getInt(String.valueOf(PREFERENCE_STOCK_PACK_SISA), 0);
     }
 }
