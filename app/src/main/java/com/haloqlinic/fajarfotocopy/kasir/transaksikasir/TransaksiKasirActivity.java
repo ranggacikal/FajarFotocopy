@@ -1,4 +1,4 @@
-package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
+    package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
 import android.app.ProgressDialog;
 import android.content.Intent;

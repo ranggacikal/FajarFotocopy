@@ -16,12 +16,15 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityRiwayatPengirimanSupplie
 import com.haloqlinic.fajarfotocopy.databinding.ActivityRiwayatPengirimanTokoBinding;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangSelesai.ResponseStatusPenjualanGudangSelesai;
 import com.haloqlinic.fajarfotocopy.model.statusPenjualanGudangSelesai.StatusPenjualanGudangSelesaiItem;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class RiwayatPengirimanSupplierActivity extends AppCompatActivity {
 
@@ -40,6 +43,16 @@ public class RiwayatPengirimanSupplierActivity extends AppCompatActivity {
         binding.rvPengirimanKeSupplier.setHasFixedSize(true);
         binding.rvPengirimanKeSupplier.setLayoutManager(new LinearLayoutManager(
                 this));
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackRiwayatDriverSupplier)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
 
         loadData();
 

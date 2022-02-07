@@ -15,12 +15,15 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityRiwayatPengirimanTokoBinding;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.ResponsePengirimanSelesai;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.StatusPengirimanSelesaiItem;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
 
@@ -37,6 +40,16 @@ public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.rvPengirimanKeToko.setHasFixedSize(true);
         binding.rvPengirimanKeToko.setLayoutManager(new LinearLayoutManager(this));
+
+        PushDownAnim.setPushDownAnimTo(binding.linearBackRiwayatDriverToko)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
 
         loadData();
     }
