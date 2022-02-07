@@ -282,7 +282,9 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
     private String imageToString() {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        if(bitmap !=null) {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+        }
         byte[] imgByte = byteArrayOutputStream.toByteArray();
 
         return Base64.encodeToString(imgByte, Base64.DEFAULT);
@@ -316,7 +318,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
     private void editBarang() {
 
-        String id_barang = getIntent().getStringExtra("id_barang");
+        String id_barang = binding.edtKodeBarcodeBarangGudang.getText().toString();
         String nama_barang = binding.edtNamaBarangGudang.getText().toString();
         String stock = binding.edtStockBarangPcsGudang.getText().toString();
         String harga_modal_gudang = binding.edtHargaModalGudangEdit.getText().toString();
@@ -335,6 +337,12 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         if (nama_barang.isEmpty()){
             binding.edtNamaBarangGudang.setError("Field tidak boleh kosong");
             binding.edtNamaBarangGudang.requestFocus();
+            return;
+        }
+
+        if (id_barang.isEmpty()){
+            binding.edtKodeBarcodeBarangGudang.setError("Field Tidak Boleh Kosong");
+            binding.edtKodeBarcodeBarangGudang.requestFocus();
             return;
         }
 
@@ -420,12 +428,28 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         progressDialog.setMessage("Mengedit Data");
         progressDialog.show();
 
+        String finalImage_barang = image_barang;
         ConfigRetrofit.service.editBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
                 jumlah_pack, number_of_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
             @Override
             public void onResponse(Call<ResponseEditBarang> call, Response<ResponseEditBarang> response) {
                 if (response.isSuccessful()){
+
+                    Log.d("cekDataEdit", "id_barang: "+id_barang);
+                    Log.d("cekDataEdit", "nama_barang: "+nama_barang);
+                    Log.d("cekDataEdit", "stock: "+stock);
+                    Log.d("cekDataEdit", "harga_modal_gudamng: "+harga_modal_gudang);
+                    Log.d("cekDataEdit", "harga_modal_toko: "+harga_modal_toko);
+                    Log.d("cekDataEdit", "harga_jual_toko: "+harga_jual_toko);
+                    Log.d("cekDataEdit", "harga_modal_gudang_pack: "+harga_modal_gudang_pack);
+                    Log.d("cekDataEdit", "harga_modal_toko_pack: "+harga_modal_toko_pack);
+                    Log.d("cekDataEdit", "harga_jual_toko_pack: "+harga_jual_toko_pack);
+                    Log.d("cekDataEdit", "asal_barang: "+asal_barang);
+                    Log.d("cekDataEdit", "jumlah_pack: "+jumlah_pack);
+                    Log.d("cekDataEdit", "n_o_p: "+number_of_pack);
+                    Log.d("cekDataEdit", "image_barang: "+ imageToString());
+                    Log.d("cekDataEdit", "id_kategori: "+id_kategori);
 
                     progressDialog.dismiss();
                      int status = response.body().getStatus();
@@ -440,6 +464,21 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
                      }
 
                 }else{
+                    Log.d("cekDataEdit", "id_barang: "+id_barang);
+                    Log.d("cekDataEdit", "nama_barang: "+nama_barang);
+                    Log.d("cekDataEdit", "stock: "+stock);
+                    Log.d("cekDataEdit", "harga_modal_gudamng: "+harga_modal_gudang);
+                    Log.d("cekDataEdit", "harga_modal_toko: "+harga_modal_toko);
+                    Log.d("cekDataEdit", "harga_jual_toko: "+harga_jual_toko);
+                    Log.d("cekDataEdit", "harga_modal_gudang_pack: "+harga_modal_gudang_pack);
+                    Log.d("cekDataEdit", "harga_modal_toko_pack: "+harga_modal_toko_pack);
+                    Log.d("cekDataEdit", "harga_jual_toko_pack: "+harga_jual_toko_pack);
+                    Log.d("cekDataEdit", "asal_barang: "+asal_barang);
+                    Log.d("cekDataEdit", "jumlah_pack: "+jumlah_pack);
+                    Log.d("cekDataEdit", "n_o_p: "+number_of_pack);
+                    Log.d("cekDataEdit", "image_barang: "+ imageToString());
+                    Log.d("cekDataEdit", "id_kategori: "+id_kategori);
+
                     progressDialog.dismiss();
                     Toast.makeText(DetailDataBarangGudangActivity.this, "Terjadi kesalahan", Toast.LENGTH_SHORT).show();
                 }

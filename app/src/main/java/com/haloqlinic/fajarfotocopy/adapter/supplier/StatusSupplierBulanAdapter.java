@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.haloqlinic.fajarfotocopy.databinding.ItemReportStatusPengirimanBinding;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
+import com.haloqlinic.fajarfotocopy.gudang.reportgudang.LihatBuktiBayarActivity;
 import com.haloqlinic.fajarfotocopy.gudang.reportgudang.ListTransaksiSupplierActivity;
 import com.haloqlinic.fajarfotocopy.gudang.reportgudang.WebViewReportPenjualanGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.StatusPenjualanGudangByBulanItem;
@@ -61,6 +62,25 @@ public class StatusSupplierBulanAdapter extends RecyclerView.Adapter<StatusSuppl
                 .setText(dataPenjualan.get(position).getNamaLengkap());
         holder.binding.textIdDriverItemReport
                 .setText(dataPenjualan.get(position).getDriverId());
+
+        String memtode_bayar = dataPenjualan.get(position).getMetodeBayar();
+
+        if (memtode_bayar.equals("Debit")){
+            holder.binding.btnLihatBuktiBayarItemReport.setVisibility(View.VISIBLE);
+        }else{
+            holder.binding.btnLihatBuktiBayarItemReport.setVisibility(View.GONE);
+        }
+
+        PushDownAnim.setPushDownAnimTo(holder.binding.btnLihatBuktiBayarItemReport)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, LihatBuktiBayarActivity.class);
+                        intent.putExtra("image_bukti", dataPenjualan.get(position).getImageBuktiTf());
+                        context.startActivity(intent);
+                    }
+                });
 
         PushDownAnim.setPushDownAnimTo(holder.binding.btnLihatInvoiceItemReport)
                 .setScale(MODE_SCALE, 0.89f)

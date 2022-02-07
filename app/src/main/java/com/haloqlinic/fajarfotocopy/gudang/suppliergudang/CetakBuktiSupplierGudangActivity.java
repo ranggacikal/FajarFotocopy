@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -79,6 +80,7 @@ public class CetakBuktiSupplierGudangActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(CetakBuktiSupplierGudangActivity.this, InvoiceSupplierActivity.class);
                         intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        Log.d("cekIdStatusPenjualanGudang", "onClick: "+id_status_penjualan);
                         startActivity(intent);
                     }
                 });
