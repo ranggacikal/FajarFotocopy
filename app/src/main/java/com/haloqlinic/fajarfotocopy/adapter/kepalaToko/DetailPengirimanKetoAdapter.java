@@ -492,6 +492,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             if (pesan.equals("barang Sudah Terdaftar")){
                                 dialog.dismiss();
                                 getIdBarangOutlet();
+                            }else if (pesan.equals("Value is null")){
+                                dialog.dismiss();
+                                Toast.makeText(context, "Gagal Terima barang, silahkan coba lagi", Toast.LENGTH_SHORT).show();
                             }else {
                                 dialog.dismiss();
                                 Toast.makeText(context, "Berhasil Menerima Data", Toast.LENGTH_SHORT).show();
@@ -580,6 +583,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         Log.d("cekNumberOfpack", "editStock: outlet: "+number_of_pack_outlet+" fromList: "+number_of_pack);
         int number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
+        Log.d("cekNumberOfPackUpdate", "editStock: "+number_of_stock_update);
 
         ConfigRetrofit.service.editBarangOutlet(id_barang_outlet_edit, id_barang, hargaPcs, hargaPack,
                 String.valueOf(jumlah_stock_pcs), String.valueOf(jumlah_stock_pack), diskon, diskonPack,
@@ -591,14 +595,16 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 //                            progressEdit.dismiss();
 
                             int status = response.body().getStatus();
+                            String pesan = response.body().getPesan();
 
-                            if (status == 1){
+                            if (pesan.equals("Value is null")){
+                                Toast.makeText(context, "Gagal Terima barang, silahkan coba lagi",
+                                        Toast.LENGTH_SHORT).show();
+                            }else{
 
                                 Toast.makeText(context, "Berhasil Tambah Stock", Toast.LENGTH_SHORT).show();
                                 editPengiriman();
 
-                            }else{
-                                Toast.makeText(context, "Gagal Tambah Stock", Toast.LENGTH_SHORT).show();
                             }
 
                         }else{
@@ -634,7 +640,6 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             if (status==1){
                                 Log.d("editHapusPengiriman", "onResponse: "+"berhasil");
                                 detailPengirimanKetoActivity.loadDetailPengiriman();
-                                notifyDataSetChanged();
                             }else{
                                 Log.d("editHapusPengiriman", "onResponse: "+"Gagal");
                             }
