@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangIdPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivitySupplierGudangBinding;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -26,6 +28,8 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaIte
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanByIdStatus.ResponseHapusPenjualanGudangByIdStatus;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualanGudang.ResponseHapusStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -87,11 +91,14 @@ public class SupplierGudangActivity extends AppCompatActivity {
                                 SupplierGudangActivity.this
                         );
 
-                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                        intentIntegrator.setBeepEnabled(true);
-                        intentIntegrator.setOrientationLocked(true);
-                        intentIntegrator.setCaptureActivity(Capture.class);
-                        intentIntegrator.initiateScan();
+//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+//                        intentIntegrator.setBeepEnabled(true);
+//                        intentIntegrator.setOrientationLocked(true);
+//                        intentIntegrator.setCaptureActivity(Capture.class);
+//                        intentIntegrator.initiateScan();
+                        ScanOptions options = new ScanOptions();
+                        options.setOrientationLocked(false);
+                        barcodeLauncher.launch(options);
             }
         });
 
@@ -173,7 +180,14 @@ public class SupplierGudangActivity extends AppCompatActivity {
                 });
     }
 
-
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(SupplierGudangActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+                } else {
+                    loadDataById(result.getContents());
+                }
+            });
 
     private void loadDataById(String id_barcode) {
         if (id_barcode.equals("")) {
@@ -236,21 +250,21 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                requestCode, resultCode, data
-        );
-
-        if (intentResult.getContents() != null) {
-
-            loadDataById(intentResult.getContents());
-
-        } else {
-            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+//                requestCode, resultCode, data
+//        );
+//
+//        if (intentResult.getContents() != null) {
+//
+//            loadDataById(intentResult.getContents());
+//
+//        } else {
+//            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void searchBarangNama(String query) {
 

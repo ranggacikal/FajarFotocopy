@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.gudang.baranggudang;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +31,8 @@ import com.haloqlinic.fajarfotocopy.model.dataKategori.DataKategoriItem;
 import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.tambahBarang.ResponseTambahBarang;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
@@ -77,15 +80,18 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        IntentIntegrator intentIntegrator = new IntentIntegrator(
-                                TambahBarangGudangActivity.this
-                        );
-
-                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                        intentIntegrator.setBeepEnabled(true);
-                        intentIntegrator.setOrientationLocked(true);
-                        intentIntegrator.setCaptureActivity(Capture.class);
-                        intentIntegrator.initiateScan();
+//                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+//                                TambahBarangGudangActivity.this
+//                        );
+//
+//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+//                        intentIntegrator.setBeepEnabled(true);
+//                        intentIntegrator.setOrientationLocked(true);
+//                        intentIntegrator.setCaptureActivity(Capture.class);
+//                        intentIntegrator.initiateScan();
+                        ScanOptions options = new ScanOptions();
+                        options.setOrientationLocked(false);
+                        barcodeLauncher.launch(options);
                     }
                 });
 
@@ -171,6 +177,15 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
     }
 
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(TambahBarangGudangActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+                } else {
+                    binding.edtTambahIdBarangGudang.setText(result.getContents());
+                }
+            });
+
     private void initSpinnerKategori() {
 
         ProgressDialog progressDialog = new ProgressDialog(TambahBarangGudangActivity.this);
@@ -237,18 +252,18 @@ public class TambahBarangGudangActivity extends AppCompatActivity {
 
 
         switch (requestCode) {
-            case (49374):
-                IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                        requestCode, resultCode, data
-                );
-
-                if (intentResult.getContents() != null) {
-
-                    binding.edtTambahIdBarangGudang.setText(intentResult.getContents());
-                    Log.d("requestCodeScan", "onActivityResult: " + requestCode);
-
-                }
-                break;
+//            case (49374):
+//                IntentResult intentResult = IntentIntegrator.parseActivityResult(
+//                        requestCode, resultCode, data
+//                );
+//
+//                if (intentResult.getContents() != null) {
+//
+//                    binding.edtTambahIdBarangGudang.setText(intentResult.getContents());
+//                    Log.d("requestCodeScan", "onActivityResult: " + requestCode);
+//
+//                }
+//                break;
             case (2404):
                 if (resultCode == RESULT_OK) {
 

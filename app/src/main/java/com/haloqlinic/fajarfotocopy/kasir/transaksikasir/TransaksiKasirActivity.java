@@ -28,8 +28,11 @@ import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOut
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -135,15 +138,18 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        IntentIntegrator intentIntegrator = new IntentIntegrator(
-                                TransaksiKasirActivity.this
-                        );
-
-                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                        intentIntegrator.setBeepEnabled(true);
-                        intentIntegrator.setOrientationLocked(true);
-                        intentIntegrator.setCaptureActivity(Capture.class);
-                        intentIntegrator.initiateScan();
+//                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+//                                TransaksiKasirActivity.this
+//                        );
+//
+//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+//                        intentIntegrator.setBeepEnabled(true);
+//                        intentIntegrator.setOrientationLocked(true);
+//                        intentIntegrator.setCaptureActivity(Capture.class);
+//                        intentIntegrator.initiateScan();
+                        ScanOptions options = new ScanOptions();
+                        options.setOrientationLocked(false);
+                        barcodeLauncher.launch(options);
                     }
                 });
 
@@ -202,6 +208,19 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 //        getStatusPenjualan();
     }
 
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(TransaksiKasirActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+                } else {
+                    binding.searchviewSupplierKasir.setVisibility(View.GONE);
+                    binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
+                    binding.searchviewBarangOutletBarcode.setQuery(result.getContents(), false);
+                    binding.recyclerBarangOutlet.setVisibility(View.GONE);
+                    binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
+                }
+            });
+
     public void loadDataPembayaran() {
 
         ProgressDialog progressDialog = new ProgressDialog(TransaksiKasirActivity.this);
@@ -247,6 +266,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     private void loadSearchBarangById(String textCariId) {
 
+        Log.d("cekBarcodeId", "loadSearchBarangById: "+textCariId);
+
         if (textCariId.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
             binding.searchviewBarangOutletBarcode.setVisibility(View.GONE);
@@ -261,14 +282,15 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                             if (response.isSuccessful()){
 
                                 List<SearchBarangOutletByIdItem> dataCariId = response.body().getSearchBarangOutletById();
-
+                                Log.d("cekDataCariId", "onResponse: "+dataCariId);
                                 if (dataCariId==null){
                                     Toast.makeText(TransaksiKasirActivity.this, "Data barang kosong",
                                             Toast.LENGTH_SHORT).show();
-                                }
+                                }else {
 
-                                BarangOutletIdAdapter adapterId = new BarangOutletIdAdapter(TransaksiKasirActivity.this, dataCariId, TransaksiKasirActivity.this);
-                                binding.recyclerBarangOutletBarcode.setAdapter(adapterId);
+                                    BarangOutletIdAdapter adapterId = new BarangOutletIdAdapter(TransaksiKasirActivity.this, dataCariId, TransaksiKasirActivity.this);
+                                    binding.recyclerBarangOutletBarcode.setAdapter(adapterId);
+                                }
 
                             }else{
                                 Toast.makeText(TransaksiKasirActivity.this, "Gagal Load Barang", Toast.LENGTH_SHORT).show();
@@ -285,25 +307,25 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                requestCode, resultCode, data
-        );
-
-        if (intentResult.getContents() != null) {
-
-            binding.searchviewSupplierKasir.setVisibility(View.GONE);
-            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
-            binding.searchviewBarangOutletBarcode.setQuery(intentResult.getContents(), false);
-            binding.recyclerBarangOutlet.setVisibility(View.GONE);
-            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
-
-        } else {
-            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+//                requestCode, resultCode, data
+//        );
+//
+//        if (intentResult.getContents() != null) {
+//
+//            binding.searchviewSupplierKasir.setVisibility(View.GONE);
+//            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
+//            binding.searchviewBarangOutletBarcode.setQuery(intentResult.getContents(), false);
+//            binding.recyclerBarangOutlet.setVisibility(View.GONE);
+//            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     public void loadSearchBarangKasir(String textCari) {
 

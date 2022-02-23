@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FajarFotocopy"
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true"
         tools:replace="android:theme">
         <activity
             android:name=".gudang.reportgudang.LihatBuktiBayarActivity"
@@ -169,6 +170,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.usergudang.UpdatePasswordActivity" />
         <activity android:name=".gudang.MainActivity" />
+
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
 
         <service
             android:name=".MyFirebaseMessagingService"

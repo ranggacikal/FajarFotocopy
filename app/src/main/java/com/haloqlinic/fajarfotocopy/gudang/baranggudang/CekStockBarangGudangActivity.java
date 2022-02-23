@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.gudang.baranggudang;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -20,11 +21,14 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCekStockBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.HasilPencarianTransferBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
@@ -93,19 +97,32 @@ public class CekStockBarangGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         binding.recyclerCekStockBarangGudamg.setVisibility(View.GONE);
-                        IntentIntegrator intentIntegrator = new IntentIntegrator(
-                                CekStockBarangGudangActivity.this
-                        );
-
-                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                        intentIntegrator.setBeepEnabled(true);
-                        intentIntegrator.setOrientationLocked(true);
-                        intentIntegrator.setCaptureActivity(Capture.class);
-                        intentIntegrator.initiateScan();
+//                        IntentIntegrator intentIntegrator = new IntentIntegrator(
+//                                CekStockBarangGudangActivity.this
+//                        );
+//
+//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+//                        intentIntegrator.setBeepEnabled(true);
+//                        intentIntegrator.setOrientationLocked(true);
+//                        intentIntegrator.setCaptureActivity(Capture.class);
+//                        intentIntegrator.initiateScan();
+                        ScanOptions options = new ScanOptions();
+                        options.setOrientationLocked(false);
+                        barcodeLauncher.launch(options);
                     }
                 });
 
     }
+
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(CekStockBarangGudangActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+                } else {
+                    id_barcode = result.getContents();
+                    loadDataById(id_barcode);
+                }
+            });
 
     public void loadData(String newText) {
 
@@ -183,19 +200,19 @@ public class CekStockBarangGudangActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                requestCode, resultCode, data
-        );
-
-        if (intentResult.getContents() != null) {
-
-            id_barcode = intentResult.getContents();
-            loadDataById(id_barcode);
-            Log.d("requestCodeScan", "onActivityResult: " + requestCode);
-
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+//                requestCode, resultCode, data
+//        );
+//
+//        if (intentResult.getContents() != null) {
+//
+//            id_barcode = intentResult.getContents();
+//            loadDataById(id_barcode);
+//            Log.d("requestCodeScan", "onActivityResult: " + requestCode);
+//
+//        }
+//    }
 }

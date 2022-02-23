@@ -50,6 +50,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
     String number_of_pack;
     int jumlah_pcs;
 
+    String image_barang = "", image_link ="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -332,7 +334,6 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String diskon = binding.edtDiskonBarangPcsGudang.getText().toString();
         String diskon_pack = binding.edtDiskonBarangPackGudang.getText().toString();
         number_of_pack = binding.edtStockNumberOfPackGudang.getText().toString();
-        String image_barang = "";
 
         if (nama_barang.isEmpty()){
             binding.edtNamaBarangGudang.setError("Field tidak boleh kosong");
@@ -419,8 +420,10 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 //        }
 
         if (bitmap == null){
-            image_barang = getIntent().getStringExtra("image");
+            image_link = getIntent().getStringExtra("image");
+            image_barang = "";
         }else{
+            image_link = "";
             image_barang = imageToString();
         }
 
@@ -431,7 +434,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         String finalImage_barang = image_barang;
         ConfigRetrofit.service.editBarang(id_barang, nama_barang, stock, harga_modal_gudang, harga_modal_toko,
                 harga_jual_toko, harga_modal_gudang_pack, harga_modal_toko_pack, harga_jual_toko_pack, asal_barang,
-                jumlah_pack, number_of_pack, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
+                jumlah_pack, number_of_pack, image_link, image_barang, id_kategori).enqueue(new Callback<ResponseEditBarang>() {
             @Override
             public void onResponse(Call<ResponseEditBarang> call, Response<ResponseEditBarang> response) {
                 if (response.isSuccessful()){
@@ -448,7 +451,8 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
                     Log.d("cekDataEdit", "asal_barang: "+asal_barang);
                     Log.d("cekDataEdit", "jumlah_pack: "+jumlah_pack);
                     Log.d("cekDataEdit", "n_o_p: "+number_of_pack);
-                    Log.d("cekDataEdit", "image_barang: "+ imageToString());
+                    Log.d("cekDataEdit", "image_barang: "+ image_barang);
+                    Log.d("cekDataEdit", "image_link: "+ image_link);
                     Log.d("cekDataEdit", "id_kategori: "+id_kategori);
 
                     progressDialog.dismiss();

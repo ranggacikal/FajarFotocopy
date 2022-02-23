@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityHasilPencarianTransferBa
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransferBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.DataBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.countBarangTransfer.ResponseCountBarangTransfer;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusTransfer.ResponseHapusStatusTransfer;
@@ -33,6 +35,8 @@ import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOut
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.util.List;
@@ -111,11 +115,14 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
                                 HasilPencarianTransferBarangGudangActivity.this
                         );
 
-                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-                        intentIntegrator.setBeepEnabled(true);
-                        intentIntegrator.setOrientationLocked(true);
-                        intentIntegrator.setCaptureActivity(Capture.class);
-                        intentIntegrator.initiateScan();
+//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
+//                        intentIntegrator.setBeepEnabled(true);
+//                        intentIntegrator.setOrientationLocked(true);
+//                        intentIntegrator.setCaptureActivity(Capture.class);
+//                        intentIntegrator.initiateScan();
+                        ScanOptions options = new ScanOptions();
+                        options.setOrientationLocked(false);
+                        barcodeLauncher.launch(options);
                     }
                 });
 
@@ -161,6 +168,17 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
 
     }
 
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if(result.getContents() == null) {
+                    Toast.makeText(HasilPencarianTransferBarangGudangActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    id_barang = result.getContents();
+                    cariBarangById();
+                }
+            });
+
     public void getCount() {
 
         Log.d("idStatusTfCek", "onCreate: "+id_status_transfer);
@@ -204,23 +222,23 @@ public class HasilPencarianTransferBarangGudangActivity extends AppCompatActivit
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                requestCode, resultCode, data
-        );
-
-        if (intentResult.getContents() != null) {
-
-            id_barang = intentResult.getContents();
-            cariBarangById();
-
-        } else {
-            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
+//                requestCode, resultCode, data
+//        );
+//
+//        if (intentResult.getContents() != null) {
+//
+//            id_barang = intentResult.getContents();
+//            cariBarangById();
+//
+//        } else {
+//            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
+//        }
+//    }
 
     private void cariBarangById() {
 
