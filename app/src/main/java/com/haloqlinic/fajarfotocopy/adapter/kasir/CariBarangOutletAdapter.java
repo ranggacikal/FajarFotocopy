@@ -94,8 +94,21 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
-        int hargaPcs = Integer.parseInt(cariBarangOutlet.get(position).getHargaJual());
-        int hargaPack = Integer.parseInt(cariBarangOutlet.get(position).getHargaJualPack());
+        String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
+        String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
+        int hargaPcs, hargaPack;
+
+        if (hargaPcsStr.equals("null")){
+            hargaPcs = 0;
+        }else{
+            hargaPcs = Integer.parseInt(hargaPcsStr);
+        }
+
+        if (hargaPackStr.equals("null")){
+            hargaPack = 0;
+        }else{
+            hargaPack = Integer.parseInt(hargaPackStr);
+        }
 
         holder.txtNama.setText(cariBarangOutlet.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
@@ -334,10 +347,16 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                     numberPicker.setValue(jumlahPcs);
                     btnTambah.setEnabled(false);
                 } else {
-                    total = jumlahPcs * Integer.parseInt(hargaJualPack);
-                    number = jumlahPcs * Integer.parseInt(numberOfPack);
-                    edtTotalHarga.setText("Rp" + NumberFormat.getInstance().format(total));
-                    btnTambah.setEnabled(true);
+                    if (hargaJualPack.equals("null")){
+                        Toast.makeText(context, "Harga Pack 0, Silahkan lakukan penjualan pcs",
+                                Toast.LENGTH_SHORT).show();
+                        numberPicker.setValue(0);
+                    }else {
+                        total = jumlahPcs * Integer.parseInt(hargaJualPack);
+                        number = jumlahPcs * Integer.parseInt(numberOfPack);
+                        edtTotalHarga.setText("Rp" + NumberFormat.getInstance().format(total));
+                        btnTambah.setEnabled(true);
+                    }
                 }
             }
 

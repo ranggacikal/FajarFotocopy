@@ -11,6 +11,7 @@ import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
 import android.print.PrintJob;
 import android.print.PrintManager;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -49,6 +50,8 @@ public class WebViewSuratJalanSupplierActivity extends AppCompatActivity {
 
         link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
                 "getSuratJalanSupplier?id_status_penjualan_gudang="+id_status_penjualan_gudang;
+
+        Log.d("cekLinkWeb", "onCreate: "+link_web);
 
         binding.webViewSuratJalanSupplier.setWebViewClient(new myWebclient());
         binding.webViewSuratJalanSupplier.getSettings().setJavaScriptEnabled(true);

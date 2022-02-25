@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.KeranjangSupplierAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
@@ -76,6 +77,8 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
     private String[] jenisBayarItem = {"Lunas", "Tempo"};
     private String[] metodePengambilanItem = {"Ambil Ditempat", "Dikirim Kurir"};
 
+    SharedPreferencedConfig preferencedConfig;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +87,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
         setContentView(view);
 
         id_status_penjualan_gudang = getIntent().getStringExtra("id_status_penjualan_gudang");
+        preferencedConfig = new SharedPreferencedConfig(this);
 
         binding.rvKeranjangSupplier.setHasFixedSize(true);
         binding.rvKeranjangSupplier.setLayoutManager(new LinearLayoutManager(KeranjangSupplierGudangActivity.this));
@@ -126,6 +130,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                     initSpinnerPilihDriver();
                 }else{
                     binding.linearLayoutKurir.setVisibility(View.GONE);
+                    id_driver = preferencedConfig.getPreferenceIdUser();
                 }
             }
 

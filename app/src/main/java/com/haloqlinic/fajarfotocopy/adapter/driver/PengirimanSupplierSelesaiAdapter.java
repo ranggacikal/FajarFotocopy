@@ -50,9 +50,9 @@ public class PengirimanSupplierSelesaiAdapter extends RecyclerView.Adapter<Pengi
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        String id_status_pengiriman = dataSelesai.get(position).getIdStatusPenjualanGudang();
+                        String id_status_penjualan_gudang = dataSelesai.get(position).getIdStatusPenjualanGudang();
                         Intent intent = new Intent(context, DetailDriverActivity.class);
-                        intent.putExtra("id_status_pengiriman", id_status_pengiriman);
+                        intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
                         intent.putExtra("status_pengiriman", dataSelesai.get(position).getStatusPengiriman());
                         intent.putExtra("jenis_pengiriman", "supplier");
                         context.startActivity(intent);
