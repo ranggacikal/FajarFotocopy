@@ -107,16 +107,18 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
             holder.linearBtnTolakTerima.setVisibility(View.GONE);
             holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
             holder.txtDiterima.setVisibility(View.VISIBLE);
-
+            holder.txtDitolak.setVisibility(View.GONE);
 
         } else if (status_barang.equals("ditolak")) {
 
             holder.linearBtnTolakTerima.setVisibility(View.GONE);
             holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
             holder.txtDitolak.setVisibility(View.VISIBLE);
+            holder.txtDiterima.setVisibility(View.GONE);
 
         } else if (status_barang.equals("pending")) {
             holder.linearBtnTolakTerima.setVisibility(View.VISIBLE);
+            holder.linearTextTolakTerima.setVisibility(View.GONE);
         }
 
         holder.txtNamaBarang.setText(listPengiriman.get(position).getNamaBarang());

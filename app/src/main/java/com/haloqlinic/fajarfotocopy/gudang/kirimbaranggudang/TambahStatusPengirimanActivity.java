@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,12 +23,14 @@ import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPengiriman.ResponseTambahStatusPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import dev.shreyaspatil.MaterialDialog.MaterialDialog;
 import dev.shreyaspatil.MaterialDialog.interfaces.DialogInterface;
@@ -106,7 +109,8 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        tambahStatusPengiriman();
+                        Log.d("cekTanggalPengiriman", "onClick: "+tanggal);
+//                        tambahStatusPengiriman();
                     }
                 });
     }
@@ -215,7 +219,14 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                tanggal = dateFormatter.format(newDate.getTime());
+                Date date = newDate.getTime();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+                sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+
+                String d = sdf.format(date);
+                tanggal = d;
+
                 binding.textTanggalStatusPengiriman.setText(tanggal);
             }
 

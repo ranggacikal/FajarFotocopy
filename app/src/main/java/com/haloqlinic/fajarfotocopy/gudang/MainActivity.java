@@ -41,6 +41,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+enum WindowSizeClass { COMPACT, MEDIUM, EXPANDED }
+ 
 public class MainActivity extends AppCompatActivity {
 
     TabLayout tabLayout;

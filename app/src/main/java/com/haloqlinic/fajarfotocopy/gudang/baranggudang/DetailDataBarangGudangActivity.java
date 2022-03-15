@@ -421,11 +421,27 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
         if (bitmap == null){
             image_link = getIntent().getStringExtra("image");
-            image_barang = "";
+            image_barang = "0";
         }else{
-            image_link = "";
+            image_link = "0";
             image_barang = imageToString();
         }
+
+        Log.d("cekDataEdit", "id_barang: "+id_barang);
+        Log.d("cekDataEdit", "nama_barang: "+nama_barang);
+        Log.d("cekDataEdit", "stock: "+stock);
+        Log.d("cekDataEdit", "harga_modal_gudamng: "+harga_modal_gudang);
+        Log.d("cekDataEdit", "harga_modal_toko: "+harga_modal_toko);
+        Log.d("cekDataEdit", "harga_jual_toko: "+harga_jual_toko);
+        Log.d("cekDataEdit", "harga_modal_gudang_pack: "+harga_modal_gudang_pack);
+        Log.d("cekDataEdit", "harga_modal_toko_pack: "+harga_modal_toko_pack);
+        Log.d("cekDataEdit", "harga_jual_toko_pack: "+harga_jual_toko_pack);
+        Log.d("cekDataEdit", "asal_barang: "+asal_barang);
+        Log.d("cekDataEdit", "jumlah_pack: "+jumlah_pack);
+        Log.d("cekDataEdit", "n_o_p: "+number_of_pack);
+        Log.d("cekDataEdit", "image_barang: "+ image_barang);
+        Log.d("cekDataEdit", "image_link: "+ image_link);
+        Log.d("cekDataEdit", "id_kategori: "+id_kategori);
 
         ProgressDialog progressDialog = new ProgressDialog(DetailDataBarangGudangActivity.this);
         progressDialog.setMessage("Mengedit Data");

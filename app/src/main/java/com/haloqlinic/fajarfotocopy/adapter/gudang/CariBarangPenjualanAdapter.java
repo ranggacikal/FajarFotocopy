@@ -186,7 +186,9 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
         numberPicker.setQuantitizerListener(new QuantitizerListener() {
             @Override
             public void onIncrease() {
+                numberPicker.setMaxValue(stock_db);
                 value = String.valueOf(numberPicker.getValue());
+                Log.d("valueNP", "onIncrease: "+value);
                 edtJumlahPcs.setEnabled(false);
                 int jumlah_kurang = 0;
                 if (Integer.parseInt(value) > stock_db) {
