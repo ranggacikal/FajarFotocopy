@@ -110,7 +110,7 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Log.d("cekTanggalPengiriman", "onClick: "+tanggal);
-//                        tambahStatusPengiriman();
+                        tambahStatusPengiriman();
                     }
                 });
     }
@@ -219,13 +219,7 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                Date date = newDate.getTime();
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-                sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
-
-                String d = sdf.format(date);
-                tanggal = d;
+                tanggal = dateFormatter.format(newDate.getTime());
 
                 binding.textTanggalStatusPengiriman.setText(tanggal);
             }
