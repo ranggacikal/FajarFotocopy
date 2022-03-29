@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
+import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataBarangItem;
 import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataPermintaanBarangItem;
 import com.haloqlinic.fajarfotocopy.model.getDriver.DataDriverItem;
 import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
@@ -45,16 +49,21 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     Context context;
     List<DataPermintaanBarangItem> dataPermintaan;
+    List<DataBarangItem> dataBarangMinta;
 
     List<DataDriverItem> dataDriverItems;
+
+    Boolean isOpen = true;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date, id_driver;
 
-    public DataMintaBarangAdapter(Context context, List<DataPermintaanBarangItem> dataPermintaan) {
+    public DataMintaBarangAdapter(Context context, List<DataPermintaanBarangItem> dataPermintaan,
+                                  List<DataBarangItem> dataBarangMinta) {
         this.context = context;
         this.dataPermintaan = dataPermintaan;
+        this.dataBarangMinta = dataBarangMinta;
     }
 
     @NonNull
@@ -67,41 +76,40 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     @Override
     public void onBindViewHolder(@NonNull DataMintaBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.txtNamaOutlet.setText(dataPermintaan.get(position).getNamaOutlet());
+        holder.rvDataBarangMinta.setHasFixedSize(true);
+        GridLayoutManager manager = new GridLayoutManager(context,
+                2, GridLayoutManager.VERTICAL, false);
+        holder.rvDataBarangMinta.setLayoutManager(manager);
+        DataListMintaBarangAdapter adapter = new DataListMintaBarangAdapter(context, dataBarangMinta);
+        holder.rvDataBarangMinta.setAdapter(adapter);
 
-        String url_image = dataPermintaan.get(position).getImageBarang();
-        String nama_barang = dataPermintaan.get(position).getNamaBarang();
-        String nama_outlet = dataPermintaan.get(position).getNamaOutlet();
+        ClickedNested clickedNested = new ClickedNested();
 
-        initSpinner(holder.spinnerDriver);
-
-        holder.txtNamaBarang.setText(nama_barang);
-        holder.txtNamaOutlet.setText(nama_outlet);
-
-        Glide.with(context)
-                .load(url_image)
-                .into(holder.imgBarang);
-
-        holder.spinnerDriver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                id_driver = dataDriverItems.get(position).getIdUser();
-            }
+            public void onClick(View v) {
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+                if (!clickedNested.isOpen()){
+                    clickedNested.setOpen(true);
+                }else{
+                    clickedNested.setOpen(false);
+                }
 
+                Log.d("cekIsOpen", "onClick: " + clickedNested.isOpen());
+                if (clickedNested.isOpen()) {
+                    holder.rvDataBarangMinta.setVisibility(View.VISIBLE);
+                    holder.imgDropDown.setVisibility(View.GONE);
+                    holder.imgDropTop.setVisibility(View.VISIBLE);
+                    clickedNested.setOpen(false);
+                } else {
+                    holder.rvDataBarangMinta.setVisibility(View.GONE);
+                    holder.imgDropDown.setVisibility(View.VISIBLE);
+                    holder.imgDropTop.setVisibility(View.GONE);
+                    clickedNested.setOpen(true);
+                }
             }
         });
-
-        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        tambahStatusPengiriman(dataPermintaan.get(position).getIdOutlet(), nama_barang,
-                                dataPermintaan.get(position).getIdMintaBarang());
-                    }
-                });
 
     }
 
@@ -110,10 +118,10 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
         ConfigRetrofit.service.getDriver().enqueue(new Callback<ResponseDataDriver>() {
             @Override
             public void onResponse(Call<ResponseDataDriver> call, Response<ResponseDataDriver> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         dataDriverItems = response.body().getDataDriver();
                         List<String> listSpinnerDriver = new ArrayList<String>();
@@ -129,12 +137,12 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
                         adapterDriver.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinnerDriver.setAdapter(adapterDriver);
 
-                    }else{
+                    } else {
                         Toast.makeText(context,
                                 "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     Toast.makeText(context,
                             "Terjadi Kesalahan Di server", Toast.LENGTH_SHORT).show();
                 }
@@ -164,24 +172,24 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
         ConfigRetrofit.service.tambahStatusPengiriman(status_pengiriman, date, idOutlet, id_driver).enqueue(new Callback<ResponseTambahStatusPengiriman>() {
             @Override
             public void onResponse(Call<ResponseTambahStatusPengiriman> call, Response<ResponseTambahStatusPengiriman> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     progressStatus.dismiss();
 
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         Intent intent = new Intent(context, KirimBarangGudangActivity.class);
                         intent.putExtra("id_toko", idOutlet);
                         intent.putExtra("tanggal", date);
                         intent.putExtra("fromActivity", "mintaBarang");
                         intent.putExtra("nama_barang", nama_barang);
-                        intent.putExtra("id_minta_barang",idMintaBarang);
+                        intent.putExtra("id_minta_barang", idMintaBarang);
                         context.startActivity(intent);
-                    }else{
+                    } else {
                         Toast.makeText(context, "Gagal membuat pengiriman", Toast.LENGTH_SHORT).show();
                     }
-                }else{
+                } else {
                     progressStatus.dismiss();
                     Toast.makeText(context, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                 }
@@ -190,7 +198,7 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
             @Override
             public void onFailure(Call<ResponseTambahStatusPengiriman> call, Throwable t) {
                 progressStatus.dismiss();
-                Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -203,18 +211,16 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     public class DataMintaBarangViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imgBarang;
-        TextView txtNamaBarang, txtNamaOutlet;
-        Button btnTambah;
-        Spinner spinnerDriver;
+        TextView txtNamaOutlet;
+        RecyclerView rvDataBarangMinta;
+        ImageView imgDropDown, imgDropTop;
 
         public DataMintaBarangViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgBarang = itemView.findViewById(R.id.img_item_dari_minta_barang_gudang);
-            txtNamaBarang = itemView.findViewById(R.id.text_item_dari_nama_minta_barang_gudang);
-            txtNamaOutlet = itemView.findViewById(R.id.text_item_dari_outlet_minta_barang_gudang);
-            btnTambah = itemView.findViewById(R.id.btn_tambah_dari_minta_barang_keto);
-            spinnerDriver = itemView.findViewById(R.id.spinner_pilih_driver_dari_minta_barang_keto);
+            txtNamaOutlet = itemView.findViewById(R.id.text_item_nama_outlet_minta_barang_gudang);
+            rvDataBarangMinta = itemView.findViewById(R.id.rv_data_barang_minta_barang_gudang);
+            imgDropDown = itemView.findViewById(R.id.imgPanahBawah);
+            imgDropTop = itemView.findViewById(R.id.imgPanahAtas);
         }
     }
 }

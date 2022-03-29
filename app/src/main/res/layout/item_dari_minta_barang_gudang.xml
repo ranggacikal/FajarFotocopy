@@ -3,82 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_minta_barang"
+    xmlns:tools="http://schemas.android.com/tools"
     app:cardCornerRadius="8dp"
     app:cardElevation="6dp"
     android:layout_margin="10dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="10dp">
+
+        <TextView
+            android:id="@+id/text_item_nama_outlet_minta_barang_gudang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/sairabold"
+            android:text="Nama Outlet"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/img_item_dari_minta_barang_gudang"
+            android:id="@+id/imgPanahBawah"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/panahbawah"
+            app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgPanahAtas"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="20dp"
+            android:visibility="gone"
+            android:src="@drawable/panahatas"
+            app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_data_barang_minta_barang_gudang"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:src="@mipmap/ic_launcher"
-            android:scaleType="centerCrop"/>
-
-        <TextView
-            android:id="@+id/text_item_dari_nama_minta_barang_gudang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama Barang"
-            android:layout_marginTop="10dp"
-            android:textSize="19sp"
-            android:layout_marginHorizontal="10dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/sairabold"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:id="@+id/text_item_dari_outlet_minta_barang_gudang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama Outlet"
-            android:layout_marginTop="5dp"
-            android:textSize="13sp"
-            android:layout_marginHorizontal="10dp"
-            android:textAlignment="center"
-            android:fontFamily="@font/sairamedium"
-            android:textColor="@color/black"
-            android:layout_marginBottom="20dp"
-            android:layout_gravity="center_horizontal"/>
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Pilih Driver" />
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang" />
 
-        <Spinner
-            android:id="@+id/spinner_pilih_driver_dari_minta_barang_keto"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_gravity="center"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium"
-            android:inputType="textCapWords" />
-
-        <Button
-            android:id="@+id/btn_tambah_dari_minta_barang_keto"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginHorizontal="40dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/btn_black"
-            android:fontFamily="@font/sairabold"
-            android:paddingHorizontal="5dp"
-            android:text="Tambah"
-            android:textColor="@color/white"
-            android:textSize="11sp" />
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
 

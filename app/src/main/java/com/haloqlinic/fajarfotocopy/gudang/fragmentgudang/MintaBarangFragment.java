@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.adapter.gudang.DataMintaBarangAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.FragmentMintaBarangBinding;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
+import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataBarangItem;
 import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataPermintaanBarangItem;
 import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.ResponseDataPermintaanBarang;
 
@@ -32,7 +33,7 @@ import retrofit2.Response;
 public class MintaBarangFragment extends Fragment {
 
     private FragmentMintaBarangBinding binding;
-
+    List<DataBarangItem> dataBarang;
 
     public MintaBarangFragment() {
         // Required empty public constructor
@@ -58,9 +59,7 @@ public class MintaBarangFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.rvMintaBarangGudang.setHasFixedSize(true);
-        GridLayoutManager manager = new GridLayoutManager(getActivity(),
-                2, GridLayoutManager.VERTICAL, false);
-        binding.rvMintaBarangGudang.setLayoutManager(manager);
+        binding.rvMintaBarangGudang.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         binding.swipeRefreshMinta.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -92,7 +91,13 @@ public class MintaBarangFragment extends Fragment {
 
                         binding.rvMintaBarangGudang.setVisibility(View.VISIBLE);
                         List<DataPermintaanBarangItem> dataPermintaan = response.body().getDataPermintaanBarang();
-                        DataMintaBarangAdapter adapter = new DataMintaBarangAdapter(getActivity(), dataPermintaan);
+
+                        for (int a = 0; a<dataPermintaan.size(); a++){
+                            dataBarang = dataPermintaan.get(a).getDataBarang();
+                        }
+
+                        DataMintaBarangAdapter adapter = new DataMintaBarangAdapter(getActivity(),
+                                dataPermintaan, dataBarang);
                         binding.rvMintaBarangGudang.setAdapter(adapter);
 
                     }else{
