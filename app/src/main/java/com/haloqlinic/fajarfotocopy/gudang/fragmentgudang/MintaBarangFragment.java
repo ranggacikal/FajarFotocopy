@@ -92,9 +92,9 @@ public class MintaBarangFragment extends Fragment {
                         binding.rvMintaBarangGudang.setVisibility(View.VISIBLE);
                         List<DataPermintaanBarangItem> dataPermintaan = response.body().getDataPermintaanBarang();
 
-                        for (int a = 0; a<dataPermintaan.size(); a++){
-                            dataBarang = dataPermintaan.get(a).getDataBarang();
-                        }
+//                        for (int a = 0; a<dataPermintaan.size(); a++){
+//                            dataBarang = dataPermintaan.get(a).getDataBarang();
+//                        }
 
                         DataMintaBarangAdapter adapter = new DataMintaBarangAdapter(getActivity(),
                                 dataPermintaan, dataBarang);

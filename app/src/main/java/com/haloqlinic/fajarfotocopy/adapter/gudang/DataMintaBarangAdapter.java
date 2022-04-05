@@ -29,6 +29,7 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.CekStockBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.KirimBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
+import com.haloqlinic.fajarfotocopy.gudang.mintabarang.DataMintaBarangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataBarangItem;
 import com.haloqlinic.fajarfotocopy.model.dataPermintaanBarang.DataPermintaanBarangItem;
 import com.haloqlinic.fajarfotocopy.model.getDriver.DataDriverItem;
@@ -39,7 +40,9 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -57,7 +60,7 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
-    private String date, id_driver;
+    private String tanggal, id_driver, id_toko;
 
     public DataMintaBarangAdapter(Context context, List<DataPermintaanBarangItem> dataPermintaan,
                                   List<DataBarangItem> dataBarangMinta) {
@@ -77,18 +80,32 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
     @Override
     public void onBindViewHolder(@NonNull DataMintaBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.txtNamaOutlet.setText(dataPermintaan.get(position).getNamaOutlet());
+
+        dataBarangMinta = dataPermintaan.get(position).getDataBarang();
+
         holder.rvDataBarangMinta.setHasFixedSize(true);
         GridLayoutManager manager = new GridLayoutManager(context,
                 2, GridLayoutManager.VERTICAL, false);
         holder.rvDataBarangMinta.setLayoutManager(manager);
         DataListMintaBarangAdapter adapter = new DataListMintaBarangAdapter(context, dataBarangMinta);
         holder.rvDataBarangMinta.setAdapter(adapter);
-
         ClickedNested clickedNested = new ClickedNested();
+        clickedNested.setOpen(false);
+
+        initSpinner(holder.spinnerPilihDriver);
+
+        Date c = Calendar.getInstance().getTime();
+        System.out.println("Current time => " + c);
+
+        SimpleDateFormat df = new SimpleDateFormat("dd MMMM yyyy", Locale.getDefault());
+        tanggal = df.format(c);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                id_toko = dataPermintaan.get(position).getIdOutlet();
+                Log.d("cekIdToko", "onClick: "+id_toko);
 
                 if (!clickedNested.isOpen()){
                     clickedNested.setOpen(true);
@@ -96,18 +113,41 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
                     clickedNested.setOpen(false);
                 }
 
-                Log.d("cekIsOpen", "onClick: " + clickedNested.isOpen());
                 if (clickedNested.isOpen()) {
                     holder.rvDataBarangMinta.setVisibility(View.VISIBLE);
+                    holder.btnCreatePengiriman.setVisibility(View.VISIBLE);
+                    holder.txtPilihDriver.setVisibility(View.VISIBLE);
+                    holder.spinnerPilihDriver.setVisibility(View.VISIBLE);
                     holder.imgDropDown.setVisibility(View.GONE);
                     holder.imgDropTop.setVisibility(View.VISIBLE);
-                    clickedNested.setOpen(false);
                 } else {
                     holder.rvDataBarangMinta.setVisibility(View.GONE);
+                    holder.btnCreatePengiriman.setVisibility(View.GONE);
+                    holder.txtPilihDriver.setVisibility(View.GONE);
+                    holder.spinnerPilihDriver.setVisibility(View.GONE);
                     holder.imgDropDown.setVisibility(View.VISIBLE);
                     holder.imgDropTop.setVisibility(View.GONE);
-                    clickedNested.setOpen(true);
                 }
+                Log.d("cekIsOpen", "onClick: " + clickedNested.isOpen());
+            }
+        });
+
+        holder.spinnerPilihDriver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                id_driver = dataDriverItems.get(position).getIdUser();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        holder.btnCreatePengiriman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tambahStatusPengiriman();
             }
         });
 
@@ -157,11 +197,7 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     }
 
-    private void tambahStatusPengiriman(String idOutlet, String nama_barang, String idMintaBarang) {
-
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        date = dateFormat.format(calendar.getTime());
+    private void tambahStatusPengiriman() {
 
         String status_pengiriman = "pending";
 
@@ -169,27 +205,29 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
         progressStatus.setMessage("Membuat pengiriman barang");
         progressStatus.show();
 
-        ConfigRetrofit.service.tambahStatusPengiriman(status_pengiriman, date, idOutlet, id_driver).enqueue(new Callback<ResponseTambahStatusPengiriman>() {
+        Log.d("testDataMintaBarang", "tanggal: "+tanggal);
+        Log.d("testDataMintaBarang", "id_toko: "+id_toko);
+        Log.d("testDataMintaBarang", "id_driver: "+id_driver);
+
+        ConfigRetrofit.service.tambahStatusPengiriman(status_pengiriman, tanggal, id_toko, id_driver).enqueue(new Callback<ResponseTambahStatusPengiriman>() {
             @Override
             public void onResponse(Call<ResponseTambahStatusPengiriman> call, Response<ResponseTambahStatusPengiriman> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful()){
                     progressStatus.dismiss();
 
                     int status = response.body().getStatus();
 
-                    if (status == 1) {
+                    if (status==1){
 
-                        Intent intent = new Intent(context, KirimBarangGudangActivity.class);
-                        intent.putExtra("id_toko", idOutlet);
-                        intent.putExtra("tanggal", date);
-                        intent.putExtra("fromActivity", "mintaBarang");
-                        intent.putExtra("nama_barang", nama_barang);
-                        intent.putExtra("id_minta_barang", idMintaBarang);
+                        Intent intent = new Intent(context, DataMintaBarangActivity.class);
+                        intent.putExtra("id_toko", id_toko);
+                        intent.putExtra("id_driver", id_driver);
+                        intent.putExtra("tanggal", tanggal);
                         context.startActivity(intent);
-                    } else {
+                    }else{
                         Toast.makeText(context, "Gagal membuat pengiriman", Toast.LENGTH_SHORT).show();
                     }
-                } else {
+                }else{
                     progressStatus.dismiss();
                     Toast.makeText(context, "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
                 }
@@ -198,7 +236,7 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
             @Override
             public void onFailure(Call<ResponseTambahStatusPengiriman> call, Throwable t) {
                 progressStatus.dismiss();
-                Toast.makeText(context, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -211,9 +249,11 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
 
     public class DataMintaBarangViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtNamaOutlet;
+        TextView txtNamaOutlet, txtPilihDriver;
         RecyclerView rvDataBarangMinta;
         ImageView imgDropDown, imgDropTop;
+        Button btnCreatePengiriman;
+        Spinner spinnerPilihDriver;
 
         public DataMintaBarangViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -221,6 +261,9 @@ public class DataMintaBarangAdapter extends RecyclerView.Adapter<DataMintaBarang
             rvDataBarangMinta = itemView.findViewById(R.id.rv_data_barang_minta_barang_gudang);
             imgDropDown = itemView.findViewById(R.id.imgPanahBawah);
             imgDropTop = itemView.findViewById(R.id.imgPanahAtas);
+            btnCreatePengiriman = itemView.findViewById(R.id.btn_create_pengiriman_minta_barang);
+            spinnerPilihDriver = itemView.findViewById(R.id.spinner_pilih_driver_minta_barang_gudang);
+            txtPilihDriver = itemView.findViewById(R.id.tv_pilih_driver);
         }
     }
 }

@@ -55,11 +55,55 @@
             android:layout_marginTop="20dp"
             android:visibility="gone"
             android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang" />
+
+        <TextView
+            android:id="@+id/tv_pilih_driver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sairamedium"
+            android:text="Pilih Driver"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_data_barang_minta_barang_gudang" />
+
+        <Spinner
+            android:id="@+id/spinner_pilih_driver_minta_barang_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/bg_rectangle"
+            android:fontFamily="@font/sairamedium"
+            android:inputType="textCapWords"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_pilih_driver" />
+
+        <Button
+            android:id="@+id/btn_create_pengiriman_minta_barang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/sairabold"
+            android:text="Buat Pengiriman Barang"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_driver_minta_barang_gudang" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
