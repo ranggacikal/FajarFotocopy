@@ -30,6 +30,7 @@ public class RiwayatPengirimanSupplierActivity extends AppCompatActivity {
 
     private ActivityRiwayatPengirimanSupplierBinding binding;
     private SharedPreferencedConfig preferencedConfig;
+    String dateIntent, monthIntent, pilihanIntent, fromReportDriver, tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,17 @@ public class RiwayatPengirimanSupplierActivity extends AppCompatActivity {
                 getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        dateIntent = getIntent().getStringExtra("tanggal");
+        monthIntent = getIntent().getStringExtra("bulan_tahun");
+        pilihanIntent = getIntent().getStringExtra("pilihan");
+        fromReportDriver = getIntent().getStringExtra("fromReportDriver");
+
+        if (pilihanIntent.equals("Hari")){
+            tanggal = dateIntent;
+        }else{
+            tanggal = monthIntent;
+        }
 
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.rvPengirimanKeSupplier.setHasFixedSize(true);
@@ -65,7 +77,7 @@ public class RiwayatPengirimanSupplierActivity extends AppCompatActivity {
         progressDialog.show();
 
         ConfigRetrofit.service.statusPenjualanGudanSelesai(
-                preferencedConfig.getPreferenceIdUser()
+                preferencedConfig.getPreferenceIdUser(), tanggal
         ).enqueue(new Callback<ResponseStatusPenjualanGudangSelesai>() {
             @Override
             public void onResponse(

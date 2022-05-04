@@ -7,6 +7,7 @@ import com.haloqlinic.fajarfotocopy.model.dataMintaBarangByOutlet.ResponseMintaB
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
+import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
@@ -591,7 +592,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("getStatusPengirimanByIdUser")
-    Call<ResponseStatusPengirimanByIdUser> statusPengirimanByIdUser(@Field("id_user") String id_user);
+    Call<ResponseStatusPengirimanByIdUser> statusPengirimanByIdUser(@Field("id_user") String id_user,
+                                                                    @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @POST("getListPengirimanByIdStatus")
@@ -604,7 +606,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("getStatusPengirimanSelesai")
-    Call<ResponsePengirimanSelesai> pengirimanSelesai(@Field("id_user") String id_user);
+    Call<ResponsePengirimanSelesai> pengirimanSelesai(@Field("id_user") String id_user,
+                                                      @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @POST("detailPenjualanGudang")
@@ -645,7 +648,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("getStatusPenjualanGudangByIdUser")
-    Call<ResponseStatusPenjualanGudangByIdUser> statusPenjualanGudangByIdUser(@Field("id_user") String id_user);
+    Call<ResponseStatusPenjualanGudangByIdUser> statusPenjualanGudangByIdUser(@Field("id_user") String id_user,
+                                                                              @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @POST("getListPenjualanGudangByIdStatus")
@@ -683,7 +687,8 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("getStatusPenjualanGudangSelesai")
-    Call<ResponseStatusPenjualanGudangSelesai> statusPenjualanGudanSelesai(@Field("id_user") String id_user);
+    Call<ResponseStatusPenjualanGudangSelesai> statusPenjualanGudanSelesai(@Field("id_user") String id_user,
+                                                                           @Field("tanggal") String tanggal);
 
     @FormUrlEncoded
     @POST("getStatusPengirimanByBulan")
@@ -736,4 +741,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("hapusMintaBarang")
     Call<ResponseHapusDataMintaBarang> hapusDataMintaBarang(@Field("id_minta_barang") String id_minta_barang);
+
+    @FormUrlEncoded
+    @POST("getKategoriById")
+    Call<ResponseKategoriById> dataKategoriById(@Field("id_kategori") String id_kategori);
 }

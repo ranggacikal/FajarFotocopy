@@ -25,6 +25,7 @@ import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPengirimanDriverAdapter
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
 import com.haloqlinic.fajarfotocopy.driver.pengirimandriver.PengirimanDriverActivity;
+import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
@@ -101,8 +102,9 @@ public class HomeDriverFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-                        Intent intent = new Intent(getActivity(), PengirimanDriverActivity.class);
+                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
                         intent.putExtra("jenisPengiriman", "toko");
+                        intent.putExtra("fromReportDriver", "pengirimanToko");
                         startActivity(intent);
 
                     }
@@ -112,8 +114,9 @@ public class HomeDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent2 = new Intent(getActivity(), PengirimanDriverActivity.class);
+                        Intent intent2 = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
                         intent2.putExtra("jenisPengiriman", "supplier");
+                        intent2.putExtra("fromReportDriver", "pengirimanSupplier");
                         startActivity(intent2);
                     }
                 });
@@ -143,46 +146,6 @@ public class HomeDriverFragment extends Fragment {
                     }
                 });
         return rootView;
-    }
-
-    private void loadDataStatusPengiriman() {
-
-        ProgressDialog progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Memuat data");
-        progressDialog.show();
-
-        ConfigRetrofit.service.statusPengirimanByIdUser(preferencedConfig.getPreferenceIdUser()).enqueue(new Callback<ResponseStatusPengirimanByIdUser>() {
-            @Override
-            public void onResponse(Call<ResponseStatusPengirimanByIdUser> call, Response<ResponseStatusPengirimanByIdUser> response) {
-                if (response.isSuccessful()){
-
-                    progressDialog.dismiss();
-
-                    int status = response.body().getStatus();
-
-                    if (status==1){
-
-                        List<GetStatusPengirimanByIdUserItem> dataStatus = response.body().getGetStatusPengirimanByIdUser();
-                        StatusPengirimanDriverAdapter adapter = new StatusPengirimanDriverAdapter(getActivity(), dataStatus);
-                        rvStatusPengiriman.setAdapter(adapter);
-
-                    }else{
-                        Toast.makeText(getActivity(), "Data Kosong", Toast.LENGTH_SHORT).show();
-                    }
-
-                }else{
-                    progressDialog.dismiss();
-                    Toast.makeText(getActivity(), "Terjadi kesalahan di server", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseStatusPengirimanByIdUser> call, Throwable t) {
-                progressDialog.dismiss();
-                Toast.makeText(getActivity(), "Koneksi Error", Toast.LENGTH_SHORT).show();
-            }
-        });
-
     }
 
 

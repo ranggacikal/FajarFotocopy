@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.driver.PengirimanSelesaiAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
@@ -29,6 +28,7 @@ public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
 
     private ActivityRiwayatPengirimanTokoBinding binding;
     private SharedPreferencedConfig preferencedConfig;
+    String dateIntent, monthIntent, pilihanIntent, fromReportDriver, tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,17 @@ public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
         binding = ActivityRiwayatPengirimanTokoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        dateIntent = getIntent().getStringExtra("tanggal");
+        monthIntent = getIntent().getStringExtra("bulan_tahun");
+        pilihanIntent = getIntent().getStringExtra("pilihan");
+        fromReportDriver = getIntent().getStringExtra("fromReportDriver");
+
+        if (pilihanIntent.equals("Hari")){
+            tanggal = dateIntent;
+        }else{
+            tanggal = monthIntent;
+        }
 
         preferencedConfig = new SharedPreferencedConfig(this);
         binding.rvPengirimanKeToko.setHasFixedSize(true);
@@ -51,17 +62,17 @@ public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
                 });
 
 
-        loadData();
+        loadData(tanggal);
     }
 
 
-    private void loadData() {
+    private void loadData(String tanggal) {
 
         ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Memuat Data");
         progressDialog.show();
 
-        ConfigRetrofit.service.pengirimanSelesai(preferencedConfig.getPreferenceIdUser()).enqueue(new Callback<ResponsePengirimanSelesai>() {
+        ConfigRetrofit.service.pengirimanSelesai(preferencedConfig.getPreferenceIdUser(), tanggal).enqueue(new Callback<ResponsePengirimanSelesai>() {
             @Override
             public void onResponse(Call<ResponsePengirimanSelesai> call, Response<ResponsePengirimanSelesai> response) {
                 if (response.isSuccessful()) {
@@ -100,6 +111,6 @@ public class RiwayatPengirimanTokoActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadData();
+        loadData(tanggal);
     }
 }

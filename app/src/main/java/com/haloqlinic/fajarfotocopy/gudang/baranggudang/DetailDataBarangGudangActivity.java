@@ -14,6 +14,8 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,11 +26,17 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDataBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailDataBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
+import com.haloqlinic.fajarfotocopy.model.dataKategori.DataKategoriItem;
+import com.haloqlinic.fajarfotocopy.model.dataKategori.ResponseDataKategori;
 import com.haloqlinic.fajarfotocopy.model.editDataBarang.ResponseEditBarang;
+import com.haloqlinic.fajarfotocopy.model.getKategoriById.DataKategoriByIdItem;
+import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import dev.shreyaspatil.MaterialDialog.BottomSheetMaterialDialog;
@@ -51,6 +59,7 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
     int jumlah_pcs;
 
     String image_barang = "", image_link ="";
+    List<DataKategoriItem> dataKategoriItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +100,33 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
         binding.edtKodeBarcodeBarangGudang.setText(id_barang);
         binding.edtStockNumberOfPackGudang.setText(number_of_pack_intent);
         binding.edtStockBarangPcsGudang.setEnabled(false);
+
+        if (id_kategori != null) {
+            loadKategori(id_kategori);
+        }else{
+            binding.edtKategoriBarangGudang.setText("null");
+        }
+
+        binding.edtKategoriBarangGudang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.edtKategoriBarangGudang.setVisibility(View.GONE);
+                binding.spinnerKategoriBarangGudang.setVisibility(View.VISIBLE);
+                initSpinnerKategori();
+            }
+        });
+
+        binding.spinnerKategoriBarangGudang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                id_kategori = dataKategoriItems.get(position).getIdKategori();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         binding.edtStockBarangPackGudang.addTextChangedListener(new TextWatcher() {
             @Override
@@ -186,6 +222,49 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
     }
 
+    private void loadKategori(String id_kategori) {
+        ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Memuat Data");
+        progressDialog.show();
+
+        ConfigRetrofit.service.dataKategoriById(id_kategori)
+                .enqueue(new Callback<ResponseKategoriById>() {
+                    @Override
+                    public void onResponse(Call<ResponseKategoriById> call, Response<ResponseKategoriById> response) {
+                        if (response.isSuccessful()){
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+                            String namaKategori = "";
+
+                            if (status == 1) {
+                                List<DataKategoriByIdItem> dataKategoriByIdItems = response.body()
+                                        .getDataKategoriById();
+                                for (int a = 0; a < dataKategoriByIdItems.size(); a++){
+                                    namaKategori = dataKategoriByIdItems.get(a).getNamaKategori();
+                                }
+                                binding.edtKategoriBarangGudang.setText(namaKategori);
+                            }else{
+                                binding.edtKategoriBarangGudang.setText("");
+                                Toast.makeText(DetailDataBarangGudangActivity.this,
+                                        "Gagal Memuat Data", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            binding.edtKategoriBarangGudang.setText("");
+                            Toast.makeText(DetailDataBarangGudangActivity.this,
+                                    "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseKategoriById> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(DetailDataBarangGudangActivity.this,
+                                "Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
     private void tampilDialogHapus() {
 
         BottomSheetMaterialDialog mBottomSheetDialog = new BottomSheetMaterialDialog.Builder(this)
@@ -209,6 +288,56 @@ public class DetailDataBarangGudangActivity extends AppCompatActivity {
 
         // Show Dialog
         mBottomSheetDialog.show();
+
+    }
+
+    private void initSpinnerKategori() {
+
+        ProgressDialog progressDialog = new ProgressDialog(DetailDataBarangGudangActivity.this);
+        progressDialog.setMessage("Memuat Data Kategori");
+        progressDialog.show();
+
+        ConfigRetrofit.service.dataKategori().enqueue(new Callback<ResponseDataKategori>() {
+            @Override
+            public void onResponse(Call<ResponseDataKategori> call, Response<ResponseDataKategori> response) {
+                if (response.isSuccessful()) {
+
+                    progressDialog.dismiss();
+
+                    int status = response.body().getStatus();
+
+                    if (status == 1) {
+
+                        dataKategoriItems = response.body().getDataKategori();
+                        List<String> listSpinnerKategori = new ArrayList<String>();
+                        for (int i = 0; i < dataKategoriItems.size(); i++) {
+
+                            listSpinnerKategori.add(dataKategoriItems.get(i).getNamaKategori());
+
+                        }
+
+                        ArrayAdapter<String> adapterToko = new ArrayAdapter<String>(DetailDataBarangGudangActivity.this,
+                                R.layout.spinner_item, listSpinnerKategori);
+
+                        adapterToko.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        binding.spinnerKategoriBarangGudang.setAdapter(adapterToko);
+
+                    } else {
+                        Toast.makeText(DetailDataBarangGudangActivity.this, "Data Kategori Kosong", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(DetailDataBarangGudangActivity.this, "Gagal memuat data kategori", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseDataKategori> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(DetailDataBarangGudangActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

@@ -37,6 +37,7 @@ public class PengirimanDriverActivity extends AppCompatActivity {
     private SharedPreferencedConfig preferencedConfig;
 
     String jenis_pengiriman = "";
+    String dateIntent, monthIntent, pilihanIntent, fromReportDriver, tanggal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,16 @@ public class PengirimanDriverActivity extends AppCompatActivity {
         setContentView(view);
 
         jenis_pengiriman = getIntent().getStringExtra("jenisPengiriman");
+        dateIntent = getIntent().getStringExtra("tanggal");
+        monthIntent = getIntent().getStringExtra("bulan_tahun");
+        pilihanIntent = getIntent().getStringExtra("pilihan");
+        fromReportDriver = getIntent().getStringExtra("fromReportDriver");
+
+        if (pilihanIntent.equals("Hari")){
+            tanggal = dateIntent;
+        }else{
+            tanggal = monthIntent;
+        }
 
 
         preferencedConfig = new SharedPreferencedConfig(PengirimanDriverActivity.this);
@@ -91,7 +102,7 @@ public class PengirimanDriverActivity extends AppCompatActivity {
         progressDialog.setMessage("Memuat Data");
         progressDialog.show();
 
-        ConfigRetrofit.service.statusPenjualanGudangByIdUser(preferencedConfig.getPreferenceIdUser())
+        ConfigRetrofit.service.statusPenjualanGudangByIdUser(preferencedConfig.getPreferenceIdUser(), tanggal)
                 .enqueue(new Callback<ResponseStatusPenjualanGudangByIdUser>() {
                     @Override
                     public void onResponse(Call<ResponseStatusPenjualanGudangByIdUser> call, Response<ResponseStatusPenjualanGudangByIdUser> response) {
@@ -137,7 +148,7 @@ public class PengirimanDriverActivity extends AppCompatActivity {
 
         Log.d("cekIdUser", "loadDataToko: "+preferencedConfig.getPreferenceIdUser());
 
-        ConfigRetrofit.service.statusPengirimanByIdUser(preferencedConfig.getPreferenceIdUser())
+        ConfigRetrofit.service.statusPengirimanByIdUser(preferencedConfig.getPreferenceIdUser(), tanggal)
                 .enqueue(new Callback<ResponseStatusPengirimanByIdUser>() {
                     @Override
                     public void onResponse(Call<ResponseStatusPengirimanByIdUser> call, Response<ResponseStatusPengirimanByIdUser> response) {

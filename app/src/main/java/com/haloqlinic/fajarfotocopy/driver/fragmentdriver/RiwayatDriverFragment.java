@@ -20,6 +20,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.driver.PengirimanSelesaiAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
+import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity;
 import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.RiwayatPengirimanSupplierActivity;
 import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.RiwayatPengirimanTokoActivity;
 import com.haloqlinic.fajarfotocopy.model.pengirimanSelesai.ResponsePengirimanSelesai;
@@ -63,8 +64,10 @@ public class RiwayatDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(),
-                                RiwayatPengirimanTokoActivity.class));
+                        Intent intentReportToko = new Intent(getActivity(),
+                                PilihTanggalRiwayatDriverActivity.class);
+                        intentReportToko.putExtra("fromReportDriver", "toko");
+                        startActivity(intentReportToko);
                     }
                 });
 
@@ -73,8 +76,10 @@ public class RiwayatDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getActivity(),
-                                RiwayatPengirimanSupplierActivity.class));
+                        Intent intentReportSupplier = new Intent(getActivity(),
+                                PilihTanggalRiwayatDriverActivity.class);
+                        intentReportSupplier.putExtra("fromReportDriver", "supplier");
+                        startActivity(intentReportSupplier);
                     }
                 });
 
