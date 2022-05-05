@@ -9,11 +9,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -52,7 +58,11 @@ public class LoginActivity extends AppCompatActivity{
     String token;
     String tokenLocal = "";
 
+
+
     private SharedPreferencedConfig preferencedConfig;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,8 @@ public class LoginActivity extends AppCompatActivity{
         edtUsername = findViewById(R.id.edt_username_login_gudang);
         edtPassword = findViewById(R.id.edt_password_login_gudang);
         btnLogin = findViewById(R.id.btn_login_gudang);
+        showHidePass(binding.imgHidePassword);
+
 
         PushDownAnim.setPushDownAnimTo(binding.btnLoginGudang)
                 .setScale(MODE_SCALE, 0.89f)
@@ -251,4 +263,30 @@ public class LoginActivity extends AppCompatActivity{
 
         }
     };
+
+    private void showHidePass(View view) {
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(view.getId()== R.id.img_hide_password){
+
+                    if(binding.edtPasswordLoginGudang.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())){
+                        ((ImageView)(view)).setImageResource(R.drawable.ic_password_visibile);
+                        //Show Password
+                        binding.edtPasswordLoginGudang.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    }
+                    else{
+                        ((ImageView)(view)).setImageResource(R.drawable.ic_password_invisibile);
+
+                        //Hide Password
+                        binding.edtPasswordLoginGudang.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+                    }
+                }
+
+            }
+        });
+
+    }
 }

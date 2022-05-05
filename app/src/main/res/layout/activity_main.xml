@@ -16,15 +16,45 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_gudang"
-        style="@style/MineCustomTabText"
+        style="@style/MineCustomTabTextActive"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="@color/gold"
+        android:background="@drawable/tab_layout"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicatorColor="@color/black"
-        app:tabTextAppearance="@style/MineCustomTabText" />
+        app:tabIndicator="@null"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="12sp"
+        app:tabTextAppearance="@style/MineCustomTabText" >
+
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:icon="@drawable/ic_home_active"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_width="24dp"/>-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:icon="@drawable/ic_kirim_non_active"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_width="24dp"/>-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:icon="@drawable/ic_minta_non_active"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_width="24dp"/>-->
+
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:icon="@drawable/ic_user_non_active"-->
+<!--            android:layout_height="24dp"-->
+<!--            android:layout_width="24dp"/>-->
+
+
+
+
+
+
+
+    </com.google.android.material.tabs.TabLayout>
 
 </RelativeLayout>

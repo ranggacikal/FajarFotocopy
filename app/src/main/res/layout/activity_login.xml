@@ -1,112 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentTop="true"
     android:fillViewport="true"
     android:background="@color/white"
+    android:orientation="vertical"
+    android:scrollbarThumbVertical="@null"
     tools:context=".LoginActivity">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="167dp"
+            android:layout_height="177dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:background="@drawable/illustration_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Fajar Enterprise Group"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Username"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <EditText
+            android:id="@+id/edt_username_login_gudang"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="26dp"
+            android:background="@drawable/edit_text"
+            android:fontFamily="@font/poppinsmedium"
+            android:gravity="center_vertical"
+            android:inputType="text"
+            android:paddingStart="12dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Password"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_username_login_gudang" />
+
         <RelativeLayout
-            android:id="@+id/relativelogo"
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp">
-
-            <ImageView
-                android:id="@+id/imglogo"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:src="@drawable/logobaru"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="29dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fajar Group"
-                android:layout_toRightOf="@+id/imglogo"
-                android:layout_marginStart="10dp"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/sairabold"
-                android:layout_centerVertical="true"/>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_green"
-            android:orientation="vertical"
-            android:layout_below="@id/relativelogo"
-            android:layout_marginTop="20dp">
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Username"
-                android:textSize="15sp"
-                android:fontFamily="@font/sairabold"
-                android:layout_marginTop="39dp"
-                android:layout_marginStart="57dp"/>
-
-            <EditText
-                android:id="@+id/edt_username_login_gudang"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/bg_edt_white"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="57dp"
-                android:hint="Username"
-                android:paddingStart="15dp"
-                android:inputType="text"
-                android:layout_marginEnd="57dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:textSize="15sp"
-                android:fontFamily="@font/sairabold"
-                android:layout_marginTop="13dp"
-                android:layout_marginStart="57dp"/>
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/textView4">
 
             <EditText
                 android:id="@+id/edt_password_login_gudang"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@drawable/bg_edt_white"
-                android:layout_marginTop="7dp"
-                android:layout_marginStart="57dp"
-                android:hint="Password"
-                android:paddingStart="15dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginEnd="26dp"
+                android:background="@drawable/edit_text"
+                android:fontFamily="@font/poppinsmedium"
+                android:gravity="center_vertical"
                 android:inputType="textPassword"
-                android:layout_marginEnd="57dp"/>
+                android:paddingStart="12dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <Button
-                android:id="@+id/btn_login_gudang"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginStart="57dp"
-                android:layout_marginEnd="57dp"
-                android:layout_marginTop="38dp"
-                android:text="LOGIN"
-                android:textSize="20sp"
-                android:background="@drawable/btn_black"
-                android:textColor="@color/white"
-                android:fontFamily="@font/sairabold"/>
+            <ImageView
+                android:id="@+id/img_hide_password"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="46dp"
+                android:src="@drawable/ic_password_visibile" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
-    </RelativeLayout>
 
+        <Button
+            android:id="@+id/btn_login_gudang"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="46dp"
+            android:layout_marginEnd="26dp"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/poppinsbold"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
