@@ -73,8 +73,23 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
     @Override
     public void onBindViewHolder(@NonNull @NotNull CariTransferBarangViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        int hargaPcs = Integer.parseInt(dataBarang.get(position).getHargaJual());
-        int hargaPack = Integer.parseInt(dataBarang.get(position).getHargaJualPack());
+        String hargaPcsString = dataBarang.get(position).getHargaJual();
+        String hargaPackString = dataBarang.get(position).getHargaJualPack();
+        int hargaPcs, hargaPack;
+
+        Log.d("cekHargaPackString", "onBindViewHolder: "+hargaPackString);
+
+        if (hargaPcsString.equals("null")){
+           hargaPcs = 0;
+        }else {
+            hargaPcs = Integer.parseInt(hargaPcsString);
+        }
+
+        if (hargaPackString.equals("null")){
+            hargaPack = 0;
+        }else {
+            hargaPack = Integer.parseInt(hargaPackString);
+        }
         id_barang_outlet_pengirim = dataBarang.get(position).getIdBarangOutlet();
         id_barang = dataBarang.get(position).getIdBarang();
 
