@@ -10,4 +10,10 @@
         <item>Debit</item>
     </string-array>
 
+
+    <string name="title_activity_driver_main">DriverMainActivity</string>
+    <string name="title_home_driver">Home</string>
+    <string name="title_riwayat_driver">Riwayat</string>
+    <string name="title_profile_driver">Profile</string>
+
 </resources>

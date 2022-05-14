@@ -9,11 +9,13 @@
     <color name="black">#2D2D2D</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#FF4040</color>
+    <color name="light_red">#FFD1D1</color>
     <color name="blue">#4F6BFF</color>
     <color name="gold">#D4B44E</color>
-    <color name="green">#3CC941</color>
-    <color name="background">#E5E5E5</color>
     <color name="light_gold">#FFF4D0</color>
+    <color name="green">#3CC941</color>
+    <color name="light_green">#CCF8CE</color>
+    <color name="background">#E5E5E5</color>
     <color name="grey">#ACACAC</color>
     <color name="dark_grey">#666666</color>
 

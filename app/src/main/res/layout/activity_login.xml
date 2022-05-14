@@ -119,8 +119,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
-            android:layout_marginTop="46dp"
+            android:layout_marginTop="164dp"
             android:layout_marginEnd="26dp"
+            android:layout_marginBottom="26dp"
             android:background="@drawable/btn_gold"
             android:fontFamily="@font/poppinsbold"
             android:text="Login"
@@ -129,9 +130,10 @@
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
