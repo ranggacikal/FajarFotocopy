@@ -52,5 +52,6 @@ public class ProfileDriverFragment extends Fragment {
         txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
         Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
-        return rootView;    }
+        return rootView;
+    }
 }

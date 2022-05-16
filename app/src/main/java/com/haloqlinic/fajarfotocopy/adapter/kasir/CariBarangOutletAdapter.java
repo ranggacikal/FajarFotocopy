@@ -5,6 +5,10 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +52,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 import retrofit2.Call;
@@ -63,6 +68,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     TransaksiKasirActivity transaksiKasirActivity;
 
     Dialog dialog;
+
 
     private String[] levelItem = {"Pcs", "Pack"};
 
@@ -81,7 +87,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     int total;
     int number, jumlahPcs, hasil_max, hasil_max_pcs;
     int jumlah_pack_penjualan = 0;
-
     @NonNull
     @NotNull
     @Override
@@ -96,6 +101,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
         String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
         String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
+
         int hargaPcs, hargaPack;
 
         if (hargaPcsStr.equals("null")){
@@ -613,5 +619,36 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
             lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
+    }
+
+    private void scaleImage(ImageView view) {
+        Drawable drawing = view.getDrawable();
+        if (drawing == null) {
+            return;
+        }
+        Bitmap bitmap = ((BitmapDrawable) drawing).getBitmap();
+
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int xBounding = ((View) view.getParent()).getWidth();//EXPECTED WIDTH
+        int yBounding = ((View) view.getParent()).getHeight();//EXPECTED HEIGHT
+
+        float xScale = ((float) xBounding) / width;
+        float yScale = ((float) yBounding) / height;
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(xScale, yScale);
+
+        Bitmap scaledBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        width = scaledBitmap.getWidth();
+        height = scaledBitmap.getHeight();
+        BitmapDrawable result = new BitmapDrawable(context.getResources(), scaledBitmap);
+
+        view.setImageDrawable(result);
+
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        params.width = width;
+        params.height = height;
+        view.setLayoutParams(params);
     }
 }

@@ -76,7 +76,7 @@ public class HomeDriverFragment extends Fragment {
 
         txtNama = rootView.findViewById(R.id.text_nama_home_driver);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_driver);
-        btnKeluar = rootView.findViewById(R.id.btn_keluar_driver);
+//        btnKeluar = rootView.findViewById(R.id.btn_keluar_driver);
         cardPengirimanTokoDriver = rootView.findViewById(R.id.card_pengiriman_toko_keto_driver);
         cardPengirimanSupplierDriver = rootView.findViewById(R.id.card_pengiriman_supplier_driver);
 

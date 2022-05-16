@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home_driver">
+    app:startDestination="@id/navigation_home_driver">
 
     <fragment
         android:id="@+id/navigation_home_driver"
-        android:name="com.haloqlinic.fajarfotocopy.driver.FragmentRiwayatDriver.RiwayatDriverFragment"
+        android:name="com.haloqlinic.fajarfotocopy.driver.FragmentHomeDriver.HomeDriverFragment"
         android:label="@string/title_home_driver"
         tools:layout="@layout/fragment_home_driver" />
 
     <fragment
         android:id="@+id/navigation_riwayat_driver"
-        android:name="com.haloqlinic.fajarfotocopy.driver.FragmentHomeDriver.HomeDriverFragment"
+        android:name="com.haloqlinic.fajarfotocopy.driver.FragmentRiwayatDriver.RiwayatDriverFragment"
         android:label="@string/title_riwayat_driver"
         tools:layout="@layout/fragment_riwayat_driver" />
 
