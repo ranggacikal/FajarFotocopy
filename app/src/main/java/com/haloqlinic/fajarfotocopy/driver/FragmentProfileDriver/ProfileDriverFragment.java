@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,9 +27,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.haloqlinic.fajarfotocopy.EditProfileActivity;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.gudang.baranggudang.BarangGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 public class ProfileDriverFragment extends Fragment {
@@ -39,7 +42,7 @@ public class ProfileDriverFragment extends Fragment {
     ImageView imageView;
     Dialog dialogLogout;
     Context context;
-    CardView cardLogout;
+    CardView cardLogout, cardEditProfile, cardBantuan, cardRating;
     Button btnKeluarDriver;
 
 
@@ -53,9 +56,12 @@ public class ProfileDriverFragment extends Fragment {
         txtLevelProfile = rootView.findViewById(R.id.text_level_profile_driver);
         imageView = rootView.findViewById(R.id.img_profile_driver);
         cardLogout = rootView.findViewById(R.id.card_logout);
+        cardEditProfile = rootView.findViewById(R.id.card_edit_profile);
+        cardBantuan = rootView.findViewById(R.id.card_bantuan);
+        cardRating = rootView.findViewById(R.id.card_rating);
+
         btnKeluarDriver = rootView.findViewById(R.id.btn_keluar_driver);
         textKembaliDriver = rootView.findViewById(R.id.text_kembali_driver);
-
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
         txtUsernameProfile.setText(preferencedConfig.getPreferenceUsername());
@@ -88,6 +94,45 @@ public class ProfileDriverFragment extends Fragment {
                                     .show();
                     }
                 });
+
+        PushDownAnim.setPushDownAnimTo(cardEditProfile)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(getActivity(), EditProfileActivity.class));
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardRating)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = "https://play.google.com/store/apps/details?id=com.haloqlinic.fajarfotocopy";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(cardBantuan)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String url = "https://wa.me/6281317726882?text=Bang%20fajar,%20saya%20butuh%20bantuan.";
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(url));
+                        startActivity(i);
+                    }
+                });
+
+
+
+
+
+
 
 
         return rootView;

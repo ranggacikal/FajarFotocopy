@@ -6,6 +6,7 @@ import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
 import com.haloqlinic.fajarfotocopy.model.dataMintaBarangByOutlet.ResponseMintaBarangByOutlet;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
+import com.haloqlinic.fajarfotocopy.model.editProfile.ResponseEditProfile;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
@@ -553,6 +554,7 @@ public interface ApiService {
                                     @Field("level") String level,
                                     @Field("id_outlet") String id_outlet);
 
+
     @FormUrlEncoded
     @POST("editDataImageUser")
     Call<ResponseEditImageUser> editImageUser(@Field("id_user") String id_user,
@@ -745,4 +747,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("getKategoriById")
     Call<ResponseKategoriById> dataKategoriById(@Field("id_kategori") String id_kategori);
+
+    @FormUrlEncoded
+    @POST("editProfile")
+    Call<ResponseEditProfile> editProfile(@Field("id_user") String id_user,
+                                          @Field("username") String username);
+
 }

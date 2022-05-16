@@ -26,6 +26,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.driver.pengirimandriver.PengirimanDriverActivity;
 import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.reportgudang.ReportGudangActivity;
 import com.haloqlinic.fajarfotocopy.gudang.reportgudang.ReportPenjualanGudangActivity;
@@ -42,7 +43,6 @@ public class HomeDriverFragment extends Fragment {
 
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal;
-    Button btnKeluar;
     ImageView imageView;
 
 
@@ -85,8 +85,7 @@ public class HomeDriverFragment extends Fragment {
 //                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
 //                        intent.putExtra("jenisPengiriman", "toko");
 //                        intent.putExtra("fromReportDriver", "pengirimanToko");
-//                        startActivity(intent)
-                        startActivity(new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class));
+//                        startActivity(intent);
 
 
                     }
