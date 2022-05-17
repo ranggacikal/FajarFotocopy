@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kasir.KasirMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_kasir_main" />
+        <activity
             android:name=".EditPasswordActivity"
             android:exported="false" />
         <activity

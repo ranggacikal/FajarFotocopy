@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home_kasir">
+
+    <fragment
+        android:id="@+id/navigation_home_kasir"
+        android:name="com.haloqlinic.fajarfotocopy.kasir.ui.home.HomeFragment"
+        android:label="@string/title_home_kasir"
+        tools:layout="@layout/fragment_home_kasir" />
+
+    <fragment
+        android:id="@+id/navigation_riwayat_kasir"
+        android:name="com.haloqlinic.fajarfotocopy.kasir.ui.dashboard.DashboardFragment"
+        android:label="@string/title_riwayat_kasir"
+        tools:layout="@layout/fragment_riwayat_transaksi_kasir" />
+
+    <fragment
+        android:id="@+id/navigation_profile_kasir"
+        android:name="com.haloqlinic.fajarfotocopy.kasir.ui.notifications.NotificationsFragment"
+        android:label="@string/title_profile_kasir"
+        tools:layout="@layout/fragment_profile_driver" />
+</navigation>

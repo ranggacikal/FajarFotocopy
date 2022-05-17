@@ -16,4 +16,9 @@
     <string name="title_riwayat_driver">Riwayat</string>
     <string name="title_profile_driver">Profile</string>
 
+    <string name="title_activity_kasir_main">KasirMainActivity</string>
+    <string name="title_home_kasir">Home</string>
+    <string name="title_riwayat_kasir">Riwayat</string>
+    <string name="title_profile_kasir">Profile</string>
+
 </resources>
