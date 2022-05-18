@@ -124,6 +124,7 @@
         <entry key="app/src/main/res/layout/activity_home_keto.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_invoice_kasir.xml" value="0.12465846994535519" />
         <entry key="app/src/main/res/layout/activity_invoice_laporan_kasir.xml" value="0.11875" />
+        <entry key="app/src/main/res/layout/activity_kasir_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_keranjang_supplier_gudang.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_kirim_barang_gudang.xml" value="0.11" />
         <entry key="app/src/main/res/layout/activity_lihat_bukti_bayar.xml" value="0.13490437158469945" />
@@ -146,15 +147,18 @@
         <entry key="app/src/main/res/layout/activity_transaksi_kasir.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_web_view_report_pengiriman.xml" value="0.12881944444444443" />
         <entry key="app/src/main/res/layout/dialog_data_kosong.xml" value="0.2105978260869565" />
+        <entry key="app/src/main/res/layout/dialog_logout.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/dialog_qty_kasir.xml" value="0.2105978260869565" />
         <entry key="app/src/main/res/layout/dialog_qty_kirim_barang.xml" value="0.15" />
         <entry key="app/src/main/res/layout/dialog_qty_penjualan.xml" value="0.2105978260869565" />
         <entry key="app/src/main/res/layout/dialog_stock_barang.xml" value="0.39776249523583423" />
         <entry key="app/src/main/res/layout/dialog_terima_barang.xml" value="0.2105978260869565" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_home_driver.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/fragment_list_transfer.xml" value="0.11133879781420765" />
         <entry key="app/src/main/res/layout/fragment_minta_barang.xml" value="0.18819444444444444" />
+        <entry key="app/src/main/res/layout/fragment_profile_driver.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile_kasir.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_riwayat_driver.xml" value="0.21195652173913043" />
         <entry key="app/src/main/res/layout/fragment_riwayat_transaksi_kasir.xml" value="0.14" />
         <entry key="app/src/main/res/layout/item_barang_outlet.xml" value="0.335" />
@@ -171,6 +175,8 @@
         <entry key="app/src/main/res/layout/item_report_status_pengiriman.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_riwayat_kasir.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notification.xml" value="0.1284153005464481" />
+        <entry key="app/src/main/res/menu/driver_bottom_nav_menu.xml" value="0.28229166666666666" />
+        <entry key="app/src/main/res/menu/kasir_bottom_nav_menu.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>
