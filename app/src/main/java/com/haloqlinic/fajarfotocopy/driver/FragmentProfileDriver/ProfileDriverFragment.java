@@ -75,23 +75,29 @@ public class ProfileDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                            new MaterialAlertDialogBuilder(getActivity(),R.style.RoundShapeTheme)
-                                    .setTitle("Keluar Akun?")
-                                    .setMessage("Anda yakin ingin keluar dari akun ini?")
+                        dialogLogout = new Dialog(getActivity());
 
-                                    .setPositiveButton("Keluar", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            keluarAkun();
-                                        }
-                                    })
-                                    .setNeutralButton("Batal", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogLogout.setContentView(R.layout.dialog_logout);
+                        dialogLogout.setCancelable(false);
 
-                                        }
-                                    })
-                                    .show();
+                        TextView txtKembali = dialogLogout.findViewById(R.id.text_kembali_driver);
+                        Button btnKeluar = dialogLogout.findViewById(R.id.btn_keluar_driver);
+
+                        dialogLogout.show();
+
+                        txtKembali.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialogLogout.dismiss();
+                            }
+                        });
+
+                        btnKeluar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                keluarAkun();
+                            }
+                        });
                     }
                 });
 

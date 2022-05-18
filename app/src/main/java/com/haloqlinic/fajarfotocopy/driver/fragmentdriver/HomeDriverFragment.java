@@ -1,15 +1,9 @@
 package com.haloqlinic.fajarfotocopy.driver.fragmentdriver;
 
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
+
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,30 +11,18 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
-import com.haloqlinic.fajarfotocopy.adapter.driver.StatusPengirimanDriverAdapter;
-import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.driver.DetailDriverActivity;
-import com.haloqlinic.fajarfotocopy.driver.pengirimandriver.PengirimanDriverActivity;
 import com.haloqlinic.fajarfotocopy.driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity;
-import com.haloqlinic.fajarfotocopy.gudang.tokogudang.TokoGudangActivity;
-import com.haloqlinic.fajarfotocopy.gudang.transferbaranggudang.TransferBarangGudangActivity;
-import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.GetStatusPengirimanByIdUserItem;
-import com.haloqlinic.fajarfotocopy.model.statusPengirimanByIdUser.ResponseStatusPengirimanByIdUser;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-
-import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeDriverFragment extends Fragment {
 
@@ -118,31 +100,6 @@ public class HomeDriverFragment extends Fragment {
                         intent2.putExtra("jenisPengiriman", "supplier");
                         intent2.putExtra("fromReportDriver", "pengirimanSupplier");
                         startActivity(intent2);
-                    }
-                });
-
-        PushDownAnim.setPushDownAnimTo(btnKeluar)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialAlertDialogBuilder(getActivity())
-                                .setTitle("Keluar Akun?")
-                                .setMessage("Anda yakin ingin keluar dari akun ini?")
-
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        keluarAkun();
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
                     }
                 });
         return rootView;
