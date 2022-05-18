@@ -149,7 +149,7 @@ public class EditProfileActivity extends AppCompatActivity {
                                 "Gagal Update Gambar", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(EditProfileActivity.this,
                             "Response Gagal", Toast.LENGTH_SHORT).show();
@@ -172,13 +172,11 @@ public class EditProfileActivity extends AppCompatActivity {
         username_edit = binding.edtUsername.getText().toString();
 
 
-
         if (username_edit.isEmpty()) {
             binding.edtUsername.setError("username Tidak Boleh Kosong");
             binding.edtUsername.requestFocus();
             return;
         }
-
 
 
         ProgressDialog progressDialog = new ProgressDialog(EditProfileActivity.this);
@@ -196,7 +194,7 @@ public class EditProfileActivity extends AppCompatActivity {
                             int status = response.body().getStatus();
 
                             if (status == 1) {
-                                if (bitmap!=null){
+                                if (bitmap != null) {
                                     editImage();
                                 }
                                 finish();

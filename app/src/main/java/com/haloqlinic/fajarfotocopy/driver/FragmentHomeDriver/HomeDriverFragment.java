@@ -82,10 +82,10 @@ public class HomeDriverFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
 
-//                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
-//                        intent.putExtra("jenisPengiriman", "toko");
-//                        intent.putExtra("fromReportDriver", "pengirimanToko");
-//                        startActivity(intent);
+                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
+                        intent.putExtra("jenisPengiriman", "toko");
+                        intent.putExtra("fromReportDriver", "pengirimanToko");
+                        startActivity(intent);
 
 
                     }
@@ -95,10 +95,10 @@ public class HomeDriverFragment extends Fragment {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent2 = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
-//                        intent2.putExtra("jenisPengiriman", "supplier");
-//                        intent2.putExtra("fromReportDriver", "pengirimanSupplier");
-//                        startActivity(intent2);
+                        Intent intent2 = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
+                        intent2.putExtra("jenisPengiriman", "supplier");
+                        intent2.putExtra("fromReportDriver", "pengirimanSupplier");
+                        startActivity(intent2);
                     }
                 });
 

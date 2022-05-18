@@ -37,19 +37,18 @@ public class DriverMainActivity extends AppCompatActivity {
 
     private SharedPreferencedConfig preferencedConfig;
 
-private ActivityDriverMainBinding binding;
+    private ActivityDriverMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-     binding = ActivityDriverMainBinding.inflate(getLayoutInflater());
-     setContentView(binding.getRoot());
+        binding = ActivityDriverMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         preferencedConfig = new SharedPreferencedConfig(DriverMainActivity.this);
 
         getToken();
-
 
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

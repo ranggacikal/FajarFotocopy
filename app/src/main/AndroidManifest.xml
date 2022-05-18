@@ -186,6 +186,7 @@
         <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.usergudang.UpdatePasswordActivity" />
+        <activity android:name=".driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity"/>
         <activity android:name=".gudang.MainActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

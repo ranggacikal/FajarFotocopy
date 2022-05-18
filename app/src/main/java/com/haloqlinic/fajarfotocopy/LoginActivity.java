@@ -181,7 +181,7 @@ public class LoginActivity extends AppCompatActivity{
                             finish();
                         } else if (level.equals("Driver")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, DriverMainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
                             finish();
                         }
 

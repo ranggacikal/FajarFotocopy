@@ -96,19 +96,19 @@ public class HomeDriverFragment extends Fragment {
 
         txtTanggal.setText(date);
 
-        PushDownAnim.setPushDownAnimTo(cardPengirimanTokoDriver)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
-                        intent.putExtra("jenisPengiriman", "toko");
-                        intent.putExtra("fromReportDriver", "pengirimanToko");
-                        startActivity(intent);
-
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(cardPengirimanTokoDriver)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(getActivity(), PilihTanggalRiwayatDriverActivity.class);
+//                        intent.putExtra("jenisPengiriman", "toko");
+//                        intent.putExtra("fromReportDriver", "pengirimanToko");
+//                        startActivity(intent);
+//
+//                    }
+//                });
         PushDownAnim.setPushDownAnimTo(cardPengirimanSupplierDriver)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
