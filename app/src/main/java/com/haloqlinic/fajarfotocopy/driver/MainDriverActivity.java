@@ -18,9 +18,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.HomeDriverFragment;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.ProfileDriverFragment;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.RiwayatDriverFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.InformasiGudangFragment;
 import com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment;
@@ -36,9 +33,6 @@ public class MainDriverActivity extends AppCompatActivity {
 
     TabLayout tabLayout;
 
-    private HomeDriverFragment homeDriverFragment;
-    private RiwayatDriverFragment riwayatDriverFragment;
-    private ProfileDriverFragment profileDriverFragment;
 
     String token = "";
 
@@ -144,19 +138,7 @@ public class MainDriverActivity extends AppCompatActivity {
 
     private void setCurrentTabFragment(int position) {
 
-        switch (position)
-        {
-            case 0 :
-                replaceFragment(homeDriverFragment);
-                break;
-            case 1 :
-                replaceFragment(riwayatDriverFragment);
-                break;
-            case 2 :
-                replaceFragment(profileDriverFragment);
-                break;
 
-        }
     }
 
     private void replaceFragment(Fragment fragment) {
@@ -168,9 +150,7 @@ public class MainDriverActivity extends AppCompatActivity {
     }
 
     private void setupTabLayout() {
-        homeDriverFragment = new HomeDriverFragment();
-        riwayatDriverFragment = new RiwayatDriverFragment();
-        profileDriverFragment = new ProfileDriverFragment();
+
 
         tabLayout.addTab(tabLayout.newTab().setText("Home").setIcon(R.drawable.ic_home));
         tabLayout.addTab(tabLayout.newTab().setText("Riwayat").setIcon(R.drawable.ic_history_baru));

@@ -48,6 +48,8 @@ import retrofit2.Response;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import java.sql.Driver;
+
 public class LoginActivity extends AppCompatActivity{
 
     private ActivityLoginBinding binding;
@@ -181,7 +183,7 @@ public class LoginActivity extends AppCompatActivity{
                             finish();
                         } else if (level.equals("Driver")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainDriverActivity.class));
+                            startActivity(new Intent(LoginActivity.this, DriverMainActivity.class));
                             finish();
                         }
 
