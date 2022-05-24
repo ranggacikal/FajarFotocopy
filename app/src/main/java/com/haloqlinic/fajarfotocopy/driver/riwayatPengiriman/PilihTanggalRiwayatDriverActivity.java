@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPilihTanggalRiwayatDriverBinding;
@@ -39,6 +40,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private String date;
+    ImageView btnPilihTanggalReportDriver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
