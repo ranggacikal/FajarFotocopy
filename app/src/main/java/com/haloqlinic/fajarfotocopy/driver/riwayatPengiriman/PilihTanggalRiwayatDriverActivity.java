@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,8 +21,11 @@ import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ListStatusPengirima
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ReportPengirimanGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
 
@@ -59,7 +63,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
                     }
                 });
 
-        dateFormatter = new SimpleDateFormat("dd MMMM yyyy");
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 
         //init spinner pilihan
         ArrayAdapter<String> adapterPilihan = new ArrayAdapter<String>(this,
@@ -128,7 +132,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showDateDialog();
+                            showDateDialog();
                     }
                 });
 
@@ -172,6 +176,13 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
 
     private void showDateDialog() {
 
+        String strDateTime = "01-03-2020";
+//        SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+//        Date date1 = inputFormatter.parse(strDateTime);
+//        SimpleDateFormat outputFormatter = new SimpleDateFormat("dd MMMM yyyy", new Locale("id", "ID"));
+//        String formatted = outputFormatter.format(date1);
+//        Log.d("formatBulan", "showDateDialog: "+formatted);
+
         Calendar newCalendar = Calendar.getInstance();
 
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
@@ -182,7 +193,21 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                date = dateFormatter.format(newDate.getTime());
+                Date date1 = newDate.getTime();
+                Log.d("newDate", "onDateSet: "+date1);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date1 = inputFormatter.parse(newDate.getTime().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                        "dd MMMM yyyy", new Locale("id", "ID")
+                );
+                date = outputFormatter.format(date1);
+//                Log.d("formatBulan", "showDateDialog: "+formatted);
+//                date = dateFormatter.format(newDate.getTime());
                 binding.textTanggalReportDriver.setText(date);
             }
 
