@@ -21,9 +21,6 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDriverMainBinding;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.HomeDriverFragment;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.ProfileDriverFragment;
-import com.haloqlinic.fajarfotocopy.driver.fragmentdriver.RiwayatDriverFragment;
 import com.haloqlinic.fajarfotocopy.model.editFirebaseToken.ResponseEditFirebaseToken;
 
 import retrofit2.Call;

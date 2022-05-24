@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.FajarFotocopy" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gold</item>
+        <item name="colorPrimary">@color/white</item>
         <!--        <item name="colorPrimaryVariant">@color/tosca</item>-->
         <!--        <item name="colorOnPrimary">@color/white</item>-->
         <!--        &lt;!&ndash; Secondary brand color. &ndash;&gt;-->
