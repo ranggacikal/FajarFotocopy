@@ -254,7 +254,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="30dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/bg_outer_gold"
             android:fontFamily="@font/sairamedium"
             android:paddingHorizontal="5dp"
             android:text="Hapus"

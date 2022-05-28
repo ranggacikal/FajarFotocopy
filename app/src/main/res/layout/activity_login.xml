@@ -48,6 +48,7 @@
             android:layout_marginTop="65dp"
             android:fontFamily="@font/poppinsbold"
             android:text="Username"
+            android:textSize="14sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -77,6 +78,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppinsbold"
             android:text="Password"
+            android:textSize="14sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edt_username_login_gudang" />
@@ -129,6 +131,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="15sp"
+            android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

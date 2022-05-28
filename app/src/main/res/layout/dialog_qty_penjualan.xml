@@ -89,7 +89,7 @@
             android:layout_height="50dp"
             android:padding="10dp"
             android:layout_marginHorizontal="20dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/bg_outer_gold"
             android:layout_marginVertical="10dp"
             android:textColor="@color/black"
             android:textAlignment="center"/>

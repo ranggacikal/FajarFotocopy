@@ -77,7 +77,7 @@
             android:layout_height="50dp"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="10dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/bg_outer_gold"
             android:gravity="center"
             android:padding="10dp"
             android:text="Cancel"

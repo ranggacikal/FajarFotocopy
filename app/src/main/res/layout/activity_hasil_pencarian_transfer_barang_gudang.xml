@@ -144,7 +144,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/bg_outer_gold"
             android:fontFamily="@font/sairamedium"
             android:paddingHorizontal="5dp"
             android:text="Check Out"

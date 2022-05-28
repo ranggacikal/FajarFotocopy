@@ -1,116 +1,165 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/background"
     tools:context=".driver.DetailDriverActivity">
 
-    <LinearLayout
-        android:id="@+id/linear_header_detail_driver"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@drawable/background_header_green">
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linear_back_detail_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:layout_marginTop="38dp"
-            android:orientation="horizontal">
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="26dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_back_atas" />
+                android:src="@drawable/ic_arrow_left" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/sairamedium"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppinsbold"
                 android:text="Detail Data Pengiriman"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
         </LinearLayout>
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_surat_jalan"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_below="@+id/linear_header_detail_driver"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/btn_black"
-        android:fontFamily="@font/sairamedium"
-        android:text="Surat Jalan"
-        android:textColor="@color/white"
-        android:textSize="11sp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_detail_pengiriman_driver"
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_surat_jalan"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp">
+        android:layout_height="1dp"
+        android:background="@color/line"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-    </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_detail_pengiriman_supplier_driver"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_surat_jalan"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
-        android:id="@+id/linear_footer_detail_driver"
-        android:layout_width="match_parent"
-        android:layout_height="83dp"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
         <Button
-            android:id="@+id/btn_dalam_pengiriman_driver"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp"
-            android:background="@drawable/btn_black"
+            android:id="@+id/btn_surat_jalan"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="26dp"
+            android:background="@drawable/bg_outer_gold"
             android:fontFamily="@font/sairamedium"
-            android:padding="11dp"
-            android:text="Dalam Pengiriman"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="10sp" />
+            android:text="Surat Jalan"
+            android:textAllCaps="false"
+            android:textColor="@color/gold"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_selesai_driver"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_detail_pengiriman_driver"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/btn_surat_jalan"
             android:layout_marginHorizontal="10dp"
-            android:layout_marginVertical="15dp"
-            android:background="@drawable/btn_gold"
-            android:fontFamily="@font/sairamedium"
-            android:padding="11dp"
-            android:text="Pengiriman Selesai"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:layout_marginVertical="10dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            app:layout_constraintBottom_toTopOf="@+id/linear_footer_detail_driver"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_surat_jalan">
 
-    </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_detail_pengiriman_supplier_driver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_surat_jalan"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_surat_jalan">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear_footer_detail_driver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <Button
+                android:id="@+id/btn_dalam_pengiriman_driver"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="26dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/bg_outer_gold"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="Dalam Pengiriman"
+                android:textAllCaps="false"
+                android:textColor="@color/gold"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_selesai_driver"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/btn_selesai_driver"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="26dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/btn_gold"
+                android:fontFamily="@font/poppinssemibold"
+                android:text="Pengiriman Selesai"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_dalam_pengiriman_driver"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
