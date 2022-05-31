@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,10 +23,13 @@ import com.haloqlinic.fajarfotocopy.model.dataToko.DataTokoItem;
 import com.haloqlinic.fajarfotocopy.model.dataToko.ResponseDataToko;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -188,7 +192,20 @@ public class ReportPengeluaranTokoGudangActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                date = dateFormatter.format(newDate.getTime());
+                Date date1 = newDate.getTime();
+                Log.d("newDate", "onDateSet: " + date1);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date1 = inputFormatter.parse(newDate.getTime().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                        "dd MMMM yyyy", new Locale("id", "ID")
+                );
+
+                date = outputFormatter.format(date1);
                 binding.textTanggalReportPengeluaranToko.setText(date);
             }
 

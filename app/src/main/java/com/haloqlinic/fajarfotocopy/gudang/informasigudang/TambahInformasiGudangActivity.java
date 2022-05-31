@@ -27,8 +27,11 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
@@ -170,7 +173,20 @@ public class TambahInformasiGudangActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                tanggal = dateFormatter.format(newDate.getTime());
+                Date date1 = newDate.getTime();
+                Log.d("newDate", "onDateSet: " + date1);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date1 = inputFormatter.parse(newDate.getTime().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                        "dd MMMM yyyy", new Locale("id", "ID")
+                );
+
+                tanggal = outputFormatter.format(date1);
                 binding.textTanggalInformasiGudang.setText(tanggal);
             }
 

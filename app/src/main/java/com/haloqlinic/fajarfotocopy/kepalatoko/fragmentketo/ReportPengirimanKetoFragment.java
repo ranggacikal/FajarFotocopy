@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,11 @@ import com.haloqlinic.fajarfotocopy.kasir.InvoiceLaporanKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.WebViewReportMintaBarangKetoActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ReportPengirimanKetoFragment extends Fragment {
 
@@ -183,7 +187,20 @@ public class ReportPengirimanKetoFragment extends Fragment {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                date = dateFormatter.format(newDate.getTime());
+                Date date1 = newDate.getTime();
+                Log.d("newDate", "onDateSet: " + date1);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date1 = inputFormatter.parse(newDate.getTime().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                        "dd MMMM yyyy", new Locale("id", "ID")
+                );
+
+                date = outputFormatter.format(date1);
                 txtTanggal.setText(date);
             }
 
