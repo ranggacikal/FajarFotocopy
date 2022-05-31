@@ -75,7 +75,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="26dp"
             android:background="@drawable/bg_outer_gold"
-            android:fontFamily="@font/sairamedium"
+            android:fontFamily="@font/sairabold"
             android:text="Surat Jalan"
             android:textAllCaps="false"
             android:textColor="@color/gold"

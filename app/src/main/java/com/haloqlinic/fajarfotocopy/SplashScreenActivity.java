@@ -10,6 +10,7 @@ import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.driver.DriverMainActivity;
 import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 
@@ -39,7 +40,9 @@ public class SplashScreenActivity extends AppCompatActivity {
                         startActivity(new Intent(SplashScreenActivity.this, MainKetoActivity.class));
                         finish();
                     }else if (level.equals("Karyawan Toko")){
-                        startActivity(new Intent(SplashScreenActivity.this, MainKasirActivity.class));
+//                        startActivity(new Intent(SplashScreenActivity.this, MainKasirActivity.class));
+                        startActivity(new Intent(SplashScreenActivity.this, KasirMainActivity.class));
+
                         finish();
                     }else if (level.equals("Driver")){
                         startActivity(new Intent(SplashScreenActivity.this, DriverMainActivity.class));

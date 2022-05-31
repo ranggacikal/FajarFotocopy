@@ -60,8 +60,8 @@ public class ProfileDriverFragment extends Fragment {
         cardBantuan = rootView.findViewById(R.id.card_bantuan);
         cardRating = rootView.findViewById(R.id.card_rating);
 
-        btnKeluarDriver = rootView.findViewById(R.id.btn_keluar_driver);
-        textKembaliDriver = rootView.findViewById(R.id.text_kembali_driver);
+        btnKeluarDriver = rootView.findViewById(R.id.btn_keluar);
+        textKembaliDriver = rootView.findViewById(R.id.text_kembali);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
         txtUsernameProfile.setText(preferencedConfig.getPreferenceUsername());
@@ -80,8 +80,8 @@ public class ProfileDriverFragment extends Fragment {
                         dialogLogout.setContentView(R.layout.dialog_logout);
                         dialogLogout.setCancelable(false);
 
-                        TextView txtKembali = dialogLogout.findViewById(R.id.text_kembali_driver);
-                        Button btnKeluar = dialogLogout.findViewById(R.id.btn_keluar_driver);
+                        TextView txtKembali = dialogLogout.findViewById(R.id.text_kembali);
+                        Button btnKeluar = dialogLogout.findViewById(R.id.btn_keluar);
 
                         dialogLogout.show();
 
