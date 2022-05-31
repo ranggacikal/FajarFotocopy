@@ -219,7 +219,20 @@ public class TambahStatusPengirimanActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                tanggal = dateFormatter.format(newDate.getTime());
+                Date date1 = newDate.getTime();
+                Log.d("newDate", "onDateSet: " + date1);
+                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                try {
+                    date1 = inputFormatter.parse(newDate.getTime().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                        "dd MMMM yyyy", new Locale("id", "ID")
+                );
+
+                tanggal = outputFormatter.format(date1);
 
                 binding.textTanggalStatusPengiriman.setText(tanggal);
             }

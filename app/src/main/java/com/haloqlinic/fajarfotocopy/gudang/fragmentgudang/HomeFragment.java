@@ -33,8 +33,11 @@ import com.haloqlinic.fajarfotocopy.gudang.usergudang.UserGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualanGudang.ResponseTambahStatusPenjualanGudang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
@@ -209,11 +212,22 @@ public class HomeFragment extends Fragment {
         String randomId = String.format("%06d", number);
         String id_status_penjualan_gudang = "SPG"+randomId;
 
-        calendarStatusPenjualanGudang = Calendar.getInstance();
-        dateFormatStatusPenjualanGudang = new SimpleDateFormat("dd MMMM yyyy");
+        Calendar newDate = Calendar.getInstance();
 
-        String dateStatusPenjulanGudang = dateFormatStatusPenjualanGudang.format(
-                calendarStatusPenjualanGudang.getTime());
+        Date date1 = newDate.getTime();
+        Log.d("newDate", "onDateSet: " + date1);
+        SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            date1 = inputFormatter.parse(newDate.getTime().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                "dd MMMM yyyy", new Locale("id", "ID")
+        );
+
+        String dateStatusPenjulanGudang = outputFormatter.format(date1);
 
         ConfigRetrofit.service.tambahStatusPenjualanGudang(id_status_penjualan_gudang, dateStatusPenjulanGudang,
                 "pending", "", "", "", "", "")

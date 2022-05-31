@@ -37,8 +37,11 @@ import com.haloqlinic.fajarfotocopy.model.tambahStatusPenjualan.ResponseTambahSt
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
@@ -107,21 +110,46 @@ public class HomeKasirFragment extends Fragment {
         txtNamaKasir.setText(preferencedConfig.getPreferenceNamaToko());
         Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
+        Calendar newDate = Calendar.getInstance();
 
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date1 = newDate.getTime();
+        Log.d("newDate", "onDateSet: " + date1);
+        SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            date1 = inputFormatter.parse(newDate.getTime().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
-        date = dateFormat.format(calendar.getTime());
+        SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                "dd MMMM yyyy", new Locale("id", "ID")
+        );
 
-        calendarHari = Calendar.getInstance();
-        dateFormatHari = new SimpleDateFormat("dd MMMM yyyy");
+//        calendarHari = Calendar.getInstance();
+//        dateFormatHari = new SimpleDateFormat("dd MMMM yyyy");
 
-        hari = dateFormatHari.format(calendarHari.getTime());
+        hari = outputFormatter.format(date1);
+        date = outputFormatter.format(date1);
 
         calendarBulan = Calendar.getInstance();
         dateFormatBulan = new SimpleDateFormat("MMMM yyyy");
 
-        bulan = dateFormatBulan.format(calendarBulan.getTime());
+        Calendar newDateBulan = Calendar.getInstance();
+
+        Date dateBulan = newDateBulan.getTime();
+        Log.d("newDate", "onDateSet: " + dateBulan);
+        SimpleDateFormat inputFormatterBulan = new SimpleDateFormat("MMMM yyyy");
+        try {
+            dateBulan = inputFormatter.parse(newDateBulan.getTime().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat outputFormatterBulan = new SimpleDateFormat(
+                "dd MMMM yyyy", new Locale("id", "ID")
+        );
+
+        bulan = outputFormatter.format(dateBulan);
 
         Log.d("cekDate", "onCreateView: "+hari+" Bulan : "+bulan);
 
@@ -318,10 +346,27 @@ public class HomeKasirFragment extends Fragment {
 
         Log.d("idStatusPenjualanKasir", "tambahStatusPenjualan: "+id_status_penjualan);
 
-        calendar = Calendar.getInstance();
-        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        Calendar newDate = Calendar.getInstance();
 
-        date = dateFormat.format(calendar.getTime());
+        Date date1 = newDate.getTime();
+        Log.d("newDate", "onDateSet: " + date1);
+        SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            date1 = inputFormatter.parse(newDate.getTime().toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat outputFormatter = new SimpleDateFormat(
+                "dd MMMM yyyy", new Locale("id", "ID")
+        );
+
+        date = outputFormatter.format(date1);
+
+//        calendar = Calendar.getInstance();
+//        dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+//
+//        date = dateFormat.format(calendar.getTime());
         String tanggal = date;
         String id_outlet = preferencedConfig.getPreferenceIdOutlet();
 
