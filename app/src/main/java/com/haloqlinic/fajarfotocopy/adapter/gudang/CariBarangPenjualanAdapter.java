@@ -269,7 +269,7 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
 
                                 Toast.makeText(context, "Berhasil Menambahkan Barang",
                                         Toast.LENGTH_SHORT).show();
-                                editPack(id_barang);
+//                                editPack(id_barang);
                                 dialog.dismiss();
 
                             } else {
