@@ -120,9 +120,9 @@
         android:id="@+id/recycler_barang_gudang_scanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
         android:layout_above="@+id/linear_footer_barang_gudang"
         android:layout_below="@id/linear_header_barang_gudang"
+        android:layout_marginHorizontal="10dp"
         android:layout_marginVertical="10dp">
 
     </androidx.recyclerview.widget.RecyclerView>
