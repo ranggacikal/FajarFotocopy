@@ -519,7 +519,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     int status = response.body().getStatus();
                     if (status == 1) {
 
-                        if (!nameActivity.equals("")){
+                        if (!nameActivity.equals("") || nameActivity != null){
 
                             if (nameActivity.equals("HomeKeto")){
                                 Intent intent = new Intent(TransaksiKasirActivity.this, MainKetoActivity.class);
