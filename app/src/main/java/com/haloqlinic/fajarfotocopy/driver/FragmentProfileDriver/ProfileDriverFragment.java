@@ -76,7 +76,6 @@ public class ProfileDriverFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         dialogLogout = new Dialog(getActivity());
-
                         dialogLogout.setContentView(R.layout.dialog_logout);
                         dialogLogout.setCancelable(false);
 
@@ -85,19 +84,37 @@ public class ProfileDriverFragment extends Fragment {
 
                         dialogLogout.show();
 
-                        txtKembali.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialogLogout.dismiss();
-                            }
-                        });
+                        PushDownAnim.setPushDownAnimTo(txtKembali)
+                                .setScale(MODE_SCALE, 0.89f)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        dialogLogout.dismiss();
+                                    }
+                                });
 
-                        btnKeluar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                keluarAkun();
-                            }
-                        });
+                        PushDownAnim.setPushDownAnimTo(btnKeluar)
+                                .setScale(MODE_SCALE, 0.89f)
+                                .setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        keluarAkun();
+                                    }
+                                });
+
+//                        txtKembali.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                dialogLogout.dismiss();
+//                            }
+//                        });
+
+//                        btnKeluar.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                keluarAkun();
+//                            }
+//                        });
                     }
                 });
 
@@ -143,6 +160,8 @@ public class ProfileDriverFragment extends Fragment {
 
         return rootView;
     }
+
+
 
 
 

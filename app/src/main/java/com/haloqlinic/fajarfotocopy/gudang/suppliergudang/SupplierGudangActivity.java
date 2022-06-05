@@ -1,11 +1,15 @@
 package com.haloqlinic.fajarfotocopy.gudang.suppliergudang;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangIdPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangPenjualanAdapter;
@@ -51,8 +56,14 @@ public class SupplierGudangActivity extends AppCompatActivity {
     boolean searchId = false;
     boolean searchName = false;
 
+    Dialog dialog;
     String textId = "";
     String textName = "";
+//    Button btnBatal;
+//    TextView textKembali;
+    Context context;
+    Button btnBatal;
+    TextView txtKembali;
 
     private SharedPreferencedConfig preferencedConfig;
 
@@ -70,7 +81,8 @@ public class SupplierGudangActivity extends AppCompatActivity {
         preferencedConfig = new SharedPreferencedConfig(this);
 
         nama_user = preferencedConfig.getPreferenceNama();
-
+//        btnBatal = view.findViewById(R.id.btn_batal);
+//        textKembali = view.findViewById(R.id.text_kembali);
         id_status_penjualan_gudang = getIntent().getStringExtra("id_status_penjualan_gudang");
 
 
@@ -176,9 +188,60 @@ public class SupplierGudangActivity extends AppCompatActivity {
 
                         // Show Dialog
                         mBottomSheetDialog.show();
+//                        dialog = new Dialog(context);
+//                        dialog.setContentView(R.layout.dialog_batal_transaksi);
+//                        txtKembali = dialog.findViewById(R.id.text_kembali);
+//                        btnBatal = dialog.findViewById(R.id.btn_batal);
+//
+//                        dialog.show();
+//
+//                        txtKembali.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//
+//                        btnBatal.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                hapusStatusPenjualanBarang();
+//                                dialog.dismiss();
+//                            }
+//                        });
+
+
                     }
                 });
     }
+
+//    private void tampilDialog() {
+//
+//        dialog = new Dialog(context);
+//        dialog.setContentView(R.layout.dialog_batal_transaksi);
+//        txtKembali = dialog.findViewById(R.id.text_kembali);
+//        btnBatal = dialog.findViewById(R.id.btn_batal);
+//
+//        txtKembali.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        btnBatal.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                hapusStatusPenjualanBarang();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        dialog.show();
+//
+//
+//    }
+
 
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
             result -> {

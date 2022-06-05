@@ -143,7 +143,6 @@ public class CariKirimBarangIdAdapter extends RecyclerView.Adapter<CariKirimBara
     private void tampilDialog(int stockPack, int stockPcs, int number_of_pack) {
 
         dialog = new Dialog(context);
-
         dialog.setContentView(R.layout.dialog_qty_kirim_barang);
         dialog.setCancelable(false);
 
