@@ -60,7 +60,7 @@ public class HomeKasirFragment extends Fragment {
 
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal, txtNamaKasir, txtTotalHari, txtTotalBulan, txtPenjualanKaryawan;
-    Button btnKeluar;
+//    Button btnKeluar;
     ImageView imageView;
 
 
@@ -77,16 +77,26 @@ public class HomeKasirFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_home_kasir, container, false);
 
-        imageView = rootView.findViewById(R.id.imgprofile);
+        imageView = rootView.findViewById(R.id.img_profile_kasir);
         txtNama = rootView.findViewById(R.id.text_nama_home_kasir);
         txtTanggal = rootView.findViewById(R.id.text_tanggal_home_kasir);
         cardToko = rootView.findViewById(R.id.card_transaksi_kasir);
         txtNamaKasir = rootView.findViewById(R.id.text_nama_toko_kasir);
         txtTotalHari = rootView.findViewById(R.id.text_total_penjualan_harian_kasir);
         txtPenjualanKaryawan = rootView.findViewById(R.id.text_total_penjualan_karyawan_kasir);
+
+        preferencedConfig = new SharedPreferencedConfig(getActivity());
+        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        txtNama.setText(preferencedConfig.getPreferenceNama());
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        date = dateFormat.format(calendar.getTime());
+
+        txtTanggal.setText(date);
 //        txtTotalBulan = rootView.findViewById(R.id.text_penjualan_bulanan_kasir);
 
-        btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
+//        btnKeluar = rootView.findViewById(R.id.btn_keluar_kasir);
 
 
         return rootView;
@@ -102,10 +112,6 @@ public class HomeKasirFragment extends Fragment {
         progressDialog.setMessage("Memuat Data Penjualan");
         progressDialog.show();
         preferencedConfig = new SharedPreferencedConfig(getActivity());
-
-        txtNama.setText(preferencedConfig.getPreferenceNama());
-        txtNamaKasir.setText(preferencedConfig.getPreferenceNamaToko());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
 
         calendar = Calendar.getInstance();
@@ -140,30 +146,30 @@ public class HomeKasirFragment extends Fragment {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(btnKeluar)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialAlertDialogBuilder(getActivity())
-                                .setTitle("Keluar Akun?")
-                                .setMessage("Anda yakin ingin keluar dari akun ini?")
-
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        keluarAkun();
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(btnKeluar)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        new MaterialAlertDialogBuilder(getActivity())
+//                                .setTitle("Keluar Akun?")
+//                                .setMessage("Anda yakin ingin keluar dari akun ini?")
+//
+//                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                        keluarAkun();
+//                                    }
+//                                })
+//                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                                    }
+//                                })
+//                                .show();
+//                    }
+//                });
     }
 
     private void loadPenjualanKaryawan() {
@@ -353,12 +359,12 @@ public class HomeKasirFragment extends Fragment {
 
     }
 
-    private void keluarAkun() {
-
-        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
-        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
-
-    }
+//    private void keluarAkun() {
+//
+//        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
+//        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        getActivity().finish();
+//
+//    }
 }

@@ -13,59 +13,93 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="594dp">
+        android:layout_height="wrap_content"
+        android:paddingVertical="12dp">
 
         <TextView
             android:id="@+id/txt_status_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/bg_outer_gold"
             android:fontFamily="@font/poppinsbold"
+            android:includeFontPadding="false"
+            android:padding="7dp"
             android:text="Data Pengiriman"
             android:textColor="@color/gold"
-            android:includeFontPadding="false"
             android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_image_card_light_gold"
+            android:padding="4dp"
+            android:src="@drawable/ic_gudang"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_status_driver" />
 
         <TextView
             android:id="@+id/txt_pengirim_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_tanggal_driver"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="26dp"
-            android:fontFamily="@font/poppinsmedium"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinssemibold"
             android:includeFontPadding="false"
             android:text="Gudang"
-            android:textColor="@color/black"
+            android:textColor="@color/gold"
             android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintTop_toBottomOf="@+id/txt_status_driver" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_arrow_right_long"
+            app:layout_constraintStart_toEndOf="@+id/txt_pengirim_driver"
+            app:layout_constraintTop_toBottomOf="@+id/txt_status_driver" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_circle_green"
+            android:padding="4dp"
+            android:src="@drawable/ic_toko_green"
+            app:layout_constraintStart_toEndOf="@+id/imageView10"
             app:layout_constraintTop_toBottomOf="@+id/txt_status_driver" />
 
         <TextView
             android:id="@+id/txt_penerima_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/sairamedium"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppinssemibold"
             android:includeFontPadding="false"
             android:text="Toko"
-            android:textColor="@color/black"
+            android:textColor="@color/green"
             android:textSize="12sp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_status_driver"
-            tools:layout_editor_absoluteX="86dp" />
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toBottomOf="@+id/txt_status_driver" />
 
         <TextView
             android:id="@+id/txt_tanggal_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/poppinssemibold"
+            android:fontFamily="@font/poppinsbold"
             android:includeFontPadding="false"
             android:text="Tanggal"
             android:textColor="@color/gold"
@@ -75,15 +109,19 @@
 
         <Button
             android:id="@+id/btn_detail_driver"
-            android:layout_width="70dp"
-            android:layout_height="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:layout_below="@+id/txt_tanggal_driver"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/btn_black"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/btn_gold"
+            android:fontFamily="@font/poppinssemibold"
+            android:includeFontPadding="false"
             android:text="Detail"
+            android:textAllCaps="false"
             android:textColor="@color/white"
-            tools:layout_editor_absoluteX="42dp"
-            tools:layout_editor_absoluteY="185dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_penerima_driver" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
