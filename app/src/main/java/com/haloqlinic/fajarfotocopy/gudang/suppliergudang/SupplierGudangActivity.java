@@ -21,6 +21,7 @@ import com.haloqlinic.fajarfotocopy.adapter.gudang.CariBarangPenjualanAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivitySupplierGudangBinding;
 import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -212,17 +213,22 @@ public class SupplierGudangActivity extends AppCompatActivity {
                             binding.txtDataKosongSupplier.setVisibility(View.GONE);
 
                             List<SearchBarangByIdItem> dataBarangScanner = response.body().getSearchBarangById();
-                            CariBarangIdPenjualanAdapter adapterId = new CariBarangIdPenjualanAdapter(
-                                    SupplierGudangActivity.this, dataBarangScanner,
-                                    SupplierGudangActivity.this
-                            );
-                            binding.recyclerBarangGudangScanner.setHasFixedSize(true);
-                            GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
-                                    2, GridLayoutManager.VERTICAL, false);
-                            binding.recyclerBarangGudangScanner.setLayoutManager(manager);
-                            binding.recyclerBarangGudangScanner.setAdapter(adapterId);
-                            binding.recyclerBarangGudangScanner.setVisibility(View.VISIBLE);
-                            binding.recyclerBarangGudang.setVisibility(View.GONE);
+                            if (dataBarangScanner==null){
+                                Toast.makeText(SupplierGudangActivity.this, "Data barang kosong",
+                                        Toast.LENGTH_SHORT).show();
+                            }else {
+                                CariBarangIdPenjualanAdapter adapterId = new CariBarangIdPenjualanAdapter(
+                                        SupplierGudangActivity.this, dataBarangScanner,
+                                        SupplierGudangActivity.this
+                                );
+                                binding.recyclerBarangGudangScanner.setHasFixedSize(true);
+                                GridLayoutManager manager = new GridLayoutManager(SupplierGudangActivity.this,
+                                        2, GridLayoutManager.VERTICAL, false);
+                                binding.recyclerBarangGudangScanner.setLayoutManager(manager);
+                                binding.recyclerBarangGudangScanner.setAdapter(adapterId);
+                                binding.recyclerBarangGudangScanner.setVisibility(View.VISIBLE);
+                                binding.recyclerBarangGudang.setVisibility(View.GONE);
+                            }
 
                         } else {
                             binding.txtDataKosongSupplier.setText("Data pencarian dengan nama" +

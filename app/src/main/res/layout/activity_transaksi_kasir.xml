@@ -1,165 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     tools:context=".kasir.transaksikasir.TransaksiKasirActivity">
 
-    <LinearLayout
-        android:id="@+id/linear_header_barang_outlet"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@color/white"
+        android:foregroundGravity="center_vertical"
+        android:paddingHorizontal="26dp"
+        android:paddingVertical="26dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp">
-
-            <LinearLayout
-                android:id="@+id/linear_back_transaksi_kasir"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="38dp"
-                android:layout_marginTop="38dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_back_atas_black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sairamedium"
-                    android:text="Transaksi"
-                    android:textColor="@color/black"
-                    android:textSize="24sp" />
-
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/linear_back_transaksi_kasir"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <SearchView
-                android:id="@+id/searchview_supplier_kasir"
-                android:layout_width="275dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_gravity="center"
-                android:layout_marginVertical="20dp"
-                android:background="@drawable/bg_rectangle" />
+        <SearchView
+            android:id="@+id/searchview_supplier_kasir"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/edit_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_barcode_supplier_kasir"
+            app:layout_constraintStart_toEndOf="@+id/linear_back_transaksi_kasir"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <SearchView
-                android:id="@+id/searchview_barang_outlet_barcode"
-                android:layout_width="275dp"
-                android:layout_height="54dp"
-                android:padding="10dp"
-                android:layout_marginStart="20dp"
-                android:layout_gravity="center"
-                android:visibility="gone"
-                android:layout_marginVertical="20dp"
-                android:background="@drawable/bg_rectangle" />
+        <SearchView
+            android:id="@+id/searchview_barang_outlet_barcode"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/edit_text"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_barcode_supplier_kasir"
+            app:layout_constraintStart_toEndOf="@+id/linear_back_transaksi_kasir"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btn_barcode_supplier_kasir"
-                android:layout_width="match_parent"
-                android:layout_height="54dp"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="15dp"
-                android:padding="5dp"
-                android:background="@drawable/btn_black"
-                android:fontFamily="@font/sairamedium"
-                android:text="Barcode"
-                android:layout_marginVertical="15dp"
-                android:textColor="@color/white"
-                android:textAlignment="center"
-                android:textSize="10sp" />
 
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/btn_barcode_supplier_kasir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:padding="13dp"
+            android:src="@drawable/ic_barcode"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
 
         <TextView
             android:id="@+id/txt_data_kosong_kasir"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DATA KOSONG"
-            android:layout_marginTop="30dp"
-            android:textSize="20sp"
-            android:layout_marginHorizontal="10dp"
-            android:fontFamily="@font/sairabold"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:visibility="gone"/>
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_barang_outlet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_above="@+id/linear_footer_barang_outlet"
-        android:layout_below="@+id/linear_header_barang_outlet"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_barang_outlet_barcode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:layout_above="@+id/linear_footer_barang_outlet"
-        android:layout_below="@+id/linear_header_barang_outlet"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginVertical="10dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <LinearLayout
-        android:id="@+id/linear_footer_barang_outlet"
-        android:layout_width="match_parent"
-        android:layout_height="83dp"
-        android:layout_alignParentBottom="true"
-        android:background="#000000"
-        android:orientation="horizontal">
-
-
-        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:text="Tidak ada Data yang dapat ditampilkan"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:layout_marginHorizontal="26dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_barang_outlet"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/btn_chekout_kasir"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_barang_outlet_barcode"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/btn_chekout_kasir"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/btn_chekout_kasir"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginHorizontal="50dp"
-            android:layout_marginVertical="10dp"
-            android:background="@drawable/bg_outer_gold"
-            android:fontFamily="@font/sairamedium"
-            android:padding="11dp"
-            android:text="Chek-Out"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:layout_height="50dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="26dp"
+            android:text="Checkout"
+            android:background="@drawable/btn_gold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/poppinsbold"
+            android:includeFontPadding="false"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
 
-</RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
