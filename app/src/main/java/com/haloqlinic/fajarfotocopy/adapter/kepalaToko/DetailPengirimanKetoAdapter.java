@@ -593,9 +593,14 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         int jumlah_stock_pcs = Integer.parseInt(stock_pcs) + Integer.parseInt(jumlah_pcs);
         int jumlah_stock_pack = Integer.parseInt(stock_pack) + Integer.parseInt(jumlah_pack);
+        int number_of_stock_update = 0;
 
         Log.d("cekNumberOfpack", "editStock: outlet: " + number_of_pack_outlet + " fromList: " + number_of_pack);
-        int number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
+        if (number_of_pack.equals("0")) {
+            Toast.makeText(context, "Number Of Pack = 0", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
         Log.d("cekNumberOfPackUpdate", "editStock: " + number_of_stock_update);
 
         ConfigRetrofit.service.editBarangOutlet(id_barang_outlet_edit, id_barang, hargaPcs, hargaPack,
