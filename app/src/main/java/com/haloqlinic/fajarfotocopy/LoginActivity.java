@@ -36,6 +36,7 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityLoginBinding;
 import com.haloqlinic.fajarfotocopy.driver.DriverMainActivity;
 import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
@@ -180,7 +181,7 @@ public class LoginActivity extends AppCompatActivity{
                             finish();
                         } else if (level.equals("Karyawan Toko")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
+                            startActivity(new Intent(LoginActivity.this, KasirMainActivity.class));
                             finish();
                         } else if (level.equals("Driver")) {
                             tambahTokenFirebase(id_user, token);
