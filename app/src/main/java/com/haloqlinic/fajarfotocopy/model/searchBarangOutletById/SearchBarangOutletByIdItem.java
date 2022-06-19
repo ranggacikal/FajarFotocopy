@@ -22,6 +22,9 @@ public class SearchBarangOutletByIdItem{
 	@SerializedName("id_barang")
 	private String idBarang;
 
+	@SerializedName("harga_jual_toko_pack")
+	private String hargaJualTokoPack;
+
 	@SerializedName("number_of_pack")
 	private String numberOfPack;
 
@@ -36,6 +39,9 @@ public class SearchBarangOutletByIdItem{
 
 	@SerializedName("stock")
 	private String stock;
+
+	@SerializedName("harga_jual_toko")
+	private String hargaJualToko;
 
 	@SerializedName("id_barang_outlet")
 	private String idBarangOutlet;
@@ -94,6 +100,14 @@ public class SearchBarangOutletByIdItem{
 		return idBarang;
 	}
 
+	public void setHargaJualTokoPack(String hargaJualTokoPack){
+		this.hargaJualTokoPack = hargaJualTokoPack;
+	}
+
+	public String getHargaJualTokoPack(){
+		return hargaJualTokoPack;
+	}
+
 	public void setNumberOfPack(String numberOfPack){
 		this.numberOfPack = numberOfPack;
 	}
@@ -134,6 +148,14 @@ public class SearchBarangOutletByIdItem{
 		return stock;
 	}
 
+	public void setHargaJualToko(String hargaJualToko){
+		this.hargaJualToko = hargaJualToko;
+	}
+
+	public String getHargaJualToko(){
+		return hargaJualToko;
+	}
+
 	public void setIdBarangOutlet(String idBarangOutlet){
 		this.idBarangOutlet = idBarangOutlet;
 	}
@@ -168,11 +190,13 @@ public class SearchBarangOutletByIdItem{
 			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
 			",diskon_pack = '" + diskonPack + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
+			",harga_jual_toko_pack = '" + hargaJualTokoPack + '\'' + 
 			",number_of_pack = '" + numberOfPack + '\'' + 
 			",id_outlet = '" + idOutlet + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
 			",harga_jual = '" + hargaJual + '\'' + 
 			",stock = '" + stock + '\'' + 
+			",harga_jual_toko = '" + hargaJualToko + '\'' + 
 			",id_barang_outlet = '" + idBarangOutlet + '\'' + 
 			",diskon = '" + diskon + '\'' + 
 			",nama_kategori = '" + namaKategori + '\'' + 

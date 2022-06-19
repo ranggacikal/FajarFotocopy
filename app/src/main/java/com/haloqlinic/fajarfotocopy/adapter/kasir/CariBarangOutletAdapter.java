@@ -99,8 +99,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
-        String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
-        String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
+        String hargaPcsStr = cariBarangOutlet.get(position).getHargaJualToko();
+        String hargaPackStr = cariBarangOutlet.get(position).getHargaJualTokoPack();
 
         int hargaPcs, hargaPack;
 
@@ -141,8 +141,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                 String id_barang = cariBarangOutlet.get(position).getIdBarang();
                 String stockPack = cariBarangOutlet.get(position).getJumlahPack();
                 String numberOfPack = cariBarangOutlet.get(position).getNumberOfPack();
-                String hargaJual = cariBarangOutlet.get(position).getHargaJual();
-                String hargaJualPack = cariBarangOutlet.get(position).getHargaJualPack();
+                String hargaJual = cariBarangOutlet.get(position).getHargaJualToko();
+                String hargaJualPack = cariBarangOutlet.get(position).getHargaJualTokoPack();
 
                 tampilDialogPilihanSatuan(id_barang_outlet, id_status_penjualan, id_barang, stock,
                         stockPack, numberOfPack, hargaJual, hargaJualPack, status);

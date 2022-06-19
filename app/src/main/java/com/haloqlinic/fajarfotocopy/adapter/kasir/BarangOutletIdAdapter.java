@@ -83,8 +83,8 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
     public void onBindViewHolder(@NonNull @NotNull BarangOutletIdViewHolder holder,
                                  @SuppressLint("RecyclerView") int position) {
 
-        int hargaPcs = Integer.parseInt(dataCari.get(position).getHargaJual());
-        int hargaPack = Integer.parseInt(dataCari.get(position).getHargaJualPack());
+        int hargaPcs = Integer.parseInt(dataCari.get(position).getHargaJualToko());
+        int hargaPack = Integer.parseInt(dataCari.get(position).getHargaJualTokoPack());
 
         holder.txtNama.setText(dataCari.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
@@ -108,8 +108,8 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                 String id_barang = dataCari.get(position).getIdBarang();
                 String stockPack = dataCari.get(position).getJumlahPack();
                 String numberOfPack = dataCari.get(position).getNumberOfPack();
-                String hargaJual = dataCari.get(position).getHargaJual();
-                String hargaJualPack = dataCari.get(position).getHargaJualPack();
+                String hargaJual = dataCari.get(position).getHargaJualToko();
+                String hargaJualPack = dataCari.get(position).getHargaJualTokoPack();
 
                 tampilDialogPilihanSatuan(id_barang_outlet, id_status_penjualan, id_barang, stock,
                         stockPack, numberOfPack, hargaJual, hargaJualPack);
