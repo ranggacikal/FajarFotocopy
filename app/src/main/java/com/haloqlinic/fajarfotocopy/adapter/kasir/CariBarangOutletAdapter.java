@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
@@ -165,7 +166,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         dialog.setCancelable(false);
 
         final RadioGroup rgPilihan = dialog.findViewById(R.id.rg_pilihan_satuan);
-        final LinearLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
+        final ConstraintLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
         final HorizontalQuantitizer numberPicker = dialog.findViewById(R.id.number_picker_dialog_kasir);
         final TextView edtTotalHarga = dialog.findViewById(R.id.edt_pcs_dialog_kasir);
         final TextView btnTambah = dialog.findViewById(R.id.text_tambah_barang_dialog_kasi);

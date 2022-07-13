@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kepalatoko.KetoMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_keto_main" />
+        <activity
             android:name=".kasir.KasirMainActivity"
             android:exported="false"
             android:label="@string/title_activity_kasir_main" />
@@ -186,7 +190,7 @@
         <activity android:name=".kepalatoko.kasirketo.InvoiceKetoActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".gudang.usergudang.UpdatePasswordActivity" />
-        <activity android:name=".driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity"/>
+        <activity android:name=".driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity" />
         <activity android:name=".gudang.MainActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

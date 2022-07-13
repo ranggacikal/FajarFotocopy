@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home_keto"
+        android:icon="@drawable/ic_home_non_active"
+        android:title="@string/title_home_keto" />
+
+    <item
+        android:id="@+id/navigation_list_keto"
+        android:icon="@drawable/ic_list_transfer_non_active"
+        android:title="@string/title_list_transfer" />
+
+    <item
+        android:id="@+id/navigation_profile_keto"
+        android:icon="@drawable/ic_user_non_active"
+        android:title="@string/title_profile_keto" />
+
+</menu>

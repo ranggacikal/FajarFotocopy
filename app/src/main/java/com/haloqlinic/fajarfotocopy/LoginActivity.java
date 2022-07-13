@@ -39,6 +39,7 @@ import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
+import com.haloqlinic.fajarfotocopy.kepalatoko.KetoMainActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.editFirebaseToken.ResponseEditFirebaseToken;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -177,7 +178,7 @@ public class LoginActivity extends AppCompatActivity{
                             finish();
                         } else if (level.equals("Kepala Toko")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainKetoActivity.class));
+                            startActivity(new Intent(LoginActivity.this, KetoMainActivity.class));
                             finish();
                         } else if (level.equals("Karyawan Toko")) {
                             tambahTokenFirebase(id_user, token);

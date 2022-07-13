@@ -89,9 +89,9 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
         holder.txtNama.setText(dataCari.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.lblJumlahPack.setVisibility(View.GONE);
+//        holder.lblJumlahPack.setVisibility(View.GONE);
 
-        holder.btnTambahPesanan.setVisibility(View.GONE);
+//        holder.btnTambahPesanan.setVisibility(View.GONE);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -562,8 +562,9 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
     public class BarangOutletIdViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBarang;
-        TextView txtNama, txtHargaPcs, txtHargaPack, lblJumlahPack;
-        Button btnTambahPesanan;
+        TextView txtNama, txtHargaPcs, txtHargaPack;
+//                lblJumlahPack;
+//        Button btnTambahPesanan;
 
         public BarangOutletIdViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -571,8 +572,8 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
             txtNama = itemView.findViewById(R.id.text_item_nama_barang_outlet);
             txtHargaPcs = itemView.findViewById(R.id.text_item_harga_pcs_barang_outlet);
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
-            btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
-            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
+//            btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
+//            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 }

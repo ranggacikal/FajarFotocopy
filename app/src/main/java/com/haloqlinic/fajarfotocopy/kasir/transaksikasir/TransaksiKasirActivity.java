@@ -18,7 +18,9 @@ import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.KetoMainActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
@@ -36,6 +38,7 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
@@ -115,12 +118,17 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
 
         preferencedConfig = new SharedPreferencedConfig(this);
+
         binding.recyclerBarangOutlet.setHasFixedSize(true);
-        binding.recyclerBarangOutlet.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+        GridLayoutManager manager = new GridLayoutManager(TransaksiKasirActivity.this,
+                2, GridLayoutManager.VERTICAL, false);
+        binding.recyclerBarangOutlet.setLayoutManager(manager);
         binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
         binding.recyclerBarangOutletBarcode.setHasFixedSize(true);
-        binding.recyclerBarangOutletBarcode.setLayoutManager(new LinearLayoutManager(TransaksiKasirActivity.this));
+        GridLayoutManager manager2 = new GridLayoutManager(TransaksiKasirActivity.this,
+                2, GridLayoutManager.VERTICAL, false);
+        binding.recyclerBarangOutlet.setLayoutManager(manager2);
 
         binding.searchviewBarangOutletBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -523,7 +531,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         if (!nameActivity.equals("")){
 
                             if (nameActivity.equals("HomeKeto")){
-                                Intent intent = new Intent(TransaksiKasirActivity.this, MainKetoActivity.class);
+                                Intent intent = new Intent(TransaksiKasirActivity.this, KetoMainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }else if (nameActivity.equals("HomeKasir")){
