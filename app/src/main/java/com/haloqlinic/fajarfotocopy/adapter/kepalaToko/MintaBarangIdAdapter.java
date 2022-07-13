@@ -84,24 +84,24 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                id_barang = dataBarang.get(position).getNamaBarang();
+                id_barang = dataBarang.get(position).getIdBarang();
                 int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
                 int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
                 tampilDialog(stockPack, stockPcs);
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        id_barang = dataBarang.get(position).getNamaBarang();
-                        int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
-                        int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
-                        tampilDialog(stockPack, stockPcs);
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        id_barang = dataBarang.get(position).getNamaBarang();
+//                        int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
+//                        int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
+//                        tampilDialog(stockPack, stockPcs);
+//                    }
+//                });
     }
 
     private void tampilDialog(int stockPack, int stockPcs) {
@@ -192,7 +192,7 @@ public class MintaBarangIdAdapter extends RecyclerView.Adapter<MintaBarangIdAdap
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_minta_barang);
             txtStockPcs = itemView.findViewById(R.id.text_item_stock_pcs_minta_barang);
             txtPack = itemView.findViewById(R.id.text_item_stock_pack_minta_barang);
-            btnTambah = itemView.findViewById(R.id.btn_tambah_minta_barang_keto);
+//            btnTambah = itemView.findViewById(R.id.btn_tambah_minta_barang_keto);
         }
 
     }

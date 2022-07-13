@@ -75,7 +75,7 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
 
         Glide.with(context)
                 .load(img)
-                .error(R.mipmap.ic_launcher)
+                .error(R.drawable.ic_gift)
                 .into(holder.imgMintaBarang);
 
         holder.txtNamaBarang.setText(dataBarang.get(position).getNamaBarang());
@@ -85,24 +85,24 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                id_barang = dataBarang.get(position).getNamaBarang();
+                id_barang = dataBarang.get(position).getIdBarang();
                 int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
                 int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
                 tampilDialog(stockPack, stockPcs);
             }
         });
 
-        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        id_barang = dataBarang.get(position).getIdBarang();
-                        int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
-                        int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
-                        tampilDialog(stockPack, stockPcs);
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.btnTambah)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        id_barang = dataBarang.get(position).getIdBarang();
+//                        int stockPcs = Integer.parseInt(dataBarang.get(position).getStock());
+//                        int stockPack = Integer.parseInt(dataBarang.get(position).getJumlahPack());
+//                        tampilDialog(stockPack, stockPcs);
+//                    }
+//                });
 
     }
 
@@ -188,7 +188,7 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
     public class MintaBarangViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMintaBarang;
         TextView txtNamaBarang, txtStockPcs, txtPack;
-        Button btnTambah;
+//        Button btnTambah;
 
         public MintaBarangViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -196,7 +196,7 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_minta_barang);
             txtStockPcs = itemView.findViewById(R.id.text_item_stock_pcs_minta_barang);
             txtPack = itemView.findViewById(R.id.text_item_stock_pack_minta_barang);
-            btnTambah = itemView.findViewById(R.id.btn_tambah_minta_barang_keto);
+//            btnTambah = itemView.findViewById(R.id.btn_tambah_minta_barang_keto);
         }
     }
 }

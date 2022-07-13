@@ -29,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
@@ -98,11 +99,17 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        String img = cariBarangOutlet.get(position).getImageBarang();
 
 
         String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
         String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
 
+        Glide.with(context)
+                .load(img)
+                .error(R.drawable.ic_gift)
+                .into(holder.imgBarang);
+        
         int hargaPcs, hargaPack;
 
         if (hargaPcsStr.equals("null")){

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
@@ -82,6 +83,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
     @Override
     public void onBindViewHolder(@NonNull @NotNull BarangOutletIdViewHolder holder,
                                  @SuppressLint("RecyclerView") int position) {
+        String img = dataCari.get(position).getImageBarang();
 
         int hargaPcs = Integer.parseInt(dataCari.get(position).getHargaJual());
         int hargaPack = Integer.parseInt(dataCari.get(position).getHargaJualPack());
@@ -89,6 +91,11 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
         holder.txtNama.setText(dataCari.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
+
+        Glide.with(context)
+                .load(img)
+                .error(R.drawable.ic_gift)
+                .into(holder.imgBarang);
 //        holder.lblJumlahPack.setVisibility(View.GONE);
 
 //        holder.btnTambahPesanan.setVisibility(View.GONE);
