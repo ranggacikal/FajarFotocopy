@@ -1,6 +1,7 @@
 package com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
@@ -14,6 +15,7 @@ import com.haloqlinic.fajarfotocopy.adapter.kepalaToko.DetailPengirimanKetoAdapt
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailPengirimanKetoBinding;
+import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.ResponseListPengiriman;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -57,8 +59,11 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
 //        Log.d("cekStatusPengirimanIntent", "onCreate: "+status_pengiriman);
 
+
         binding.recyclerDetailPengirimanKeto.setHasFixedSize(true);
-        binding.recyclerDetailPengirimanKeto.setLayoutManager(new LinearLayoutManager(DetailPengirimanKetoActivity.this));
+        GridLayoutManager manager = new GridLayoutManager(DetailPengirimanKetoActivity.this,
+                2, GridLayoutManager.VERTICAL, false);
+        binding.recyclerDetailPengirimanKeto.setLayoutManager(manager);
 
         loadDetailPengiriman();
 

@@ -47,6 +47,7 @@
                 android:text="Pengeluaran Toko"
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:includeFontPadding="false"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView8"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:background="@drawable/bg_light_gold"
-            android:padding="5dp"
-            android:src="@drawable/ic_logout_light"
+            android:padding="10dp"
+            android:src="@drawable/ic_barang_gold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,9 +35,9 @@
             android:layout_marginStart="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="36dp"
-            android:includeFontPadding="false"
             android:fontFamily="@font/poppinssemibold"
-            android:text="Anda Yakin Untuk Keluar?"
+            android:includeFontPadding="false"
+            android:text="Anda yakin untuk membatalkan\ntransaksi ini?"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
             android:layout_marginTop="26dp"
@@ -57,38 +57,37 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5">
 
             <TextView
-                android:id="@+id/text_kembali"
-                android:layout_width="match_parent"
+                android:id="@+id/text_tidak"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
-                android:text="Kembali?"
-                android:textColor="@color/gold"
                 android:includeFontPadding="false"
+                android:text="Tidak"
+                android:textAlignment="center"
+                android:textColor="@color/gold"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_batal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_keluar"
-                android:layout_width="match_parent"
+                android:id="@+id/btn_batal"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
                 android:background="@drawable/bg_btn_dialog"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
-                android:paddingHorizontal="26dp"
-                android:paddingVertical="8dp"
-                android:text="Keluar"
-                android:includeFontPadding="false"
+                android:paddingVertical="12dp"
+                android:text="Batal"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_kembali"
+                app:layout_constraintStart_toEndOf="@+id/text_tidak"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

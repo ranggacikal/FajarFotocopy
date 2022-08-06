@@ -107,7 +107,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
         Glide.with(context)
                 .load(img)
-                .error(R.drawable.ic_gift)
+                .error(R.drawable.ic_barang_gold)
                 .into(holder.imgBarang);
         
         int hargaPcs, hargaPack;

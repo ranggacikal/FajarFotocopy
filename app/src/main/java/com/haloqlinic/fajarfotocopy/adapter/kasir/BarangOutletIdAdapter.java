@@ -94,7 +94,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
 
         Glide.with(context)
                 .load(img)
-                .error(R.drawable.ic_gift)
+                .error(R.drawable.ic_barang_gold)
                 .into(holder.imgBarang);
 //        holder.lblJumlahPack.setVisibility(View.GONE);
 

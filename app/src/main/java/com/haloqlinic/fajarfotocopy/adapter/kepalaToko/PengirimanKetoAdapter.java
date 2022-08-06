@@ -1,5 +1,6 @@
 package com.haloqlinic.fajarfotocopy.adapter.kepalaToko;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -42,7 +43,7 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull PengirimanKetoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull @NotNull PengirimanKetoViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         String id_status_pengiriman = dataPengiriman.get(position).getIdStatusPengiriman();
         String tanggal = dataPengiriman.get(position).getTanggalPengiriman();
@@ -68,20 +69,20 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(holder.btnDetail)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent intent = new Intent(context, DetailPengirimanKetoActivity.class);
-                        intent.putExtra("id_status_pengiriman", id_status_pengiriman);
-                        intent.putExtra("tanggal", tanggal);
-                        intent.putExtra("status_pengiriman", dataPengiriman.get(position).getStatusPengiriman());
-                        context.startActivity(intent);
-
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(holder.btnDetail)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                        Intent intent = new Intent(context, DetailPengirimanKetoActivity.class);
+//                        intent.putExtra("id_status_pengiriman", id_status_pengiriman);
+//                        intent.putExtra("tanggal", tanggal);
+//                        intent.putExtra("status_pengiriman", dataPengiriman.get(position).getStatusPengiriman());
+//                        context.startActivity(intent);
+//
+//                    }
+//                });
 
     }
 
@@ -98,7 +99,7 @@ public class PengirimanKetoAdapter extends RecyclerView.Adapter<PengirimanKetoAd
         public PengirimanKetoViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             txtTanggal = itemView.findViewById(R.id.text_tanggal_pengiriman_keto);
-            btnDetail = itemView.findViewById(R.id.btn_detail_pengiriman_keto);
+//            btnDetail = itemView.findViewById(R.id.btn_detail_pengiriman_keto);
             txtNamaDriver = itemView.findViewById(R.id.text_driver_pengiriman_keto);
         }
     }

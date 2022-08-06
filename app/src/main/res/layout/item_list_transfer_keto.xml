@@ -16,7 +16,7 @@
         android:background="@color/gold">
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -31,21 +31,21 @@
 
 
         <TextView
-            android:id="@+id/text_toko_list_transfer_keto"
+            android:id="@+id/text_nama_driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppinssemibold"
             android:includeFontPadding="false"
-            android:text="Toko"
+            android:text="Nama"
             android:textColor="@color/white"
             android:textSize="15sp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/img"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_tanggal_list_transfer_keto"
+            android:id="@+id/text_tanggal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -56,8 +56,8 @@
             android:textColor="@color/light_gold"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/text_toko_list_transfer_keto" />
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toBottomOf="@+id/text_nama" />
 
 
 

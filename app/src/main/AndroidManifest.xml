@@ -17,6 +17,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".kepalatoko.reporttransaksiketo.ReportBarangKetoActivity"
+            android:exported="false" />
+        <activity
             android:name=".kepalatoko.KetoMainActivity"
             android:exported="false"
             android:label="@string/title_activity_keto_main" />

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".driver.riwayatPengiriman.PilihTanggalRiwayatDriverActivity">
+    tools:context=".kepalatoko.reporttransaksiketo.ReportBarangKetoActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -17,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linear_back_report_driver"
+            android:id="@+id/linear_back_report_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="26dp"
@@ -39,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/poppinsbold"
-                android:text="Riwayat Pengiriman"
+                android:text="Report Barang"
                 android:includeFontPadding="false"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -59,7 +58,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linear_pilihan_bulan_hari_report_driver"
+        android:id="@+id/linear_pilihan_bulan_hari_report_keto"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="12dp"
@@ -77,13 +76,14 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppinssemibold"
             android:text="Pilih"
+            android:includeFontPadding="false"
             android:textSize="14sp"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Spinner
-            android:id="@+id/spinner_pilih_hari_bulan_report_driver"
+            android:id="@+id/spinner_pilih_hari_bulan_report_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="26dp"
@@ -100,13 +100,13 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linear_tanggal_report_driver"
+            android:id="@+id/linear_tanggal_report_keto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_hari_bulan_report_driver">
+            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_hari_bulan_report_keto">
 
 
             <TextView
@@ -116,13 +116,14 @@
                 android:layout_marginStart="26dp"
                 android:fontFamily="@font/poppinssemibold"
                 android:text="Pilih Tanggal"
+                android:includeFontPadding="false"
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_tanggal_report_driver"
+                android:id="@+id/text_tanggal_report_keto"
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="26dp"
@@ -135,12 +136,12 @@
                 android:text="00 - 00 - 0000"
                 android:textColor="@color/black"
                 android:includeFontPadding="false"
-                app:layout_constraintEnd_toStartOf="@+id/btn_pilih_tanggal_report_driver"
+                app:layout_constraintEnd_toStartOf="@+id/btn_pilih_tanggal_report_keto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <ImageView
-                android:id="@+id/btn_pilih_tanggal_report_driver"
+                android:id="@+id/btn_pilih_tanggal_report_keto"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -154,7 +155,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linear_pilih_bulan_tahun_report_driver"
+            android:id="@+id/linear_pilih_bulan_tahun_report_keto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="26dp"
@@ -165,7 +166,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_hari_bulan_report_driver">
+            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_hari_bulan_report_keto">
 
 
             <TextView
@@ -180,7 +181,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
-                android:id="@+id/spinner_pilih_bulan_report_driver"
+                android:id="@+id/spinner_pilih_bulan_report_keto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -203,10 +204,10 @@
                 android:textSize="14sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_bulan_report_driver" />
+                app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_bulan_report_keto" />
 
             <Spinner
-                android:id="@+id/spinner_pilih_tahun_report_driver"
+                android:id="@+id/spinner_pilih_tahun_report_keto"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -221,7 +222,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/btn_lihat_report_driver"
+            android:id="@+id/btn_lihat_report_keto"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"

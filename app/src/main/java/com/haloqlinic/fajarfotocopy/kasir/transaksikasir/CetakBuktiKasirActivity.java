@@ -15,7 +15,9 @@ import com.haloqlinic.fajarfotocopy.adapter.kasir.TransaksiBerhasilAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailBarangStockGudangBinding;
+import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.kepalatoko.KetoMainActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.DetailStatusPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.detailStatusPenjualan.ResponseDetailStatusPenjualan;
@@ -63,19 +65,19 @@ public class CetakBuktiKasirActivity extends AppCompatActivity {
 
                         if (from_keto!=null){
                             if (from_keto.equals("HomeKeto")){
-                                Intent intent = new Intent(CetakBuktiKasirActivity.this, MainKetoActivity.class);
+                                Intent intent = new Intent(CetakBuktiKasirActivity.this, KetoMainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                                 finish();
                             }else{
-                                Intent intent2 = new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class);
+                                Intent intent2 = new Intent(CetakBuktiKasirActivity.this, KasirMainActivity.class);
                                 intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent2);
                                 finish();
                             }
                         }else {
 
-                            Intent intent3 = new Intent(CetakBuktiKasirActivity.this, MainKasirActivity.class);
+                            Intent intent3 = new Intent(CetakBuktiKasirActivity.this, KasirMainActivity.class);
                             intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent3);
                             finish();

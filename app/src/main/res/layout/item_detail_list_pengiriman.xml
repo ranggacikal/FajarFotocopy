@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/text_nama_barang_detail_list_transfer_keto"
+            android:id="@+id/text_nama_barang_pengiriman_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -54,10 +54,10 @@
             android:textColor="@color/dark_grey"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_detail_list_transfer_keto" />
+            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_pengiriman_keto" />
 
         <TextView
-            android:id="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto"
+            android:id="@+id/text_jumlah_pcs_barang_pengiriman_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -68,7 +68,7 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView26"
-            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_detail_list_transfer_keto" />
+            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_pengiriman_keto" />
 
         <TextView
             android:id="@+id/textView27"
@@ -86,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
         <TextView
-            android:id="@+id/text_jumlah_pack_barang_detail_list_transfer_keto"
+            android:id="@+id/text_jumlah_pack_barang_pengiriman_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
@@ -98,24 +98,24 @@
             android:textColor="@color/black"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView27"
-            app:layout_constraintTop_toBottomOf="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto" />
+            app:layout_constraintTop_toBottomOf="@+id/text_jumlah_pcs_barang_pengiriman_keto" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linear_tolak_terima_detail_list_transfer_keto"
+            android:id="@+id/linear_tolak_terima_pengiriman"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="20dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView27">
 
             <TextView
-                android:id="@+id/btn_tolak_barang_detail_list_transfer_keto"
+                android:id="@+id/btn_tolak_barang_pengiriman_keto"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
@@ -125,12 +125,12 @@
                 android:textColor="@color/gold"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_terima_barang_detail_list_transfer_keto"
+                app:layout_constraintEnd_toStartOf="@+id/btn_terima_barang_pengiriman_keto"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_terima_barang_detail_list_transfer_keto"
+                android:id="@+id/btn_terima_barang_pengiriman_keto"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:background="@drawable/btn_gold"
@@ -141,13 +141,13 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_tolak_barang_detail_list_transfer_keto"
+                app:layout_constraintStart_toEndOf="@+id/btn_tolak_barang_pengiriman_keto"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linear_text_tolak_terima_detail_list_transfer_keto"
+            android:id="@+id/linear_text_tolak_terima_pengiriman"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
@@ -159,7 +159,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView27">
 
             <TextView
-                android:id="@+id/text_detail_list_transfer_ditolak_keto"
+                android:id="@+id/text_pengiriman_ditolak"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_outer_gold"
@@ -171,12 +171,12 @@
                 android:textSize="12sp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_detail_list_transfer_diterima_keto"
+                app:layout_constraintStart_toEndOf="@+id/text_pengiriman_diterima"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/text_detail_list_transfer_diterima_keto"
+                android:id="@+id/text_pengiriman_diterima"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_outer_gold"

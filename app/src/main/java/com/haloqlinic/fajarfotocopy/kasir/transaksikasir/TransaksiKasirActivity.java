@@ -1,16 +1,22 @@
     package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.LoadingActivity;
+import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
@@ -33,6 +39,7 @@ import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangO
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
+import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -61,13 +68,14 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     String nameActivity = "";
     public String cariBarang = "";
+    Context context;
 
     ProgressDialog progressDialog;
     public List<BarangPenjualanItem> barangPenjualan;
     public int status;
 
     public ArrayList<String> dataBarangoutlet;
-
+    Dialog dialog, dialogDataKosong;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +86,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         dataBarangoutlet = new ArrayList<>();
+
+
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackTransaksiKasir)
                 .setScale(MODE_SCALE, 0.89f)
@@ -577,4 +587,37 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         progressDialog.dismiss();
     }
+
+    private void tampilDialog() {
+
+        dialog = new Dialog(context);
+
+        dialog.setContentView(R.layout.dialog_back_kasir);
+        dialog.setCancelable(false);
+
+        final TextView txtTidak = dialog.findViewById(R.id.text_tidak);
+        final Button btnBatal = dialog.findViewById(R.id.btn_batal);
+
+        btnBatal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TransaksiKasirActivity.this, LoadingActivity.class);
+                startActivity(intent);
+                finish();
+                editStatusPenjualanBarang();
+                dialog.dismiss();
+            }
+        });
+
+        txtTidak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+
+
 }
