@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.HomeFragment"
+        android:label="@string/title_home_gudang"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_kirim"
+        android:name="com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.KirimBarangFragment"
+        android:label="@string/title_kirim_gudang"
+        tools:layout="@layout/fragment_kirim_barang" />
+
+    <fragment
+        android:id="@+id/navigation_minta"
+        android:name="com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.MintaBarangFragment"
+        android:label="@string/title_minta_gudang"
+        tools:layout="@layout/fragment_minta_barang" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.haloqlinic.fajarfotocopy.gudang.fragmentgudang.ProfileFragment"
+        android:label="@string/title_profile_gudang"
+        tools:layout="@layout/fragment_profile" />
+
+
+</navigation>

@@ -24,5 +24,11 @@
     <string name="title_home_keto">Home</string>
     <string name="title_list_transfer">List Transfer</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_gudang_main">GudangMainActivity</string>
+    <string name="title_home_gudang">Home</string>
+    <string name="title_kirim_gudang">Kirim</string>
+    <string name="title_minta_gudang">Minta</string>
+    <string name="title_profile_gudang">Profile</string>
+
 
 </resources>

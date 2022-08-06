@@ -9,6 +9,7 @@ import android.os.Handler;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.driver.DriverMainActivity;
 import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
+import com.haloqlinic.fajarfotocopy.gudang.GudangMainActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
@@ -35,7 +36,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     finish();
 
                     if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")){
-                        startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                        startActivity(new Intent(SplashScreenActivity.this, GudangMainActivity.class));
                         finish();
                     }else if (level.equals("Kepala Toko")){
                         startActivity(new Intent(SplashScreenActivity.this, KetoMainActivity.class));

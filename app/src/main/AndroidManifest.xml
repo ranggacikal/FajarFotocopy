@@ -17,6 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".gudang.GudangMainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_gudang_main" />
+        <activity
             android:name=".kepalatoko.reporttransaksiketo.ReportBarangKetoActivity"
             android:exported="false" />
         <activity
