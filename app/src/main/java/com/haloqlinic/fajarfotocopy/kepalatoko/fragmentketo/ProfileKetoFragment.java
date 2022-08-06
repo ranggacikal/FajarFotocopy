@@ -50,7 +50,14 @@ public class ProfileKetoFragment extends Fragment {
         btnKeluarKeto = rootView.findViewById(R.id.btn_keluar);
         textKembaliKasir = rootView.findViewById(R.id.text_kembali);
         preferencedConfig = new SharedPreferencedConfig(getActivity());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
+
+        txtUsernameProfile.setText(preferencedConfig.getPreferenceNama());
+        txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
+
 
         PushDownAnim.setPushDownAnimTo(cardLogout)
                 .setScale(MODE_SCALE, 0.89f)

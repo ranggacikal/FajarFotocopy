@@ -101,7 +101,10 @@ public class HomeKetoFragment extends Fragment {
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
         txtNamaToko.setText(preferencedConfig.getPreferenceNamaToko());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");

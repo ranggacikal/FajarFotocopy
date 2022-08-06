@@ -86,7 +86,10 @@ public class HomeKasirFragment extends Fragment {
         txtPenjualanKaryawan = rootView.findViewById(R.id.text_total_penjualan_karyawan_kasir);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        Glide.with(getActivity()).
+                load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
         txtNama.setText(preferencedConfig.getPreferenceNama());
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");

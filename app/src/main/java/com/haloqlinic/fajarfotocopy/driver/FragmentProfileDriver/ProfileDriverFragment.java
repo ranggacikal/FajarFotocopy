@@ -66,8 +66,13 @@ public class ProfileDriverFragment extends Fragment {
         preferencedConfig = new SharedPreferencedConfig(getActivity());
         txtUsernameProfile.setText(preferencedConfig.getPreferenceUsername());
         txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
+        txtUsernameProfile.setText(preferencedConfig.getPreferenceNama());
+        txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
 
 
         PushDownAnim.setPushDownAnimTo(cardLogout)

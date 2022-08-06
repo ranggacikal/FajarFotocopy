@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
 
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal;
-    Button btnKeluar;
+//    Button btnKeluar;
     ImageView imageView;
 
 
@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
         cardToko = rootView.findViewById(R.id.card_outlet_gudang);
         cardBarang = rootView.findViewById(R.id.card_kelola_barang_gudang);
         cardUser = rootView.findViewById(R.id.card_user_gudang);
-        btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
+//        btnKeluar = rootView.findViewById(R.id.btn_keluar_gudang);
         cardTransferBarang = rootView.findViewById(R.id.card_transfer_barang_gudang);
         cardSupplier = rootView.findViewById(R.id.card_supplier_gudang);
         cardReport = rootView.findViewById(R.id.card_report_gudang);
@@ -87,7 +87,10 @@ public class HomeFragment extends Fragment {
         preferencedConfig = new SharedPreferencedConfig(getActivity());
 
         String level = preferencedConfig.getPreferenceLevel();
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        Glide.with(getActivity()).
+                load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
 
 
         Log.d("checkTokenLocal", "Home: "+preferencedConfig.getPreferenceTokenFcm());
@@ -141,30 +144,30 @@ public class HomeFragment extends Fragment {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(btnKeluar)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialAlertDialogBuilder(getActivity())
-                                .setTitle("Keluar Akun?")
-                                .setMessage("Anda yakin ingin keluar dari akun ini?")
-
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        keluarAkun();
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(btnKeluar)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        new MaterialAlertDialogBuilder(getActivity())
+//                                .setTitle("Keluar Akun?")
+//                                .setMessage("Anda yakin ingin keluar dari akun ini?")
+//
+//                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                        keluarAkun();
+//                                    }
+//                                })
+//                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                                    }
+//                                })
+//                                .show();
+//                    }
+//                });
 
 
         PushDownAnim.setPushDownAnimTo(cardBarang)
@@ -249,12 +252,12 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void keluarAkun() {
-
-        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
-        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
-
-    }
+//    private void keluarAkun() {
+//
+//        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
+//        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        getActivity().finish();
+//
+//    }
 }
