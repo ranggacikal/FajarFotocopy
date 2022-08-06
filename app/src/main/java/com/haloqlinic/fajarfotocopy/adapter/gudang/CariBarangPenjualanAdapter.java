@@ -95,7 +95,7 @@ public class CariBarangPenjualanAdapter extends RecyclerView.Adapter<CariBarangP
                     tampilDialogDataKosong();
                 }else {
                     int number_of_pack = Integer.parseInt(dataBarang.get(position).getNumberOfPack());
-                    int stock_db = Integer.parseInt(dataBarang.get(position).getStock());
+                    int stock_db = Integer.parseInt(dataBarang.get(position).getJumlahPack());
                     int hargaModalToko = Integer.parseInt(dataBarang.get(position).getHargaModalToko());
                     String id_status_penjualan = supplierGudangActivity.id_status_penjualan_gudang;
                     String id_barang = dataBarang.get(position).getIdBarang();
