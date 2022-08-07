@@ -60,14 +60,19 @@ public class ProfileDriverFragment extends Fragment {
         cardBantuan = rootView.findViewById(R.id.card_bantuan);
         cardRating = rootView.findViewById(R.id.card_rating);
 
-        btnKeluarDriver = rootView.findViewById(R.id.btn_keluar_driver);
-        textKembaliDriver = rootView.findViewById(R.id.text_kembali_driver);
+        btnKeluarDriver = rootView.findViewById(R.id.btn_keluar);
+        textKembaliDriver = rootView.findViewById(R.id.text_kembali);
 
         preferencedConfig = new SharedPreferencedConfig(getActivity());
         txtUsernameProfile.setText(preferencedConfig.getPreferenceUsername());
         txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
 
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
+        txtUsernameProfile.setText(preferencedConfig.getPreferenceNama());
+        txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
 
 
         PushDownAnim.setPushDownAnimTo(cardLogout)
@@ -76,45 +81,28 @@ public class ProfileDriverFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         dialogLogout = new Dialog(getActivity());
+
                         dialogLogout.setContentView(R.layout.dialog_logout);
                         dialogLogout.setCancelable(false);
 
-                        TextView txtKembali = dialogLogout.findViewById(R.id.text_kembali_driver);
-                        Button btnKeluar = dialogLogout.findViewById(R.id.btn_keluar_driver);
+                        TextView txtKembali = dialogLogout.findViewById(R.id.text_kembali);
+                        Button btnKeluar = dialogLogout.findViewById(R.id.btn_keluar);
 
                         dialogLogout.show();
 
-                        PushDownAnim.setPushDownAnimTo(txtKembali)
-                                .setScale(MODE_SCALE, 0.89f)
-                                .setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        dialogLogout.dismiss();
-                                    }
-                                });
+                        txtKembali.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialogLogout.dismiss();
+                            }
+                        });
 
-                        PushDownAnim.setPushDownAnimTo(btnKeluar)
-                                .setScale(MODE_SCALE, 0.89f)
-                                .setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        keluarAkun();
-                                    }
-                                });
-
-//                        txtKembali.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                dialogLogout.dismiss();
-//                            }
-//                        });
-
-//                        btnKeluar.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View view) {
-//                                keluarAkun();
-//                            }
-//                        });
+                        btnKeluar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                keluarAkun();
+                            }
+                        });
                     }
                 });
 
@@ -160,8 +148,6 @@ public class ProfileDriverFragment extends Fragment {
 
         return rootView;
     }
-
-
 
 
 

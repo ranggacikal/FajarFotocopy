@@ -15,10 +15,20 @@
     <string name="title_home_driver">Home</string>
     <string name="title_riwayat_driver">Riwayat</string>
     <string name="title_profile_driver">Profile</string>
-
     <string name="title_activity_kasir_main">KasirMainActivity</string>
     <string name="title_home_kasir">Home</string>
     <string name="title_riwayat_kasir">Riwayat</string>
     <string name="title_profile_kasir">Profile</string>
+    <string name="title_profile_keto">Profile</string>
+    <string name="title_activity_keto_main">KetoMainActivity</string>
+    <string name="title_home_keto">Home</string>
+    <string name="title_list_transfer">List Transfer</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_gudang_main">GudangMainActivity</string>
+    <string name="title_home_gudang">Home</string>
+    <string name="title_kirim_gudang">Kirim</string>
+    <string name="title_minta_gudang">Minta</string>
+    <string name="title_profile_gudang">Profile</string>
+
 
 </resources>

@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.kepalatoko.listtransferketo;
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.ProgressDialog;
@@ -16,6 +17,7 @@ import com.haloqlinic.fajarfotocopy.adapter.kepalaToko.DetailTransferAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityDetailListTransferKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityNotifikasiGudangBinding;
+import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.listTransfer.ListTransferBarangItem;
 import com.haloqlinic.fajarfotocopy.model.listTransfer.ResponseListTransfer;
 import com.thekhaeng.pushdownanim.PushDownAnim;
@@ -56,8 +58,9 @@ public class DetailListTransferKetoActivity extends AppCompatActivity {
                 });
 
         binding.recyclerDetailListTransferKeto.setHasFixedSize(true);
-        binding.recyclerDetailListTransferKeto.setLayoutManager(new LinearLayoutManager(
-                DetailListTransferKetoActivity.this));
+        GridLayoutManager manager = new GridLayoutManager(DetailListTransferKetoActivity.this,
+                2, GridLayoutManager.VERTICAL, false);
+        binding.recyclerDetailListTransferKeto.setLayoutManager(manager);
 
         loadData();
     }

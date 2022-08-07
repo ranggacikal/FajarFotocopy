@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_logout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_card_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -34,6 +35,7 @@
             android:layout_marginStart="36dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="36dp"
+            android:includeFontPadding="false"
             android:fontFamily="@font/poppinssemibold"
             android:text="Anda Yakin Untuk Keluar?"
             android:textColor="@color/black"
@@ -55,19 +57,20 @@
             app:layout_constraintTop_toBottomOf="@+id/textView5">
 
             <TextView
-                android:id="@+id/text_kembali_driver"
+                android:id="@+id/text_kembali"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppinsbold"
                 android:text="Kembali?"
                 android:textColor="@color/gold"
+                android:includeFontPadding="false"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btn_keluar_driver"
+                android:id="@+id/btn_keluar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="26dp"
@@ -79,12 +82,13 @@
                 android:paddingHorizontal="26dp"
                 android:paddingVertical="8dp"
                 android:text="Keluar"
+                android:includeFontPadding="false"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/text_kembali_driver"
+                app:layout_constraintStart_toEndOf="@+id/text_kembali"
                 app:layout_constraintTop_toTopOf="parent" />
 
 

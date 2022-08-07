@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.adapter.kepalaToko;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -38,11 +39,11 @@ public class StatusTransferAdapter extends RecyclerView.Adapter<StatusTransferAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull StatusTransferViewHolder holder, int position) {
-        holder.binding.textTanggalListTransferKeto.setText(dataStatus.get(position).getTanggalTransfer());
-        holder.binding.textTokoListTransferKeto.setText(dataStatus.get(position).getOutletPenerima());
+    public void onBindViewHolder(@NonNull StatusTransferViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        holder.binding.textTanggal.setText(dataStatus.get(position).getTanggalTransfer());
+        holder.binding.textNamaDriver.setText(dataStatus.get(position).getOutletPenerima());
 
-        PushDownAnim.setPushDownAnimTo(holder.binding.btnDetailListTransferKeto)
+        PushDownAnim.setPushDownAnimTo(holder.binding.cardListTransferKeto)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
                     @Override

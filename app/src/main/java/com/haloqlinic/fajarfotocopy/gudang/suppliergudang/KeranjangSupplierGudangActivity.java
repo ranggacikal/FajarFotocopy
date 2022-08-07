@@ -37,7 +37,6 @@ import com.haloqlinic.fajarfotocopy.formatNumber.NumberTextWatcher;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiBerhasilActivity;
-import com.haloqlinic.fajarfotocopy.model.editPenjualanGudang.ResponseEditPenjualanStatus;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.BarangPenjualanGudangItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
@@ -364,7 +363,10 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                     int status = response.body().getStatus();
 
                     if (status==1){
-                        editStatusPenjualan();
+
+                        Intent intent = new Intent(KeranjangSupplierGudangActivity.this, TransaksiBerhasilGudangActivity.class);
+                        intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
+                        startActivity(intent);
 
                     }else{
                         Toast.makeText(KeranjangSupplierGudangActivity.this,
@@ -386,35 +388,6 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void editStatusPenjualan() {
-        ConfigRetrofit.service.editPenjualanStatus(id_status_penjualan_gudang, "Selesai")
-                .enqueue(new Callback<ResponseEditPenjualanStatus>() {
-                    @Override
-                    public void onResponse(Call<ResponseEditPenjualanStatus> call, Response<ResponseEditPenjualanStatus> response) {
-                        if (response.isSuccessful()) {
-                            int status = response.body().getStatus();
-                            if (status == 1) {
-                                Intent intent = new Intent(KeranjangSupplierGudangActivity.this, TransaksiBerhasilGudangActivity.class);
-                                intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(KeranjangSupplierGudangActivity.this,
-                                        "Gagal Checkout", Toast.LENGTH_SHORT).show();
-                            }
-                        }else{
-                            Toast.makeText(KeranjangSupplierGudangActivity.this,
-                                    "Response Gagal, Coba lagi.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<ResponseEditPenjualanStatus> call, Throwable t) {
-                        Toast.makeText(KeranjangSupplierGudangActivity.this,
-                                "Periksa Jaringan Anda", Toast.LENGTH_SHORT).show();
-                    }
-                });
     }
 
     private void pilihGambar() {

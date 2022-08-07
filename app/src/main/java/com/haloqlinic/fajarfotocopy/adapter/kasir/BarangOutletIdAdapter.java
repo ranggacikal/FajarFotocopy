@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
@@ -82,16 +83,22 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
     @Override
     public void onBindViewHolder(@NonNull @NotNull BarangOutletIdViewHolder holder,
                                  @SuppressLint("RecyclerView") int position) {
+        String img = dataCari.get(position).getImageBarang();
 
-        int hargaPcs = Integer.parseInt(dataCari.get(position).getHargaJualToko());
-        int hargaPack = Integer.parseInt(dataCari.get(position).getHargaJualTokoPack());
+        int hargaPcs = Integer.parseInt(dataCari.get(position).getHargaJual());
+        int hargaPack = Integer.parseInt(dataCari.get(position).getHargaJualPack());
 
         holder.txtNama.setText(dataCari.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.lblJumlahPack.setVisibility(View.GONE);
 
-        holder.btnTambahPesanan.setVisibility(View.GONE);
+        Glide.with(context)
+                .load(img)
+                .error(R.drawable.ic_barang_gold)
+                .into(holder.imgBarang);
+//        holder.lblJumlahPack.setVisibility(View.GONE);
+
+//        holder.btnTambahPesanan.setVisibility(View.GONE);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,8 +115,8 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                 String id_barang = dataCari.get(position).getIdBarang();
                 String stockPack = dataCari.get(position).getJumlahPack();
                 String numberOfPack = dataCari.get(position).getNumberOfPack();
-                String hargaJual = dataCari.get(position).getHargaJualToko();
-                String hargaJualPack = dataCari.get(position).getHargaJualTokoPack();
+                String hargaJual = dataCari.get(position).getHargaJual();
+                String hargaJualPack = dataCari.get(position).getHargaJualPack();
 
                 tampilDialogPilihanSatuan(id_barang_outlet, id_status_penjualan, id_barang, stock,
                         stockPack, numberOfPack, hargaJual, hargaJualPack);
@@ -562,8 +569,9 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
     public class BarangOutletIdViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBarang;
-        TextView txtNama, txtHargaPcs, txtHargaPack, lblJumlahPack;
-        Button btnTambahPesanan;
+        TextView txtNama, txtHargaPcs, txtHargaPack;
+//                lblJumlahPack;
+//        Button btnTambahPesanan;
 
         public BarangOutletIdViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -571,8 +579,8 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
             txtNama = itemView.findViewById(R.id.text_item_nama_barang_outlet);
             txtHargaPcs = itemView.findViewById(R.id.text_item_harga_pcs_barang_outlet);
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
-            btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
-            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
+//            btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
+//            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 }

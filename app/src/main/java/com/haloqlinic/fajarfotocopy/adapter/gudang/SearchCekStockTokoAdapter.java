@@ -77,7 +77,7 @@ public class SearchCekStockTokoAdapter extends RecyclerView.Adapter<SearchCekSto
                         intent.putExtra("nama_barang", dataSearchStock.get(position).getNamaBarang());
                         intent.putExtra("jumlah_pcs", dataSearchStock.get(position).getStock());
                         intent.putExtra("jumlah_pack", dataSearchStock.get(position).getJumlahPack());
-                        intent.putExtra("harga_jual", dataSearchStock.get(position).getHargaJual());
+                        intent.putExtra("harga_jual", dataSearchStock.get(position).getHargaJualToko());
                         intent.putExtra("harga_jual_pack", dataSearchStock.get(position).getHargaJualPack());
                         intent.putExtra("diskon", dataSearchStock.get(position).getDiskon());
                         intent.putExtra("diskon_pack", dataSearchStock.get(position).getDiskonPack());

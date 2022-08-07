@@ -472,7 +472,7 @@
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/btn_merah"
+            android:background="@drawable/bg_outer_gold"
             android:fontFamily="@font/sairamedium"
             android:padding="5dp"
             android:text="Hapus"

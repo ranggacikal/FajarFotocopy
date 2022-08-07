@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -34,9 +35,12 @@ import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityLoginBinding;
 import com.haloqlinic.fajarfotocopy.driver.DriverMainActivity;
 import com.haloqlinic.fajarfotocopy.driver.MainDriverActivity;
+import com.haloqlinic.fajarfotocopy.gudang.GudangMainActivity;
 import com.haloqlinic.fajarfotocopy.gudang.MainActivity;
+import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
 import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.fragmentkasir.HomeKasirFragment;
+import com.haloqlinic.fajarfotocopy.kepalatoko.KetoMainActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.editFirebaseToken.ResponseEditFirebaseToken;
 import com.haloqlinic.fajarfotocopy.model.login.ResponseLogin;
@@ -171,15 +175,15 @@ public class LoginActivity extends AppCompatActivity{
 
                         if (level.equals("Kepala Gudang") || level.equals("Karyawan Gudang")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                            startActivity(new Intent(LoginActivity.this, GudangMainActivity.class));
                             finish();
                         } else if (level.equals("Kepala Toko")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainKetoActivity.class));
+                            startActivity(new Intent(LoginActivity.this, KetoMainActivity.class));
                             finish();
                         } else if (level.equals("Karyawan Toko")) {
                             tambahTokenFirebase(id_user, token);
-                            startActivity(new Intent(LoginActivity.this, MainKasirActivity.class));
+                            startActivity(new Intent(LoginActivity.this, KasirMainActivity.class));
                             finish();
                         } else if (level.equals("Driver")) {
                             tambahTokenFirebase(id_user, token);

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,11 +19,8 @@ import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ReportPengirimanGud
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.WebViewReportPengirimanActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class ReportPenjualanGudangActivity extends AppCompatActivity {
 
@@ -167,20 +163,7 @@ public class ReportPenjualanGudangActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                Date date1 = newDate.getTime();
-                Log.d("newDate", "onDateSet: " + date1);
-                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
-                try {
-                    date1 = inputFormatter.parse(newDate.getTime().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                SimpleDateFormat outputFormatter = new SimpleDateFormat(
-                        "dd MMMM yyyy", new Locale("id", "ID")
-                );
-
-                date = outputFormatter.format(date1);
+                date = dateFormatter.format(newDate.getTime());
                 binding.textTanggalReportGudang.setText(date);
             }
 

@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPilihTanggalRiwayatDriverBinding;
@@ -21,11 +21,8 @@ import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ListStatusPengirima
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.ReportPengirimanGudangActivity;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
 
@@ -43,6 +40,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private String date;
+    ImageView btnPilihTanggalReportDriver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +61,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
                     }
                 });
 
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormatter = new SimpleDateFormat("dd MMMM yyyy");
 
         //init spinner pilihan
         ArrayAdapter<String> adapterPilihan = new ArrayAdapter<String>(this,
@@ -155,14 +153,14 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
             intent.putExtra("pilihan", pilihan);
             intent.putExtra("fromReportDriver", fromReportDriver);
             startActivity(intent);
-        } else if (fromReportDriver.equals("supplier")) {
+        }else if (fromReportDriver.equals("supplier")){
             Intent intent = new Intent(this, RiwayatPengirimanSupplierActivity.class);
             intent.putExtra("bulan_tahun", bulan + " " + tahun);
             intent.putExtra("tanggal", date);
             intent.putExtra("pilihan", pilihan);
             intent.putExtra("fromReportDriver", fromReportDriver);
             startActivity(intent);
-        } else if (fromReportDriver.equals("pengirimanToko") || fromReportDriver.equals("pengirimanSupplier")) {
+        }else if (fromReportDriver.equals("pengirimanToko") || fromReportDriver.equals("pengirimanSupplier")){
             Intent intent = new Intent(this, PengirimanDriverActivity.class);
             intent.putExtra("bulan_tahun", bulan + " " + tahun);
             intent.putExtra("tanggal", date);
@@ -186,19 +184,7 @@ public class PilihTanggalRiwayatDriverActivity extends AppCompatActivity {
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
 
-                Date date1 = newDate.getTime();
-                Log.d("newDate", "onDateSet: " + date1);
-                SimpleDateFormat inputFormatter = new SimpleDateFormat("dd-MM-yyyy");
-                try {
-                    date1 = inputFormatter.parse(newDate.getTime().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                SimpleDateFormat outputFormatter = new SimpleDateFormat(
-                        "dd MMMM yyyy", new Locale("id", "ID")
-                );
-                date = outputFormatter.format(date1);
+                date = dateFormatter.format(newDate.getTime());
                 binding.textTanggalReportDriver.setText(date);
             }
 

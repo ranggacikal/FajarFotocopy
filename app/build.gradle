@@ -17,8 +17,8 @@ android {
         applicationId "com.haloqlinic.fajarfotocopy"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 9
-        versionName "1.0.3.5"
+        versionCode 8
+        versionName "1.0.3.4"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

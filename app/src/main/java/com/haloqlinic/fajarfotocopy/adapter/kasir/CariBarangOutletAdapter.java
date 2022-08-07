@@ -26,8 +26,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
@@ -97,11 +99,17 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        String img = cariBarangOutlet.get(position).getImageBarang();
 
 
-        String hargaPcsStr = cariBarangOutlet.get(position).getHargaJualToko();
-        String hargaPackStr = cariBarangOutlet.get(position).getHargaJualTokoPack();
+        String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
+        String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
 
+        Glide.with(context)
+                .load(img)
+                .error(R.drawable.ic_barang_gold)
+                .into(holder.imgBarang);
+        
         int hargaPcs, hargaPack;
 
         if (hargaPcsStr.equals("null")){
@@ -141,8 +149,8 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                 String id_barang = cariBarangOutlet.get(position).getIdBarang();
                 String stockPack = cariBarangOutlet.get(position).getJumlahPack();
                 String numberOfPack = cariBarangOutlet.get(position).getNumberOfPack();
-                String hargaJual = cariBarangOutlet.get(position).getHargaJualToko();
-                String hargaJualPack = cariBarangOutlet.get(position).getHargaJualTokoPack();
+                String hargaJual = cariBarangOutlet.get(position).getHargaJual();
+                String hargaJualPack = cariBarangOutlet.get(position).getHargaJualPack();
 
                 tampilDialogPilihanSatuan(id_barang_outlet, id_status_penjualan, id_barang, stock,
                         stockPack, numberOfPack, hargaJual, hargaJualPack, status);
@@ -165,7 +173,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         dialog.setCancelable(false);
 
         final RadioGroup rgPilihan = dialog.findViewById(R.id.rg_pilihan_satuan);
-        final LinearLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
+        final ConstraintLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
         final HorizontalQuantitizer numberPicker = dialog.findViewById(R.id.number_picker_dialog_kasir);
         final TextView edtTotalHarga = dialog.findViewById(R.id.edt_pcs_dialog_kasir);
         final TextView btnTambah = dialog.findViewById(R.id.text_tambah_barang_dialog_kasi);

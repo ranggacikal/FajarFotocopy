@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -72,7 +73,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
     @NotNull
     @Override
     public DetailPengirimanKetoViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_pengiriman_keto, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_detail_list_pengiriman, parent, false);
         return new DetailPengirimanKetoViewHolder(view);
     }
 
@@ -94,7 +95,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         Glide.with(context)
                 .load(img_barang)
-                .error(R.drawable.ic_gift)
+                .error(R.drawable.ic_barang_gold)
                 .into(holder.imgBarang);
 
         holder.linearTextTolakTerima.setVisibility(View.VISIBLE);
@@ -593,14 +594,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
         int jumlah_stock_pcs = Integer.parseInt(stock_pcs) + Integer.parseInt(jumlah_pcs);
         int jumlah_stock_pack = Integer.parseInt(stock_pack) + Integer.parseInt(jumlah_pack);
-        int number_of_stock_update = 0;
 
         Log.d("cekNumberOfpack", "editStock: outlet: " + number_of_pack_outlet + " fromList: " + number_of_pack);
-        if (number_of_pack.equals("0")) {
-            Toast.makeText(context, "Number Of Pack = 0", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
+        int number_of_stock_update = 0 + Integer.parseInt(number_of_pack);
         Log.d("cekNumberOfPackUpdate", "editStock: " + number_of_stock_update);
 
         ConfigRetrofit.service.editBarangOutlet(id_barang_outlet_edit, id_barang, hargaPcs, hargaPack,
@@ -722,9 +718,9 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
     public class DetailPengirimanKetoViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imgBarang;
-        TextView txtJumlahPcs, txtJumlahPack, txtNamaBarang, txtDiterima, txtDitolak;
-        Button btnTerima, btnTolak;
-        LinearLayout linearBtnTolakTerima, linearTextTolakTerima;
+        TextView txtJumlahPcs, txtJumlahPack, txtNamaBarang, txtDiterima, txtDitolak, btnTolak;
+        Button btnTerima;
+        ConstraintLayout linearBtnTolakTerima, linearTextTolakTerima;
 
         public DetailPengirimanKetoViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);

@@ -8,11 +8,12 @@
     tools:context=".kasir.transaksikasir.InvoiceKasirActivity">
 
     <WebView
-        android:id="@+id/webViewKasir"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/webViewKasir"
         android:layout_above="@+id/savePdfBtn"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp"
+        />
 
     <ProgressBar
         style="?android:attr/progressBarStyle"
