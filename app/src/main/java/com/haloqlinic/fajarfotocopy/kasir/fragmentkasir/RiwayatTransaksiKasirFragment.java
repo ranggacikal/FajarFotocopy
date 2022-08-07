@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,8 +63,9 @@ public class RiwayatTransaksiKasirFragment extends Fragment {
 
     TextView txtTanggal;
     Spinner spinnerPilihan, spinnerBulan, spinnerTahun;
-    Button btnPilihTanggal, btnLihatLaporan;
-    LinearLayout linearTanggal, linearBulanTahun;
+    Button  btnLihatLaporan;
+    ConstraintLayout linearTanggal, linearBulanTahun;
+    ImageView btnPilihTanggal;
 
     private String[] pilihanItem = {"Hari", "Bulan"};
     private String[] bulanItem = {"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",

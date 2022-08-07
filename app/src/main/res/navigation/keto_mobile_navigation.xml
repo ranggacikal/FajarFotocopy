@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home_keto">
+
+    <fragment
+        android:id="@+id/navigation_home_keto"
+        android:name="com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.HomeKetoFragment"
+        android:label="@string/title_home_keto"
+        tools:layout="@layout/fragment_home_keto" />
+
+    <fragment
+        android:id="@+id/navigation_list_keto"
+        android:name="com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ListTransferFragment"
+        android:label="@string/title_list_transfer"
+        tools:layout="@layout/fragment_list_transfer" />
+
+    <fragment
+        android:id="@+id/navigation_profile_keto"
+        android:name="com.haloqlinic.fajarfotocopy.kepalatoko.fragmentketo.ProfileKetoFragment"
+        android:label="@string/title_profile_kasir"
+        tools:layout="@layout/fragment_profile_keto" />
+</navigation>

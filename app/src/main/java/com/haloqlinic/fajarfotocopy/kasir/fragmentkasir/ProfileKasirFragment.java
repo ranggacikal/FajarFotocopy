@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.EditProfileActivity;
 import com.haloqlinic.fajarfotocopy.LoginActivity;
 import com.haloqlinic.fajarfotocopy.R;
@@ -49,6 +50,13 @@ public class ProfileKasirFragment extends Fragment {
         btnKeluarKasir = rootView.findViewById(R.id.btn_keluar);
         textKembaliKasir = rootView.findViewById(R.id.text_kembali);
         preferencedConfig = new SharedPreferencedConfig(getActivity());
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
+
+        txtUsernameProfile.setText(preferencedConfig.getPreferenceNama());
+        txtLevelProfile.setText(preferencedConfig.getPreferenceLevel());
 
         PushDownAnim.setPushDownAnimTo(cardLogout)
                 .setScale(MODE_SCALE, 0.89f)

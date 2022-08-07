@@ -1,176 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp"
-    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="10dp"
-    app:cardElevation="6dp">
+    app:cardElevation="6dp"
+    android:layout_margin="10dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/img_barang_pengiriman_keto"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="112dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_barang_gold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/img_barang_pengiriman_keto"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_gift" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Nama Barang : "
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/text_nama_barang_detail_list_transfer_keto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="5dp"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Nama"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Jumlah Pcs : "
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Jumlah"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Jumlah Pack : "
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/text_jumlah_pack_barang_detail_list_transfer_keto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sairabold"
-                        android:text="Jumlah pack"
-                        android:textColor="@color/black" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_tolak_terima_detail_list_transfer_keto"
+        <TextView
+            android:id="@+id/text_nama_barang_detail_list_transfer_keto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp">
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppinsbold"
+            android:includeFontPadding="false"
+            android:maxEms="10"
+            android:text="Nama Barang"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_barang_pengiriman_keto" />
 
-            <Button
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:includeFontPadding="false"
+            android:text="Pcs :"
+            android:textColor="@color/dark_grey"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_detail_list_transfer_keto" />
+
+        <TextView
+            android:id="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/poppinsbold"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintTop_toBottomOf="@+id/text_nama_barang_detail_list_transfer_keto" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:paddingBottom="12dp"
+            android:fontFamily="@font/poppinsmedium"
+            android:includeFontPadding="false"
+            android:text="Pack :"
+            android:textColor="@color/dark_grey"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView26" />
+
+        <TextView
+            android:id="@+id/text_jumlah_pack_barang_detail_list_transfer_keto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            android:paddingBottom="12dp"
+            android:fontFamily="@font/poppinsbold"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/textView27"
+            app:layout_constraintTop_toBottomOf="@+id/text_jumlah_pcs_barang_detail_list_transfer_keto" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linear_tolak_terima_detail_list_transfer_keto"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27">
+
+            <TextView
                 android:id="@+id/btn_tolak_barang_detail_list_transfer_keto"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/bg_outer_gold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppinsbold"
+                android:includeFontPadding="false"
                 android:text="Tolak"
-                android:textColor="@color/black"
-                android:layout_marginEnd="10dp"
-                android:textSize="12sp"
-                android:fontFamily="@font/sairabold"/>
+                android:textAlignment="center"
+                android:textColor="@color/gold"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_terima_barang_detail_list_transfer_keto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btn_terima_barang_detail_list_transfer_keto"
-                android:layout_width="70dp"
-                android:layout_height="30dp"
-                android:layout_marginBottom="5dp"
-                android:background="@drawable/btn_black"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:background="@drawable/btn_gold"
+                android:fontFamily="@font/poppinsbold"
+                android:includeFontPadding="false"
                 android:text="Terima"
+                android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="12sp"
-                android:fontFamily="@font/sairabold"/>
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_tolak_barang_detail_list_transfer_keto"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linear_text_tolak_terima_detail_list_transfer_keto"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:visibility="gone"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="15dp">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27">
 
             <TextView
                 android:id="@+id/text_detail_list_transfer_ditolak_keto"
-                android:visibility="gone"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:text="Barang ditolak"
-                android:textColor="@color/black"
-                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_outer_gold"
+                android:fontFamily="@font/poppinsbold"
+                android:includeFontPadding="false"
+                android:padding="7dp"
+                android:text="Barang Ditolak"
+                android:textColor="@color/gold"
                 android:textSize="12sp"
-                android:fontFamily="@font/sairabold"/>
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/text_detail_list_transfer_diterima_keto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/text_detail_list_transfer_diterima_keto"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/bg_outer_gold"
+                android:fontFamily="@font/poppinsbold"
                 android:visibility="gone"
-                android:layout_marginBottom="5dp"
-                android:text="Barang diterima"
-                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                android:padding="7dp"
+                android:text="Barang Diterima"
+                android:textColor="@color/gold"
                 android:textSize="12sp"
-                android:fontFamily="@font/sairabold"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
 
-    </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
+

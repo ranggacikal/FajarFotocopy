@@ -14,12 +14,12 @@
         android:background="@drawable/bg_bottom_nav"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="12dp"
+        app:labelVisibilityMode="labeled"
         app:itemIconTint="@drawable/bottom_nav_icon_active"
         app:itemTextColor="@drawable/bottom_nav_icon_active"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
         app:menu="@menu/driver_bottom_nav_menu" />
 
     <fragment

@@ -53,5 +53,15 @@ public class TransaksiKetoActivity extends AppCompatActivity {
                     }
                 });
 
+        PushDownAnim.setPushDownAnimTo(binding.linearReportBarangKeto)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(TransaksiKetoActivity.this, ReportBarangKetoActivity.class));
+                    }
+                });
+
+
     }
 }

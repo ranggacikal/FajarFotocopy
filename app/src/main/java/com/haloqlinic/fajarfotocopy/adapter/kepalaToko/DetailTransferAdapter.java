@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ItemDetailListTransferKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ItemListTransferKetoBinding;
@@ -62,9 +63,16 @@ public class DetailTransferAdapter extends RecyclerView.Adapter<DetailTransferAd
     public void onBindViewHolder(@NonNull DetailTransferViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String img = dataTransfer.get(position).getImageBarang();
 
+//        Glide.with(context)
+//                .load(img)
+//                .into(holder.binding.imgBarangPengirimanKeto);
+
+
         Glide.with(context)
                 .load(img)
+                .error(R.drawable.ic_barang_gold)
                 .into(holder.binding.imgBarangPengirimanKeto);
+
 
         holder.binding.textNamaBarangDetailListTransferKeto.setText(dataTransfer.get(position).getNamaBarang());
         holder.binding.textJumlahPcsBarangDetailListTransferKeto.setText(dataTransfer.get(position).getJumlah());

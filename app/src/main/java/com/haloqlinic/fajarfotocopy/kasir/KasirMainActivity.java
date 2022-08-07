@@ -43,7 +43,6 @@ public class KasirMainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         preferencedConfig = new SharedPreferencedConfig(KasirMainActivity.this);
-
         getToken();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);

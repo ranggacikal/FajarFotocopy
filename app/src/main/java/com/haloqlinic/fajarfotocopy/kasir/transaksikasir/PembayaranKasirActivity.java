@@ -228,12 +228,17 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         } else {
             postTotal = String.valueOf(totalSeluruh);
         }
+        Log.d("totalSeluruh", "total: "+totalSeluruh);
+
 
         if (value.equals("")) {
             postDiskon = "0";
         } else {
             postDiskon = value;
         }
+
+        Log.d("total", "total: "+value);
+
 
         ProgressDialog progressDialog = new ProgressDialog(PembayaranKasirActivity.this);
         progressDialog.setMessage("memproses pembayaran");

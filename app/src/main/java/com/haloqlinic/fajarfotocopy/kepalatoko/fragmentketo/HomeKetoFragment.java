@@ -65,7 +65,7 @@ public class HomeKetoFragment extends Fragment {
 
     private SharedPreferencedConfig preferencedConfig;
     TextView txtNama, txtTanggal, txtNamaToko, txtTotalHarian, txtTotalBulanan;
-    Button btnKeluar;
+//    Button btnKeluar;
     ImageView imageView;
 
 
@@ -74,7 +74,7 @@ public class HomeKetoFragment extends Fragment {
     private Calendar calendar, calendarHari, calendarBulan;
     private SimpleDateFormat dateFormat, dateFormatHari, dateFormatBulan;
     private String date, hari, bulan;
-    LinearLayout linearKasirKeto, linearReportTransaksiKeto, linearMintaBarangKeto, linearListPengiriman, linearPengeluaranKeto ;
+    CardView linearKasirKeto, linearReportTransaksiKeto, linearMintaBarangKeto, linearListPengiriman, linearPengeluaranKeto ;
 
 
     @Override
@@ -92,7 +92,7 @@ public class HomeKetoFragment extends Fragment {
         linearMintaBarangKeto = rootView.findViewById(R.id.linear_minta_barang_keto);
         linearListPengiriman = rootView.findViewById(R.id.linear_list_pengiriman);
         linearPengeluaranKeto = rootView.findViewById(R.id.linear_pengeluaran_keto);
-        btnKeluar = rootView.findViewById(R.id.btn_keluar_keto);
+//        btnKeluar = rootView.findViewById(R.id.btn_keluar_keto);
         txtTotalHarian = rootView.findViewById(R.id.text_total_penjualan_harian_keto);
         txtTotalBulanan = rootView.findViewById(R.id.text_total_penjualan_bulanan_keto);
 
@@ -101,7 +101,10 @@ public class HomeKetoFragment extends Fragment {
 
         txtNama.setText(preferencedConfig.getPreferenceNama());
         txtNamaToko.setText(preferencedConfig.getPreferenceNamaToko());
-        Glide.with(getActivity()).load(preferencedConfig.getPreferenceImg()).into(imageView);
+        Glide.with(getActivity())
+                .load(preferencedConfig.getPreferenceImg())
+                .error(R.drawable.ic_dummy_profile)
+                .into(imageView);
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -173,30 +176,30 @@ public class HomeKetoFragment extends Fragment {
                     }
                 });
 
-        PushDownAnim.setPushDownAnimTo(btnKeluar)
-                .setScale(MODE_SCALE, 0.89f)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        new MaterialAlertDialogBuilder(getActivity())
-                                .setTitle("Keluar Akun?")
-                                .setMessage("Anda yakin ingin keluar dari akun ini?")
-
-                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        keluarAkun();
-                                    }
-                                })
-                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
-                    }
-                });
+//        PushDownAnim.setPushDownAnimTo(btnKeluar)
+//                .setScale(MODE_SCALE, 0.89f)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        new MaterialAlertDialogBuilder(getActivity())
+//                                .setTitle("Keluar Akun?")
+//                                .setMessage("Anda yakin ingin keluar dari akun ini?")
+//
+//                                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//                                        keluarAkun();
+//                                    }
+//                                })
+//                                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(DialogInterface dialogInterface, int i) {
+//
+//                                    }
+//                                })
+//                                .show();
+//                    }
+//                });
 
         loadHari();
         loadBulan();
@@ -348,13 +351,13 @@ public class HomeKetoFragment extends Fragment {
 
 
 
-
-    private void keluarAkun() {
-
-        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
-        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
-        startActivity(new Intent(getActivity(), LoginActivity.class));
-        getActivity().finish();
-    }
+//
+//    private void keluarAkun() {
+//
+//        Toast.makeText(getActivity(), "Keluar akun", Toast.LENGTH_SHORT).show();
+//        preferencedConfig.savePrefBoolean(SharedPreferencedConfig.PREFERENCE_IS_LOGIN, false);
+//        startActivity(new Intent(getActivity(), LoginActivity.class));
+//        getActivity().finish();
+//    }
 
 }
