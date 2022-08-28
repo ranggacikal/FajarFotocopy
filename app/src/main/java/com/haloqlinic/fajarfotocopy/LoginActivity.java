@@ -147,11 +147,6 @@ public class LoginActivity extends AppCompatActivity{
                                 }
                             });
 
-
-
-
-
-
                     if (status == 1) {
                         progressDialog.dismiss();
 

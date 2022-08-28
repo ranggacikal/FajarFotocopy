@@ -3,6 +3,7 @@ package com.haloqlinic.fajarfotocopy.api;
 import com.haloqlinic.fajarfotocopy.model.ResponseDataBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponseHapusBarang;
 import com.haloqlinic.fajarfotocopy.model.ResponsePenjualanKaryawanToko;
+import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.ResponseBarangOutletList;
 import com.haloqlinic.fajarfotocopy.model.dataMintaBarangByOutlet.ResponseMintaBarangByOutlet;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
@@ -111,6 +112,9 @@ import com.haloqlinic.fajarfotocopy.model.updateStatusPengiriman.ResponseUpdateS
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanGudang.ResponseUpdateStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
+import com.haloqlinic.fajarfotocopy.model.validateBarang.ResponseValidateBarang;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -752,5 +756,17 @@ public interface ApiService {
     @POST("editProfile")
     Call<ResponseEditProfile> editProfile(@Field("id_user") String id_user,
                                           @Field("username") String username);
+
+    @FormUrlEncoded
+    @POST("validateBarangList")
+    Call<ResponseValidateBarang> validateBarang(@Field("id_barang[]") ArrayList<String> id_barang,
+                                                @Field("id_outlet[]") ArrayList<String> id_outlet,
+                                                @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
+                                                @Field("jumlah_pack[]") ArrayList<String> jumlah_pack);
+
+    @FormUrlEncoded
+    @POST("getIdBarangOutletList")
+    Call<ResponseBarangOutletList> barangOutletList(@Field("id_barang[]") ArrayList<String> id_barang,
+                                                    @Field("id_outlet[]") ArrayList<String> id_outlet);
 
 }

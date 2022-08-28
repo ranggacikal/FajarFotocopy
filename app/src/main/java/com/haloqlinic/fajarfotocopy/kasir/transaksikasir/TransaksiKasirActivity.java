@@ -87,8 +87,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
         dataBarangoutlet = new ArrayList<>();
 
-
-
         PushDownAnim.setPushDownAnimTo(binding.linearBackTransaksiKasir)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {

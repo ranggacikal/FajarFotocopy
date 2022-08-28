@@ -3,7 +3,9 @@ package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -15,22 +17,28 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.adapter.dialog.DialogValidateAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
-import com.haloqlinic.fajarfotocopy.databinding.ActivityHomeKetoBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPembayaranKasirBinding;
-import com.haloqlinic.fajarfotocopy.gudang.baranggudang.TambahBarangGudangActivity;
-import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
+import com.haloqlinic.fajarfotocopy.gudang.tokogudang.CekStockTokoGudangActivity;
+import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.DataBarangOutletListItem;
+import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.ResponseBarangOutletList;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.validateBarang.DataValidateBarangItem;
+import com.haloqlinic.fajarfotocopy.model.validateBarang.ResponseValidateBarang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
@@ -67,6 +75,10 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
     private Bitmap bitmap;
     String from_keto;
+    ArrayList<String> idBarangPenjualan = new ArrayList<>();
+    ArrayList<String> jumlahPackPenjualan = new ArrayList<>();
+    ArrayList<String> jumlahPcsPenjualan = new ArrayList<>();
+    ArrayList<String> idOutletPenjualan = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +98,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         tanggal = date;
 
         id_status_penjualan = getIntent().getStringExtra("id_status_penjualan");
-        Log.d("getIdStatusPenjualan", "onCreate: "+id_status_penjualan);
+        Log.d("getIdStatusPenjualan", "onCreate: " + id_status_penjualan);
 
         binding.edtDiskonPembayaran.addTextChangedListener(new TextWatcher() {
             @Override
@@ -166,11 +178,114 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bayar();
+                        ProgressDialog progressDialog = new ProgressDialog(PembayaranKasirActivity.this);
+                        progressDialog.setMessage("memproses pembayaran");
+                        progressDialog.show();
+                        validateDataBarang(progressDialog);
                     }
                 });
 
         loadDataPembayaran();
+    }
+
+    private void validateDataBarang(ProgressDialog progressDialog) {
+        ConfigRetrofit.service.validateBarang(idBarangPenjualan, idOutletPenjualan, jumlahPcsPenjualan,
+                jumlahPackPenjualan).enqueue(new Callback<ResponseValidateBarang>() {
+            @Override
+            public void onResponse(Call<ResponseValidateBarang> call, Response<ResponseValidateBarang> response) {
+                if (response.isSuccessful()) {
+                    int status = response.body().getStatus();
+                    if (status == 1) {
+                        bayar(progressDialog);
+                    } else {
+                        progressDialog.dismiss();
+                        List<DataValidateBarangItem> dataValidateBarang = response.body().getDataValidateBarang();
+                        showDialogValidateBarang(dataValidateBarang);
+                    }
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(PembayaranKasirActivity.this,
+                            "Response Gagal, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseValidateBarang> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(PembayaranKasirActivity.this,
+                        "Silahkan periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
+                Log.d("errorMessageFail", "onFailure: "+t.getMessage());
+            }
+        });
+    }
+
+    private void showDialogValidateBarang(List<DataValidateBarangItem> dataValidateBarang) {
+
+        Dialog dialogValidate = new Dialog(PembayaranKasirActivity.this);
+        dialogValidate.setContentView(R.layout.dialog_validate_barang);
+        dialogValidate.setCancelable(false);
+        dialogValidate.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialogValidate.show();
+        Button btnClose = dialogValidate.findViewById(R.id.btn_close_dialog_validate_barang);
+        loadDataValidateBarang(dialogValidate, dataValidateBarang);
+        PushDownAnim.setPushDownAnimTo(btnClose)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogValidate.dismiss();
+                    }
+                });
+
+    }
+
+    private void loadDataValidateBarang(Dialog dialogValidate, List<DataValidateBarangItem> dataValidateBarang) {
+
+        ProgressDialog progressDialogValidate = new ProgressDialog(PembayaranKasirActivity.this);
+        progressDialogValidate.setMessage("Memuat Data");
+        progressDialogValidate.show();
+
+        ArrayList<String> idBarangOutletList = new ArrayList<>();
+        ArrayList<String> idOutletList = new ArrayList<>();
+
+        for (int a = 0; a < dataValidateBarang.size(); a++) {
+            idBarangOutletList.add(dataValidateBarang.get(a).getIdBarang());
+            idOutletList.add(dataValidateBarang.get(a).getIdOutlet());
+        }
+
+        ConfigRetrofit.service.barangOutletList(idBarangOutletList, idOutletList)
+                .enqueue(new Callback<ResponseBarangOutletList>() {
+                    @Override
+                    public void onResponse(Call<ResponseBarangOutletList> call, Response<ResponseBarangOutletList> response) {
+                        if (response.isSuccessful()) {
+
+                            boolean isSukses = response.body().isSukses();
+                            if (isSukses){
+                                progressDialogValidate.dismiss();
+                                RecyclerView rvValidateDialog = dialogValidate.findViewById(R.id.rv_dialog_validate_barang);
+                                rvValidateDialog.setHasFixedSize(true);
+                                rvValidateDialog.setLayoutManager(new LinearLayoutManager(PembayaranKasirActivity.this));
+                                List<DataBarangOutletListItem> dataBarang = response.body().getDataBarangOutletList();
+                                DialogValidateAdapter adapter = new DialogValidateAdapter(PembayaranKasirActivity.this, dataBarang);
+                                rvValidateDialog.setAdapter(adapter);
+                            } else {
+                                progressDialogValidate.dismiss();
+                                Toast.makeText(PembayaranKasirActivity.this, "Gagal Memuat Data", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            progressDialogValidate.dismiss();
+                            Toast.makeText(PembayaranKasirActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBarangOutletList> call, Throwable t) {
+                        progressDialogValidate.dismiss();
+                        Toast.makeText(PembayaranKasirActivity.this, "Cek koneksi Internet", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
     }
 
     private void pilihGambar() {
@@ -218,7 +333,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         return Base64.encodeToString(imgByte, Base64.DEFAULT);
     }
 
-    private void bayar() {
+    private void bayar(ProgressDialog progressDialog) {
 
         String postTotal = "";
         String postDiskon = "";
@@ -228,7 +343,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
         } else {
             postTotal = String.valueOf(totalSeluruh);
         }
-        Log.d("totalSeluruh", "total: "+totalSeluruh);
+        Log.d("totalSeluruh", "total: " + totalSeluruh);
 
 
         if (value.equals("")) {
@@ -237,12 +352,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
             postDiskon = value;
         }
 
-        Log.d("total", "total: "+value);
-
-
-        ProgressDialog progressDialog = new ProgressDialog(PembayaranKasirActivity.this);
-        progressDialog.setMessage("memproses pembayaran");
-        progressDialog.show();
+        Log.d("total", "total: " + value);
 
         ConfigRetrofit.service.updateStatusPenjualan(id_status_penjualan, tanggal2,
                 "selesai", preferencedConfig.getPreferenceIdOutlet(), metode_bayar,
@@ -349,6 +459,10 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                         for (int i = 0; i < dataBarang.size(); i++) {
                             listTotal.add(Integer.parseInt(dataBarang.get(i).getTotal()));
                             tanggal2 = dataBarang.get(i).getTanggalPenjualan();
+                            idBarangPenjualan.add(dataBarang.get(i).getIdBarang());
+                            jumlahPackPenjualan.add(dataBarang.get(i).getJumlahPack());
+                            jumlahPcsPenjualan.add(dataBarang.get(i).getJumlahBarang());
+                            idOutletPenjualan.add(dataBarang.get(i).getIdOutlet());
                         }
 
                         total = 0;
