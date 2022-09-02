@@ -13,6 +13,7 @@ import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
+import com.haloqlinic.fajarfotocopy.model.insertReportToko.ResponseInsertReportToko;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -768,5 +769,21 @@ public interface ApiService {
     @POST("getIdBarangOutletList")
     Call<ResponseBarangOutletList> barangOutletList(@Field("id_barang[]") ArrayList<String> id_barang,
                                                     @Field("id_outlet[]") ArrayList<String> id_outlet);
+
+    @FormUrlEncoded
+    @POST("tambahBarangReportOutletList")
+    Call<ResponseInsertReportToko> insertReportToko(@Field("nama_outlet[]") ArrayList<String> nama_outlet,
+                                                    @Field("nama_barang[]") ArrayList<String> nama_barang,
+                                                    @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
+                                                    @Field("jumlah_pack[]") ArrayList<String> jumlah_pack,
+                                                    @Field("harga_pcs[]") ArrayList<String> harga_pcs,
+                                                    @Field("harga_pack[]") ArrayList<String> harga_pack,
+                                                    @Field("total[]") ArrayList<String> total,
+                                                    @Field("metode_pembayaran[]") ArrayList<String> metode_pembayaran,
+                                                    @Field("jenis_satuan[]") ArrayList<String> jenis_satuan,
+                                                    @Field("tanggal_penjualan[]") ArrayList<String> tanggal_penjualan,
+                                                    @Field("nama_kasir[]") ArrayList<String> nama_kasir,
+                                                    @Field("id_status_penjualan[]") ArrayList<String> id_status_penjualan,
+                                                    @Field("status_penjualan_barang[]") ArrayList<String> status_penjualan_barang);
 
 }
