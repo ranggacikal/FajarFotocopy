@@ -617,7 +617,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                             Log.d("paramPenjualan", "tanggal: " + tanggal);
                             Log.d("paramPenjualan", "nama: " + preferencedConfig.getPreferenceNama());
                             Log.d("paramPenjualan", "idStatusPenjualan: " + id_status_penjualan);
-                            Log.d("paramPenjualan", "ERROR: " + response.message());
+                            Log.d("paramPenjualan", "ERROR: " + response.errorBody());
                             Toast.makeText(context, "Gagal Saat menambahkan barang", Toast.LENGTH_SHORT).show();
                         }
                     }
