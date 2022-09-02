@@ -531,6 +531,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                     @Override
                     public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
                         if (response.isSuccessful()) {
+                            progressDialog.dismiss();
                             int jumlah_pcs_validate = 0;
                             int jumlah_pack_validate = 0;
                             assert response.body() != null;
@@ -538,11 +539,14 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                                     .getSearchBarangOutletById();
 
                             for (int i = 0; i < dataValidate.size(); i++) {
-                                jumlah_pcs_validate = Integer.parseInt(dataValidate.get(i).getJumlahPack());
-                                jumlah_pack_validate = Integer.parseInt(dataValidate.get(i).getStock());
+                                jumlah_pcs_validate = Integer.parseInt(dataValidate.get(i).getStock());
+                                jumlah_pack_validate = Integer.parseInt(dataValidate.get(i).getJumlahPack());
                             }
-                            if (jumlah_pcs_validate == 0 || jumlah_pack_validate == 0) {
-                                Toast.makeText(context, "stock barang yg anda pilih sudah habis",
+                            if (jumlah_pcs_validate == 0 && jenis_satuan.equals("Pcs")) {
+                                Toast.makeText(context, "stock (PCS) barang yg anda pilih sudah habis",
+                                        Toast.LENGTH_SHORT).show();
+                            } else if (jumlah_pack_validate == 0 && jenis_satuan.equals("Pack")){
+                                Toast.makeText(context, "stock (PACK) barang yg anda pilih sudah habis",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
