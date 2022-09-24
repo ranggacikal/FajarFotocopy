@@ -61,11 +61,7 @@ public class LoginActivity extends AppCompatActivity{
     String token;
     String tokenLocal = "";
 
-
-
     private SharedPreferencedConfig preferencedConfig;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
