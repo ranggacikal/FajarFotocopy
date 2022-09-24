@@ -21,8 +21,6 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -34,16 +32,13 @@ import com.haloqlinic.fajarfotocopy.adapter.dialog.DialogValidateAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPembayaranKasirBinding;
-import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.KeranjangSupplierGudangActivity;
-import com.haloqlinic.fajarfotocopy.gudang.tokogudang.CekStockTokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.DataBarangOutletListItem;
 import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.ResponseBarangOutletList;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
-import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.BarangPenjualanGudangItem;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangPenjualan.ResponseHapusBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
-import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.DataValidateBarangItem;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.ResponseValidateBarang;
@@ -198,55 +193,52 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     }
                 });
 
+        slideHapus();
+
         loadDataPembayaran();
 
     }
 
-    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0,
-            ItemTouchHelper.LEFT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-            int position = viewHolder.getAdapterPosition();
-
-            switch (direction) {
-
-                case ItemTouchHelper.LEFT:
-                    String id_penjualan = dataBarang.get(position).getIdPenjualan();
-                    hapusPenjualan(id_penjualan);
-                    break;
-
+    private void slideHapus() {
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback( 0,
+                ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
             }
-        }
 
-        @Override
-        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
 
-            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
-                    .addSwipeLeftBackgroundColor(Color.parseColor("#e60026"))
-                    .addSwipeLeftActionIcon(R.drawable.ic_trash)
-                    .create()
-                    .decorate();
+                switch (direction) {
+                    case ItemTouchHelper.LEFT:
+                        String id_penjualan = dataBarang.get(position).getIdPenjualan();
+                        hapusPenjualan(id_penjualan);
+                        break;
+                }
+            }
 
-            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
-        }
-
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY,
+                        actionState, isCurrentlyActive)
+                        .addSwipeLeftBackgroundColor(Color.parseColor("#e60026"))
+                        .addSwipeLeftActionIcon(R.drawable.ic_trash)
+                        .create()
+                        .decorate();
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(binding.rvListBarangPembayaran);
-    };
-
-
-
+    }
 
     private void hapusPenjualan(String id_penjualan) {
 
-        ConfigRetrofit.service.hapusPenjualan(id_penjualan).enqueue(new Callback<ResponseHapusPenjualan>() {
+        ConfigRetrofit.service.hapusBarangPenjualan(id_penjualan).enqueue(new Callback<ResponseHapusBarangPenjualan>() {
             @Override
-            public void onResponse(Call<ResponseHapusPenjualan> call, Response<ResponseHapusPenjualan> response) {
+            public void onResponse(Call<ResponseHapusBarangPenjualan> call, Response<ResponseHapusBarangPenjualan> response) {
                 if (response.isSuccessful()) {
 
                     int status = response.body().getStatus();
@@ -269,7 +261,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ResponseHapusPenjualan> call, Throwable t) {
+            public void onFailure(Call<ResponseHapusBarangPenjualan> call, Throwable t) {
                 Toast.makeText(PembayaranKasirActivity.this,
                         "Koneksi Error", Toast.LENGTH_SHORT).show();
             }
@@ -540,7 +532,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     if (status == 1) {
 
 
-                        List<BarangPenjualanItem> dataBarang = response.body().getBarangPenjualan();
+                        dataBarang = response.body().getBarangPenjualan();
                         PembayaranAdapter adapter = new PembayaranAdapter(PembayaranKasirActivity.this,
                                 dataBarang);
 

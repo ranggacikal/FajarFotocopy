@@ -8,13 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.LoadingActivity;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
@@ -23,10 +20,7 @@ import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
-import com.haloqlinic.fajarfotocopy.kasir.MainKasirActivity;
 import com.haloqlinic.fajarfotocopy.kepalatoko.KetoMainActivity;
-import com.haloqlinic.fajarfotocopy.kepalatoko.MainKetoActivity;
-import com.haloqlinic.fajarfotocopy.kepalatoko.mintabarangketo.TambahBarangKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
@@ -36,17 +30,13 @@ import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangO
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.SearchBarangOutletByNamaItem;
-import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
-import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -522,17 +512,11 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
 
     private void hapusStatusPenjualan() {
-//        showProgressDialogWithTitle("Membatalkan Transaksi");
-//        ProgressDialog progressDialog = new ProgressDialog(TransaksiKasirActivity.this);
-//        progressDialog.setMessage("Membatalkan Transaksi");
-//        progressDialog.show();
         ConfigRetrofit.service.hapusStatusPenjualan(id_status_penjualan).enqueue(new Callback<ResponseHapusStatusPenjualan>() {
             @Override
             public void onResponse(Call<ResponseHapusStatusPenjualan> call, Response<ResponseHapusStatusPenjualan> response) {
                 
                 if (response.isSuccessful()) {
-//                    progressDialog.dismiss();
-//                    hideProgressDialogWithTitle();
                     int status = response.body().getStatus();
                     if (status == 1) {
 
@@ -555,16 +539,12 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         Toast.makeText(TransaksiKasirActivity.this, "Gagal Membatalkan Transaksi", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-//                    progressDialog.dismiss();
-//                    hideProgressDialogWithTitle();
                     Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseHapusStatusPenjualan> call, Throwable t) {
-//                progressDialog.dismiss();
-//                hideProgressDialogWithTitle();
                 Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server" + t.getMessage(), Toast.LENGTH_SHORT).show();
 
             }

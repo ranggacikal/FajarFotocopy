@@ -27,7 +27,7 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
 
     private ActivityWebViewReportPenjualanTokoBinding binding;
 
-    String bulan_tahun, tanggal, pilihan, id_outlet;
+    String bulan_tahun, tanggal, pilihan, id_outlet, nama_outlet;
     String link_web;
 
     private SharedPreferencedConfig preferencedConfig;
@@ -47,16 +47,17 @@ public class WebViewReportPenjualanTokoActivity extends AppCompatActivity {
         bulan_tahun = getIntent().getStringExtra("bulan_tahun");
         tanggal = getIntent().getStringExtra("tanggal");
         id_outlet = getIntent().getStringExtra("id_outlet");
+        nama_outlet = getIntent().getStringExtra("nama_outlet");
 
         if (pilihan.equals("Hari") || pilihan.equals("hari")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getTransaksiByHari?hari="+tanggal+
-                    "&id_outlet="+id_outlet;
+                    "getReportTransaksiTokoByHari?nama_outlet="+nama_outlet+
+                    "&hari="+tanggal;
 
         }else if (pilihan.equals("bulan") || pilihan.equals("Bulan")){
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getTransaksiByBulan?bulan="+bulan_tahun+
-                    "&id_outlet="+id_outlet;
+                    "getReportTransaksiTokoByBulan?nama_outlet="+nama_outlet+
+                    "&bulan="+bulan_tahun;
         }
 
 

@@ -10,6 +10,7 @@ import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
 import com.haloqlinic.fajarfotocopy.model.editProfile.ResponseEditProfile;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangPenjualan.ResponseHapusBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
@@ -713,10 +714,6 @@ public interface ApiService {
     Call<ResponseStatusSupplierTanggal> statusSupplierByTanggal(@Field("tanggal") String tanggal);
 
     @FormUrlEncoded
-    @POST("hapusPenjualan")
-    Call<ResponseHapusPenjualan> hapusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
-
-    @FormUrlEncoded
     @POST("editPackBarangOutlet")
     Call<ResponseEditJumlahPackOutlet> editPackOutlet(@Field("id_barang_outlet") String id_barang_outlet,
                                                       @Field("jumlah_pack") String jumlah_pack);
@@ -768,5 +765,13 @@ public interface ApiService {
     @POST("getIdBarangOutletList")
     Call<ResponseBarangOutletList> barangOutletList(@Field("id_barang[]") ArrayList<String> id_barang,
                                                     @Field("id_outlet[]") ArrayList<String> id_outlet);
+
+    @FormUrlEncoded
+    @POST("hapusPenjualan")
+    Call<ResponseHapusPenjualan> hapusPenjualan(@Field("id_status_penjualan") String id_status_penjualan);
+
+    @FormUrlEncoded
+    @POST("hapusBarangPenjualan")
+    Call<ResponseHapusBarangPenjualan> hapusBarangPenjualan(@Field("id_penjualan") String id_penjualan);
 
 }
