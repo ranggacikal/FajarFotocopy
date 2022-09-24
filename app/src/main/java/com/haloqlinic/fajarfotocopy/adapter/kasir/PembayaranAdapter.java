@@ -1,6 +1,8 @@
 package com.haloqlinic.fajarfotocopy.adapter.kasir;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.haloqlinic.fajarfotocopy.R;
@@ -18,6 +21,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.NumberFormat;
 import java.util.List;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.PembayaranViewHolder> {
 
@@ -61,6 +66,7 @@ public class PembayaranAdapter extends RecyclerView.Adapter<PembayaranAdapter.Pe
         }
         holder.txtHarga.setText("Rp" + NumberFormat.getInstance().format(harga_barang));
         holder.txtTotal.setText("Rp" + NumberFormat.getInstance().format(total_harga));
+
 
     }
 

@@ -218,7 +218,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
                 new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
                         .addSwipeLeftBackgroundColor(Color.parseColor("#e60026"))
-                        .addSwipeLeftActionIcon(R.drawable.ic_delete_white)
+                        .addSwipeLeftActionIcon(R.drawable.ic_trash)
                         .create()
                         .decorate();
 
