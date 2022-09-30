@@ -51,7 +51,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
     private String date;
 
     List<DataTokoItem> dataToko;
-    String id_outlet;
+    String id_outlet, nama_outlet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +95,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 id_outlet = dataToko.get(i).getIdOutlet();
+                nama_outlet = dataToko.get(i).getNamaOutlet();
             }
 
             @Override
@@ -174,6 +175,7 @@ public class ReportTokoGudangActivity extends AppCompatActivity {
         intent.putExtra("tanggal", date);
         intent.putExtra("pilihan", pilihan);
         intent.putExtra("id_outlet", id_outlet);
+        intent.putExtra("nama_outlet", nama_outlet);
         startActivity(intent);
 
     }

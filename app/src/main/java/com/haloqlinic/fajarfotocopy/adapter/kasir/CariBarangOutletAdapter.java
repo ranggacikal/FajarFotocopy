@@ -130,7 +130,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         holder.txtNama.setText(cariBarangOutlet.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.lblJumlahPack.setVisibility(View.GONE);
         holder.btnTambahPesanan.setEnabled(false);
 
         holder.btnTambahPesanan.setVisibility(View.GONE);
@@ -531,6 +530,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                     @Override
                     public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
                         if (response.isSuccessful()) {
+                            progressDialog.dismiss();
                             int jumlah_pcs_validate = 0;
                             int jumlah_pack_validate = 0;
                             assert response.body() != null;
@@ -538,11 +538,14 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                                     .getSearchBarangOutletById();
 
                             for (int i = 0; i < dataValidate.size(); i++) {
-                                jumlah_pcs_validate = Integer.parseInt(dataValidate.get(i).getJumlahPack());
-                                jumlah_pack_validate = Integer.parseInt(dataValidate.get(i).getStock());
+                                jumlah_pcs_validate = Integer.parseInt(dataValidate.get(i).getStock());
+                                jumlah_pack_validate = Integer.parseInt(dataValidate.get(i).getJumlahPack());
                             }
-                            if (jumlah_pcs_validate == 0 || jumlah_pack_validate == 0) {
-                                Toast.makeText(context, "stock barang yg anda pilih sudah habis",
+                            if (jumlah_pcs_validate == 0 && jenis_satuan.equals("Pcs")) {
+                                Toast.makeText(context, "stock (PCS) barang yg anda pilih sudah habis",
+                                        Toast.LENGTH_SHORT).show();
+                            } else if (jumlah_pack_validate == 0 && jenis_satuan.equals("Pack")){
+                                Toast.makeText(context, "stock (PACK) barang yg anda pilih sudah habis",
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
@@ -681,7 +684,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
             txtHargaPcs = itemView.findViewById(R.id.text_item_harga_pcs_barang_outlet);
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
-            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 

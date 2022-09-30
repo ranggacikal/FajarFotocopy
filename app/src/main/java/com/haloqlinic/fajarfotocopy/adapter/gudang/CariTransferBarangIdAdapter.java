@@ -308,7 +308,6 @@ public class CariTransferBarangIdAdapter extends RecyclerView.Adapter<CariTransf
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
             btnTambahBarang = itemView.findViewById(R.id.btn_tambah_barang_transfer);
             edtJumlahPack = itemView.findViewById(R.id.edt_item_jumlah_pack_transfer);
-            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
 
         }
     }

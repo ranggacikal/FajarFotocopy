@@ -338,7 +338,6 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
             edtJumlahPack = itemView.findViewById(R.id.edt_item_jumlah_pack_transfer);
             rlStockHabis = itemView.findViewById(R.id.rl_stok_habis_supplier);
-            txtJmlPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 }

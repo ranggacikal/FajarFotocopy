@@ -1,7 +1,9 @@
 package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +11,8 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,8 +21,6 @@ import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
@@ -30,12 +32,13 @@ import com.haloqlinic.fajarfotocopy.adapter.dialog.DialogValidateAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.PembayaranAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityPembayaranKasirBinding;
-import com.haloqlinic.fajarfotocopy.gudang.tokogudang.CekStockTokoGudangActivity;
 import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.DataBarangOutletListItem;
 import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.ResponseBarangOutletList;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangPenjualan.ResponseHapusBarangPenjualan;
+import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.insertReportToko.ResponseInsertReportToko;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.DataValidateBarangItem;
@@ -50,6 +53,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -80,6 +84,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     ArrayList<String> jumlahPackPenjualan = new ArrayList<>();
     ArrayList<String> jumlahPcsPenjualan = new ArrayList<>();
     ArrayList<String> idOutletPenjualan = new ArrayList<>();
+    List<BarangPenjualanItem> dataBarang;
     ArrayList<String> namaOutlet = new ArrayList<>();
     ArrayList<String> namaBarang = new ArrayList<>();
     ArrayList<String> hargaPcsPenjualan = new ArrayList<>();
@@ -158,6 +163,9 @@ public class PembayaranKasirActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         PushDownAnim.setPushDownAnimTo(binding.linearBackPembayaranKasir)
                 .setScale(MODE_SCALE, 0.89f)
                 .setOnClickListener(new View.OnClickListener() {
@@ -196,7 +204,79 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     }
                 });
 
+        slideHapus();
+
         loadDataPembayaran();
+
+    }
+
+    private void slideHapus() {
+        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback( 0,
+                ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+
+                switch (direction) {
+                    case ItemTouchHelper.LEFT:
+                        String id_penjualan = dataBarang.get(position).getIdPenjualan();
+                        hapusPenjualan(id_penjualan);
+                        break;
+                }
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY,
+                        actionState, isCurrentlyActive)
+                        .addSwipeLeftBackgroundColor(Color.parseColor("#e60026"))
+                        .addSwipeLeftActionIcon(R.drawable.ic_trash)
+                        .create()
+                        .decorate();
+                super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(binding.rvListBarangPembayaran);
+    }
+
+    private void hapusPenjualan(String id_penjualan) {
+
+        ConfigRetrofit.service.hapusBarangPenjualan(id_penjualan).enqueue(new Callback<ResponseHapusBarangPenjualan>() {
+            @Override
+            public void onResponse(Call<ResponseHapusBarangPenjualan> call, Response<ResponseHapusBarangPenjualan> response) {
+                if (response.isSuccessful()) {
+
+                    int status = response.body().getStatus();
+
+                    if (status == 1) {
+
+                        Toast.makeText(PembayaranKasirActivity.this,
+                                "Hapus Data Berhasil", Toast.LENGTH_SHORT).show();
+                        loadDataPembayaran();
+
+                    } else {
+                        Toast.makeText(PembayaranKasirActivity.this,
+                                "Hapus Data Gagal", Toast.LENGTH_SHORT).show();
+                    }
+
+                } else {
+                    Toast.makeText(PembayaranKasirActivity.this,
+                            "Response Gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseHapusBarangPenjualan> call, Throwable t) {
+                Toast.makeText(PembayaranKasirActivity.this,
+                        "Koneksi Error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void validateDataBarang(ProgressDialog progressDialog) {
@@ -506,7 +586,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     if (status == 1) {
 
 
-                        List<BarangPenjualanItem> dataBarang = response.body().getBarangPenjualan();
+                        dataBarang = response.body().getBarangPenjualan();
                         PembayaranAdapter adapter = new PembayaranAdapter(PembayaranKasirActivity.this,
                                 dataBarang);
 

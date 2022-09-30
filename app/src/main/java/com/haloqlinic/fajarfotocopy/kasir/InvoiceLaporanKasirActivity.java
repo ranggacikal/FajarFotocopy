@@ -50,9 +50,13 @@ public class InvoiceLaporanKasirActivity extends AppCompatActivity {
         if (pilihan.equals("Hari")){
 
             link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
-                    "getTransaksiByHari?id_outlet="+preferencedConfig.getPreferenceIdOutlet()+
+                    "getReportTransaksiTokoByHari?nama_outlet="+preferencedConfig.getPreferenceNamaToko()+
                     "&hari="+tanggal;
 
+        } else {
+            link_web = "http://fajar-fotocopy.com/backend_fotocopy/index.php/API_fotocopy/" +
+                    "getReportTransaksiTokoByBulan?nama_outlet="+preferencedConfig.getPreferenceNamaToko()+
+                    "&bulan="+bulan_tahun;
         }
 
         binding.webViewLaporanKasir.setWebViewClient(new myWebclient());

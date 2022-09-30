@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,7 @@ import com.haloqlinic.fajarfotocopy.adapter.kasir.model.DataPenjualan;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiKasirActivity;
 import com.haloqlinic.fajarfotocopy.model.editJumlahPackOutlet.ResponseEditJumlahPackOutlet;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
 import com.mcdev.quantitizerlibrary.HorizontalQuantitizer;
@@ -137,7 +139,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
         dialog.setCancelable(false);
 
         final RadioGroup rgPilihan = dialog.findViewById(R.id.rg_pilihan_satuan);
-        final LinearLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
+        final ConstraintLayout llQtyDialog = dialog.findViewById(R.id.ll_qty_dialog_kasir);
         final HorizontalQuantitizer numberPicker = dialog.findViewById(R.id.number_picker_dialog_kasir);
         final TextView edtTotalHarga = dialog.findViewById(R.id.edt_pcs_dialog_kasir);
         final TextView btnTambah = dialog.findViewById(R.id.text_tambah_barang_dialog_kasi);
@@ -366,10 +368,65 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
 //                int kurangi_stock = Integer.parseInt(stock) - number;
                 int jumlah_pack_sisa = jumlahPcs;
 
-                tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
-                        String.valueOf(jumlah_pack_sisa), jenis_satuan);
+                ProgressDialog progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage("Memproses Checkout Barang");
+                progressDialog.show();
+
+                validateStock(id_barang_outlet, id_status_penjualan, id_barang,
+                        String.valueOf(jumlah_pack_sisa), jenis_satuan, progressDialog);
+
+//                tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
+//                        String.valueOf(jumlah_pack_sisa), jenis_satuan);
             }
         });
+
+    }
+
+    private void validateStock(String id_barang_outlet, String id_status_penjualan,
+                               String id_barang, String jumlah_pack_sisa, String jenis_satuan,
+                               ProgressDialog progressDialog) {
+
+        preferencedConfig = new SharedPreferencedConfig(context);
+
+        ConfigRetrofit.service.barangOutletById(id_barang, preferencedConfig.getPreferenceIdOutlet())
+                .enqueue(new Callback<ResponseBarangOutletById>() {
+                    @Override
+                    public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
+                        if (response.isSuccessful()) {
+                            progressDialog.dismiss();
+                            int jumlah_pcs_validate = 0;
+                            int jumlah_pack_validate = 0;
+                            assert response.body() != null;
+                            List<SearchBarangOutletByIdItem> dataValidate = response.body()
+                                    .getSearchBarangOutletById();
+
+                            for (int i = 0; i < dataValidate.size(); i++) {
+                                jumlah_pcs_validate = Integer.parseInt(dataValidate.get(i).getJumlahPack());
+                                jumlah_pack_validate = Integer.parseInt(dataValidate.get(i).getStock());
+                            }
+                            if (jumlah_pcs_validate == 0 && jenis_satuan.equals("Pcs")) {
+                                Toast.makeText(context, "stock (PCS) barang yg anda pilih sudah habis",
+                                        Toast.LENGTH_SHORT).show();
+                            } else if (jumlah_pack_validate == 0 && jenis_satuan.equals("Pack")){
+                                Toast.makeText(context, "stock (PACK) barang yg anda pilih sudah habis",
+                                        Toast.LENGTH_SHORT).show();
+                            } else {
+                                tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
+                                        String.valueOf(jumlah_pack_sisa), jenis_satuan, progressDialog);
+                            }
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBarangOutletById> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Silahkan Periksa jaringan anda",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
 
     }
 
@@ -453,16 +510,20 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
 //                }else{
 //                    jumlah_pack_sisa = 0;
 //                }
+                ProgressDialog progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage("Memproses Checkout Barang");
+                progressDialog.show();
 
-                tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
-                        String.valueOf(jumlah_pack_sisa), jenis_satuan);
+                validateStock(id_barang_outlet, id_status_penjualan, id_barang,
+                        String.valueOf(jumlah_pack_sisa), jenis_satuan, progressDialog);
             }
         });
 
     }
 
     private void tambahPenjualan(String id_barang_outlet, String id_status_penjualan,
-                                 String id_barang, String jumlah_pack_sisa, String jenis_satuan) {
+                                 String id_barang, String jumlah_pack_sisa, String jenis_satuan,
+                                 ProgressDialog progressDialog) {
 
         preferencedConfig = new SharedPreferencedConfig(context);
         transaksiKasirActivity.dataBarangoutlet.add(id_barang_outlet);
@@ -483,10 +544,6 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
         date = dateFormat.format(calendar.getTime());
         String tanggal = date;
 
-        ProgressDialog progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Menambahkan barang");
-        progressDialog.show();
-
         ConfigRetrofit.service.tambahPenjualan(id_penjualan, id_barang_outlet, id_barang,
                 String.valueOf(number), jumlah_pack_sisa, String.valueOf(total), tanggal,
                 preferencedConfig.getPreferenceNama(), id_status_penjualan, jenis_satuan, "pending")
@@ -502,7 +559,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                                 Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 transaksiKasirActivity.loadDataPembayaran();
-                                transaksiKasirActivity.loadSearchBarangKasir(transaksiKasirActivity.cariBarang);
+                                transaksiKasirActivity.loadSearchBarangById(transaksiKasirActivity.cariBarangId);
 //                                editJumlahPack(jumlah_pack_sisa, id_barang_outlet);
                             } else {
                                 Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();
