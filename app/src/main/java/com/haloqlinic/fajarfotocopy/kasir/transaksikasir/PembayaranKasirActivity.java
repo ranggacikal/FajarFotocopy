@@ -39,6 +39,7 @@ import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangPenjualan.ResponseHapusBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.insertReportToko.ResponseInsertReportToko;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.DataValidateBarangItem;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.ResponseValidateBarang;
@@ -84,6 +85,16 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     ArrayList<String> jumlahPcsPenjualan = new ArrayList<>();
     ArrayList<String> idOutletPenjualan = new ArrayList<>();
     List<BarangPenjualanItem> dataBarang;
+    ArrayList<String> namaOutlet = new ArrayList<>();
+    ArrayList<String> namaBarang = new ArrayList<>();
+    ArrayList<String> hargaPcsPenjualan = new ArrayList<>();
+    ArrayList<String> hargaPackPenjualan = new ArrayList<>();
+    ArrayList<String> totalPenjualan = new ArrayList<>();
+    ArrayList<String> jenisSatuan = new ArrayList<>();
+    ArrayList<String> tanggalPenjualan = new ArrayList<>();
+    ArrayList<String> namaKasirPenjualan = new ArrayList<>();
+    ArrayList<String> idStatusPenjualan = new ArrayList<>();
+    ArrayList<String> statusPenjualan = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -491,6 +502,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Berhasil Set Data Pembayaran", Toast.LENGTH_SHORT).show();
+                                insertReportToko();
 
                             } else {
                                 Toast.makeText(PembayaranKasirActivity.this,
@@ -509,6 +521,48 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                                 "Koneksi error", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+    }
+
+    private void insertReportToko() {
+
+        ProgressDialog pdReport = new ProgressDialog(this);
+        pdReport.setMessage("Menambahkan Data Report Penjualan");
+        pdReport.show();
+
+        ArrayList<String> metodePembayaranPenjualan = new ArrayList<>();
+
+        for (int a = 0; a < namaOutlet.size(); a++){
+            metodePembayaranPenjualan.add(metode_bayar);
+        }
+
+        ConfigRetrofit.service.insertReportToko(namaOutlet, namaBarang, jumlahPcsPenjualan, jumlahPackPenjualan,
+                hargaPcsPenjualan, hargaPackPenjualan, totalPenjualan, metodePembayaranPenjualan, jenisSatuan, tanggalPenjualan,
+                namaKasirPenjualan, idStatusPenjualan, statusPenjualan).enqueue(new Callback<ResponseInsertReportToko>() {
+            @Override
+            public void onResponse(Call<ResponseInsertReportToko> call, Response<ResponseInsertReportToko> response) {
+                if (response.isSuccessful()){
+                    pdReport.dismiss();
+                    boolean isSukses = response.body().isSukses();
+                    if (isSukses) {
+                        Toast.makeText(PembayaranKasirActivity.this,
+                                "Berhasil Menambahkan Report Penjualan", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(PembayaranKasirActivity.this,
+                                "Gagal Menambahkan Report Penjualan", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    pdReport.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseInsertReportToko> call, Throwable t) {
+                pdReport.dismiss();
+                Toast.makeText(PembayaranKasirActivity.this,
+                        "Report Penjualan: Periksa Koneksi Anda", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -543,6 +597,16 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                             jumlahPackPenjualan.add(dataBarang.get(i).getJumlahPack());
                             jumlahPcsPenjualan.add(dataBarang.get(i).getJumlahBarang());
                             idOutletPenjualan.add(dataBarang.get(i).getIdOutlet());
+                            namaOutlet.add(preferencedConfig.getPreferenceNamaToko());
+                            namaBarang.add(dataBarang.get(i).getNamaBarang());
+                            hargaPcsPenjualan.add(dataBarang.get(i).getHargaJualToko());
+                            hargaPackPenjualan.add(dataBarang.get(i).getHargaJualTokoPack());
+                            totalPenjualan.add(dataBarang.get(i).getTotal());
+                            jenisSatuan.add(dataBarang.get(i).getJenisSatuan());
+                            namaKasirPenjualan.add(dataBarang.get(i).getNamaKasir());
+                            idStatusPenjualan.add(dataBarang.get(i).getIdStatusPenjualan());
+                            statusPenjualan.add("selesai");
+                            tanggalPenjualan.add(dataBarang.get(i).getTanggalPenjualan());
                         }
 
                         total = 0;
