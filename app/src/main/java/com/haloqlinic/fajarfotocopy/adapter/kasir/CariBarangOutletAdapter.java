@@ -130,7 +130,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
         holder.txtNama.setText(cariBarangOutlet.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.lblJumlahPack.setVisibility(View.GONE);
         holder.btnTambahPesanan.setEnabled(false);
 
         holder.btnTambahPesanan.setVisibility(View.GONE);
@@ -685,7 +684,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
             txtHargaPcs = itemView.findViewById(R.id.text_item_harga_pcs_barang_outlet);
             txtHargaPack = itemView.findViewById(R.id.text_item_harga_pack_barang_outlet);
             btnTambahPesanan = itemView.findViewById(R.id.btn_tambah_pesanan_barang_outlet);
-            lblJumlahPack = itemView.findViewById(R.id.lbl_jumlah_pack);
         }
     }
 

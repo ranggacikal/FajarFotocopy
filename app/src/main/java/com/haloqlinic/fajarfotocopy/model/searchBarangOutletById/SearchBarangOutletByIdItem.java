@@ -4,178 +4,202 @@ import com.google.gson.annotations.SerializedName;
 
 public class SearchBarangOutletByIdItem{
 
-	@SerializedName("harga_jual_pack")
-	private String hargaJualPack;
+    @SerializedName("harga_jual_pack")
+    private String hargaJualPack;
 
-	@SerializedName("image_barang")
-	private String imageBarang;
+    @SerializedName("image_barang")
+    private String imageBarang;
 
-	@SerializedName("jumlah_pack")
-	private String jumlahPack;
+    @SerializedName("jumlah_pack")
+    private String jumlahPack;
 
-	@SerializedName("id_kategori_barang")
-	private String idKategoriBarang;
+    @SerializedName("id_kategori_barang")
+    private String idKategoriBarang;
 
-	@SerializedName("diskon_pack")
-	private String diskonPack;
+    @SerializedName("diskon_pack")
+    private String diskonPack;
 
-	@SerializedName("id_barang")
-	private String idBarang;
+    @SerializedName("id_barang")
+    private String idBarang;
 
-	@SerializedName("number_of_pack")
-	private String numberOfPack;
+    @SerializedName("harga_jual_toko_pack")
+    private String hargaJualTokoPack;
 
-	@SerializedName("id_outlet")
-	private String idOutlet;
+    @SerializedName("number_of_pack")
+    private String numberOfPack;
 
-	@SerializedName("nama_barang")
-	private String namaBarang;
+    @SerializedName("id_outlet")
+    private String idOutlet;
 
-	@SerializedName("harga_jual")
-	private String hargaJual;
+    @SerializedName("nama_barang")
+    private String namaBarang;
 
-	@SerializedName("stock")
-	private String stock;
+    @SerializedName("harga_jual")
+    private String hargaJual;
 
-	@SerializedName("id_barang_outlet")
-	private String idBarangOutlet;
+    @SerializedName("stock")
+    private String stock;
 
-	@SerializedName("diskon")
-	private String diskon;
+    @SerializedName("harga_jual_toko")
+    private String hargaJualToko;
 
-	@SerializedName("nama_kategori")
-	private String namaKategori;
+    @SerializedName("id_barang_outlet")
+    private String idBarangOutlet;
 
-	public void setHargaJualPack(String hargaJualPack){
-		this.hargaJualPack = hargaJualPack;
-	}
+    @SerializedName("diskon")
+    private String diskon;
 
-	public String getHargaJualPack(){
-		return hargaJualPack;
-	}
+    @SerializedName("nama_kategori")
+    private String namaKategori;
 
-	public void setImageBarang(String imageBarang){
-		this.imageBarang = imageBarang;
-	}
+    public void setHargaJualPack(String hargaJualPack){
+        this.hargaJualPack = hargaJualPack;
+    }
 
-	public String getImageBarang(){
-		return imageBarang;
-	}
+    public String getHargaJualPack(){
+        return hargaJualPack;
+    }
 
-	public void setJumlahPack(String jumlahPack){
-		this.jumlahPack = jumlahPack;
-	}
+    public void setImageBarang(String imageBarang){
+        this.imageBarang = imageBarang;
+    }
 
-	public String getJumlahPack(){
-		return jumlahPack;
-	}
+    public String getImageBarang(){
+        return imageBarang;
+    }
 
-	public void setIdKategoriBarang(String idKategoriBarang){
-		this.idKategoriBarang = idKategoriBarang;
-	}
+    public void setJumlahPack(String jumlahPack){
+        this.jumlahPack = jumlahPack;
+    }
 
-	public String getIdKategoriBarang(){
-		return idKategoriBarang;
-	}
+    public String getJumlahPack(){
+        return jumlahPack;
+    }
 
-	public void setDiskonPack(String diskonPack){
-		this.diskonPack = diskonPack;
-	}
+    public void setIdKategoriBarang(String idKategoriBarang){
+        this.idKategoriBarang = idKategoriBarang;
+    }
 
-	public String getDiskonPack(){
-		return diskonPack;
-	}
+    public String getIdKategoriBarang(){
+        return idKategoriBarang;
+    }
 
-	public void setIdBarang(String idBarang){
-		this.idBarang = idBarang;
-	}
+    public void setDiskonPack(String diskonPack){
+        this.diskonPack = diskonPack;
+    }
 
-	public String getIdBarang(){
-		return idBarang;
-	}
+    public String getDiskonPack(){
+        return diskonPack;
+    }
 
-	public void setNumberOfPack(String numberOfPack){
-		this.numberOfPack = numberOfPack;
-	}
+    public void setIdBarang(String idBarang){
+        this.idBarang = idBarang;
+    }
 
-	public String getNumberOfPack(){
-		return numberOfPack;
-	}
+    public String getIdBarang(){
+        return idBarang;
+    }
 
-	public void setIdOutlet(String idOutlet){
-		this.idOutlet = idOutlet;
-	}
+    public void setHargaJualTokoPack(String hargaJualTokoPack){
+        this.hargaJualTokoPack = hargaJualTokoPack;
+    }
 
-	public String getIdOutlet(){
-		return idOutlet;
-	}
+    public String getHargaJualTokoPack(){
+        return hargaJualTokoPack;
+    }
 
-	public void setNamaBarang(String namaBarang){
-		this.namaBarang = namaBarang;
-	}
+    public void setNumberOfPack(String numberOfPack){
+        this.numberOfPack = numberOfPack;
+    }
 
-	public String getNamaBarang(){
-		return namaBarang;
-	}
+    public String getNumberOfPack(){
+        return numberOfPack;
+    }
 
-	public void setHargaJual(String hargaJual){
-		this.hargaJual = hargaJual;
-	}
+    public void setIdOutlet(String idOutlet){
+        this.idOutlet = idOutlet;
+    }
 
-	public String getHargaJual(){
-		return hargaJual;
-	}
+    public String getIdOutlet(){
+        return idOutlet;
+    }
 
-	public void setStock(String stock){
-		this.stock = stock;
-	}
+    public void setNamaBarang(String namaBarang){
+        this.namaBarang = namaBarang;
+    }
 
-	public String getStock(){
-		return stock;
-	}
+    public String getNamaBarang(){
+        return namaBarang;
+    }
 
-	public void setIdBarangOutlet(String idBarangOutlet){
-		this.idBarangOutlet = idBarangOutlet;
-	}
+    public void setHargaJual(String hargaJual){
+        this.hargaJual = hargaJual;
+    }
 
-	public String getIdBarangOutlet(){
-		return idBarangOutlet;
-	}
+    public String getHargaJual(){
+        return hargaJual;
+    }
 
-	public void setDiskon(String diskon){
-		this.diskon = diskon;
-	}
+    public void setStock(String stock){
+        this.stock = stock;
+    }
 
-	public String getDiskon(){
-		return diskon;
-	}
+    public String getStock(){
+        return stock;
+    }
 
-	public void setNamaKategori(String namaKategori){
-		this.namaKategori = namaKategori;
-	}
+    public void setHargaJualToko(String hargaJualToko){
+        this.hargaJualToko = hargaJualToko;
+    }
 
-	public String getNamaKategori(){
-		return namaKategori;
-	}
+    public String getHargaJualToko(){
+        return hargaJualToko;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"SearchBarangOutletByIdItem{" + 
-			"harga_jual_pack = '" + hargaJualPack + '\'' + 
-			",image_barang = '" + imageBarang + '\'' + 
-			",jumlah_pack = '" + jumlahPack + '\'' + 
-			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
-			",diskon_pack = '" + diskonPack + '\'' + 
-			",id_barang = '" + idBarang + '\'' + 
-			",number_of_pack = '" + numberOfPack + '\'' + 
-			",id_outlet = '" + idOutlet + '\'' + 
-			",nama_barang = '" + namaBarang + '\'' + 
-			",harga_jual = '" + hargaJual + '\'' + 
-			",stock = '" + stock + '\'' + 
-			",id_barang_outlet = '" + idBarangOutlet + '\'' + 
-			",diskon = '" + diskon + '\'' + 
-			",nama_kategori = '" + namaKategori + '\'' + 
-			"}";
-		}
+    public void setIdBarangOutlet(String idBarangOutlet){
+        this.idBarangOutlet = idBarangOutlet;
+    }
+
+    public String getIdBarangOutlet(){
+        return idBarangOutlet;
+    }
+
+    public void setDiskon(String diskon){
+        this.diskon = diskon;
+    }
+
+    public String getDiskon(){
+        return diskon;
+    }
+
+    public void setNamaKategori(String namaKategori){
+        this.namaKategori = namaKategori;
+    }
+
+    public String getNamaKategori(){
+        return namaKategori;
+    }
+
+    @Override
+     public String toString(){
+        return 
+            "SearchBarangOutletByIdItem{" + 
+            "harga_jual_pack = '" + hargaJualPack + '\'' + 
+            ",image_barang = '" + imageBarang + '\'' + 
+            ",jumlah_pack = '" + jumlahPack + '\'' + 
+            ",id_kategori_barang = '" + idKategoriBarang + '\'' + 
+            ",diskon_pack = '" + diskonPack + '\'' + 
+            ",id_barang = '" + idBarang + '\'' + 
+            ",harga_jual_toko_pack = '" + hargaJualTokoPack + '\'' + 
+            ",number_of_pack = '" + numberOfPack + '\'' + 
+            ",id_outlet = '" + idOutlet + '\'' + 
+            ",nama_barang = '" + namaBarang + '\'' + 
+            ",harga_jual = '" + hargaJual + '\'' + 
+            ",stock = '" + stock + '\'' + 
+            ",harga_jual_toko = '" + hargaJualToko + '\'' + 
+            ",id_barang_outlet = '" + idBarangOutlet + '\'' + 
+            ",diskon = '" + diskon + '\'' + 
+            ",nama_kategori = '" + namaKategori + '\'' + 
+            "}";
+        }
 }

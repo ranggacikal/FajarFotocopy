@@ -1,4 +1,4 @@
-    package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
+package com.haloqlinic.fajarfotocopy.kasir.transaksikasir;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -58,6 +58,7 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     String nameActivity = "";
     public String cariBarang = "";
+    public String cariBarangId = "";
     Context context;
 
     ProgressDialog progressDialog;
@@ -117,25 +118,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
         preferencedConfig = new SharedPreferencedConfig(this);
 
-        binding.recyclerBarangOutlet.setHasFixedSize(true);
-        GridLayoutManager manager = new GridLayoutManager(TransaksiKasirActivity.this,
-                2, GridLayoutManager.VERTICAL, false);
-        binding.recyclerBarangOutlet.setLayoutManager(manager);
-        binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
-
-        binding.recyclerBarangOutletBarcode.setHasFixedSize(true);
-        GridLayoutManager manager2 = new GridLayoutManager(TransaksiKasirActivity.this,
-                2, GridLayoutManager.VERTICAL, false);
-        binding.recyclerBarangOutlet.setLayoutManager(manager2);
-
-        binding.searchviewBarangOutletBarcode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                binding.searchviewBarangOutletBarcode.setQueryHint("ID Barang");
-                binding.searchviewBarangOutletBarcode.setIconified(false);
-            }
-        });
-
         nameActivity = getIntent().getStringExtra("namaActivity");
         id_status_penjualan = preferencedConfig.getPreferenceIdStatusPenjualan();
 
@@ -145,15 +127,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        IntentIntegrator intentIntegrator = new IntentIntegrator(
-//                                TransaksiKasirActivity.this
-//                        );
-//
-//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-//                        intentIntegrator.setBeepEnabled(true);
-//                        intentIntegrator.setOrientationLocked(true);
-//                        intentIntegrator.setCaptureActivity(Capture.class);
-//                        intentIntegrator.initiateScan();
                         ScanOptions options = new ScanOptions();
                         options.setOrientationLocked(false);
                         barcodeLauncher.launch(options);
@@ -178,19 +151,6 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String textCari) {
                 cariBarang = textCari;
                 loadSearchBarangKasir(cariBarang);
-                return true;
-            }
-        });
-
-        binding.searchviewBarangOutletBarcode.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String textCariId) {
-                loadSearchBarangById(textCariId);
                 return true;
             }
         });
@@ -220,11 +180,10 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                 if(result.getContents() == null) {
                     Toast.makeText(TransaksiKasirActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
                 } else {
-                    binding.searchviewSupplierKasir.setVisibility(View.GONE);
-                    binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
-                    binding.searchviewBarangOutletBarcode.setQuery(result.getContents(), false);
-                    binding.recyclerBarangOutlet.setVisibility(View.GONE);
-                    binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
+                    cariBarangId = result.getContents();
+                    loadSearchBarangById(cariBarangId);
+                    binding.searchviewSupplierKasir.setQueryHint("Masukan Nama Barang");
+                    binding.searchviewSupplierKasir.setIconified(true);
                 }
             });
 
@@ -271,32 +230,32 @@ public class TransaksiKasirActivity extends AppCompatActivity {
 
     }
 
-    private void loadSearchBarangById(String textCariId) {
+    public void loadSearchBarangById(String textCariId) {
 
         Log.d("cekBarcodeId", "loadSearchBarangById: "+textCariId);
 
         if (textCariId.equals("")){
-            binding.recyclerBarangOutlet.setVisibility(View.GONE);
-            binding.searchviewBarangOutletBarcode.setVisibility(View.GONE);
             binding.searchviewSupplierKasir.setVisibility(View.VISIBLE);
         }else{
-
-            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletById(textCariId, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletById>() {
                         @Override
                         public void onResponse(Call<ResponseBarangOutletById> call, Response<ResponseBarangOutletById> response) {
                             if (response.isSuccessful()){
+                                binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
                                 List<SearchBarangOutletByIdItem> dataCariId = response.body().getSearchBarangOutletById();
                                 Log.d("cekDataCariId", "onResponse: "+dataCariId);
-                                if (dataCariId==null){
+                                int status = response.body().getStatus();
+                                if (status == 1){
+                                    GridLayoutManager manager2 = new GridLayoutManager(TransaksiKasirActivity.this,
+                                            2, GridLayoutManager.VERTICAL, false);
+                                    binding.recyclerBarangOutlet.setLayoutManager(manager2);
+                                    BarangOutletIdAdapter adapterId = new BarangOutletIdAdapter(TransaksiKasirActivity.this, dataCariId, TransaksiKasirActivity.this);
+                                    binding.recyclerBarangOutlet.setAdapter(adapterId);
+                                }else {
                                     Toast.makeText(TransaksiKasirActivity.this, "Data barang kosong",
                                             Toast.LENGTH_SHORT).show();
-                                }else {
-
-                                    BarangOutletIdAdapter adapterId = new BarangOutletIdAdapter(TransaksiKasirActivity.this, dataCariId, TransaksiKasirActivity.this);
-                                    binding.recyclerBarangOutletBarcode.setAdapter(adapterId);
                                 }
 
                             }else{
@@ -340,18 +299,21 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
             binding.txtDataKosongKasir.setVisibility(View.GONE);
         }else {
-            binding.recyclerBarangOutletBarcode.setVisibility(View.GONE);
             binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
             ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
                     .enqueue(new Callback<ResponseBarangOutletByNama>() {
                         @Override
                         public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
                             if (response.isSuccessful()) {
+                                binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
                                 int status = response.body().getStatus();
 
                                 if (status==1) {
-                                    binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
+                                    binding.recyclerBarangOutlet.setHasFixedSize(true);
+                                    GridLayoutManager manager = new GridLayoutManager(TransaksiKasirActivity.this,
+                                            2, GridLayoutManager.VERTICAL, false);
+                                    binding.recyclerBarangOutlet.setLayoutManager(manager);
 
                                     List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
 
