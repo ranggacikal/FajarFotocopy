@@ -1,111 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_minta_barang"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_minta_barang"
-    xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="6dp"
-    android:layout_margin="10dp">
+    android:background="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        android:layout_margin="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/img_hapus_minta_barang_gudang"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/text_item_nama_outlet_minta_barang_gudang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:fontFamily="@font/sairabold"
-            android:text="Nama Outlet"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgPanahBawah"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/panahbawah"
-            app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgPanahAtas"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="20dp"
-            android:visibility="gone"
-            android:src="@drawable/panahatas"
-            app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_data_barang_minta_barang_gudang"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:visibility="gone"
-            android:layout_marginEnd="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang" />
+            android:layout_margin="10dp">
 
-        <TextView
-            android:id="@+id/tv_pilih_driver"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/sairamedium"
-            android:text="Pilih Driver"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_data_barang_minta_barang_gudang" />
+            <TextView
+                android:id="@+id/text_item_nama_outlet_minta_barang_gudang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:fontFamily="@font/sairabold"
+                android:text="Nama Outlet"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Spinner
-            android:id="@+id/spinner_pilih_driver_minta_barang_gudang"
-            android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/bg_rectangle"
-            android:fontFamily="@font/sairamedium"
-            android:inputType="textCapWords"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_pilih_driver" />
+            <ImageView
+                android:id="@+id/imgPanahBawah"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/panahbawah"
+                app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_create_pengiriman_minta_barang"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/btn_gold"
-            android:fontFamily="@font/sairabold"
-            android:text="Buat Pengiriman Barang"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_driver_minta_barang_gudang" />
+            <ImageView
+                android:id="@+id/imgPanahAtas"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/panahatas"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_data_barang_minta_barang_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/text_item_nama_outlet_minta_barang_gudang" />
 
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_pilih_driver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/sairamedium"
+                android:text="Pilih Driver"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_data_barang_minta_barang_gudang" />
+
+            <Spinner
+                android:id="@+id/spinner_pilih_driver_minta_barang_gudang"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/bg_rectangle"
+                android:fontFamily="@font/sairamedium"
+                android:inputType="textCapWords"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_pilih_driver" />
+
+            <Button
+                android:id="@+id/btn_create_pengiriman_minta_barang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/btn_gold"
+                android:fontFamily="@font/sairabold"
+                android:text="Buat Pengiriman Barang"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinner_pilih_driver_minta_barang_gudang" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/img_hapus_minta_barang_gudang"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_delete"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 

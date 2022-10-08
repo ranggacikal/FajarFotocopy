@@ -10,9 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.kepalatoko.listpengirimanketo.DetailPengirimanKetoActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
@@ -32,6 +31,7 @@ import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.IdBarangOutletItem;
 import com.haloqlinic.fajarfotocopy.model.getIdBarangOutlet.ResponseGetIdBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPengiriman.ResponseHapusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.listPengiriman.GetListPengirimanItem;
+import com.haloqlinic.fajarfotocopy.model.saveValue.PositionTerimaBarang;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.GetStockByIdBarangItem;
 import com.haloqlinic.fajarfotocopy.model.stockByIdBarang.ResponseStockByIdBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahBarangOutlet.ResponseTambahBarangOutlet;
@@ -39,9 +39,7 @@ import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateSt
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -62,6 +60,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
     String id_pengiriman, id_barang, id_outlet, jumlah_pcs, jumlah_pack, img_barang, hargaPcs,
             hargaPack, diskon, diskonPack, id_status_pengiriman, status_barang, number_of_pack;
     Dialog dialog;
+    SharedPreferencedConfig preferencedConfig;
 
     public DetailPengirimanKetoAdapter(Context context, List<GetListPengirimanItem> listPengiriman, DetailPengirimanKetoActivity detailPengirimanKetoActivity) {
         this.context = context;
@@ -145,7 +144,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                         hargaPcs = listPengiriman.get(position).getHargaJualToko();
                         hargaPack = listPengiriman.get(position).getHargaJualTokoPack();
                         Log.d("cekNumberOfpack", "clickTerima: " + number_of_pack);
-                        tampilDialog();
+                        tampilDialog(position);
                     }
                 });
 
@@ -359,7 +358,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     }
 
-    private void tampilDialog() {
+    private void tampilDialog(int position) {
 
         dialog = new Dialog(context);
 
@@ -396,7 +395,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 //                                }
 
 //                                validasiStock();
-                                terimaBarang();
+                                terimaBarang(position);
                                 dialogInterface.dismiss();
                             }
                         })
@@ -454,7 +453,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
                         } else if (Integer.parseInt(jumlah_pcs) <= Integer.parseInt(stockStr)) {
 
-                            terimaBarang();
+//                            terimaBarang(position);
                         } else {
                             Toast.makeText(context, "Stock barang di gudang sudah habis, " +
                                     "silahkan hubungi karyawan/kepala gudang", Toast.LENGTH_SHORT).show();
@@ -479,7 +478,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     }
 
-    private void terimaBarang() {
+    private void terimaBarang(int position) {
 
         Random rnd = new Random();
         int number = rnd.nextInt(999999);
@@ -508,12 +507,12 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                                 Toast.makeText(context, "Gagal Terima barang, silahkan coba lagi", Toast.LENGTH_SHORT).show();
                             } else if (pesan.equals("barang Sudah Terdaftar")) {
                                 dialog.dismiss();
-                                getIdBarangOutlet();
+                                getIdBarangOutlet(position);
                             } else {
                                 dialog.dismiss();
                                 Toast.makeText(context, "Berhasil Menerima Data", Toast.LENGTH_SHORT).show();
 //                                hapusPengiriman();
-                                editPengiriman();
+                                editPengiriman(position);
                             }
 
                         } else {
@@ -532,7 +531,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                 });
     }
 
-    private void getIdBarangOutlet() {
+    private void getIdBarangOutlet(int position) {
 
         ProgressDialog progressGetId = new ProgressDialog(context);
         progressGetId.setMessage("memuat id barang outlet");
@@ -564,7 +563,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
                         Log.d("cekNumberOfpack", "forGetId: " + number_of_pack_outlet);
 
-                        editStock(id_barang_outlet, stock_pcs, stock_pack, number_of_pack_outlet);
+                        editStock(id_barang_outlet, stock_pcs, stock_pack, number_of_pack_outlet, position);
 
                     } else {
                         progressGetId.dismiss();
@@ -586,7 +585,8 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     }
 
-    private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack, String number_of_pack_outlet) {
+    private void editStock(String id_barang_outlet_edit, String stock_pcs, String stock_pack,
+                           String number_of_pack_outlet, int position) {
 
 //        ProgressDialog progressEdit = new ProgressDialog(context);
 //        progressEdit.setMessage("Edit Stock");
@@ -617,7 +617,7 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     } else {
 
                         Toast.makeText(context, "Berhasil Tambah Stock", Toast.LENGTH_SHORT).show();
-                        editPengiriman();
+                        editPengiriman(position);
 
                     }
 
@@ -637,11 +637,12 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
 
     }
 
-    private void editPengiriman() {
+    private void editPengiriman(int position) {
 
 //        ProgressDialog progressDialog = new ProgressDialog(context);
 //        progressDialog.setMessage("Edit data di pengiriman");
 //        progressDialog.show();
+        preferencedConfig = new SharedPreferencedConfig(context);
 
         ConfigRetrofit.service.editPengiriman(id_pengiriman, id_barang, jumlah_pcs, jumlah_pack,
                 id_outlet, id_status_pengiriman, "diterima")
@@ -653,6 +654,10 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                             int status = response.body().getStatus();
                             if (status == 1) {
                                 Log.d("editHapusPengiriman", "onResponse: " + "berhasil");
+                                preferencedConfig.savePrefInt(
+                                        String.valueOf(SharedPreferencedConfig.PREFERENCE_POSITION_TERIMA_BARANG),
+                                        position
+                                );
                                 detailPengirimanKetoActivity.loadDetailPengiriman();
                             } else {
                                 Log.d("editHapusPengiriman", "onResponse: " + "Gagal");
@@ -671,6 +676,13 @@ public class DetailPengirimanKetoAdapter extends RecyclerView.Adapter<DetailPeng
                     }
                 });
 
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void updateListPengiriman(List<GetListPengirimanItem> newList) {
+        listPengiriman.clear();
+        listPengiriman.addAll(newList);
+        this.notifyDataSetChanged();
     }
 
     private void hapusPengiriman() {

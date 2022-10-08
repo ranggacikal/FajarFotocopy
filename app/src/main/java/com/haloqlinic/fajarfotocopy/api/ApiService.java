@@ -11,10 +11,14 @@ import com.haloqlinic.fajarfotocopy.model.editProfile.ResponseEditProfile;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanBarang.ResponseEditStatusPenjualanBarang;
 import com.haloqlinic.fajarfotocopy.model.getKategoriById.ResponseKategoriById;
 import com.haloqlinic.fajarfotocopy.model.hapusBarangPenjualan.ResponseHapusBarangPenjualan;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangPermintaan.ResponseHapusBarangPermintaan;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
+import com.haloqlinic.fajarfotocopy.model.hapusMintaBarangByOutlet.ResponseHapusMintaBarangByOutlet;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.insertReportToko.ResponseInsertReportToko;
+import com.haloqlinic.fajarfotocopy.model.listBarangGudangValidate.ResponseListBarangGudangValidate;
+import com.haloqlinic.fajarfotocopy.model.reportPenjualanGudang.ResponseReportPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.searchBarangGudang.ResponseSearchBarangGudang;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutlet.ResponseSearchBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
@@ -114,9 +118,11 @@ import com.haloqlinic.fajarfotocopy.model.transaksiByHari.ResponseTransaksiByHar
 import com.haloqlinic.fajarfotocopy.model.updatePassword.ResponsePassword;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPengiriman.ResponseUpdateStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualan.ResponseUpdateStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanBarangGudang.ResponseUpdateStatusPenjualanBarangGudang;
 import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanGudang.ResponseUpdateStatusPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
 import com.haloqlinic.fajarfotocopy.model.validateBarang.ResponseValidateBarang;
+import com.haloqlinic.fajarfotocopy.model.validateBarangListGudang.ResponseValidateBarangGudang;
 
 import java.util.ArrayList;
 
@@ -779,26 +785,83 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST("tambahBarangReportOutletList")
-    Call<ResponseInsertReportToko> insertReportToko(@Field("nama_outlet[]") ArrayList<String> nama_outlet,
-                                                    @Field("nama_barang[]") ArrayList<String> nama_barang,
-                                                    @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
-                                                    @Field("jumlah_pack[]") ArrayList<String> jumlah_pack,
-                                                    @Field("harga_pcs[]") ArrayList<String> harga_pcs,
-                                                    @Field("harga_pack[]") ArrayList<String> harga_pack,
-                                                    @Field("total[]") ArrayList<String> total,
-                                                    @Field("metode_pembayaran[]") ArrayList<String> metode_pembayaran,
-                                                    @Field("jenis_satuan[]") ArrayList<String> jenis_satuan,
-                                                    @Field("tanggal_penjualan[]") ArrayList<String> tanggal_penjualan,
-                                                    @Field("nama_kasir[]") ArrayList<String> nama_kasir,
-                                                    @Field("id_status_penjualan[]") ArrayList<String> id_status_penjualan,
-                                                    @Field("status_penjualan_barang[]") ArrayList<String> status_penjualan_barang);
+    Call<ResponseInsertReportToko> insertReportToko(
+            @Field("id_outlet[]") ArrayList<String> id_outlet,
+            @Field("nama_outlet[]") ArrayList<String> nama_outlet,
+            @Field("nama_barang[]") ArrayList<String> nama_barang,
+            @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
+            @Field("jumlah_pack[]") ArrayList<String> jumlah_pack,
+            @Field("harga_pcs[]") ArrayList<String> harga_pcs,
+            @Field("harga_pack[]") ArrayList<String> harga_pack,
+            @Field("total[]") ArrayList<String> total,
+            @Field("metode_pembayaran[]") ArrayList<String> metode_pembayaran,
+            @Field("jenis_satuan[]") ArrayList<String> jenis_satuan,
+            @Field("tanggal_penjualan[]") ArrayList<String> tanggal_penjualan,
+            @Field("id_kasir[]") ArrayList<String> id_kasir,
+            @Field("nama_kasir[]") ArrayList<String> nama_kasir,
+            @Field("id_status_penjualan[]") ArrayList<String> id_status_penjualan,
+            @Field("status_penjualan_barang[]") ArrayList<String> status_penjualan_barang
+    );
+
     @FormUrlEncoded
-    @POST("searchBarangOutlet")
-    Call<ResponseSearchBarangOutlet> searchBarangOutlet(@Field("keyword") String keyword,
-                                                        @Field("id_outlet") String id_outlet);
+    @POST("validateBarangGudangList")
+    Call<ResponseValidateBarangGudang> validateBarangListGudang(
+            @Field("id_barang[]") ArrayList<String> id_barang,
+            @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
+            @Field("jumlah_pack[]") ArrayList<String> jumlah_pack
+    );
+
+    @FormUrlEncoded
+    @POST("getIdBarangGudangList")
+    Call<ResponseListBarangGudangValidate> listBarangGudangValidate(
+            @Field("id_barang[]") ArrayList<String> id_barang
+    );
+
+    @FormUrlEncoded
+    @POST("editStatusPenjualanBarangGudang")
+    Call<ResponseUpdateStatusPenjualanBarangGudang> updateStatusBarangGudang(
+            @Field("id_status_penjualan_gudang") String id_status_penjualan_gudang,
+            @Field("status_penjualan") String status_penjualan
+    );
+
+    @FormUrlEncoded
+    @POST("tambahBarangReportGudangList")
+    Call<ResponseReportPenjualanGudang> insertReportPenjualanGudang(
+            @Field("nama_barang[]") ArrayList<String> nama_barang,
+            @Field("jumlah_barang[]") ArrayList<String> jumlah_barang,
+            @Field("jumlah_pack[]") ArrayList<String> jumlah_pack,
+            @Field("harga[]") ArrayList<String> harga,
+            @Field("jumlah_kurang[]") ArrayList<String> jumlah_kurang,
+            @Field("total_harga[]") ArrayList<String> total_harga,
+            @Field("tanggal[]") ArrayList<String> tanggal,
+            @Field("metode_bayar[]") ArrayList<String> metode_bayar,
+            @Field("nama_user[]") ArrayList<String> nama_user,
+            @Field("alamat_tujuan[]") ArrayList<String> alamat_tujuan,
+            @Field("driver_id[]") ArrayList<String> driver_id,
+            @Field("status_pengiriman[]") ArrayList<String> status_pengiriman,
+            @Field("id_status_penjualan_gudang[]") ArrayList<String> id_status_penjualan_gudang,
+            @Field("status_penjualan_barang[]") ArrayList<String> status_penjualan_barang
+    );
+
+    @FormUrlEncoded
+    @POST("hapusBarangPermintaan")
+    Call<ResponseHapusBarangPermintaan> hapusBarangPermintaan(
+            @Field("id_minta_barang") String id_minta_barang
+    );
+
+    @FormUrlEncoded
+    @POST("hapusMintaBarangByOutlet")
+    Call<ResponseHapusMintaBarangByOutlet> hapusMintaBarangByOutlet(
+            @Field("id_outlet") String id_outler
+    );
 
     @FormUrlEncoded
     @POST("searchBarangGudang")
     Call<ResponseSearchBarangGudang> searchBarangGudang(@Field("keyword") String keyword);
+
+    @FormUrlEncoded
+    @POST("searchBarangOutlet")
+    Call<ResponseSearchBarangOutlet> searchBarangOutlet(@Field("keyword") String keyword,
+                                                        @Field("id_outlet") String id_outlet);
 }
 

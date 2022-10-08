@@ -95,6 +95,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
     ArrayList<String> namaKasirPenjualan = new ArrayList<>();
     ArrayList<String> idStatusPenjualan = new ArrayList<>();
     ArrayList<String> statusPenjualan = new ArrayList<>();
+    ArrayList<String> idKasir = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -459,14 +460,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                             if (status == 1) {
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Pembayaran Berhasil", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiBerhasilActivity.class);
-                                intent.putExtra("id_status_penjualan", id_status_penjualan);
-                                if (from_keto != null) {
-                                    intent.putExtra("from_keto", from_keto);
-                                }
                                 editStatusPenjualanBarang();
-                                startActivity(intent);
-                                finish();
                             } else {
                                 Toast.makeText(PembayaranKasirActivity.this,
                                         "Pembayaran Gagal", Toast.LENGTH_SHORT).show();
@@ -526,7 +520,7 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
     private void insertReportToko() {
 
-        ProgressDialog pdReport = new ProgressDialog(this);
+        ProgressDialog pdReport = new ProgressDialog(PembayaranKasirActivity.this);
         pdReport.setMessage("Menambahkan Data Report Penjualan");
         pdReport.show();
 
@@ -534,11 +528,12 @@ public class PembayaranKasirActivity extends AppCompatActivity {
 
         for (int a = 0; a < namaOutlet.size(); a++){
             metodePembayaranPenjualan.add(metode_bayar);
+            idKasir.add(preferencedConfig.getPreferenceIdUser());
         }
 
-        ConfigRetrofit.service.insertReportToko(namaOutlet, namaBarang, jumlahPcsPenjualan, jumlahPackPenjualan,
+        ConfigRetrofit.service.insertReportToko(idOutletPenjualan, namaOutlet, namaBarang, jumlahPcsPenjualan, jumlahPackPenjualan,
                 hargaPcsPenjualan, hargaPackPenjualan, totalPenjualan, metodePembayaranPenjualan, jenisSatuan, tanggalPenjualan,
-                namaKasirPenjualan, idStatusPenjualan, statusPenjualan).enqueue(new Callback<ResponseInsertReportToko>() {
+                idKasir ,namaKasirPenjualan, idStatusPenjualan, statusPenjualan).enqueue(new Callback<ResponseInsertReportToko>() {
             @Override
             public void onResponse(Call<ResponseInsertReportToko> call, Response<ResponseInsertReportToko> response) {
                 if (response.isSuccessful()){
@@ -547,6 +542,13 @@ public class PembayaranKasirActivity extends AppCompatActivity {
                     if (isSukses) {
                         Toast.makeText(PembayaranKasirActivity.this,
                                 "Berhasil Menambahkan Report Penjualan", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PembayaranKasirActivity.this, TransaksiBerhasilActivity.class);
+                        intent.putExtra("id_status_penjualan", id_status_penjualan);
+                        if (from_keto != null) {
+                            intent.putExtra("from_keto", from_keto);
+                        }
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(PembayaranKasirActivity.this,
                                 "Gagal Menambahkan Report Penjualan", Toast.LENGTH_SHORT).show();

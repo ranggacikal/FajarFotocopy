@@ -25,6 +25,7 @@ import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.gudang.suppliergudang.SupplierGudangActivity;
+import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.editPackBarang.ResponseEditPackBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPenjualan.ResponseTambahPenjualan;
@@ -81,18 +82,16 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         holder.txtNama.setText(idBarang.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-
-        holder.txtJmlPack.setVisibility(View.GONE);
         holder.btnTambahPesanan.setVisibility(View.GONE);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String stockFromDb = idBarang.get(position).getStock();
-                Log.d("cekStockDb", "onClick: "+stockFromDb);
-                if (Integer.parseInt(stockFromDb) == 0 || Integer.parseInt(stockFromDb) < 0){
+                Log.d("cekStockDb", "onClick: " + stockFromDb);
+                if (Integer.parseInt(stockFromDb) == 0 || Integer.parseInt(stockFromDb) < 0) {
                     tampilDialogDataKosong();
-                }else {
+                } else {
                     int number_of_pack = Integer.parseInt(idBarang.get(position).getNumberOfPack());
                     int stock_db = Integer.parseInt(idBarang.get(position).getStock());
                     int hargaModalToko = Integer.parseInt(idBarang.get(position).getHargaModalToko());
@@ -239,14 +238,53 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         txtTambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tambahPenjualanGudang(id_status_penjualan, id_barang, String.valueOf(jumlah_qty));
+                ProgressDialog progressDialog = new ProgressDialog(context);
+                progressDialog.setMessage("Validasi stock barang saat ini");
+                progressDialog.show();
+                validateStock(id_barang, id_status_penjualan, progressDialog);
+            }
+        });
+
+    }
+
+    private void validateStock(String id_barang, String id_status_penjualan, ProgressDialog progressDialog) {
+
+        ConfigRetrofit.service.cariBarangById(id_barang).enqueue(new Callback<ResponseCariBarangById>() {
+            @Override
+            public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
+                if (response.isSuccessful()) {
+                    progressDialog.dismiss();
+                    int jumlah_pack_validate = 0;
+                    List<SearchBarangByIdItem> cariBarangId = response.body().getSearchBarangById();
+                    for (int i = 0; i < cariBarangId.size(); i++) {
+                        jumlah_pack_validate = Integer.parseInt(cariBarangId.get(i).getJumlahPack());
+                    }
+                    if (jumlah_pack_validate == 0 ||
+                            jumlah_pack_validate < Integer.parseInt(value) ||
+                            jumlah_pack_validate < 0) {
+                        Toast.makeText(context, "Stock Barang Yang Anda Pilih Sudah Habis",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        tambahPenjualanGudang(id_status_penjualan, id_barang, String.valueOf(jumlah_qty));
+                    }
+                } else {
+                    progressDialog.dismiss();
+                    Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseCariBarangById> call, Throwable t) {
+                progressDialog.dismiss();
+                Toast.makeText(context, "Silahkan Periksa koneksi internet anda",
+                        Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
     private void tambahPenjualanGudang(String id_status_penjualan, String id_barang, String jumlah_pack) {
-        Log.d("cekJumlahPackSupplier", "onClick: "+jumlah_pack);
+        Log.d("cekJumlahPackSupplier", "onClick: " + jumlah_pack);
 
         ProgressDialog progressDialog = new ProgressDialog(context);
         progressDialog.setMessage("Menambahkan Barang");
@@ -257,23 +295,23 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                 .enqueue(new Callback<ResponseTambahPenjualan>() {
                     @Override
                     public void onResponse(Call<ResponseTambahPenjualan> call, Response<ResponseTambahPenjualan> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
                             progressDialog.dismiss();
 
                             int status = response.body().getStatus();
 
-                            if (status==1){
+                            if (status == 1) {
 
                                 Toast.makeText(context, "Berhasil Menambahkan Barang",
                                         Toast.LENGTH_SHORT).show();
-                                editPack(id_barang);
+//                                editPack(id_barang);
                                 dialog.dismiss();
 
-                            }else{
+                            } else {
                                 Toast.makeText(context, "Gagal Menambahkan, Silahkan coba lagi",
                                         Toast.LENGTH_SHORT).show();
                             }
-                        }else{
+                        } else {
                             progressDialog.dismiss();
                             Toast.makeText(context, "Response Gagal", Toast.LENGTH_SHORT).show();
                         }
@@ -294,17 +332,17 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
                 .enqueue(new Callback<ResponseEditPackBarang>() {
                     @Override
                     public void onResponse(Call<ResponseEditPackBarang> call, Response<ResponseEditPackBarang> response) {
-                        if (response.isSuccessful()){
+                        if (response.isSuccessful()) {
 
                             int status = response.body().getStatus();
 
-                            if (status==1){
+                            if (status == 1) {
                                 Toast.makeText(context, "Berhasil Edit Pack", Toast.LENGTH_SHORT).show();
-                            }else{
+                            } else {
                                 Toast.makeText(context, "Gagal Edit Pack", Toast.LENGTH_SHORT).show();
                             }
 
-                        }else{
+                        } else {
                             Toast.makeText(context, "Response error", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -329,6 +367,7 @@ public class CariBarangIdPenjualanAdapter extends RecyclerView.Adapter<
         RelativeLayout rlStockHabis;
         Button btnTambahPesanan;
         EditText edtJumlahPack;
+
         public CariBarangIdPenjualanViewHolder(@NonNull View itemView) {
             super(itemView);
             imgBarang = itemView.findViewById(R.id.img_item_barang_outlet);

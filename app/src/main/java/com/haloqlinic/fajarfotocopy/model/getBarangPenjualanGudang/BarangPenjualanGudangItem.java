@@ -7,11 +7,20 @@ public class BarangPenjualanGudangItem{
 	@SerializedName("harga_modal_gudang")
 	private String hargaModalGudang;
 
+	@SerializedName("jumlah_kurang")
+	private String jumlahKurang;
+
+	@SerializedName("driver_id")
+	private String driverId;
+
 	@SerializedName("id_status_penjualan_gudang")
 	private String idStatusPenjualanGudang;
 
 	@SerializedName("id_penjualan_gudang")
 	private String idPenjualanGudang;
+
+	@SerializedName("metode_bayar")
+	private String metodeBayar;
 
 	@SerializedName("image_barang")
 	private String imageBarang;
@@ -25,6 +34,9 @@ public class BarangPenjualanGudangItem{
 	@SerializedName("id_kategori_barang")
 	private String idKategoriBarang;
 
+	@SerializedName("alamat_tujuan")
+	private String alamatTujuan;
+
 	@SerializedName("total")
 	private String total;
 
@@ -36,6 +48,9 @@ public class BarangPenjualanGudangItem{
 
 	@SerializedName("id_barang")
 	private String idBarang;
+
+	@SerializedName("status_pengiriman")
+	private String statusPengiriman;
 
 	@SerializedName("jumlah_barang")
 	private String jumlahBarang;
@@ -57,6 +72,22 @@ public class BarangPenjualanGudangItem{
 		return hargaModalGudang;
 	}
 
+	public void setJumlahKurang(String jumlahKurang){
+		this.jumlahKurang = jumlahKurang;
+	}
+
+	public String getJumlahKurang(){
+		return jumlahKurang;
+	}
+
+	public void setDriverId(String driverId){
+		this.driverId = driverId;
+	}
+
+	public String getDriverId(){
+		return driverId;
+	}
+
 	public void setIdStatusPenjualanGudang(String idStatusPenjualanGudang){
 		this.idStatusPenjualanGudang = idStatusPenjualanGudang;
 	}
@@ -71,6 +102,14 @@ public class BarangPenjualanGudangItem{
 
 	public String getIdPenjualanGudang(){
 		return idPenjualanGudang;
+	}
+
+	public void setMetodeBayar(String metodeBayar){
+		this.metodeBayar = metodeBayar;
+	}
+
+	public String getMetodeBayar(){
+		return metodeBayar;
 	}
 
 	public void setImageBarang(String imageBarang){
@@ -105,6 +144,14 @@ public class BarangPenjualanGudangItem{
 		return idKategoriBarang;
 	}
 
+	public void setAlamatTujuan(String alamatTujuan){
+		this.alamatTujuan = alamatTujuan;
+	}
+
+	public String getAlamatTujuan(){
+		return alamatTujuan;
+	}
+
 	public void setTotal(String total){
 		this.total = total;
 	}
@@ -135,6 +182,14 @@ public class BarangPenjualanGudangItem{
 
 	public String getIdBarang(){
 		return idBarang;
+	}
+
+	public void setStatusPengiriman(String statusPengiriman){
+		this.statusPengiriman = statusPengiriman;
+	}
+
+	public String getStatusPengiriman(){
+		return statusPengiriman;
 	}
 
 	public void setJumlahBarang(String jumlahBarang){
@@ -174,16 +229,21 @@ public class BarangPenjualanGudangItem{
 		return 
 			"BarangPenjualanGudangItem{" + 
 			"harga_modal_gudang = '" + hargaModalGudang + '\'' + 
+			",jumlah_kurang = '" + jumlahKurang + '\'' + 
+			",driver_id = '" + driverId + '\'' + 
 			",id_status_penjualan_gudang = '" + idStatusPenjualanGudang + '\'' + 
 			",id_penjualan_gudang = '" + idPenjualanGudang + '\'' + 
+			",metode_bayar = '" + metodeBayar + '\'' + 
 			",image_barang = '" + imageBarang + '\'' + 
 			",jumlah_pack = '" + jumlahPack + '\'' + 
 			",tanggal_penjualan = '" + tanggalPenjualan + '\'' + 
 			",id_kategori_barang = '" + idKategoriBarang + '\'' + 
+			",alamat_tujuan = '" + alamatTujuan + '\'' + 
 			",total = '" + total + '\'' + 
 			",status_penjualan = '" + statusPenjualan + '\'' + 
 			",harga_modal_toko = '" + hargaModalToko + '\'' + 
 			",id_barang = '" + idBarang + '\'' + 
+			",status_pengiriman = '" + statusPengiriman + '\'' + 
 			",jumlah_barang = '" + jumlahBarang + '\'' + 
 			",nama_barang = '" + namaBarang + '\'' + 
 			",nama_user = '" + namaUser + '\'' + 

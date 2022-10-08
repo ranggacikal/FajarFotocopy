@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,11 +25,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
+import com.haloqlinic.fajarfotocopy.adapter.dialog.DialogValidateAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.dialog.DialogValidateGudangAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.KeranjangSupplierAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCetakBuktiKasirBinding;
@@ -37,13 +41,21 @@ import com.haloqlinic.fajarfotocopy.formatNumber.NumberTextWatcher;
 import com.haloqlinic.fajarfotocopy.gudang.kirimbaranggudang.TambahStatusPengirimanActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.PembayaranKasirActivity;
 import com.haloqlinic.fajarfotocopy.kasir.transaksikasir.TransaksiBerhasilActivity;
+import com.haloqlinic.fajarfotocopy.model.dataBarangOutletList.DataBarangOutletListItem;
 import com.haloqlinic.fajarfotocopy.model.editStatusPenjualanGudang.ResponseEditStatusPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.BarangPenjualanGudangItem;
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualanGudang.ResponseBarangPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.getDriver.DataDriverItem;
 import com.haloqlinic.fajarfotocopy.model.getDriver.ResponseDataDriver;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualanGudang.ResponseHapusPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.listBarangGudangValidate.DataBarangGudangListItem;
+import com.haloqlinic.fajarfotocopy.model.listBarangGudangValidate.ResponseListBarangGudangValidate;
+import com.haloqlinic.fajarfotocopy.model.reportPenjualanGudang.ResponseReportPenjualanGudang;
 import com.haloqlinic.fajarfotocopy.model.sumPenjualanGudang.ResponseSumPenjualanGudang;
+import com.haloqlinic.fajarfotocopy.model.updateStatusPenjualanBarangGudang.ResponseUpdateStatusPenjualanBarangGudang;
+import com.haloqlinic.fajarfotocopy.model.validateBarangListGudang.DataValidateBarangGudangItem;
+import com.haloqlinic.fajarfotocopy.model.validateBarangListGudang.ResponseValidateBarangGudang;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 
 import java.io.ByteArrayOutputStream;
@@ -78,6 +90,26 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
     private String[] metodePengambilanItem = {"Ambil Ditempat", "Dikirim Kurir"};
 
     SharedPreferencedConfig preferencedConfig;
+
+    ArrayList<String> idBarangPenjualan = new ArrayList<>();
+    ArrayList<String> jumlahPackPenjualan = new ArrayList<>();
+    ArrayList<String> jumlahPcsPenjualan = new ArrayList<>();
+    ArrayList<String> idOutletPenjualan = new ArrayList<>();
+    ArrayList<String> namaOutlet = new ArrayList<>();
+    ArrayList<String> namaBarang = new ArrayList<>();
+    ArrayList<String> hargaPcsPenjualan = new ArrayList<>();
+    ArrayList<String> hargaPackPenjualan = new ArrayList<>();
+    ArrayList<String> totalPenjualan = new ArrayList<>();
+    ArrayList<String> jenisSatuan = new ArrayList<>();
+    ArrayList<String> tanggalPenjualan = new ArrayList<>();
+    ArrayList<String> namaKasirPenjualan = new ArrayList<>();
+    ArrayList<String> idStatusPenjualan = new ArrayList<>();
+    ArrayList<String> statusPenjualan = new ArrayList<>();
+    ArrayList<String> idKasir = new ArrayList<>();
+    ArrayList<String> jumlahKurangList = new ArrayList<>();
+    ArrayList<String> metodeBayar = new ArrayList<>();
+    ArrayList<String> alamatTujuan = new ArrayList<>();
+    ArrayList<String> statusPengiriman = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,10 +157,10 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 metode_pengambilan = binding.spinnerMetodeKirimSupplier.getSelectedItem().toString();
 
-                if(metode_pengambilan.equals("Dikirim Kurir")){
+                if (metode_pengambilan.equals("Dikirim Kurir")) {
                     binding.linearLayoutKurir.setVisibility(View.VISIBLE);
                     initSpinnerPilihDriver();
-                }else{
+                } else {
                     binding.linearLayoutKurir.setVisibility(View.GONE);
                     id_driver = preferencedConfig.getPreferenceIdUser();
                 }
@@ -238,7 +270,7 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                         String jumlahBayarStr = binding.edtJumlahBayarSupplier.getText().toString();
                         String jumlahReplace = jumlahBayarStr.replace(".", "")
                                 .replace(",", "");
-                        if (jumlahBayarStr.isEmpty()){
+                        if (jumlahBayarStr.isEmpty()) {
                             binding.edtJumlahBayarSupplier.setError("Jumlah bayar tidak boleh kosong");
                             return;
                         }
@@ -265,11 +297,106 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                 .setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        bayar();
+                        ProgressDialog progressDialog = new ProgressDialog(KeranjangSupplierGudangActivity.this);
+                        progressDialog.setMessage("memproses pembayaran");
+                        progressDialog.show();
+                        validateDataBarang(progressDialog);
                     }
                 });
 
     }
+
+    private void validateDataBarang(ProgressDialog progressDialog) {
+
+        ConfigRetrofit.service
+                .validateBarangListGudang(idBarangPenjualan, jumlahPcsPenjualan, jumlahPackPenjualan)
+                .enqueue(new Callback<ResponseValidateBarangGudang>() {
+                    @Override
+                    public void onResponse(Call<ResponseValidateBarangGudang> call, Response<ResponseValidateBarangGudang> response) {
+                        if (response.isSuccessful()) {
+                            int status = response.body().getStatus();
+                            if (status == 1) {
+                                bayar(progressDialog);
+                            } else {
+                                progressDialog.dismiss();
+                                List<DataValidateBarangGudangItem> dataValidateBarangGudang =
+                                        response.body().getDataValidateBarangGudang();
+                                showDialogValidateBarang(dataValidateBarangGudang);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseValidateBarangGudang> call, Throwable t) {
+
+                    }
+                });
+    }
+
+    private void showDialogValidateBarang(List<DataValidateBarangGudangItem> dataValidateBarangGudang) {
+        Dialog dialogValidate = new Dialog(KeranjangSupplierGudangActivity.this);
+        dialogValidate.setContentView(R.layout.dialog_validate_barang);
+        dialogValidate.setCancelable(false);
+        dialogValidate.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        dialogValidate.show();
+        Button btnClose = dialogValidate.findViewById(R.id.btn_close_dialog_validate_barang);
+        loadDataValidateBarangGudang(dialogValidate, dataValidateBarangGudang);
+        PushDownAnim.setPushDownAnimTo(btnClose)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialogValidate.dismiss();
+                    }
+                });
+    }
+
+    private void loadDataValidateBarangGudang(Dialog dialogValidate,
+                                              List<DataValidateBarangGudangItem> dataValidateBarangGudang) {
+        ProgressDialog progressDialogValidate = new ProgressDialog(KeranjangSupplierGudangActivity.this);
+        progressDialogValidate.setMessage("Memuat Data");
+        progressDialogValidate.show();
+
+        ArrayList<String> idBarangList = new ArrayList<>();
+
+        for (int a = 0; a < dataValidateBarangGudang.size(); a++) {
+            idBarangList.add(dataValidateBarangGudang.get(a).getIdBarang());
+        }
+
+        ConfigRetrofit.service.listBarangGudangValidate(idBarangList)
+                .enqueue(new Callback<ResponseListBarangGudangValidate>() {
+                    @Override
+                    public void onResponse(Call<ResponseListBarangGudangValidate> call, Response<ResponseListBarangGudangValidate> response) {
+                        if (response.isSuccessful()) {
+                            progressDialogValidate.dismiss();
+                            boolean isSukses = response.body().isSukses();
+                            if (isSukses) {
+                                RecyclerView rvValidateDialog = dialogValidate.findViewById(R.id.rv_dialog_validate_barang);
+                                rvValidateDialog.setHasFixedSize(true);
+                                rvValidateDialog.setLayoutManager(new LinearLayoutManager(KeranjangSupplierGudangActivity.this));
+                                List<DataBarangGudangListItem> dataBarang = response.body().getDataBarangGudangList();
+                                DialogValidateGudangAdapter adapter = new DialogValidateGudangAdapter(KeranjangSupplierGudangActivity.this, dataBarang);
+                                rvValidateDialog.setAdapter(adapter);
+                            } else {
+                                Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                        "Gagal Memuat Data", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            progressDialogValidate.dismiss();
+                            Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                    "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseListBarangGudangValidate> call, Throwable t) {
+                        progressDialogValidate.dismiss();
+                        Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                "periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 
     private void initSpinnerPilihDriver() {
 
@@ -280,11 +407,11 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
         ConfigRetrofit.service.getDriver().enqueue(new Callback<ResponseDataDriver>() {
             @Override
             public void onResponse(Call<ResponseDataDriver> call, Response<ResponseDataDriver> response) {
-                if (response.isSuccessful()){
+                if (response.isSuccessful()) {
                     progressDialog.dismiss();
                     int status = response.body().getStatus();
 
-                    if (status==1){
+                    if (status == 1) {
 
                         dataDriverItems = response.body().getDataDriver();
                         List<String> listSpinnerDriver = new ArrayList<String>();
@@ -300,12 +427,12 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                         adapterDriver.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         binding.spinnerDriverSupplier.setAdapter(adapterDriver);
 
-                    }else{
+                    } else {
                         Toast.makeText(KeranjangSupplierGudangActivity.this,
                                 "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
                     progressDialog.dismiss();
                     Toast.makeText(KeranjangSupplierGudangActivity.this,
                             "Terjadi Kesalahan Di server", Toast.LENGTH_SHORT).show();
@@ -322,14 +449,14 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
     }
 
-    private void bayar() {
+    private void bayar(ProgressDialog progressDialog) {
 
         String alamat = "";
 
-        if (metode_pengambilan.equals("Dikirim Kurir")){
+        if (metode_pengambilan.equals("Dikirim Kurir")) {
             alamat = binding.edtAlamatSupplier.getText().toString();
 
-            if (alamat.isEmpty()){
+            if (alamat.isEmpty()) {
 
                 binding.edtAlamatSupplier.setError("Alamat Tujuan tidak boleh kosong");
                 binding.edtAlamatSupplier.requestFocus();
@@ -339,15 +466,11 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
 
         }
 
-        ProgressDialog progressDialog = new ProgressDialog(KeranjangSupplierGudangActivity.this);
-        progressDialog.setMessage("Melakukan Checkout");
-        progressDialog.show();
-
         String image;
 
-        if (metode_bayar.equals("debit")||metode_bayar.equals("Debit")){
+        if (metode_bayar.equals("debit") || metode_bayar.equals("Debit")) {
             image = imageToString();
-        }else{
+        } else {
             image = "";
         }
 
@@ -355,40 +478,105 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                 metode_bayar, String.valueOf(total), String.valueOf(jumlahBayar), String.valueOf(jumlahKurang),
                 image, metode_pengambilan, id_driver, alamat, "pending")
                 .enqueue(new Callback<ResponseEditStatusPenjualanGudang>() {
+                    @Override
+                    public void onResponse(Call<ResponseEditStatusPenjualanGudang> call, Response<ResponseEditStatusPenjualanGudang> response) {
+                        if (response.isSuccessful()) {
+
+                            progressDialog.dismiss();
+
+                            int status = response.body().getStatus();
+
+                            if (status == 1) {
+                                updatePenjualanBarangGudang(id_status_penjualan_gudang);
+
+                            } else {
+                                Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                        "Gagal, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                            }
+
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                    "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseEditStatusPenjualanGudang> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+
+    private void updatePenjualanBarangGudang(String id_status_penjualan_gudang) {
+        ConfigRetrofit.service
+                .updateStatusBarangGudang(id_status_penjualan_gudang, "Selesai")
+                .enqueue(new Callback<ResponseUpdateStatusPenjualanBarangGudang>() {
+                    @Override
+                    public void onResponse(Call<ResponseUpdateStatusPenjualanBarangGudang> call, Response<ResponseUpdateStatusPenjualanBarangGudang> response) {
+                        if (response.isSuccessful()) {
+                            int status = response.body().getStatus();
+                            if (status == 1) {
+                                insertReportGudang();
+                            } else {
+                                Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                        "Gagal update data", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                    "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseUpdateStatusPenjualanBarangGudang> call, Throwable t) {
+                        Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                "Koneksi Error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void insertReportGudang() {
+        ProgressDialog pdReport = new ProgressDialog(KeranjangSupplierGudangActivity.this);
+        pdReport.setMessage("Menambahkan Data Report");
+        pdReport.show();
+        ConfigRetrofit.service.insertReportPenjualanGudang(namaBarang, jumlahPcsPenjualan,
+                jumlahPackPenjualan, hargaPcsPenjualan, jumlahKurangList, totalPenjualan,
+                tanggalPenjualan, metodeBayar, namaKasirPenjualan, alamatTujuan, idKasir, statusPengiriman,
+                idStatusPenjualan, statusPenjualan).enqueue(new Callback<ResponseReportPenjualanGudang>() {
             @Override
-            public void onResponse(Call<ResponseEditStatusPenjualanGudang> call, Response<ResponseEditStatusPenjualanGudang> response) {
-                if (response.isSuccessful()){
-
-                    progressDialog.dismiss();
-
-                    int status = response.body().getStatus();
-
-                    if (status==1){
-
+            public void onResponse(Call<ResponseReportPenjualanGudang> call, Response<ResponseReportPenjualanGudang> response) {
+                if (response.isSuccessful()) {
+                    pdReport.dismiss();
+                    boolean isSukses = response.body().isSukses();
+                    if (isSukses) {
+                        Toast.makeText(KeranjangSupplierGudangActivity.this,
+                                "Berhasil Menambahkan Report", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(KeranjangSupplierGudangActivity.this, TransaksiBerhasilGudangActivity.class);
                         intent.putExtra("id_status_penjualan_gudang", id_status_penjualan_gudang);
                         startActivity(intent);
-
-                    }else{
+                        finish();
+                    } else {
                         Toast.makeText(KeranjangSupplierGudangActivity.this,
-                                "Gagal, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
+                                "Gagal Menambahkan report", Toast.LENGTH_SHORT).show();
                     }
-
-                }else{
-                    progressDialog.dismiss();
+                } else {
+                    pdReport.dismiss();
                     Toast.makeText(KeranjangSupplierGudangActivity.this,
                             "Response Gagal", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseEditStatusPenjualanGudang> call, Throwable t) {
-                progressDialog.dismiss();
+            public void onFailure(Call<ResponseReportPenjualanGudang> call, Throwable t) {
+                pdReport.dismiss();
                 Toast.makeText(KeranjangSupplierGudangActivity.this,
-                        "Koneksi Error", Toast.LENGTH_SHORT).show();
+                        "Periksa koneksi internet anda", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void pilihGambar() {
@@ -522,6 +710,36 @@ public class KeranjangSupplierGudangActivity extends AppCompatActivity {
                     if (status == 1) {
 
                         dataBarang = response.body().getBarangPenjualanGudang();
+                        for (int i = 0; i < dataBarang.size(); i++) {
+                            idBarangPenjualan.add(dataBarang.get(i).getIdBarang());
+                            jumlahPackPenjualan.add(dataBarang.get(i).getJumlahPack());
+                            jumlahPcsPenjualan.add(dataBarang.get(i).getJumlahBarang());
+                            namaOutlet.add(preferencedConfig.getPreferenceNamaToko());
+                            namaBarang.add(dataBarang.get(i).getNamaBarang());
+                            hargaPcsPenjualan.add(dataBarang.get(i).getHargaModalToko());
+                            totalPenjualan.add(dataBarang.get(i).getTotal());
+                            idStatusPenjualan.add(dataBarang.get(i).getIdStatusPenjualanGudang());
+                            statusPenjualan.add(dataBarang.get(i).getStatusPenjualan());
+                            tanggalPenjualan.add(dataBarang.get(i).getTanggalPenjualan());
+                            jumlahKurangList.add(dataBarang.get(i).getJumlahKurang());
+                            metodeBayar.add(binding.spinnerMetodeBayarSupplier.getSelectedItem().toString());
+                            namaKasirPenjualan.add(preferencedConfig.getPreferenceNama());
+                            if (dataBarang.get(i).getDriverId() == null) {
+                                idKasir.add(preferencedConfig.getPreferenceIdUser());
+                            } else {
+                                idKasir.add(dataBarang.get(i).getDriverId());
+                            }
+                            if (dataBarang.get(i).getAlamatTujuan() == null) {
+                                alamatTujuan.add("Ambil Ditempat");
+                            } else {
+                                alamatTujuan.add(dataBarang.get(i).getAlamatTujuan());
+                            }
+                            if (dataBarang.get(i).getStatusPengiriman() == null) {
+                                statusPengiriman.add("Ambil Ditempat");
+                            } else {
+                                statusPengiriman.add(dataBarang.get(i).getStatusPengiriman());
+                            }
+                        }
                         adapter = new KeranjangSupplierAdapter(KeranjangSupplierGudangActivity.this, dataBarang);
                         binding.rvKeranjangSupplier.setAdapter(adapter);
                         loadSumTotal();

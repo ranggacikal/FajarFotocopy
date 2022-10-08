@@ -31,6 +31,7 @@ import com.haloqlinic.fajarfotocopy.gudang.mintabarang.DataMintaBarangActivity;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.dataMintaBarangByOutlet.DataBarangItem;
+import com.haloqlinic.fajarfotocopy.model.hapusBarangPermintaan.ResponseHapusBarangPermintaan;
 import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusDataMintaBarang;
 import com.haloqlinic.fajarfotocopy.model.tambahPengiriman.ResponseTambahPengiriman;
 import com.haloqlinic.fajarfotocopy.model.updateStockPengiriman.ResponseUpdateStockPengiriman;
@@ -101,6 +102,53 @@ public class MintaBarangAdapter extends RecyclerView.Adapter<MintaBarangAdapter.
 //                        }else {
 //                            tampilDialog(stockPack, stockPcs, number_of_pack);
 //                        }
+                    }
+                });
+
+        PushDownAnim.setPushDownAnimTo(holder.binding.btnHapusPengirimanDataMintaBarang)
+                .setScale(MODE_SCALE, 0.89f)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String id_minta_barang = dataBarangItems.get(position).getIdMintaBarang();
+                        hapusBarangPermintaan(id_minta_barang);
+                    }
+                });
+    }
+
+    private void hapusBarangPermintaan(String id_minta_barang) {
+        ProgressDialog progressDialog = new ProgressDialog(context);
+        progressDialog.setMessage("Menghapus Data");
+        progressDialog.show();
+
+        ConfigRetrofit.service.hapusBarangPermintaan(id_minta_barang)
+                .enqueue(new Callback<ResponseHapusBarangPermintaan>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onResponse(Call<ResponseHapusBarangPermintaan> call, Response<ResponseHapusBarangPermintaan> response) {
+                        if (response.isSuccessful()){
+                            progressDialog.dismiss();
+                            int status = response.body().getStatus();
+                            if (status == 1){
+                                Toast.makeText(context, "Hapus Data Berhasil",
+                                        Toast.LENGTH_SHORT).show();
+                                dataMintaBarangActivity.getDataMintaBarang(dataMintaBarangActivity.id_outlet);
+                            } else {
+                                Toast.makeText(context,
+                                        "Hapus Data Gagal", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(context,
+                                    "Response Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseHapusBarangPermintaan> call, Throwable t) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context,
+                                "Network Error", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

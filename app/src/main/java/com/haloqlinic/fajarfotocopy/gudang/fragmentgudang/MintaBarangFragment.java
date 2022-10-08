@@ -72,7 +72,7 @@ public class MintaBarangFragment extends Fragment {
         loadMintaBarang();
     }
 
-    private void loadMintaBarang() {
+    public void loadMintaBarang() {
 
         ProgressDialog progressDialog = new ProgressDialog(getActivity());
         progressDialog.setMessage("Memuat Data Permintaan Barang");
@@ -97,7 +97,7 @@ public class MintaBarangFragment extends Fragment {
 //                        }
 
                         DataMintaBarangAdapter adapter = new DataMintaBarangAdapter(getActivity(),
-                                dataPermintaan, dataBarang);
+                                dataPermintaan, dataBarang, MintaBarangFragment.this);
                         binding.rvMintaBarangGudang.setAdapter(adapter);
 
                     }else{

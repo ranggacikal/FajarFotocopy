@@ -18,6 +18,7 @@ public class SharedPreferencedConfig {
     public static final String PREFERENCE_IS_LOGIN = "prefIsLogin";
     public static final String PREFERENCE_LAST_ID_STATUS_PENGIRIMAN = "prefLatIdStatusPengiriman";
     public static final int PREFERENCE_STOCK_PACK_SISA = 0;
+    public static final int PREFERENCE_POSITION_TERIMA_BARANG = 0;
 
     SharedPreferences preferences;
     SharedPreferences.Editor preferencesEditor;
@@ -89,5 +90,9 @@ public class SharedPreferencedConfig {
 
     public int getPreferenceStockPackSisa(){
         return preferences.getInt(String.valueOf(PREFERENCE_STOCK_PACK_SISA), 0);
+    }
+
+    public int getPreferencePositionTerimaBarang(){
+        return preferences.getInt(String.valueOf(PREFERENCE_POSITION_TERIMA_BARANG), 0);
     }
 }

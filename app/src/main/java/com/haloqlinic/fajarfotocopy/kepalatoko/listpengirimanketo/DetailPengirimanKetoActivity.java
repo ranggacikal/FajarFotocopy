@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.haloqlinic.fajarfotocopy.R;
+import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kepalaToko.DetailPengirimanKetoAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
@@ -32,6 +33,7 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
 
     private ActivityDetailPengirimanKetoBinding binding;
     public String id_status, tanggal, status_pengiriman;
+    SharedPreferencedConfig preferencedConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
         binding = ActivityDetailPengirimanKetoBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        preferencedConfig = new SharedPreferencedConfig(this);
 
         PushDownAnim.setPushDownAnimTo(binding.linearBackDetailListPengirimanKeto)
                 .setScale(MODE_SCALE, 0.89f)
@@ -89,6 +93,16 @@ public class DetailPengirimanKetoActivity extends AppCompatActivity {
                         DetailPengirimanKetoAdapter adapter = new DetailPengirimanKetoAdapter(DetailPengirimanKetoActivity.this,
                                 listPengiriman, DetailPengirimanKetoActivity.this);
                         binding.recyclerDetailPengirimanKeto.setAdapter(adapter);
+                        if (preferencedConfig.getPreferencePositionTerimaBarang() == 0) {
+                            binding.recyclerDetailPengirimanKeto.scrollToPosition(0);
+                        } else {
+                            binding.recyclerDetailPengirimanKeto.scrollToPosition(preferencedConfig
+                                    .getPreferencePositionTerimaBarang());
+                            preferencedConfig.savePrefInt(
+                                    String.valueOf(SharedPreferencedConfig.PREFERENCE_POSITION_TERIMA_BARANG),
+                                    0
+                            );
+                        }
 
                     }else{
                         Toast.makeText(DetailPengirimanKetoActivity.this, "Data Kosong", Toast.LENGTH_SHORT).show();

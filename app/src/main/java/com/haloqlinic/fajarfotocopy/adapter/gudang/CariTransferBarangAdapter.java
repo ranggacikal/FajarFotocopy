@@ -103,7 +103,6 @@ public class CariTransferBarangAdapter extends RecyclerView.Adapter<CariTransfer
         holder.txtNama.setText(dataBarang.get(position).getNamaBarang());
         holder.txtHargaPcs.setText("Rp" + NumberFormat.getInstance().format(hargaPcs));
         holder.txtHargaPack.setText("Rp" + NumberFormat.getInstance().format(hargaPack));
-        holder.lblJumlahPack.setVisibility(View.GONE);
         holder.edtJumlahPack.setVisibility(View.GONE);
 
 //        holder.numberPicker.setNumber("1");
