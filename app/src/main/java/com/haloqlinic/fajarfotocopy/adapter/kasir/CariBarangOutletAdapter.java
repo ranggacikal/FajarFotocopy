@@ -103,8 +103,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
     @Override
     public void onBindViewHolder(@NonNull @NotNull CariBarangOutletViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String img = cariBarangOutlet.get(position).getImageBarang();
-
-
         String hargaPcsStr = cariBarangOutlet.get(position).getHargaJual();
         String hargaPackStr = cariBarangOutlet.get(position).getHargaJualPack();
 
@@ -143,9 +141,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                 Log.d("cekStatus", "onCheckedChanged: " + transaksiKasirActivity.status);
                 int status = transaksiKasirActivity.status;
 
-//                int kurangi_stock = Integer.parseInt(stock) - Integer.parseInt(number);
-//                int jumlah_pack_sisa = kurangi_stock / Integer.parseInt(number_of_pack);
-
                 String id_barang_outlet = cariBarangOutlet.get(position).getIdBarangOutlet();
                 String id_status_penjualan = transaksiKasirActivity.id_status_penjualan;
                 String id_barang = cariBarangOutlet.get(position).getIdBarang();
@@ -157,8 +152,6 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                 tampilDialogPilihanSatuan(id_barang_outlet, id_status_penjualan, id_barang, stock,
                         stockPack, numberOfPack, hargaJual, hargaJualPack, status);
 
-//                tambahPenjualan(id_barang_outlet, id_status_penjualan, id_barang,
-//                        String.valueOf(jumlah_pack_sisa));
             }
         });
 
@@ -606,7 +599,7 @@ public class CariBarangOutletAdapter extends RecyclerView.Adapter<CariBarangOutl
                                 Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 transaksiKasirActivity.loadDataPembayaran();
-                                transaksiKasirActivity.loadSearchBarangKasir(transaksiKasirActivity.cariBarang);
+                                transaksiKasirActivity.loadSearchBarangKasir(transaksiKasirActivity.searchBarang);
 //                                editJumlahPack(jumlah_pack_sisa, id_barang_outlet);
                             } else {
                                 Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();

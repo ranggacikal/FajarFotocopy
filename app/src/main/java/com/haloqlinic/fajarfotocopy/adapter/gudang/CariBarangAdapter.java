@@ -113,7 +113,6 @@ public class CariBarangAdapter extends RecyclerView.Adapter<CariBarangAdapter.Ca
 
         public CariBarangViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
-
             txtNamaBarang = itemView.findViewById(R.id.text_item_nama_barang_gudang);
             txtModalGudangPcs = itemView.findViewById(R.id.text_item_harga_modal_pcs_barang_gudang);
             txtModalGudangPack = itemView.findViewById(R.id.text_item_harga_modal_pack_barang_gudang);

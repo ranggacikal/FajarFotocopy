@@ -2,6 +2,7 @@ package com.haloqlinic.fajarfotocopy.adapter.gudang;
 
 import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -54,7 +55,7 @@ public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.Ce
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CekStockIdViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CekStockIdViewHolder holder, @SuppressLint("RecyclerView") int position) {
         String img = dataBarang.get(position).getImageBarang();
 
         Glide.with(context)
@@ -185,7 +186,7 @@ public class CekStockIdAdapter extends RecyclerView.Adapter<CekStockIdAdapter.Ce
                             if (status==1){
                                 Toast.makeText(context, "Berhasil Edit Stock", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
-                                cekStockBarangGudangActivity.loadDataById(cekStockBarangGudangActivity.id_barcode);
+                                cekStockBarangGudangActivity.loadData(cekStockBarangGudangActivity.id_barcode);
                             }else{
                                 Toast.makeText(context, "Gagal Edit, Silahkan coba lagi", Toast.LENGTH_SHORT).show();
                             }

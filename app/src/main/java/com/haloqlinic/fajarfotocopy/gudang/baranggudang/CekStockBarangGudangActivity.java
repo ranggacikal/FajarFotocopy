@@ -17,6 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CekStockAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.gudang.CekStockIdAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.gudang.SearchCekStockGudangAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityBarangGudangBinding;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityCekStockBarangGudangBinding;
@@ -26,6 +27,8 @@ import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.SearchBarangByIdItem;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.SearchBarangByNamaItem;
+import com.haloqlinic.fajarfotocopy.model.searchBarangGudang.ResponseSearchBarangGudang;
+import com.haloqlinic.fajarfotocopy.model.searchBarangGudang.SearchBarangGudangItem;
 import com.haloqlinic.fajarfotocopy.scan.Capture;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
@@ -97,15 +100,6 @@ public class CekStockBarangGudangActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         binding.recyclerCekStockBarangGudamg.setVisibility(View.GONE);
-//                        IntentIntegrator intentIntegrator = new IntentIntegrator(
-//                                CekStockBarangGudangActivity.this
-//                        );
-//
-//                        intentIntegrator.setPrompt("Tekan volume atas untuk menyalakan flash");
-//                        intentIntegrator.setBeepEnabled(true);
-//                        intentIntegrator.setOrientationLocked(true);
-//                        intentIntegrator.setCaptureActivity(Capture.class);
-//                        intentIntegrator.initiateScan();
                         ScanOptions options = new ScanOptions();
                         options.setOrientationLocked(false);
                         barcodeLauncher.launch(options);
@@ -119,30 +113,29 @@ public class CekStockBarangGudangActivity extends AppCompatActivity {
                 if(result.getContents() == null) {
                     Toast.makeText(CekStockBarangGudangActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
                 } else {
-                    id_barcode = result.getContents();
-                    loadDataById(id_barcode);
+                    loadData(result.getContents());
                 }
             });
 
-    public void loadData(String newText) {
+    public void loadData(String keyword) {
 
-        if (newText.equals("")){
+        if (keyword.equals("")){
             binding.recyclerCekStockBarangGudamg.setVisibility(View.GONE);
         }else {
 
-            ConfigRetrofit.service.cariBarang(newText).enqueue(new Callback<ResponseCariBarangByNama>() {
+            ConfigRetrofit.service.searchBarangGudang(keyword).enqueue(new Callback<ResponseSearchBarangGudang>() {
                 @Override
-                public void onResponse(Call<ResponseCariBarangByNama> call, Response<ResponseCariBarangByNama> response) {
+                public void onResponse(Call<ResponseSearchBarangGudang> call, Response<ResponseSearchBarangGudang> response) {
                     if (response.isSuccessful()){
                         binding.recyclerCekStockBarangGudamg.setVisibility(View.VISIBLE);
                         int status = response.body().getStatus();
                         if (status==1){
-                            List<SearchBarangByNamaItem> dataBarang = response.body().getSearchBarangByNama();
-                            CekStockAdapter adapter = new CekStockAdapter(CekStockBarangGudangActivity.this,
+                            List<SearchBarangGudangItem> dataBarang = response.body().getSearchBarangGudang();
+                            SearchCekStockGudangAdapter adapter = new SearchCekStockGudangAdapter(CekStockBarangGudangActivity.this,
                                     dataBarang, CekStockBarangGudangActivity.this);
                             binding.recyclerCekStockBarangGudamg.setAdapter(adapter);
                         }else{
-                            Toast.makeText(CekStockBarangGudangActivity.this, "Data Kosong",
+                            Toast.makeText(CekStockBarangGudangActivity.this, "Data Kesini",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }else{
@@ -152,67 +145,12 @@ public class CekStockBarangGudangActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<ResponseCariBarangByNama> call, Throwable t) {
+                public void onFailure(Call<ResponseSearchBarangGudang> call, Throwable t) {
                     Toast.makeText(CekStockBarangGudangActivity.this, "Error: "+t.getMessage(),
                             Toast.LENGTH_SHORT).show();
                 }
             });
 
         }
-
     }
-
-    public void loadDataById(String newText) {
-
-
-        ConfigRetrofit.service.cariBarangById(newText).enqueue(new Callback<ResponseCariBarangById>() {
-            @Override
-            public void onResponse(Call<ResponseCariBarangById> call, Response<ResponseCariBarangById> response) {
-                if (response.isSuccessful()){
-
-                    binding.recyclerCekStockBarangGudamg.setVisibility(View.VISIBLE);
-
-                    int status = response.body().getStatus();
-
-                    if (status == 1){
-
-                        List<SearchBarangByIdItem> dataBarang = response.body().getSearchBarangById();
-                        CekStockIdAdapter adapterId = new CekStockIdAdapter(CekStockBarangGudangActivity.this,
-                                dataBarang, CekStockBarangGudangActivity.this);
-                        binding.recyclerCekStockBarangGudamg.setAdapter(adapterId);
-
-                    }else{
-                        Toast.makeText(CekStockBarangGudangActivity.this, "Data Kosong",
-                                Toast.LENGTH_SHORT).show();
-                    }
-
-                }else{
-                    Toast.makeText(CekStockBarangGudangActivity.this, "Response Gagal", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseCariBarangById> call, Throwable t) {
-                Toast.makeText(CekStockBarangGudangActivity.this, "Error: "+t.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-            }
-        });
-
-    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-//                requestCode, resultCode, data
-//        );
-//
-//        if (intentResult.getContents() != null) {
-//
-//            id_barcode = intentResult.getContents();
-//            loadDataById(id_barcode);
-//            Log.d("requestCodeScan", "onActivityResult: " + requestCode);
-//
-//        }
-//    }
 }

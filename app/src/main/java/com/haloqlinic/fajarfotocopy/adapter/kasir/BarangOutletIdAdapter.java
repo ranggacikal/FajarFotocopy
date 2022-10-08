@@ -559,7 +559,7 @@ public class BarangOutletIdAdapter extends RecyclerView.Adapter<BarangOutletIdAd
                                 Toast.makeText(context, "Berhasil menambah barang", Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                                 transaksiKasirActivity.loadDataPembayaran();
-                                transaksiKasirActivity.loadSearchBarangById(transaksiKasirActivity.cariBarangId);
+                                transaksiKasirActivity.loadSearchBarangById(transaksiKasirActivity.searchBarang);
 //                                editJumlahPack(jumlah_pack_sisa, id_barang_outlet);
                             } else {
                                 Toast.makeText(context, "Gagal Menambah barang", Toast.LENGTH_SHORT).show();

@@ -17,6 +17,7 @@ import com.haloqlinic.fajarfotocopy.R;
 import com.haloqlinic.fajarfotocopy.SharedPreference.SharedPreferencedConfig;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.BarangOutletIdAdapter;
 import com.haloqlinic.fajarfotocopy.adapter.kasir.CariBarangOutletAdapter;
+import com.haloqlinic.fajarfotocopy.adapter.kasir.SearchBarangOutletAdapter;
 import com.haloqlinic.fajarfotocopy.api.ConfigRetrofit;
 import com.haloqlinic.fajarfotocopy.databinding.ActivityTransaksiKasirBinding;
 import com.haloqlinic.fajarfotocopy.kasir.KasirMainActivity;
@@ -26,6 +27,8 @@ import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.BarangPenjualanItem
 import com.haloqlinic.fajarfotocopy.model.getBarangPenjualan.ResponseDataBarangPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPenjualan.ResponseHapusStatusPenjualan;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutlet.ResponseSearchBarangOutlet;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutlet.SearchBarangOutletItem;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.ResponseBarangOutletById;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletById.SearchBarangOutletByIdItem;
 import com.haloqlinic.fajarfotocopy.model.searchBarangOutletByNama.ResponseBarangOutletByNama;
@@ -57,8 +60,10 @@ public class TransaksiKasirActivity extends AppCompatActivity {
     private SharedPreferencedConfig preferencedConfig;
 
     String nameActivity = "";
-    public String cariBarang = "";
-    public String cariBarangId = "";
+//    public String cariBarang = "";
+//    public String cariBarangId = "";
+    public String searchBarang = "";
+
     Context context;
 
     ProgressDialog progressDialog;
@@ -148,9 +153,9 @@ public class TransaksiKasirActivity extends AppCompatActivity {
             }
 
             @Override
-            public boolean onQueryTextChange(String textCari) {
-                cariBarang = textCari;
-                loadSearchBarangKasir(cariBarang);
+            public boolean onQueryTextChange(String keyword) {
+                searchBarang = keyword;
+                loadSearchBarangKasir(searchBarang);
                 return true;
             }
         });
@@ -180,8 +185,8 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                 if(result.getContents() == null) {
                     Toast.makeText(TransaksiKasirActivity.this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
                 } else {
-                    cariBarangId = result.getContents();
-                    loadSearchBarangById(cariBarangId);
+                    searchBarang = result.getContents();
+                    loadSearchBarangById(searchBarang);
                     binding.searchviewSupplierKasir.setQueryHint("Masukan Nama Barang");
                     binding.searchviewSupplierKasir.setIconified(true);
                 }
@@ -205,15 +210,10 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                     listTotal.clear();
 
                     if (status == 1){
-
-
                         barangPenjualan = response.body().getBarangPenjualan();
-
                         Toast.makeText(TransaksiKasirActivity.this, String.valueOf(barangPenjualan.size()), Toast.LENGTH_SHORT).show();
-
-
                     }else{
-                        Toast.makeText(TransaksiKasirActivity.this, "Data kosong", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(TransaksiKasirActivity.this, "Berhasil memuat keranjang", Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     progressDialog.dismiss();
@@ -272,38 +272,17 @@ public class TransaksiKasirActivity extends AppCompatActivity {
         }
 
     }
+    public void loadSearchBarangKasir(String keyword) {
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        IntentResult intentResult = IntentIntegrator.parseActivityResult(
-//                requestCode, resultCode, data
-//        );
-//
-//        if (intentResult.getContents() != null) {
-//
-//            binding.searchviewSupplierKasir.setVisibility(View.GONE);
-//            binding.searchviewBarangOutletBarcode.setVisibility(View.VISIBLE);
-//            binding.searchviewBarangOutletBarcode.setQuery(intentResult.getContents(), false);
-//            binding.recyclerBarangOutlet.setVisibility(View.GONE);
-//            binding.recyclerBarangOutletBarcode.setVisibility(View.VISIBLE);
-//
-//        } else {
-//            Toast.makeText(this, "Tidak ada barcode yg anda scan", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-    public void loadSearchBarangKasir(String textCari) {
-
-        if (textCari.equals("")){
+        if (keyword.equals("")){
             binding.recyclerBarangOutlet.setVisibility(View.GONE);
             binding.txtDataKosongKasir.setVisibility(View.GONE);
         }else {
             binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
-            ConfigRetrofit.service.barangOutletByNama(textCari, preferencedConfig.getPreferenceIdOutlet())
-                    .enqueue(new Callback<ResponseBarangOutletByNama>() {
+            ConfigRetrofit.service.searchBarangOutlet(keyword, preferencedConfig.getPreferenceIdOutlet())
+                    .enqueue(new Callback<ResponseSearchBarangOutlet>() {
                         @Override
-                        public void onResponse(Call<ResponseBarangOutletByNama> call, Response<ResponseBarangOutletByNama> response) {
+                        public void onResponse(Call<ResponseSearchBarangOutlet> call, Response<ResponseSearchBarangOutlet> response) {
                             if (response.isSuccessful()) {
                                 binding.recyclerBarangOutlet.setVisibility(View.VISIBLE);
 
@@ -315,15 +294,15 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                                             2, GridLayoutManager.VERTICAL, false);
                                     binding.recyclerBarangOutlet.setLayoutManager(manager);
 
-                                    List<SearchBarangOutletByNamaItem> dataCari = response.body().getSearchBarangOutletByNama();
+                                    List<SearchBarangOutletItem> dataCari = response.body().getSearchBarangOutlet();
 
-                                    CariBarangOutletAdapter adapterNama = new CariBarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
+                                    SearchBarangOutletAdapter adapterNama = new SearchBarangOutletAdapter(TransaksiKasirActivity.this, dataCari, TransaksiKasirActivity.this);
                                     binding.recyclerBarangOutlet.setAdapter(adapterNama);
                                     binding.txtDataKosongKasir.setVisibility(View.GONE);
                                 }else{
                                     binding.txtDataKosongKasir.setVisibility(View.VISIBLE);
                                     binding.txtDataKosongKasir.setText("Data pencarian dengan nama" +
-                                            " '"+textCari+"' "+"tidak ditemukan atau\ntidak ada " +
+                                            " '"+keyword+"' "+"tidak ditemukan atau\ntidak ada " +
                                             "dalam data toko ini");
                                     binding.recyclerBarangOutlet.setVisibility(View.GONE);
                                 }
@@ -334,39 +313,15 @@ public class TransaksiKasirActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<ResponseBarangOutletByNama> call, Throwable t) {
+                        public void onFailure(Call<ResponseSearchBarangOutlet> call, Throwable t) {
                             Toast.makeText(TransaksiKasirActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     });
 
         }
 
     }
-
-//    private void getStatusPenjualan() {
-//        ConfigRetrofit.service.getIdStatusPenjualan().enqueue(new Callback<ResponseGetIdStatusPenjualan>() {
-//            @Override
-//            public void onResponse(Call<ResponseGetIdStatusPenjualan> call, Response<ResponseGetIdStatusPenjualan> response) {
-//                if (response.isSuccessful()) {
-//                    int status = response.body().getStatus();
-//                    if (status == 1) {
-//                        id_status_penjualan = response.body().getDataIdStatusPenjualan().getIdStatusPenjualan();
-//
-//                    } else {
-//                        Toast.makeText(TransaksiKasirActivity.this, "Gagal Mengambil Id Status Penjualan", Toast.LENGTH_SHORT).show();
-//                    }
-//                } else {
-//                    Toast.makeText(TransaksiKasirActivity.this, "Terjadi Kesalahan Di Server", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<ResponseGetIdStatusPenjualan> call, Throwable t) {
-//                Toast.makeText(TransaksiKasirActivity.this, "error" + t.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-//    }
 
     @Override
     public void onBackPressed() {

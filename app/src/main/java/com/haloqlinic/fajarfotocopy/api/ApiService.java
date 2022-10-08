@@ -15,6 +15,8 @@ import com.haloqlinic.fajarfotocopy.model.hapusDataMintaBarang.ResponseHapusData
 import com.haloqlinic.fajarfotocopy.model.hapusPenjualan.ResponseHapusPenjualan;
 import com.haloqlinic.fajarfotocopy.model.hapusStatusPengiriman.ResponseHapusStatusPengiriman;
 import com.haloqlinic.fajarfotocopy.model.insertReportToko.ResponseInsertReportToko;
+import com.haloqlinic.fajarfotocopy.model.searchBarangGudang.ResponseSearchBarangGudang;
+import com.haloqlinic.fajarfotocopy.model.searchBarangOutlet.ResponseSearchBarangOutlet;
 import com.haloqlinic.fajarfotocopy.model.statusSupplierBulan.ResponseStatusSupplierByBulan;
 import com.haloqlinic.fajarfotocopy.model.cariBarangById.ResponseCariBarangById;
 import com.haloqlinic.fajarfotocopy.model.cariBarangByNama.ResponseCariBarangByNama;
@@ -790,5 +792,13 @@ public interface ApiService {
                                                     @Field("nama_kasir[]") ArrayList<String> nama_kasir,
                                                     @Field("id_status_penjualan[]") ArrayList<String> id_status_penjualan,
                                                     @Field("status_penjualan_barang[]") ArrayList<String> status_penjualan_barang);
+    @FormUrlEncoded
+    @POST("searchBarangOutlet")
+    Call<ResponseSearchBarangOutlet> searchBarangOutlet(@Field("keyword") String keyword,
+                                                        @Field("id_outlet") String id_outlet);
 
+    @FormUrlEncoded
+    @POST("searchBarangGudang")
+    Call<ResponseSearchBarangGudang> searchBarangGudang(@Field("keyword") String keyword);
 }
+
