@@ -206,13 +206,9 @@ public class LoginActivity extends AppCompatActivity{
     }
 
     private void tambahTokenFirebase(String id_user, String token) {
-
-
         ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setMessage("Generate Token");
         progressDialog.show();
-
-
         Log.d("cekParamToken", "onResponse: " + token);
 
         ConfigRetrofit.service.editFirebaseToken(id_user, token)
